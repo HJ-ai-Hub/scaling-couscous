@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amana Pharma — Growth Strategy Dashboard</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
   :root {
     --bg: #0f172a;
@@ -283,7 +282,7 @@
       <div class="card-title">Revenue Growth Projection <span style="color:var(--muted);font-weight:400;font-size:11px;">Year 1 → Year 3</span></div>
       <div class="card-sub">RM thousands · midpoint estimates · all 3 lines + combined</div>
       <div class="chart-wrap" style="height:240px;">
-        <canvas id="revenueChart"></canvas>
+        <div id="revenueChart" style="width:100%;height:100%;"></div>
       </div>
     </div>
     <div class="card">
@@ -323,7 +322,7 @@
           <div class="card-title" style="margin-bottom:4px;">Investment Split</div>
           <div class="card-sub">Total: RM 675K (base case)</div>
           <div class="chart-wrap" style="height:130px;">
-            <canvas id="investChart"></canvas>
+            <div id="investChart" style="width:100%;height:100%;"></div>
           </div>
           <div class="donut-legend">
             <div class="dl-row">
@@ -500,14 +499,14 @@
       <div class="card-title">Contribution by Line — Year 3</div>
       <div class="card-sub">Gross profit contribution (RM thousands, base case midpoints)</div>
       <div class="chart-wrap" style="height:200px;">
-        <canvas id="contribChart"></canvas>
+        <div id="contribChart" style="width:100%;height:100%;"></div>
       </div>
     </div>
     <div class="card">
       <div class="card-title">Revenue Mix Over Time</div>
       <div class="card-sub">Percentage share of combined revenue by line</div>
       <div class="chart-wrap" style="height:200px;">
-        <canvas id="mixChart"></canvas>
+        <div id="mixChart" style="width:100%;height:100%;"></div>
       </div>
     </div>
   </div>
@@ -616,113 +615,164 @@ const SCENARIOS = {
 
 let currentScenario = 'base';
 
-// ── CHART INSTANCES ──
-let revenueChart, investChart, contribChart, mixChart;
-
+// ── COLOR PALETTE ──
 const C = {
-  imp: '#06b6d4', psp: '#8b5cf6', con: '#f59e0b', brand: '#00b2ca',
-  impBg: 'rgba(6,182,212,0.18)', pspBg: 'rgba(139,92,246,0.18)', conBg: 'rgba(245,158,11,0.18)',
-  grid: 'rgba(255,255,255,0.05)', text: '#94a3b8'
+  imp:'#06b6d4', psp:'#8b5cf6', con:'#f59e0b', brand:'#00b2ca',
+  impA:'rgba(6,182,212,0.2)', pspA:'rgba(139,92,246,0.2)', conA:'rgba(245,158,11,0.2)',
+  grid:'rgba(255,255,255,0.06)', tick:'#64748b', ax:'#94a3b8'
 };
 
-Chart.defaults.color = C.text;
-Chart.defaults.borderColor = C.grid;
-Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+// ── SVG HELPERS ──
+function mkE(tag,a){const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const[k,v]of Object.entries(a||{}))e.setAttribute(k,v);return e;}
+function mkT(txt,a){const t=mkE('text',{fill:C.ax,'font-size':11,'font-family':'system-ui,sans-serif',...a});t.textContent=txt;return t;}
+
+// ── REVENUE CHART (grouped bars + combined line) ──
+function drawRevenue(el, d) {
+  el.innerHTML='';
+  const W=el.offsetWidth||380, H=240;
+  const P={t:40,r:12,b:28,l:58};
+  const cW=W-P.l-P.r, cH=H-P.t-P.b;
+  const combined=[0,1,2].map(i=>d.imp[i]+d.psp[i]+d.con[i]);
+  const maxV=Math.ceil(Math.max(...combined)/500)*500;
+  const svg=mkE('svg',{width:W,height:H,style:'display:block'});
+  const g=mkE('g',{transform:`translate(${P.l},${P.t})`});
+  svg.appendChild(g);
+
+  for(let i=0;i<=4;i++){
+    const y=cH*(1-i/4),v=Math.round(maxV*i/4);
+    g.appendChild(mkE('line',{x1:0,y1:y,x2:cW,y2:y,stroke:C.grid,'stroke-width':1}));
+    g.appendChild(mkT('RM '+v+'K',{x:-5,y:y+4,'text-anchor':'end','font-size':9}));
+  }
+
+  const gW=cW/3;
+  const bars=[{v:d.imp,c:C.imp,ca:C.impA},{v:d.psp,c:C.psp,ca:C.pspA},{v:d.con,c:C.con,ca:C.conA}];
+  const bW=gW*0.2;
+  [0,1,2].forEach(gi=>{
+    bars.forEach((b,bi)=>{
+      const bH=(b.v[gi]/maxV)*cH;
+      const bx=gi*gW+gW*0.1+bi*(bW+2);
+      g.appendChild(mkE('rect',{x:bx,y:cH-bH,width:bW,height:bH,fill:b.ca,stroke:b.c,'stroke-width':1.5,rx:3}));
+    });
+    g.appendChild(mkT(['Year 1','Year 2','Year 3'][gi],{x:gi*gW+gW/2,y:cH+18,'text-anchor':'middle'}));
+  });
+
+  const pts=[0,1,2].map(i=>[i*gW+gW/2,cH-(combined[i]/maxV)*cH]);
+  g.appendChild(mkE('polyline',{points:pts.map(p=>p.join(',')).join(' '),fill:'none',stroke:C.brand,'stroke-width':2.5,'stroke-linejoin':'round'}));
+  pts.forEach(([x,y])=>g.appendChild(mkE('circle',{cx:x,cy:y,r:4.5,fill:C.brand})));
+
+  const lgd=[{ca:C.impA,c:C.imp,l:'IMP Supply'},{ca:C.pspA,c:C.psp,l:'PSP Mgmt'},{ca:C.conA,c:C.con,l:'Consultancy'},{c:C.brand,l:'Combined',line:true}];
+  let lx=0;
+  lgd.forEach(({ca,c,l,line})=>{
+    if(line){g.appendChild(mkE('line',{x1:lx,y1:-26,x2:lx+14,y2:-26,stroke:c,'stroke-width':2}));g.appendChild(mkE('circle',{cx:lx+7,cy:-26,r:3,fill:c}));}
+    else{g.appendChild(mkE('rect',{x:lx,y:-32,width:12,height:12,fill:ca,stroke:c,'stroke-width':1.5,rx:2}));}
+    g.appendChild(mkT(l,{x:lx+17,y:-22,'font-size':10}));
+    lx+=l.length*5.5+28;
+  });
+  el.appendChild(svg);
+}
+
+// ── DOUGHNUT ──
+function drawDoughnut(el, d) {
+  el.innerHTML='';
+  const W=el.offsetWidth||200, H=130;
+  const cx=W/2,cy=H/2,R=Math.min(W,H)*0.42,IR=R*0.6;
+  const total=d.values.reduce((a,b)=>a+b,0);
+  const svg=mkE('svg',{width:W,height:H,style:'display:block'});
+  let angle=-Math.PI/2;
+  d.values.forEach((v,i)=>{
+    const sa=(v/total)*Math.PI*2;
+    const[x1,y1]=[cx+R*Math.cos(angle),cy+R*Math.sin(angle)];
+    const[x2,y2]=[cx+R*Math.cos(angle+sa),cy+R*Math.sin(angle+sa)];
+    const[ix1,iy1]=[cx+IR*Math.cos(angle),cy+IR*Math.sin(angle)];
+    const[ix2,iy2]=[cx+IR*Math.cos(angle+sa),cy+IR*Math.sin(angle+sa)];
+    const lg=sa>Math.PI?1:0;
+    svg.appendChild(mkE('path',{d:`M${x1},${y1}A${R},${R} 0 ${lg},1 ${x2},${y2}L${ix2},${iy2}A${IR},${IR} 0 ${lg},0 ${ix1},${iy1}Z`,fill:d.colors[i],stroke:'#1e293b','stroke-width':2}));
+    angle+=sa;
+  });
+  el.appendChild(svg);
+}
+
+// ── CONTRIBUTION GROUPED BAR ──
+function drawContrib(el, d) {
+  el.innerHTML='';
+  const W=el.offsetWidth||380, H=200;
+  const P={t:40,r:12,b:28,l:58};
+  const cW=W-P.l-P.r, cH=H-P.t-P.b;
+  const margins={imp:0.40,psp:0.475,con:0.675};
+  const lines=[{k:'imp',c:C.imp,ca:C.impA,n:'IMP Supply'},{k:'psp',c:C.psp,ca:C.pspA,n:'PSP Mgmt'},{k:'con',c:C.con,ca:C.conA,n:'Consultancy'}];
+  const maxV=Math.ceil(Math.max(...lines.map(l=>d[l.k][2]))/500)*500;
+  const svg=mkE('svg',{width:W,height:H,style:'display:block'});
+  const g=mkE('g',{transform:`translate(${P.l},${P.t})`});
+  svg.appendChild(g);
+
+  for(let i=0;i<=4;i++){
+    const y=cH*(1-i/4),v=Math.round(maxV*i/4);
+    g.appendChild(mkE('line',{x1:0,y1:y,x2:cW,y2:y,stroke:C.grid,'stroke-width':1}));
+    g.appendChild(mkT('RM '+v+'K',{x:-5,y:y+4,'text-anchor':'end','font-size':9}));
+  }
+
+  const gW=cW/3, bW=gW*0.27;
+  lines.forEach(({k,c,ca,n},gi)=>{
+    const gx=gi*gW, rev=d[k][2], gp=Math.round(d[k][2]*margins[k]);
+    const bx=gx+(gW-bW*2-4)/2;
+    g.appendChild(mkE('rect',{x:bx,y:cH-(rev/maxV)*cH,width:bW,height:(rev/maxV)*cH,fill:ca,stroke:c,'stroke-width':1.5,rx:3}));
+    g.appendChild(mkE('rect',{x:bx+bW+4,y:cH-(gp/maxV)*cH,width:bW,height:(gp/maxV)*cH,fill:c,rx:3}));
+    g.appendChild(mkT(n,{x:gx+gW/2,y:cH+18,'text-anchor':'middle','font-size':10.5}));
+  });
+
+  let lx=0;
+  [{fill:C.impA,stroke:C.imp,l:'Revenue'},{fill:C.brand,stroke:C.brand,l:'Gross Profit'}].forEach(({fill,stroke,l})=>{
+    g.appendChild(mkE('rect',{x:lx,y:-32,width:12,height:12,fill:fill,stroke:stroke,'stroke-width':1.5,rx:2}));
+    g.appendChild(mkT(l,{x:lx+17,y:-22,'font-size':10}));
+    lx+=l.length*5.5+28;
+  });
+  el.appendChild(svg);
+}
+
+// ── STACKED MIX CHART ──
+function drawMix(el, d) {
+  el.innerHTML='';
+  const W=el.offsetWidth||380, H=200;
+  const P={t:40,r:12,b:28,l:38};
+  const cW=W-P.l-P.r, cH=H-P.t-P.b;
+  const labels=['Year 1','Year 2','Year 3'];
+  const md=labels.map((_,i)=>{const t=d.imp[i]+d.psp[i]+d.con[i];return{imp:Math.round(d.imp[i]/t*100),psp:Math.round(d.psp[i]/t*100),con:Math.round(d.con[i]/t*100)};});
+  const svg=mkE('svg',{width:W,height:H,style:'display:block'});
+  const g=mkE('g',{transform:`translate(${P.l},${P.t})`});
+  svg.appendChild(g);
+
+  for(let i=0;i<=4;i++){
+    const y=cH*(1-i/4);
+    g.appendChild(mkE('line',{x1:0,y1:y,x2:cW,y2:y,stroke:C.grid,'stroke-width':1}));
+    g.appendChild(mkT((i*25)+'%',{x:-4,y:y+4,'text-anchor':'end','font-size':9}));
+  }
+
+  const gW=cW/3, bW=gW*0.58;
+  [0,1,2].forEach(gi=>{
+    const m=md[gi], bx=gi*gW+(gW-bW)/2;
+    let cy2=cH;
+    [{k:'imp',c:C.imp},{k:'psp',c:C.psp},{k:'con',c:C.con}].forEach(({k,c})=>{
+      const bH=(m[k]/100)*cH; cy2-=bH;
+      g.appendChild(mkE('rect',{x:bx,y:cy2,width:bW,height:bH,fill:c}));
+    });
+    g.appendChild(mkT(labels[gi],{x:gi*gW+gW/2,y:cH+18,'text-anchor':'middle'}));
+  });
+
+  let lx=0;
+  [{c:C.imp,l:'IMP Supply'},{c:C.psp,l:'PSP Mgmt'},{c:C.con,l:'Consultancy'}].forEach(({c,l})=>{
+    g.appendChild(mkE('rect',{x:lx,y:-32,width:12,height:12,fill:c,rx:2}));
+    g.appendChild(mkT(l,{x:lx+17,y:-22,'font-size':10}));
+    lx+=l.length*5.5+28;
+  });
+  el.appendChild(svg);
+}
 
 function buildCharts(sc) {
-  const d = SCENARIOS[sc];
-  const labels = ['Year 1', 'Year 2', 'Year 3'];
-  const combined = labels.map((_,i) => d.imp[i]+d.psp[i]+d.con[i]);
-
-  // ── REVENUE CHART ──
-  const rCtx = document.getElementById('revenueChart').getContext('2d');
-  if (revenueChart) revenueChart.destroy();
-  revenueChart = new Chart(rCtx, {
-    type: 'bar',
-    data: {
-      labels,
-      datasets: [
-        { label: 'IMP Supply', data: d.imp, backgroundColor: C.impBg, borderColor: C.imp, borderWidth: 2, borderRadius: 5, borderSkipped: false },
-        { label: 'PSP Management', data: d.psp, backgroundColor: C.pspBg, borderColor: C.psp, borderWidth: 2, borderRadius: 5, borderSkipped: false },
-        { label: 'Consultancy', data: d.con, backgroundColor: C.conBg, borderColor: C.con, borderWidth: 2, borderRadius: 5, borderSkipped: false },
-        { label: 'Combined', data: combined, type: 'line', borderColor: C.brand, backgroundColor: 'transparent', borderWidth: 2.5, pointBackgroundColor: C.brand, pointRadius: 5, pointHoverRadius: 7, tension: 0.4 }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: 'top', labels: { usePointStyle: true, pointStyle: 'rectRounded', padding: 14, font: { size: 11 } } }, tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: RM ${ctx.parsed.y.toLocaleString()}K` } } },
-      scales: {
-        x: { grid: { display: false }, ticks: { font: { size: 11 } } },
-        y: { grid: { color: C.grid }, ticks: { font: { size: 10 }, callback: v => 'RM '+v+'K' }, beginAtZero: true }
-      }
-    }
-  });
-
-  // ── INVEST DONUT ──
-  const iCtx = document.getElementById('investChart').getContext('2d');
-  if (investChart) investChart.destroy();
-  investChart = new Chart(iCtx, {
-    type: 'doughnut',
-    data: {
-      labels: ['IMP Supply','PSP Management','Consultancy'],
-      datasets: [{ data: [d.invest.imp, d.invest.psp, d.invest.con], backgroundColor: [C.imp, C.psp, C.con], borderWidth: 0, hoverOffset: 6 }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      cutout: '65%',
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` RM ${ctx.parsed}K` } } }
-    }
-  });
-
-  // ── CONTRIBUTION CHART ──
-  const cCtx = document.getElementById('contribChart').getContext('2d');
-  if (contribChart) contribChart.destroy();
-  const margins = { imp: 0.40, psp: 0.475, con: 0.675 };
-  contribChart = new Chart(cCtx, {
-    type: 'bar',
-    data: {
-      labels: ['IMP Supply','PSP Management','Consultancy'],
-      datasets: [
-        { label: 'Revenue', data: [d.imp[2], d.psp[2], d.con[2]], backgroundColor: [C.impBg, C.pspBg, C.conBg], borderColor: [C.imp, C.psp, C.con], borderWidth: 2, borderRadius: 5, borderSkipped: false },
-        { label: 'Gross Profit', data: [Math.round(d.imp[2]*margins.imp), Math.round(d.psp[2]*margins.psp), Math.round(d.con[2]*margins.con)], backgroundColor: [C.imp, C.psp, C.con], borderWidth: 0, borderRadius: 5, borderSkipped: false }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: 'top', labels: { usePointStyle: true, padding: 12, font: { size: 11 } } }, tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: RM ${ctx.parsed.y.toLocaleString()}K` } } },
-      scales: {
-        x: { grid: { display: false }, ticks: { font: { size: 11 } } },
-        y: { grid: { color: C.grid }, ticks: { callback: v => 'RM '+v+'K', font: { size: 10 } }, beginAtZero: true }
-      }
-    }
-  });
-
-  // ── MIX STACKED AREA ──
-  const mCtx = document.getElementById('mixChart').getContext('2d');
-  if (mixChart) mixChart.destroy();
-  const mixData = labels.map((_,i) => {
-    const tot = d.imp[i]+d.psp[i]+d.con[i];
-    return { imp: Math.round(d.imp[i]/tot*100), psp: Math.round(d.psp[i]/tot*100), con: Math.round(d.con[i]/tot*100) };
-  });
-  mixChart = new Chart(mCtx, {
-    type: 'bar',
-    data: {
-      labels,
-      datasets: [
-        { label: 'IMP Supply', data: mixData.map(m=>m.imp), backgroundColor: C.imp, borderWidth: 0, borderRadius: { topLeft:0,topRight:0 } },
-        { label: 'PSP Mgmt', data: mixData.map(m=>m.psp), backgroundColor: C.psp, borderWidth: 0 },
-        { label: 'Consultancy', data: mixData.map(m=>m.con), backgroundColor: C.con, borderWidth: 0, borderRadius: { topLeft:5,topRight:5 } }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: 'top', labels: { usePointStyle: true, padding: 12, font: { size: 11 } } }, tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y}%` } } },
-      scales: {
-        x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
-        y: { stacked: true, max: 100, grid: { color: C.grid }, ticks: { callback: v => v+'%', font: { size: 10 } } }
-      }
-    }
-  });
+  const d=SCENARIOS[sc];
+  drawRevenue(document.getElementById('revenueChart'),d);
+  drawDoughnut(document.getElementById('investChart'),{values:[d.invest.imp,d.invest.psp,d.invest.con],colors:[C.imp,C.psp,C.con]});
+  drawContrib(document.getElementById('contribChart'),d);
+  drawMix(document.getElementById('mixChart'),d);
 }
 
 function updateCards(sc) {
