@@ -1,4 +1,7 @@
 
 # Sensitive documents — keep local, do not publish to GitHub
-London_DE_tenancy_contract_REDACTED.pdf
+# Tenancy contracts and any redacted PDFs (case-insensitive intent)
+*[Tt]enancy_[Cc]ontract*.pdf
 *tenancy_contract*.pdf
+*REDACTED*.pdf
+*_redacted.pdf
