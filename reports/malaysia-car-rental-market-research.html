@@ -3,104 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Malaysia Car Rental Industry — Deep Research Report</title>
+<title>Malaysia Car Rental Industry — Deep Research Report (v2)</title>
 <style>
   :root{
     --ink:#1a2330; --muted:#5b6675; --line:#e2e6ec; --accent:#0b6e4f;
     --accent2:#0e7c8c; --soft:#f5f7fa; --soft2:#eef6f2; --gold:#b8860b;
+    --warisan:#0b6e4f; --sk:#1f4e9c;
   }
   *{box-sizing:border-box;}
   html{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
-  body{
-    font-family:"Helvetica Neue",Arial,"Segoe UI",sans-serif;
-    color:var(--ink); line-height:1.55; margin:0;
-    font-size:11pt; background:#fff;
-  }
+  body{font-family:"Helvetica Neue",Arial,"Segoe UI",sans-serif; color:var(--ink);
+    line-height:1.55; margin:0; font-size:11pt; background:#fff;}
   .wrap{max-width:880px; margin:0 auto; padding:0 30px;}
 
-  /* Cover */
-  .cover{
-    background:linear-gradient(135deg,#0b6e4f 0%,#0e7c8c 100%);
-    color:#fff; padding:60px 40px 50px; border-radius:0;
-  }
+  .cover{background:linear-gradient(135deg,#0b6e4f 0%,#0e7c8c 100%); color:#fff; padding:58px 40px 46px;}
   .cover .kicker{letter-spacing:3px; text-transform:uppercase; font-size:10pt; opacity:.85; margin:0 0 14px;}
-  .cover h1{font-size:30pt; line-height:1.12; margin:0 0 18px; font-weight:700;}
-  .cover .meta{font-size:10.5pt; opacity:.92; margin:0; border-top:1px solid rgba(255,255,255,.3); padding-top:16px;}
-  .cover .meta span{display:inline-block; margin-right:22px;}
+  .cover h1{font-size:29pt; line-height:1.12; margin:0 0 10px; font-weight:700;}
+  .cover .sub{font-size:12pt; opacity:.9; margin:0 0 18px; font-weight:400;}
+  .cover .meta{font-size:10pt; opacity:.92; margin:0; border-top:1px solid rgba(255,255,255,.3); padding-top:14px;}
+  .cover .meta span{display:inline-block; margin-right:20px;}
 
-  h2{
-    font-size:15pt; color:var(--accent); margin:34px 0 12px;
-    padding-bottom:7px; border-bottom:2px solid var(--accent);
-  }
-  h3{font-size:12pt; color:var(--accent2); margin:20px 0 8px;}
-  p{margin:9px 0;}
-  a{color:var(--accent2); text-decoration:none; border-bottom:1px solid #cfe0e4;}
-
+  h2{font-size:15pt; color:var(--accent); margin:32px 0 12px; padding-bottom:7px; border-bottom:2px solid var(--accent);}
+  h3{font-size:12.5pt; color:var(--accent2); margin:20px 0 8px;}
+  p{margin:9px 0;} a{color:var(--accent2); text-decoration:none; border-bottom:1px solid #cfe0e4;}
   .lead{font-size:11.5pt; color:var(--muted);}
 
-  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:9.8pt;}
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:9.6pt;}
   th{background:var(--accent); color:#fff; text-align:left; padding:8px 10px; font-weight:600;}
-  td{padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
+  td{padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
   tr:nth-child(even) td{background:var(--soft);}
 
   .cards{display:flex; flex-wrap:wrap; gap:12px; margin:14px 0;}
-  .card{
-    flex:1 1 200px; background:var(--soft2); border:1px solid #d8e8e0;
-    border-radius:8px; padding:14px 16px;
-  }
-  .card .num{font-size:20pt; font-weight:700; color:var(--accent); line-height:1;}
-  .card .lbl{font-size:9pt; color:var(--muted); margin-top:6px; text-transform:uppercase; letter-spacing:.5px;}
+  .card{flex:1 1 150px; background:var(--soft2); border:1px solid #d8e8e0; border-radius:8px; padding:13px 15px;}
+  .card .num{font-size:18pt; font-weight:700; color:var(--accent); line-height:1;}
+  .card .lbl{font-size:8.5pt; color:var(--muted); margin-top:6px; text-transform:uppercase; letter-spacing:.5px;}
 
-  .tier{border-left:4px solid var(--accent2); padding:4px 0 4px 14px; margin:14px 0;}
-  .tier h3{margin-top:6px;}
-  .company{font-weight:700; color:var(--ink);}
-  ul{margin:8px 0; padding-left:20px;}
-  li{margin:4px 0;}
+  ul{margin:8px 0; padding-left:20px;} li{margin:4px 0;}
+  blockquote{background:#fff8e7; border-left:4px solid var(--gold); margin:14px 0; padding:10px 16px; color:#6b5413; font-size:10pt;}
+  .pill{display:inline-block; background:var(--accent); color:#fff; font-size:8pt; padding:2px 9px; border-radius:20px; letter-spacing:.5px; text-transform:uppercase; vertical-align:middle; margin-left:6px;}
 
-  blockquote{
-    background:#fff8e7; border-left:4px solid var(--gold);
-    margin:14px 0; padding:10px 16px; color:#6b5413; font-size:10pt;
-  }
-  .pill{display:inline-block; background:var(--accent); color:#fff; font-size:8pt;
-    padding:2px 9px; border-radius:20px; letter-spacing:.5px; text-transform:uppercase; vertical-align:middle; margin-left:6px;}
+  /* Company profile block */
+  .profile{border:1px solid var(--line); border-radius:10px; padding:0; margin:16px 0; overflow:hidden;}
+  .profile .head{padding:12px 16px; color:#fff; display:flex; justify-content:space-between; align-items:center;}
+  .profile .head h3{color:#fff; margin:0; font-size:13pt;}
+  .profile .head .tag{font-size:8.5pt; background:rgba(255,255,255,.22); padding:3px 10px; border-radius:20px;}
+  .profile .body{padding:6px 16px 14px;}
+  .grn .head{background:#0b6e4f;} .tea .head{background:#0e7c8c;} .blu .head{background:#1f4e9c;} .gry .head{background:#5b6675;}
+  .statrow{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0;}
+  .stat{flex:1 1 120px; background:var(--soft); border-radius:6px; padding:8px 10px;}
+  .stat b{display:block; font-size:11pt; color:var(--ink);}
+  .stat span{font-size:8pt; color:var(--muted); text-transform:uppercase; letter-spacing:.4px;}
 
-  .footer{margin-top:34px; padding-top:14px; border-top:1px solid var(--line);
-    font-size:8.5pt; color:var(--muted);}
+  /* group structure diagram */
+  .org{margin:16px 0; padding:18px; background:var(--soft); border-radius:10px;}
+  .org .row{display:flex; gap:20px; justify-content:center;}
+  .col{flex:1; max-width:48%;}
+  .node{border-radius:8px; padding:9px 12px; margin:8px 0; text-align:center; color:#fff; font-size:9.5pt; font-weight:600;}
+  .node small{display:block; font-weight:400; font-size:8pt; opacity:.9;}
+  .arrow{text-align:center; color:var(--muted); font-size:12pt; line-height:.6;}
+  .grp-w{background:#0b6e4f;} .grp-w2{background:#129067;} .grp-w3{background:#3aa583;}
+  .grp-s{background:#1f4e9c;} .grp-s2{background:#3a68b5;}
+  .ind{background:#5b6675;}
+  .colcap{text-align:center; font-size:8.5pt; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-bottom:4px;}
 
+  .footer{margin-top:32px; padding-top:14px; border-top:1px solid var(--line); font-size:8.5pt; color:var(--muted);}
   @page{margin:14mm 12mm; size:A4;}
-  @media print{ .cover{margin:-14mm -12mm 0;} h2{page-break-after:avoid;} table,.card,.tier{page-break-inside:avoid;} }
+  @media print{ .cover{margin:-14mm -12mm 0;} h2{page-break-after:avoid;} table,.card,.profile,.org{page-break-inside:avoid;} }
 </style>
 </head>
 <body>
 
 <div class="cover">
-  <p class="kicker">Market Intelligence Report</p>
+  <p class="kicker">Market Intelligence Report · v2</p>
   <h1>Malaysia Car Rental Industry</h1>
+  <p class="sub">Market structure, player deep-dives &amp; strategic outlook</p>
   <p class="meta">
     <span><strong>Prepared for:</strong> HJ</span>
     <span><strong>Date:</strong> 20 June 2026</span>
-    <span><strong>Coverage:</strong> Market size · Players · Strategy · Outlook</span>
+    <span><strong>Focus:</strong> Tier 1 &amp; Tier 2 player intelligence</span>
   </p>
 </div>
 
 <div class="wrap">
 
 <h2>1. Executive Summary</h2>
-<p class="lead">The Malaysian car rental market is a <strong>~USD 0.62–0.67 billion</strong> industry (2025–2026) growing at <strong>~8.4% CAGR</strong>, on track to reach roughly <strong>USD 1.0–1.15 billion by 2031–2032</strong>. Growth is powered by record inbound tourism (38 million arrivals in 2024), a structural shift toward app-based self-drive mobility, and government EV incentives.</p>
+<p class="lead">Malaysia's car rental market is a <strong>~USD 0.62–0.67 billion</strong> industry (2025–2026) growing at <strong>~8.4% CAGR</strong> toward <strong>~USD 1.0–1.15 billion by 2031–2032</strong>, driven by record tourism (38M arrivals in 2024), app-based self-drive mobility, and EV incentives.</p>
 
 <div class="cards">
   <div class="card"><div class="num">~USD 0.67B</div><div class="lbl">Market size 2026</div></div>
   <div class="card"><div class="num">~8.4%</div><div class="lbl">CAGR to 2031</div></div>
-  <div class="card"><div class="num">~USD 1.0B+</div><div class="lbl">Forecast by 2031</div></div>
+  <div class="card"><div class="num">~USD 1B+</div><div class="lbl">Forecast 2031</div></div>
   <div class="card"><div class="num">1,000+</div><div class="lbl">Registered operators</div></div>
 </div>
 
-<p>The market is <strong>moderately fragmented</strong>, but value concentrates among a handful of players. Competition has split into two camps:</p>
-<ul>
-  <li><strong>Traditional rental &amp; fleet leasing</strong> (Mayflower, Hawk, Avis, Hertz, Europcar) — counter-based, corporate contracts, airport networks, chauffeur/coach services.</li>
-  <li><strong>Tech-led car-sharing / digital self-drive</strong> (SOCAR, GoCar, TREVO) — app-first, hourly/daily/subscription, AI dynamic pricing, EV fleets.</li>
-</ul>
-<p><strong>Technology is now the decisive battleground.</strong> Local app players SOCAR and GoCar set the pace on pricing, utilization and CX; legacy names compete on trust, corporate/long-term leasing, and physical reach.</p>
+<blockquote><strong>Headline insight:</strong> the market is effectively a <strong>duopoly of conglomerates</strong> sitting above a long tail. <strong>GoCar is 99.64%-owned by Mayflower</strong> (Warisan TC Holdings / Tan Chong group), while <strong>SOCAR + TREVO</strong> are owned by South Korea's <strong>SK Group</strong>. Your "Tier 1 app player" and "Tier 2 incumbent" GoCar/Mayflower are <em>one</em> group running a two-brand strategy.</blockquote>
 
 <h2>2. Market Size &amp; Growth</h2>
 <table>
@@ -108,160 +104,201 @@
   <tbody>
     <tr><td>Market size 2025</td><td>~USD 0.62B (one report: USD 595.97M)</td><td>Mordor / Verified Market Research</td></tr>
     <tr><td>Market size 2026</td><td>~USD 0.67B</td><td>Mordor Intelligence</td></tr>
-    <tr><td>Forecast 2031</td><td>~USD 1.01B</td><td>Mordor Intelligence</td></tr>
-    <tr><td>Forecast 2032</td><td>~USD 1.15B</td><td>Verified Market Research</td></tr>
-    <tr><td>CAGR</td><td>~8.4–8.5% (2025/26–2031/32)</td><td>Multiple</td></tr>
+    <tr><td>Forecast 2031 / 2032</td><td>~USD 1.01B / ~USD 1.15B</td><td>Mordor / Verified Market Research</td></tr>
+    <tr><td>CAGR</td><td>~8.4–8.5%</td><td>Multiple</td></tr>
   </tbody>
 </table>
-<p><strong>Segment split (2025):</strong></p>
-<ul>
-  <li><strong>By customer type:</strong> Individuals ≈ <strong>72.4%</strong> of the market (vs. corporate/fleet).</li>
-  <li><strong>By use case:</strong> Tourism &amp; leisure ≈ <strong>67.6%</strong> — the dominant driver of self-drive demand.</li>
-</ul>
-<blockquote>Reported "market size" figures vary by research house depending on whether they count only self-drive rental, or also include leasing and chauffeur/fleet-management revenue. Treat the ~USD 0.6–0.7B / ~8.5% CAGR band as the consensus.</blockquote>
+<p><strong>Segments (2025):</strong> Individuals ≈ <strong>72.4%</strong> of demand · Tourism &amp; leisure ≈ <strong>67.6%</strong> of use.</p>
 
-<h2>3. How Many Players?</h2>
-<ul>
-  <li><strong>1,000+ registered car rental operators</strong> in Malaysia.</li>
-  <li>Field is <strong>moderately fragmented</strong>: a long tail of small local/regional outfits (airports, Langkawi, Penang, Sabah/Sarawak, JB) underneath a concentrated top tier.</li>
-  <li>Value concentrates with <strong>~6–8 names</strong> that dominate brand awareness, fleet scale, and digital share.</li>
-</ul>
+<h2>3. Market Structure — A Duopoly of Groups</h2>
+<p>Over <strong>1,000 registered operators</strong> compete, but value concentrates in <strong>two conglomerate camps</strong> plus the independent Hawk and a long tail of small players.</p>
 
-<h2>4. Main Players &amp; Competitors</h2>
-
-<h3>Tier 1 — Tech-led local champions <span class="pill">set the pace</span></h3>
-
-<div class="tier">
-  <p><span class="company">SOCAR Malaysia</span></p>
-  <ul>
-    <li>App-based self-drive car-sharing (hourly / daily / weekly / monthly).</li>
-    <li>Ownership: ~<strong>60% SK Holdings, 40% SOCAR Korea</strong>; launched in Malaysia in 2018 targeting 1,000 cars in year one.</li>
-    <li>Extensions: <strong>SOCAR-2-YOU</strong> (car delivery), <strong>SOCAR+</strong> (personal driver), and <strong>TREVO</strong> (P2P marketplace).</li>
-    <li>Strategy: dense urban zones, AI dynamic pricing by micro-location/time, contactless rental, utilization optimization.</li>
-  </ul>
+<div class="org">
+  <div class="row">
+    <div class="col">
+      <div class="colcap">Camp A — Local conglomerate</div>
+      <div class="node grp-w">Tan Chong Group <small>Tan Heng Chew family · sole Nissan distributor</small></div>
+      <div class="arrow">▼</div>
+      <div class="node grp-w2">Warisan TC Holdings <small>Bursa Malaysia listed</small></div>
+      <div class="arrow">▼</div>
+      <div class="node grp-w2">Mayflower Car Rental <small>traditional rental · leasing · coaches</small></div>
+      <div class="arrow">▼</div>
+      <div class="node grp-w3">GoCar Mobility (99.64%) <small>app self-drive · subscription · EV</small></div>
+    </div>
+    <div class="col">
+      <div class="colcap">Camp B — Korean strategic</div>
+      <div class="node grp-s">SK Group (South Korea) <small>acquired SOCAR M'sia outright, Aug 2025</small></div>
+      <div class="arrow">▼</div>
+      <div class="node grp-s2">SOCAR Malaysia <small>app self-drive · ~2,000 cars · ~1,000 zones</small></div>
+      <div class="arrow">▼</div>
+      <div class="node grp-s2">TREVO (100%) <small>peer-to-peer marketplace · asset-light</small></div>
+      <div style="height:30px"></div>
+      <div class="colcap" style="margin-top:14px">Camp C — Independents</div>
+      <div class="node ind">Hawk Rent A Car <small>airport / cross-border niche</small></div>
+      <div class="node ind">~1,000 small operators <small>price &amp; local presence</small></div>
+    </div>
+  </div>
 </div>
 
-<div class="tier">
-  <p><span class="company">GoCar Malaysia</span> (GoCar Mobility Sdn Bhd)</p>
-  <ul>
-    <li>Scaled from <strong>5 cars</strong> in Klang Valley to <strong>~1,000 vehicles across 7 states</strong>.</li>
-    <li>Product ladder: hourly/daily sharing → <strong>GoCar Subscription</strong> (monthly) → <strong>GoCar Pro</strong> (Johor Bahru hybrid) → <strong>GoEV</strong> (EV access).</li>
-    <li>Partnerships: <strong>Renault</strong> (150 Capturs), <strong>Shell</strong> (GoCars at 100 stations), EV charging via <strong>chargEV</strong> &amp; <strong>JomCharge</strong>.</li>
-    <li>EV: 50+ Nissan Leaf deployed; offers Nissan Leaf &amp; Ora Good Cat. Positions as "future of car rental AND ownership."</li>
-  </ul>
+<h2>4. Player Deep-Dives <span class="pill">Tier 1 &amp; Tier 2</span></h2>
+
+<!-- SOCAR -->
+<div class="profile blu">
+  <div class="head"><h3>SOCAR Malaysia</h3><span class="tag">Tier 1 · App self-drive</span></div>
+  <div class="body">
+    <div class="statrow">
+      <div class="stat"><b>~2,000</b><span>Cars in fleet</span></div>
+      <div class="stat"><b>~1,000</b><span>Zones</span></div>
+      <div class="stat"><b>~US$73M</b><span>Funding raised</span></div>
+      <div class="stat"><b>~US$213M</b><span>Peak valuation</span></div>
+      <div class="stat"><b>RM66M</b><span>Revenue (2022)</span></div>
+    </div>
+    <p><strong>Ownership:</strong> Acquired outright by <strong>SK Group (Korea), Aug 2025</strong> (prev. 60% SK Holdings / 40% SOCAR Korea). Funding: US$18M Series A (2019) + US$55M Series B (2021).</p>
+    <p><strong>Business model:</strong> Pure app-based, zone-based car-sharing (hourly→monthly). Capital-heavy <em>owned</em> fleet monetized via high utilization + AI dynamic pricing (rates flex by location/time).</p>
+    <p><strong>Strategy / plan:</strong></p>
+    <ul>
+      <li><strong>Density over breadth</strong> — saturate KL, Penang, JB rather than go nationwide.</li>
+      <li><strong>Revenue-per-user add-ons:</strong> SOCAR-2-YOU (delivery), SOCAR+ (driver), sub-brands BOSS &amp; DASH.</li>
+      <li><strong>Asset-light layer via TREVO</strong> — grow supply without buying cars.</li>
+      <li><strong>Post-SK acquisition</strong> — recapitalization + tighter integration with SK's regional mobility ambitions.</li>
+    </ul>
+    <p><strong>Know this:</strong> the capital-intensive, strategically-funded model — deep pockets, scale-driven economics, but answers to a foreign parent's regional priorities.</p>
+  </div>
 </div>
 
-<div class="tier">
-  <p><span class="company">TREVO</span> (subsidiary of SOCAR)</p>
-  <ul>
-    <li>Malaysia's leading <strong>peer-to-peer (P2P)</strong> car-sharing marketplace — owners ("hosts") list, renters ("guests") book.</li>
-    <li>~<strong>21 car brands</strong> incl. Audi, Bentley, Mazda; built <strong>TREVO Shield</strong>, Malaysia's first P2P car insurance.</li>
-    <li>Strategic value: <strong>asset-light</strong> — grows supply without buying vehicles. SOCAR+TREVO added 400+ cars in Jan 2024.</li>
-  </ul>
+<!-- GoCar -->
+<div class="profile grn">
+  <div class="head"><h3>GoCar Malaysia</h3><span class="tag">Tier 1 · App self-drive (Warisan/Tan Chong)</span></div>
+  <div class="body">
+    <div class="statrow">
+      <div class="stat"><b>~1,000</b><span>Vehicles · 7 states</span></div>
+      <div class="stat"><b>2014</b><span>Founded</span></div>
+      <div class="stat"><b>99.64%</b><span>Owned by Mayflower</span></div>
+      <div class="stat"><b>RM13.90/hr</b><span>Entry price</span></div>
+      <div class="stat"><b>2022</b><span>F&amp;S Car-Sharing Co. of Year</span></div>
+    </div>
+    <p><strong>Ownership:</strong> <strong>99.64% Mayflower → Warisan TC Holdings (listed) → Tan Chong group</strong> (also Nissan's Malaysian distributor). Started with 5 cars in Klang Valley.</p>
+    <p><strong>Business model:</strong> App self-drive like SOCAR — but built as a <strong>"rent → subscribe → own" ladder</strong>, its core differentiator:</p>
+    <ul>
+      <li><strong>GoCar Sharing</strong> — hourly/daily (from RM13.90/hr)</li>
+      <li><strong>GoCar Subscription</strong> — flexible monthly, no ownership commitment</li>
+      <li><strong>GoCar Pro</strong> (Johor Bahru) — sharing/subscription hybrid, faster turnaround</li>
+      <li><strong>GoEV</strong> — Tesla Model Y, Hyundai Ioniq 5/Kona, Renault Zoe, Ora Good Cat, Nissan Leaf</li>
+    </ul>
+    <p><strong>Strategy / plan:</strong> "Future of car rental AND ownership" — funnels subscribers toward purchase (synergy with parent's car-distribution arm). Partnerships: Renault (150 Capturs), Shell (100 stations), chargEV &amp; JomCharge. Backed by a <strong>listed parent's balance sheet</strong> → patient capital, less burn than SOCAR.</p>
+    <p><strong>Know this:</strong> vertical integration is the edge — parent sells cars, runs the traditional rental arm (Mayflower), and owns dealer/financing rails. The subscription-to-ownership funnel is hard for SOCAR to copy.</p>
+  </div>
 </div>
 
-<h3>Tier 2 — Established local incumbents</h3>
-<div class="tier">
-  <p><span class="company">Mayflower Car Rental</span> (Mayflower Acme Tours Sdn Bhd)</p>
-  <ul>
-    <li><strong>Malaysia's first car rental company (est. 1963)</strong>; subsidiary of <strong>Warisan TC Holdings Berhad</strong> (listed on Bursa Malaysia).</li>
-    <li>One of the <strong>largest ground-transport fleet owners</strong>: sedans, MPVs, tour vans, air-conditioned coaches.</li>
-    <li>Full-service: rental &amp; <strong>leasing</strong>, <strong>fleet management</strong> (maintenance, insurance, 24/7 breakdown), coach &amp; chauffeur services.</li>
-    <li>Network: KL HQ + KLIA, Penang, Johor, Kuantan, Sabah, Sarawak. Strong in <strong>corporate leasing &amp; tourism/MICE</strong>.</li>
-  </ul>
-</div>
-<div class="tier">
-  <p><span class="company">Hawk Rent A Car (M) Sdn Bhd</span></p>
-  <ul>
-    <li>Long-established local operator; core activity <strong>passenger car rental</strong>; HQ in Subang Jaya, Selangor.</li>
-    <li>Competes on nationwide reach, corporate accounts, competitive pricing, broad branch/airport presence.</li>
-  </ul>
+<!-- TREVO -->
+<div class="profile tea">
+  <div class="head"><h3>TREVO</h3><span class="tag">Tier 1 · Peer-to-peer (SOCAR subsidiary)</span></div>
+  <div class="body">
+    <div class="statrow">
+      <div class="stat"><b>P2P</b><span>Marketplace model</span></div>
+      <div class="stat"><b>~21</b><span>Car brands listed</span></div>
+      <div class="stat"><b>0</b><span>Cars owned (asset-light)</span></div>
+      <div class="stat"><b>100%</b><span>Owned by SOCAR</span></div>
+    </div>
+    <p><strong>Business model:</strong> The "Turo/Airbnb of cars" — owners ("hosts") list, renters ("guests") book; TREVO takes commission and provides the trust layer (payments, verification, <strong>TREVO Shield</strong> — Malaysia's first P2P rental insurance). Inventory spans Audi, Bentley, Mazda etc.</p>
+    <p><strong>Know this:</strong> the <strong>most capital-efficient model</strong> in the market — supply scales with car owners, not capex. Easiest to copy, hardest to win (needs two-sided liquidity + insurance partnerships).</p>
+  </div>
 </div>
 
-<h3>Tier 3 — International majors (franchise / equity)</h3>
-<div class="tier">
-  <ul>
-    <li><strong>Hertz, Avis (Avis Budget), Europcar, SIXT, Enterprise Mobility.</strong></li>
-    <li>Enter via <strong>franchise or equity partnerships</strong> with local operators to manage regulatory risk and localize fleet.</li>
-    <li>Compete on <strong>global corporate contracts</strong>, standardized <strong>loyalty programs</strong>, airport counters, inbound brand recognition.</li>
-  </ul>
+<!-- Mayflower -->
+<div class="profile grn">
+  <div class="head"><h3>Mayflower Car Rental</h3><span class="tag">Tier 2 · Incumbent (Warisan/Tan Chong)</span></div>
+  <div class="body">
+    <div class="statrow">
+      <div class="stat"><b>1963</b><span>Malaysia's first</span></div>
+      <div class="stat"><b>Listed</b><span>Warisan TC Holdings</span></div>
+      <div class="stat"><b>6+</b><span>Nationwide locations</span></div>
+      <div class="stat"><b>99.64%</b><span>Owns GoCar</span></div>
+    </div>
+    <p><strong>Ownership:</strong> Warisan TC Holdings Berhad (Bursa-listed) → Tan Chong group. <strong>Owns 99.64% of GoCar.</strong></p>
+    <p><strong>Fleet:</strong> one of Malaysia's largest ground-transport fleets — sedans, MPVs, tour vans, <strong>air-conditioned coaches</strong>. Network: KL HQ + KLIA, Penang, Johor, Kuantan, Sabah, Sarawak.</p>
+    <p><strong>Business model (B2B-weighted):</strong> car rental &amp; <strong>long-term leasing</strong>; <strong>fleet management</strong> (maintenance, insurance, 24/7 breakdown); <strong>coach rental &amp; chauffeur</strong> (tourism, MICE, corporate).</p>
+    <p><strong>Strategy / plan:</strong> own corporate/institutional contracts (sticky, less price-sensitive); leverage coach + tour-agency heritage for tourism/MICE; run the digital/retail future <em>through GoCar</em> (bought 2016 to avoid being disrupted).</p>
+    <p><strong>Know this:</strong> the "old money" incumbent — scale, trust, government/corporate relationships, listed backing, and a coach/chauffeur business app players don't touch. Weakness: legacy cost base, slower native digital (outsourced to GoCar).</p>
+  </div>
 </div>
 
-<h3>Tier 4 — The long tail</h3>
-<div class="tier">
-  <ul><li>1,000+ small/independent operators serving local and tourist demand, especially island/holiday destinations and secondary cities. Compete almost entirely on <strong>price and local presence</strong>.</li></ul>
+<!-- Hawk -->
+<div class="profile gry">
+  <div class="head"><h3>Hawk Rent A Car (M) Sdn Bhd</h3><span class="tag">Tier 2 · Independent</span></div>
+  <div class="body">
+    <div class="statrow">
+      <div class="stat"><b>1994/95</b><span>Founded</span></div>
+      <div class="stat"><b>~10</b><span>Offices / kiosks</span></div>
+      <div class="stat"><b>~US$5.1M</b><span>Revenue</span></div>
+      <div class="stat"><b>~28</b><span>Employees (lean)</span></div>
+    </div>
+    <p><strong>Network:</strong> KLIA, KLIA2, KL city centre + key West &amp; East Malaysia cities; <strong>Hong Kong &amp; Singapore offices</strong> + global partner network. HQ Subang Jaya, Selangor.</p>
+    <p><strong>Business model:</strong> traditional counter/branch-based passenger car rental — airport pickups, city branches, corporate accounts; "young fleet" positioning (well-maintained, regularly refreshed).</p>
+    <p><strong>Strategy / plan:</strong> airport + cross-border focus (inbound &amp; regional business travelers); asset-right, lean ops with partner network instead of owning branches everywhere; competes on service consistency and reach, not tech or price.</p>
+    <p><strong>Know this:</strong> the independent specialist — no listed parent, no app ambitions. Squeezed between app players (convenience) and the long tail (price), but airport positioning + regional offices are genuine assets.</p>
+  </div>
 </div>
 
-<h2>5. Business Strategies — How They Compete</h2>
+<h2>5. Competitor Comparison Matrix</h2>
 <table>
-  <thead><tr><th>Lever</th><th>Tech-led (SOCAR, GoCar, TREVO)</th><th>Incumbents (Mayflower, Hawk)</th><th>Internationals (Hertz, Avis…)</th></tr></thead>
+  <thead><tr><th>Dimension</th><th>SOCAR</th><th>GoCar</th><th>TREVO</th><th>Mayflower</th><th>Hawk</th></tr></thead>
   <tbody>
-    <tr><td>Go-to-market</td><td>App-first, contactless, zone-based</td><td>Branch + airport counters, B2B sales</td><td>Airport + franchise + corporate</td></tr>
-    <tr><td>Pricing</td><td>AI dynamic pricing (location/time)</td><td>Fixed / negotiated lease rates</td><td>Standardized + loyalty</td></tr>
-    <tr><td>Fleet</td><td>Owned + (TREVO) P2P asset-light</td><td>Owned, large mixed incl. coaches</td><td>Owned / franchise-supplied</td></tr>
-    <tr><td>Core customer</td><td>Urban individuals, tourists</td><td>Corporates, tour/MICE, govt</td><td>Inbound corporate &amp; premium</td></tr>
-    <tr><td>Differentiator</td><td>Convenience, flexibility, EV, UX</td><td>Trust, scale, full-service leasing</td><td>Global brand, network, reliability</td></tr>
+    <tr><td><strong>Type</strong></td><td>App self-drive</td><td>App self-drive</td><td>P2P market</td><td>Traditional + lease</td><td>Traditional</td></tr>
+    <tr><td><strong>Fleet</strong></td><td>~2,000</td><td>~1,000 (7 states)</td><td>Asset-light (0 owned)</td><td>Large, mixed + coaches</td><td>Young fleet, ~10 sites</td></tr>
+    <tr><td><strong>Owner</strong></td><td>SK Group (Korea)</td><td>Mayflower / Warisan</td><td>SOCAR</td><td>Warisan TC (listed)</td><td>Independent</td></tr>
+    <tr><td><strong>Capital model</strong></td><td>VC + strategic</td><td>Listed parent</td><td>Marketplace</td><td>Listed corporate</td><td>SME</td></tr>
+    <tr><td><strong>Core customer</strong></td><td>Urban individuals</td><td>Individuals → owners</td><td>Owners + renters</td><td>Corporate, MICE, govt</td><td>Airport, cross-border</td></tr>
+    <tr><td><strong>Pricing</strong></td><td>AI dynamic</td><td>Tiered + subscription</td><td>Host-set + commission</td><td>Negotiated / lease</td><td>Fixed / corporate</td></tr>
+    <tr><td><strong>EV play</strong></td><td>Moderate</td><td>Strong (GoEV)</td><td>Host-dependent</td><td>Emerging</td><td>Limited</td></tr>
+    <tr><td><strong>Moat</strong></td><td>Scale, density, pricing</td><td>Rent→own funnel, integration</td><td>Capital efficiency</td><td>Contracts, coaches, trust</td><td>Airport + regional niche</td></tr>
+    <tr><td><strong>Vulnerability</strong></td><td>Burn, foreign parent</td><td>Modest entity revenue</td><td>Needs liquidity</td><td>Legacy cost, slow digital</td><td>Squeezed both ends</td></tr>
   </tbody>
 </table>
-<p><strong>Key strategic themes:</strong></p>
-<ul>
-  <li><strong>Subscription &amp; flexibility</strong> — monthly subscriptions blur renting vs. owning (GoCar Subscription/Pro).</li>
-  <li><strong>Asset-light scaling</strong> — P2P (TREVO) grows supply without capex.</li>
-  <li><strong>Ecosystem partnerships</strong> — fuel/charging (Shell, chargEV, JomCharge), OEMs (Renault, Nissan), insurers.</li>
-  <li><strong>EV-led positioning</strong> — backed by 2023 government tax incentives for EVs in rental fleets.</li>
-  <li><strong>Price wars</strong> — 1,000+ operators create saturation that erodes margins, especially in the long tail.</li>
-</ul>
 
 <h2>6. Industry Trends &amp; Drivers</h2>
 <ul>
-  <li><strong>Tourism boom:</strong> 38M inbound arrivals in 2024 (above targets) → sustained self-drive demand; tourism ≈ 67.6% of the market.</li>
-  <li><strong>EV incentives (2023):</strong> tax incentives for adding EVs; infrastructure upgrades at airports/highways; digital road-tax compliance.</li>
-  <li><strong>Digital-first as standard:</strong> contactless rentals, real-time tracking, mobile-app booking now table stakes.</li>
-  <li><strong>Subscription model rise:</strong> flexible monthly mobility competing with ownership.</li>
-  <li><strong>Connectivity &amp; infrastructure:</strong> better roads, airport upgrades, expanding online booking penetration.</li>
-  <li><strong>Margin pressure:</strong> high operator count → price competition; differentiation shifting to tech, EV, and service depth.</li>
+  <li><strong>Tourism boom:</strong> 38M inbound arrivals (2024) → sustained self-drive demand; tourism ≈ 67.6% of market.</li>
+  <li><strong>EV incentives (2023):</strong> tax breaks for adding EVs; airport/highway infra upgrades; digital road-tax compliance.</li>
+  <li><strong>Digital-first standard:</strong> contactless rental, real-time tracking, app booking now table stakes.</li>
+  <li><strong>Subscription rise:</strong> flexible monthly mobility competing with ownership (GoCar leading).</li>
+  <li><strong>Margin pressure:</strong> 1,000+ operators → price competition; differentiation shifting to tech, EV, service depth.</li>
 </ul>
 
 <h2>7. Opportunity Read <span class="pill">strategic lens</span></h2>
-<h3>Where the money and momentum are</h3>
+<h3>Where the money &amp; momentum are</h3>
 <ul>
-  <li><strong>Subscription / flexible long-term</strong> mobility — highest stickiness, recurring revenue, defensible vs. price wars.</li>
-  <li><strong>EV fleet + charging ecosystem</strong> — policy tailwinds and differentiation; capex-heavy but moat-building.</li>
-  <li><strong>Asset-light P2P / aggregation</strong> — scale supply without owning vehicles (TREVO proved the model locally).</li>
-  <li><strong>Underserved geographies</strong> — tourist islands and East Malaysia still dominated by fragmented, low-tech operators.</li>
+  <li><strong>Subscription / flexible long-term</strong> mobility — recurring revenue, defensible vs. price wars.</li>
+  <li><strong>EV fleet + charging ecosystem</strong> — policy tailwinds, differentiation; capex-heavy but moat-building.</li>
+  <li><strong>Asset-light P2P / aggregation</strong> — scale supply without owning vehicles (TREVO proved it locally).</li>
+  <li><strong>Underserved geographies</strong> — tourist islands &amp; East Malaysia still dominated by fragmented, low-tech operators.</li>
 </ul>
 <h3>Risks / watch-outs</h3>
 <ul>
-  <li>Saturation (1,000+ operators) and <strong>price-war margin erosion</strong> in commodity short-term rental.</li>
-  <li><strong>Capital intensity</strong> of owned fleets; residual-value and utilization risk.</li>
-  <li>SOCAR/GoCar hold <strong>data, pricing and capital</strong> advantages — hard to out-compete head-on in urban self-drive.</li>
-  <li>Insurance, fraud and vehicle-damage exposure (especially P2P).</li>
+  <li>Saturation (1,000+ operators) → <strong>price-war margin erosion</strong> in commodity short-term rental.</li>
+  <li><strong>Capital intensity</strong> of owned fleets; residual-value &amp; utilization risk.</li>
+  <li>Two well-capitalized groups (Warisan/Tan Chong &amp; SK) hold <strong>data, pricing, integration</strong> advantages — hard to beat head-on in urban self-drive.</li>
+  <li>Insurance, fraud, vehicle-damage exposure (especially P2P).</li>
 </ul>
 <h3>Most attractive angles for a new entrant</h3>
 <ul>
-  <li><strong>Niche/premium or specialist fleet</strong> (luxury, EV, MPV/coach for MICE &amp; tourism) over commodity sedans.</li>
+  <li><strong>Niche / premium or specialist fleet</strong> (luxury, EV, MPV/coach for MICE &amp; tourism) over commodity sedans.</li>
   <li><strong>B2B corporate leasing + fleet management</strong> — stickier, less price-sensitive than tourist self-drive.</li>
   <li><strong>Tech-enabled regional play</strong> in an underserved state, partnering on charging/insurance from day one.</li>
 </ul>
 
 <h2>8. Sources</h2>
 <ul style="font-size:9.5pt;">
-  <li><a href="https://www.mordorintelligence.com/industry-reports/malaysia-car-rental-market">Mordor Intelligence — Malaysia Car Rental Market</a></li>
-  <li><a href="https://www.mordorintelligence.com/industry-reports/malaysia-car-rental-market/companies">Mordor Intelligence — Top Malaysia Car Rental Companies</a></li>
-  <li><a href="https://www.verifiedmarketresearch.com/product/malaysia-car-rental-market/">Verified Market Research — Malaysia Car Rental Market</a></li>
-  <li><a href="https://www.researchandmarkets.com/reports/5985720/malaysia-car-rental-market-share-analysis">ResearchAndMarkets — Market Share Analysis</a></li>
-  <li><a href="https://www.kenresearch.com/malaysia-car-rental-and-mobility-solutions-market">Ken Research — Car Rental &amp; Mobility Solutions Market</a></li>
-  <li><a href="https://www.nexdigm.com/market-research/report-store/malaysia-car-rental-and-leasing-market-research-report/">Nexdigm — Car Rental &amp; Leasing Market Report</a></li>
-  <li><a href="https://vulcanpost.com/632209/socar-malaysia-car-sharing/">Vulcan Post — SOCAR Malaysia car sharing</a></li>
-  <li><a href="https://www.auto-news-asia.com/?p=23833">Auto News Asia — SOCAR &amp; TREVO add 400+ cars</a></li>
-  <li><a href="https://paultan.org/2020/02/25/trevo-peer-to-peer-car-sharing-marketplace-by-socar/">paultan.org — TREVO P2P car sharing</a></li>
-  <li><a href="http://hi.gocar.my/our-story/">GoCar Malaysia — Our Story</a> · <a href="https://gocarhelp.zendesk.com/hc/en-us/articles/4410363934105-What-is-GoEV">GoEV</a></li>
-  <li><a href="https://mayflowercarrental.com/">Mayflower Car Rental</a> · <a href="https://www.warisantc.com/business-segments/travel-car-rental/">Warisan TC Holdings — Travel &amp; Car Rental</a></li>
-  <li><a href="https://www.emis.com/php/company-profile/MY/Hawk_Rent_A_Car__M__Sdn_Bhd_en_4197411.html">EMIS — Hawk Rent A Car profile</a></li>
+  <li><a href="https://www.mordorintelligence.com/industry-reports/malaysia-car-rental-market">Mordor Intelligence — Malaysia Car Rental Market</a> · <a href="https://www.mordorintelligence.com/industry-reports/malaysia-car-rental-market/companies">Top Companies</a></li>
+  <li><a href="https://www.verifiedmarketresearch.com/product/malaysia-car-rental-market/">Verified Market Research</a> · <a href="https://www.kenresearch.com/malaysia-car-rental-and-mobility-solutions-market">Ken Research</a></li>
+  <li><a href="https://soyacincau.com/2019/10/22/socar-malaysia-now-has-2000-cars-1000-zones/">SoyaCincau — SOCAR 2,000 cars / 1,000 zones</a> · <a href="https://tracxn.com/d/companies/socar/__adJcCqbThbuKM2Km3YJ9ZwRaZHVxOewzDzQ2AlYkqrE">Tracxn — SOCAR funding/valuation</a></li>
+  <li><a href="https://www.dealstreetasia.com/stories/30820-30820">DealStreetAsia — Mayflower buys 55% of GoCar</a> · <a href="https://www.business-standard.com/article/companies/malaysia-s-mayflower-buys-majority-of-on-demand-car-rental-startup-gocar-116021600519_1.html">Business Standard</a></li>
+  <li><a href="https://www.warisantc.com/business-segments/travel-car-rental/">Warisan TC Holdings — Travel &amp; Car Rental</a> · <a href="http://hi.gocar.my/our-story/">GoCar — Our Story</a></li>
+  <li><a href="https://paultan.org/2020/02/25/trevo-peer-to-peer-car-sharing-marketplace-by-socar/">paultan.org — TREVO P2P</a> · <a href="https://www.hawkrentacar.com.my/">Hawk Rent A Car</a> · <a href="https://www.emis.com/php/company-profile/MY/Hawk_Rent_A_Car__M__Sdn_Bhd_en_4197411.html">EMIS — Hawk profile</a></li>
 </ul>
 
 <div class="footer">
-  Figures are drawn from third-party market-research summaries and vary by methodology; treat ranges as directional rather than audited. Prepared as a market-intelligence brief for internal strategic use.
+  Fleet and financial figures are the most recently reported public numbers and shift over time; entity-level revenue figures from data aggregators likely understate true group activity. Directional, not audited. Prepared as a market-intelligence brief for internal strategic use.
 </div>
 
 </div>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Malaysia Car Rental — Competitor Matrix</title>
+<style>
+  :root{--ink:#1a2330; --muted:#5b6675; --line:#dce2ea; --accent:#0b6e4f; --accent2:#0e7c8c;}
+  *{box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  body{font-family:"Helvetica Neue",Arial,sans-serif; color:var(--ink); margin:0; padding:22px 26px;}
+  .title{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:3px solid var(--accent); padding-bottom:10px; margin-bottom:6px;}
+  h1{font-size:18pt; color:var(--accent); margin:0;}
+  .sub{font-size:8.5pt; color:var(--muted); text-align:right;}
+  .legend{font-size:7.5pt; color:var(--muted); margin:6px 0 12px;}
+  .badge{display:inline-block; padding:1px 7px; border-radius:10px; color:#fff; font-size:7pt; margin-right:4px;}
+  .bA{background:#0b6e4f;} .bB{background:#1f4e9c;} .bC{background:#5b6675;}
+
+  table{width:100%; border-collapse:collapse; font-size:8pt; table-layout:fixed;}
+  th,td{padding:6px 7px; border:1px solid var(--line); vertical-align:top;}
+  thead th{color:#fff; text-align:left; font-size:8.5pt;}
+  th.dim{background:var(--accent); width:78px;}
+  th.socar{background:#1f4e9c;} th.gocar{background:#0b6e4f;} th.trevo{background:#0e7c8c;}
+  th.may{background:#129067;} th.hawk{background:#5b6675;}
+  th .grp{display:block; font-size:6.5pt; font-weight:400; opacity:.85;}
+  td.dim{background:#eef2f6; font-weight:700; color:var(--ink);}
+  tbody tr:nth-child(even) td:not(.dim){background:#f6f8fb;}
+  .num{font-weight:700; color:var(--accent);}
+  .foot{margin-top:10px; font-size:7pt; color:var(--muted);}
+  @page{size:A4 landscape; margin:10mm;}
+</style>
+</head>
+<body>
+  <div class="title">
+    <h1>Malaysia Car Rental — Competitor Matrix</h1>
+    <div class="sub">Prepared for HJ · 20 June 2026<br>Tier 1 &amp; Tier 2 players</div>
+  </div>
+  <div class="legend">
+    Ownership camps: <span class="badge bA">A — Warisan TC / Tan Chong (listed)</span>
+    <span class="badge bB">B — SK Group (Korea)</span>
+    <span class="badge bC">C — Independent</span>
+    &nbsp;|&nbsp; <strong>Note:</strong> GoCar is 99.64% owned by Mayflower → the two share Camp A.
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="dim">Dimension</th>
+        <th class="socar">SOCAR<span class="grp">Camp B · SK Group</span></th>
+        <th class="gocar">GoCar<span class="grp">Camp A · Mayflower/Warisan</span></th>
+        <th class="trevo">TREVO<span class="grp">Camp B · SOCAR subsidiary</span></th>
+        <th class="may">Mayflower<span class="grp">Camp A · Warisan TC (listed)</span></th>
+        <th class="hawk">Hawk<span class="grp">Camp C · Independent</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="dim">Model</td><td>App self-drive car-sharing</td><td>App self-drive + subscription</td><td>Peer-to-peer marketplace</td><td>Traditional rental + leasing + coach</td><td>Traditional counter rental</td></tr>
+      <tr><td class="dim">Fleet size</td><td><span class="num">~2,000 cars</span> · ~1,000 zones</td><td><span class="num">~1,000 cars</span> · 7 states</td><td><span class="num">Asset-light</span> · 0 owned, ~21 brands</td><td><span class="num">Large mixed</span> · sedans/MPV/vans/coaches</td><td>Young fleet · ~10 sites</td></tr>
+      <tr><td class="dim">Founded</td><td>2018 (M'sia)</td><td>2014</td><td>2020</td><td>1963 (M'sia's first)</td><td>1994/95</td></tr>
+      <tr><td class="dim">Ownership</td><td>SK Group (acq. Aug 2025)</td><td>99.64% Mayflower → Warisan TC</td><td>100% SOCAR</td><td>Warisan TC Holdings (Bursa-listed)</td><td>Independent SME</td></tr>
+      <tr><td class="dim">Funding / scale</td><td>~US$73M raised · ~US$213M val.</td><td>Listed-parent balance sheet</td><td>Within SOCAR</td><td>Listed corporate</td><td>~US$5.1M rev · ~28 staff</td></tr>
+      <tr><td class="dim">Capital model</td><td>VC + strategic (high burn)</td><td>Patient corporate capital</td><td>Commission marketplace</td><td>Corporate balance sheet</td><td>Self-funded SME</td></tr>
+      <tr><td class="dim">Core customer</td><td>Urban individuals, tourists</td><td>Individuals → future owners</td><td>Car owners + renters</td><td>Corporate, MICE, govt, tourism</td><td>Airport / cross-border travelers</td></tr>
+      <tr><td class="dim">Pricing</td><td>AI dynamic (location/time)</td><td>Tiered + monthly subscription</td><td>Host-set + platform commission</td><td>Negotiated / long-term lease</td><td>Fixed / corporate rates</td></tr>
+      <tr><td class="dim">EV strategy</td><td>Moderate</td><td><span class="num">Strong</span> — GoEV (Tesla, Ioniq 5, etc.)</td><td>Host-dependent</td><td>Emerging</td><td>Limited</td></tr>
+      <tr><td class="dim">Key add-ons</td><td>SOCAR-2-YOU, SOCAR+, BOSS, DASH</td><td>Subscription, GoCar Pro, GoEV</td><td>TREVO Shield insurance</td><td>Fleet mgmt, chauffeur, coaches</td><td>HK &amp; Singapore offices</td></tr>
+      <tr><td class="dim">Moat</td><td>Scale, density, AI pricing, TREVO</td><td>Rent→own funnel, Tan Chong integration</td><td>Capital efficiency, insurance layer</td><td>Contracts, coaches, trust, scale</td><td>Airport + regional niche</td></tr>
+      <tr><td class="dim">Vulnerability</td><td>Burn rate, foreign-parent priorities</td><td>Modest entity-level revenue</td><td>Needs two-sided liquidity</td><td>Legacy cost base, slow native digital</td><td>Squeezed by apps &amp; price war</td></tr>
+    </tbody>
+  </table>
+
+  <div class="foot">
+    Source: Mordor Intelligence, Verified Market Research, Tracxn, DealStreetASIA, Warisan TC Holdings, SoyaCincau, EMIS, paultan.org. Figures are most-recent public reports; entity-level revenue likely understates group activity. Directional, not audited.
+  </div>
+</body>
+</html>
