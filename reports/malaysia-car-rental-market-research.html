@@ -67,6 +67,15 @@
   .colcap{text-align:center; font-size:8.5pt; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-bottom:4px;}
 
   .footer{margin-top:32px; padding-top:14px; border-top:1px solid var(--line); font-size:8.5pt; color:var(--muted);}
+
+  /* price ladder */
+  .ladder{margin:16px 0;}
+  .rung{display:flex; align-items:center; gap:12px; margin:7px 0;}
+  .rung .bar{height:28px; border-radius:5px; color:#fff; font-size:9pt; font-weight:700;
+    display:flex; align-items:center; padding:0 12px; white-space:nowrap;}
+  .rung .desc{font-size:8.8pt; color:var(--muted);}
+  .rung .desc b{color:var(--ink);}
+
   @page{margin:14mm 12mm; size:A4;}
   @media print{ .cover{margin:-14mm -12mm 0;} h2{page-break-after:avoid;} table,.card,.profile,.org{page-break-inside:avoid;} }
 </style>
@@ -256,7 +265,79 @@
   </tbody>
 </table>
 
-<h2>6. Industry Trends &amp; Drivers</h2>
+<h2>6. Pricing &amp; Rental Terms <span class="pill">how they charge</span></h2>
+<p>One market, <strong>four distinct pricing models</strong>. How a player charges reveals its strategy more clearly than anything else.</p>
+
+<table>
+  <thead><tr><th>Model</th><th>Who</th><th>Unit of charge</th><th>Entry price</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Pay-per-use sharing</strong></td><td>SOCAR, GoCar</td><td>Per minute / hour / day</td><td>RM6–9/hr · ~RM30–69/day</td></tr>
+    <tr><td><strong>Subscription</strong></td><td>GoCar Subs</td><td>Per month (1–36 mo)</td><td>from RM899/month</td></tr>
+    <tr><td><strong>Traditional rental</strong></td><td>Mayflower, Hawk, Avis, Hertz</td><td>Per day / week / month</td><td>~RM130–410/day</td></tr>
+    <tr><td><strong>Peer-to-peer</strong></td><td>TREVO</td><td>Host-set daily + commission</td><td>from RM50/day</td></tr>
+  </tbody>
+</table>
+
+<h3>The price ladder</h3>
+<div class="ladder">
+  <div class="rung"><div class="bar" style="background:#1f4e9c; width:24%;">RM3–9 / hour</div><div class="desc"><b>SOCAR / GoCar hourly</b> — spontaneous urban hops</div></div>
+  <div class="rung"><div class="bar" style="background:#3a68b5; width:34%;">RM30–69 / day</div><div class="desc"><b>Pay-per-use daily</b> — day trips, errands</div></div>
+  <div class="rung"><div class="bar" style="background:#0e7c8c; width:42%;">RM50+ / day (host-set)</div><div class="desc"><b>TREVO P2P</b> — variety incl. luxury (Audi, Bentley)</div></div>
+  <div class="rung"><div class="bar" style="background:#129067; width:58%;">RM130–410 / day</div><div class="desc"><b>Mayflower / Hawk traditional</b> — full-service, unlimited mileage</div></div>
+  <div class="rung"><div class="bar" style="background:#0b6e4f; width:74%;">RM899+ / month</div><div class="desc"><b>GoCar Subs</b> — "ownership without buying", recurring revenue</div></div>
+</div>
+
+<h3>Per-player pricing &amp; charging mechanics</h3>
+<table>
+  <thead><tr><th>Player</th><th>Headline rate</th><th>How it charges (fuel / mileage / deposit)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>SOCAR</strong></td><td>From RM6–8/hr (promo RM3/hr · RM30/day); weekday &lt; weekend; AI dynamic</td><td><strong>Fuel included</strong> up to 30km/hr or 300km/day, then RM0.25/km · <strong>No deposit</strong> · return ≥50% tank or RM100 penalty · add-on Damage Waiver</td></tr>
+    <tr><td><strong>GoCar Sharing</strong></td><td>From RM0.17/min or RM69/day (unlimited mileage)</td><td><strong>All-inclusive</strong>: insurance, road tax, servicing, wear &amp; tear, 24/7 roadside · fuel card · low/no deposit</td></tr>
+    <tr><td><strong>GoCar Subs</strong></td><td>From RM899/month · 8 vehicle tiers</td><td>Monthly: deposit + one-time fee · 12–36 mo: deposit + first month · SWAP car 2×/yr (12mo+) · all running costs bundled</td></tr>
+    <tr><td><strong>TREVO</strong></td><td>Host-set, from ~RM50/day</td><td>Platform takes <strong>min 25% commission + 8% SST</strong> (effective ~25–35%) · free to list cars &lt;10 yrs · host paid 2 weeks post-trip</td></tr>
+    <tr><td><strong>Mayflower</strong></td><td>~RM130/day (Axia) to ~RM230–410/day</td><td>Daily/weekly/monthly + long-term lease · maintenance, insurance, 24/7 breakdown bundled · refundable deposit · unlimited mileage</td></tr>
+    <tr><td><strong>Hawk</strong></td><td>~RM158–343/day (avg ~RM225)</td><td>Refundable deposit · age 23+, licence ≥2 yrs · RM3M third-party cover · free delivery within 5km</td></tr>
+  </tbody>
+</table>
+
+<h3>"Rent a Perodua Myvi for one week" — illustrative comparison</h3>
+<p style="font-size:9.5pt; color:#5b6675;">7 days, ~300–400 km usage, economy car. Indicative — actual app rates flex with promos &amp; dynamic pricing.</p>
+<table>
+  <thead><tr><th>Player</th><th>Model</th><th>~1-week cost</th><th>Deposit</th><th>Mileage</th><th>Fuel</th><th>Best for</th></tr></thead>
+  <tbody>
+    <tr><td><strong>SOCAR</strong></td><td>Per hour/day sharing</td><td>~RM350–480</td><td>None</td><td>Capped 300km/day</td><td>Included</td><td>Short hops, no credit card</td></tr>
+    <tr><td><strong>GoCar Sharing</strong></td><td>Per-day, unlimited</td><td>~RM480 (RM69×7)</td><td>None / low</td><td>Unlimited</td><td>Fuel card</td><td>Day trips, longer drives</td></tr>
+    <tr><td><strong>GoCar Subs</strong></td><td>Weekly/monthly sub</td><td>from ~RM1,200 (EV wk) / RM899/mo</td><td>Yes + one-time</td><td>Generous</td><td>Owner-style</td><td>1+ month users</td></tr>
+    <tr><td><strong>TREVO</strong></td><td>P2P daily (host-set)</td><td>~RM350–630</td><td>Host-set</td><td>Host-set</td><td>Renter refuels</td><td>Variety / luxury</td></tr>
+    <tr><td><strong>Mayflower</strong></td><td>Traditional weekly</td><td>~RM700–900</td><td>RM400+</td><td>Unlimited</td><td>Renter refuels</td><td>Corporate, full-service</td></tr>
+    <tr><td><strong>Hawk</strong></td><td>Traditional weekly</td><td>~RM700–1,000</td><td>RM400+</td><td>Unlimited</td><td>Renter refuels</td><td>Airport, cross-border</td></tr>
+  </tbody>
+</table>
+
+<h3>Standard terms across the traditional segment</h3>
+<table>
+  <thead><tr><th>Term</th><th>Typical requirement</th></tr></thead>
+  <tbody>
+    <tr><td>Minimum age</td><td>23 (some 21; luxury 25). Hertz: 21–75 normal, 25–65 luxury</td></tr>
+    <tr><td>Licence</td><td>Valid, held 1–2 years; IDP preferred for foreigners</td></tr>
+    <tr><td>Deposit</td><td>RM400–RM4,000, held on a credit card <strong>in the renter's own name</strong></td></tr>
+    <tr><td>Insurance</td><td>CDW included, but renter liable for excess of ~RM19,000–29,000 unless top-up bought</td></tr>
+    <tr><td>Mileage</td><td>Usually unlimited (vs. capped in pay-per-use sharing)</td></tr>
+    <tr><td>Billing</td><td>Daily/weekly at end; monthly / 6- / 11-month billed on the 1st of the month</td></tr>
+  </tbody>
+</table>
+
+<h3>What the pricing reveals about the industry</h3>
+<ul>
+  <li><strong>The deposit is a strategic weapon.</strong> SOCAR's zero deposit vs. traditional's RM400–4,000 credit-card hold is the biggest reason app players won the young/urban segment.</li>
+  <li><strong>"All-inclusive" is the new battleground.</strong> Fuel + insurance + road tax + servicing bundled into one RM/day number favors scale players and squeezes small operators.</li>
+  <li><strong>Mileage is where margins hide.</strong> Sharing caps mileage (300km/day) and charges RM0.25/km overage; traditional sells unlimited mileage to road-trippers.</li>
+  <li><strong>Stickiness splits three ways:</strong> transactional (SOCAR/TREVO) vs. recurring (GoCar Subs, Mayflower leasing). Subscription converts a price-war commodity into a contract — the strategic prize.</li>
+  <li><strong>TREVO's 25–35% take-rate</strong> is high for a marketplace (Airbnb ~14–16%) — works only because owners lack alternatives to monetize idle cars; a lower-commission rival could disrupt it.</li>
+  <li><strong>Wide price ladder = room for specialists.</strong> Each rung is a different customer/margin profile; a focused entrant can own a rung (premium/EV, MICE coaches, expat long-term leasing) the giants treat as an afterthought.</li>
+</ul>
+
+<h2>7. Industry Trends &amp; Drivers</h2>
 <ul>
   <li><strong>Tourism boom:</strong> 38M inbound arrivals (2024) → sustained self-drive demand; tourism ≈ 67.6% of market.</li>
   <li><strong>EV incentives (2023):</strong> tax breaks for adding EVs; airport/highway infra upgrades; digital road-tax compliance.</li>
@@ -265,7 +346,7 @@
   <li><strong>Margin pressure:</strong> 1,000+ operators → price competition; differentiation shifting to tech, EV, service depth.</li>
 </ul>
 
-<h2>7. Opportunity Read <span class="pill">strategic lens</span></h2>
+<h2>8. Opportunity Read <span class="pill">strategic lens</span></h2>
 <h3>Where the money &amp; momentum are</h3>
 <ul>
   <li><strong>Subscription / flexible long-term</strong> mobility — recurring revenue, defensible vs. price wars.</li>
@@ -287,7 +368,7 @@
   <li><strong>Tech-enabled regional play</strong> in an underserved state, partnering on charging/insurance from day one.</li>
 </ul>
 
-<h2>8. Sources</h2>
+<h2>9. Sources</h2>
 <ul style="font-size:9.5pt;">
   <li><a href="https://www.mordorintelligence.com/industry-reports/malaysia-car-rental-market">Mordor Intelligence — Malaysia Car Rental Market</a> · <a href="https://www.mordorintelligence.com/industry-reports/malaysia-car-rental-market/companies">Top Companies</a></li>
   <li><a href="https://www.verifiedmarketresearch.com/product/malaysia-car-rental-market/">Verified Market Research</a> · <a href="https://www.kenresearch.com/malaysia-car-rental-and-mobility-solutions-market">Ken Research</a></li>
@@ -295,6 +376,7 @@
   <li><a href="https://www.dealstreetasia.com/stories/30820-30820">DealStreetAsia — Mayflower buys 55% of GoCar</a> · <a href="https://www.business-standard.com/article/companies/malaysia-s-mayflower-buys-majority-of-on-demand-car-rental-startup-gocar-116021600519_1.html">Business Standard</a></li>
   <li><a href="https://www.warisantc.com/business-segments/travel-car-rental/">Warisan TC Holdings — Travel &amp; Car Rental</a> · <a href="http://hi.gocar.my/our-story/">GoCar — Our Story</a></li>
   <li><a href="https://paultan.org/2020/02/25/trevo-peer-to-peer-car-sharing-marketplace-by-socar/">paultan.org — TREVO P2P</a> · <a href="https://www.hawkrentacar.com.my/">Hawk Rent A Car</a> · <a href="https://www.emis.com/php/company-profile/MY/Hawk_Rent_A_Car__M__Sdn_Bhd_en_4197411.html">EMIS — Hawk profile</a></li>
+  <li><strong>Pricing/terms:</strong> <a href="https://socar.my/consumer">SOCAR rates</a> · <a href="https://new.gocar.my/en">GoCar rates</a> · <a href="https://hi.gocar.my/services/subscription/">GoCar Subs</a> · <a href="https://host.trevo.my/campus/how-much-does-trevo-charge-hosts">TREVO commission</a> · <a href="https://www.hawkrentacar.com.my/faq/">Hawk FAQ</a> · <a href="https://www.avis.com.my/General-Information">Avis terms</a> · <a href="https://ringgitohringgit.com/saving-money/socar-review-cheap-car-rental-kl/">SOCAR review (fuel/mileage)</a></li>
 </ul>
 
 <div class="footer">

@@ -143,7 +143,62 @@ GoCar Mobility (99.64%)
 
 ---
 
-## 6. Industry Trends & Drivers
+## 6. Pricing & Rental Terms (How They Charge)
+
+One market, **four distinct pricing models**.
+
+| Model | Who | Unit of charge | Entry price |
+|---|---|---|---|
+| Pay-per-use sharing | SOCAR, GoCar | Per minute / hour / day | RM6–9/hr · ~RM30–69/day |
+| Subscription | GoCar Subs | Per month (1–36 mo) | from RM899/month |
+| Traditional rental | Mayflower, Hawk, Avis, Hertz | Per day / week / month | ~RM130–410/day |
+| Peer-to-peer | TREVO | Host-set daily + commission | from RM50/day |
+
+**The price ladder (cheapest → premium):** RM3–9/hr (SOCAR/GoCar hourly) → RM30–69/day (pay-per-use daily) → RM50+/day (TREVO P2P, incl. luxury) → RM130–410/day (Mayflower/Hawk traditional) → RM899+/month (GoCar Subs).
+
+### Per-player charging mechanics
+
+- **SOCAR** — from RM6–8/hr (promo RM3/hr, RM30/day); weekday < weekend; AI dynamic. **Fuel included** to 30km/hr or 300km/day, then RM0.25/km. **No deposit.** Return ≥50% tank or RM100 penalty. Add-on Damage Waiver.
+- **GoCar Sharing** — from RM0.17/min or RM69/day (unlimited mileage). **All-inclusive**: insurance, road tax, servicing, wear & tear, 24/7 roadside; fuel card; low/no deposit.
+- **GoCar Subs** — from RM899/month, 8 tiers. Monthly: deposit + one-time fee; 12–36 mo: deposit + first month. SWAP car 2×/yr (12mo+).
+- **TREVO** — host-set, from ~RM50/day. Platform takes **min 25% commission + 8% SST** (effective ~25–35%); free to list cars <10 yrs; host paid 2 weeks post-trip.
+- **Mayflower** — ~RM130/day (Axia) to ~RM230–410/day; daily/weekly/monthly + long-term lease; maintenance/insurance/breakdown bundled; refundable deposit; unlimited mileage.
+- **Hawk** — ~RM158–343/day (avg ~RM225); refundable deposit; age 23+, licence ≥2 yrs; RM3M third-party cover; free delivery within 5km.
+
+### "Rent a Perodua Myvi for one week" — illustrative (7 days, ~300–400 km)
+
+| Player | Model | ~1-week cost | Deposit | Mileage | Fuel | Best for |
+|---|---|---|---|---|---|---|
+| SOCAR | Per hour/day sharing | ~RM350–480 | None | Capped 300km/day | Included | Short hops, no credit card |
+| GoCar Sharing | Per-day, unlimited | ~RM480 | None/low | Unlimited | Fuel card | Day trips, longer drives |
+| GoCar Subs | Weekly/monthly sub | from ~RM1,200/wk · RM899/mo | Yes + one-time | Generous | Owner-style | 1+ month users |
+| TREVO | P2P daily (host-set) | ~RM350–630 | Host-set | Host-set | Renter refuels | Variety / luxury |
+| Mayflower | Traditional weekly | ~RM700–900 | RM400+ | Unlimited | Renter refuels | Corporate, full-service |
+| Hawk | Traditional weekly | ~RM700–1,000 | RM400+ | Unlimited | Renter refuels | Airport, cross-border |
+
+### Standard terms (traditional segment)
+
+| Term | Typical requirement |
+|---|---|
+| Minimum age | 23 (some 21; luxury 25). Hertz: 21–75 normal, 25–65 luxury |
+| Licence | Valid, held 1–2 years; IDP preferred for foreigners |
+| Deposit | RM400–RM4,000 on a credit card **in the renter's own name** |
+| Insurance | CDW included, but renter liable for excess ~RM19,000–29,000 unless top-up bought |
+| Mileage | Usually unlimited (vs. capped in pay-per-use sharing) |
+| Billing | Daily/weekly at end; monthly / 6- / 11-month billed on the 1st of the month |
+
+### What the pricing reveals
+
+- **The deposit is a strategic weapon** — SOCAR's zero deposit vs. RM400–4,000 credit-card hold won the young/urban segment.
+- **"All-inclusive" is the new battleground** — bundling fuel/insurance/road tax/servicing favors scale, squeezes small operators.
+- **Mileage is where margins hide** — sharing caps at 300km/day + RM0.25/km overage; traditional sells unlimited mileage.
+- **Stickiness splits** — transactional (SOCAR/TREVO) vs. recurring (GoCar Subs, Mayflower leasing); subscription is the strategic prize.
+- **TREVO's 25–35% take-rate** is high for a marketplace (Airbnb ~14–16%) — vulnerable to a lower-commission rival.
+- **Wide price ladder = room for specialists** to own a rung (premium/EV, MICE coaches, expat leasing) the giants ignore.
+
+---
+
+## 7. Industry Trends & Drivers
 
 - **Tourism boom:** 38M inbound arrivals (2024) → sustained self-drive demand; tourism ≈ 67.6% of market.
 - **EV incentives (2023):** tax breaks for adding EVs; airport/highway infra upgrades; digital road-tax compliance.
@@ -153,7 +208,7 @@ GoCar Mobility (99.64%)
 
 ---
 
-## 7. Opportunity Read (Strategic Lens)
+## 8. Opportunity Read (Strategic Lens)
 
 **Where the money & momentum are**
 - Subscription / flexible long-term mobility — recurring revenue, defensible vs. price wars.
@@ -174,7 +229,7 @@ GoCar Mobility (99.64%)
 
 ---
 
-## 8. Sources
+## 9. Sources
 
 - [Mordor Intelligence — Malaysia Car Rental Market](https://www.mordorintelligence.com/industry-reports/malaysia-car-rental-market) · [Top Companies](https://www.mordorintelligence.com/industry-reports/malaysia-car-rental-market/companies)
 - [Verified Market Research](https://www.verifiedmarketresearch.com/product/malaysia-car-rental-market/) · [Ken Research](https://www.kenresearch.com/malaysia-car-rental-and-mobility-solutions-market)

@@ -27,6 +27,13 @@
   .num{font-weight:700; color:var(--accent);}
   .foot{margin-top:10px; font-size:7pt; color:var(--muted);}
   @page{size:A4 landscape; margin:10mm;}
+  .pagebreak{page-break-before:always;}
+  .ladder{margin:10px 0 14px;}
+  .rung{display:flex; align-items:center; gap:10px; margin:5px 0;}
+  .rung .bar{height:22px; border-radius:4px; color:#fff; font-size:8pt; font-weight:700; display:flex; align-items:center; padding:0 10px; white-space:nowrap;}
+  .rung .desc{font-size:8pt; color:var(--muted);}
+  .rung .desc b{color:var(--ink);}
+  h2{font-size:13pt; color:var(--accent); margin:4px 0 8px;}
 </style>
 </head>
 <body>
@@ -70,6 +77,63 @@
 
   <div class="foot">
     Source: Mordor Intelligence, Verified Market Research, Tracxn, DealStreetASIA, Warisan TC Holdings, SoyaCincau, EMIS, paultan.org. Figures are most-recent public reports; entity-level revenue likely understates group activity. Directional, not audited.
+  </div>
+
+  <!-- PAGE 2: PRICING -->
+  <div class="pagebreak"></div>
+  <div class="title">
+    <h1>Pricing &amp; Rental Terms — At a Glance</h1>
+    <div class="sub">Prepared for HJ · 20 June 2026<br>How each player charges</div>
+  </div>
+
+  <h2>The price ladder</h2>
+  <div class="ladder">
+    <div class="rung"><div class="bar" style="background:#1f4e9c; width:22%;">RM3–9 / hour</div><div class="desc"><b>SOCAR / GoCar hourly</b> — spontaneous urban hops</div></div>
+    <div class="rung"><div class="bar" style="background:#3a68b5; width:32%;">RM30–69 / day</div><div class="desc"><b>Pay-per-use daily</b> — day trips, errands</div></div>
+    <div class="rung"><div class="bar" style="background:#0e7c8c; width:40%;">RM50+ / day (host-set)</div><div class="desc"><b>TREVO P2P</b> — variety incl. luxury (Audi, Bentley)</div></div>
+    <div class="rung"><div class="bar" style="background:#129067; width:55%;">RM130–410 / day</div><div class="desc"><b>Mayflower / Hawk traditional</b> — full-service, unlimited mileage</div></div>
+    <div class="rung"><div class="bar" style="background:#0b6e4f; width:70%;">RM899+ / month</div><div class="desc"><b>GoCar Subs</b> — "ownership without buying", recurring revenue</div></div>
+  </div>
+
+  <h2>"Rent a Perodua Myvi for one week" — illustrative</h2>
+  <table>
+    <thead><tr>
+      <th class="dim" style="width:90px">Player</th>
+      <th class="dim" style="width:110px; background:#0e7c8c">Model</th>
+      <th class="dim" style="background:#0e7c8c">~1-week cost</th>
+      <th class="dim" style="background:#0e7c8c">Deposit</th>
+      <th class="dim" style="background:#0e7c8c">Mileage</th>
+      <th class="dim" style="background:#0e7c8c">Fuel</th>
+      <th class="dim" style="background:#0e7c8c">Best for</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="dim">SOCAR</td><td>Per hour/day sharing</td><td class="num">~RM350–480</td><td>None</td><td>Capped 300km/day</td><td>Included</td><td>Short hops, no credit card</td></tr>
+      <tr><td class="dim">GoCar Sharing</td><td>Per-day, unlimited</td><td class="num">~RM480</td><td>None / low</td><td>Unlimited</td><td>Fuel card</td><td>Day trips, longer drives</td></tr>
+      <tr><td class="dim">GoCar Subs</td><td>Weekly/monthly sub</td><td class="num">from ~RM1,200/wk</td><td>Yes + one-time</td><td>Generous</td><td>Owner-style</td><td>1+ month users</td></tr>
+      <tr><td class="dim">TREVO</td><td>P2P daily (host-set)</td><td class="num">~RM350–630</td><td>Host-set</td><td>Host-set</td><td>Renter refuels</td><td>Variety / luxury</td></tr>
+      <tr><td class="dim">Mayflower</td><td>Traditional weekly</td><td class="num">~RM700–900</td><td>RM400+</td><td>Unlimited</td><td>Renter refuels</td><td>Corporate, full-service</td></tr>
+      <tr><td class="dim">Hawk</td><td>Traditional weekly</td><td class="num">~RM700–1,000</td><td>RM400+</td><td>Unlimited</td><td>Renter refuels</td><td>Airport, cross-border</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-top:12px">How they charge — key mechanics</h2>
+  <table>
+    <thead><tr>
+      <th class="dim" style="width:90px">Player</th>
+      <th class="dim" style="background:#0e7c8c">Headline rate</th>
+      <th class="dim" style="background:#0e7c8c">Fuel / mileage / deposit logic</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="dim">SOCAR</td><td>RM6–8/hr (promo RM3/hr), AI dynamic</td><td>Fuel included to 300km/day then RM0.25/km · <b>no deposit</b> · return ≥50% tank or RM100 penalty</td></tr>
+      <tr><td class="dim">GoCar</td><td>RM0.17/min or RM69/day; Subs RM899/mo</td><td>All-inclusive (insurance, road tax, servicing, roadside); fuel card; subscription needs deposit + one-time fee</td></tr>
+      <tr><td class="dim">TREVO</td><td>Host-set, from RM50/day</td><td>Platform takes <b>min 25% + 8% SST</b> (effective ~25–35%); free listing for cars &lt;10 yrs; host paid 2 wks after trip</td></tr>
+      <tr><td class="dim">Mayflower</td><td>~RM130–410/day + lease</td><td>Maintenance/insurance/breakdown bundled; unlimited mileage; refundable deposit; corporate billed 1st of month</td></tr>
+      <tr><td class="dim">Hawk</td><td>~RM158–343/day (avg ~RM225)</td><td>Refundable deposit; age 23+, licence ≥2 yrs; RM3M third-party cover; free delivery within 5km</td></tr>
+    </tbody>
+  </table>
+
+  <div class="foot">
+    Illustrative: app rates flex with promos &amp; dynamic pricing; traditional daily figures converted from USD aggregator listings (≈RM4.4/USD). Sources: socar.my, gocar.my, host.trevo.my, hawkrentacar.com.my, avis.com.my, ringgitohringgit.com. Directional, not audited.
   </div>
 </body>
 </html>
