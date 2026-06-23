@@ -22,6 +22,12 @@ shareholders, **Mr. Yslam Atayev** and **Mr. Orazdurdy Mamiyev**.
 - **Allocation of the 21%:** Determined by the **Founder of Podocarpus in absolute and
   sole discretion**, according to each Transferee's performance, recorded in an Allocation
   Notice (Schedule 3). No fixed split is locked in.
+- **Post-Completion control (Clause 7):** Even though Podocarpus drops from 70% to 49%
+  (and the Transferees' combined holding becomes 51%), **Podocarpus retains absolute
+  decision-making power**. The clause delivers this via (i) irrevocable voting undertaking
+  and proxy from both Transferees, (ii) Transferor casting/deciding vote, (iii) sole right
+  to appoint the General Manager, (iv) Reserved Matters list requiring Transferor written
+  consent, and (v) entrenchment of all of the above in the amended MOA.
 - **Consideration:** Nominal (AED 1.00) — a performance reward, not a market-value sale.
 - **Governing law:** UAE federal law as applied in Dubai (CCL — Federal Decree-Law
   No. 32 of 2021); exclusive jurisdiction of the Dubai Courts, with optional DIAC arbitration.

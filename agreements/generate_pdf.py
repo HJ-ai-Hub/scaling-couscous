@@ -311,8 +311,12 @@ recital("D", "The Transferor wishes to incentivise and reward the continuing eff
 recital("E", "It is the express intention of the Parties that (i) the right to effect the "
         "transfer, and the determination of how the 21% is allocated between the Transferees "
         "according to their respective performance, shall vest in and be exercised by the Founder "
-        "of the Transferor in the Founder&#8217;s **absolute and sole discretion**; and (ii) no "
-        "transfer shall occur unless and until the Performance Threshold is satisfied.")
+        "of the Transferor in the Founder&#8217;s **absolute and sole discretion**; (ii) no "
+        "transfer shall occur unless and until the Performance Threshold is satisfied; and "
+        "(iii) notwithstanding that the Transferor&#8217;s holding will reduce to 49% and the "
+        "Transferees&#8217; combined holding will become 51% upon Completion, the Transferor "
+        "(acting by the Founder) shall **retain absolute decision-making power and control over "
+        "the Company** following Completion, on the terms set out in Clause 7.")
 recital("F", "The Parties enter into this Agreement to record the binding terms upon which the "
         "said transfer shall, upon satisfaction of the conditions set out herein, be carried into "
         "effect.")
@@ -461,112 +465,200 @@ clause("6.3", "The Company and each shareholder shall provide all consents, appr
 clause("6.4", "If any governmental, regulatory or DET approval is required for the transfer, the "
        "Parties shall co-operate in good faith to obtain it as soon as reasonably practicable.")
 
-heading("7", "Consideration")
-clause("7.1", "In consideration of the achievement of the Performance Threshold and the past and "
+heading("7", "Post-Completion Governance: Reserved Control of the Transferor")
+clause("7.1", "**Fundamental Condition; Retention of Absolute Decision-Making.** The Parties "
+       "acknowledge and agree that, although the Transferor&#8217;s shareholding will reduce from "
+       "70% to 49% upon Completion and the Transferees&#8217; combined holding will increase to "
+       "51%, it is the express and fundamental intention of the Parties that the Transferor "
+       "(acting by the Founder) shall **retain absolute decision-making power and control over "
+       "the Company** at all times following Completion. This is a fundamental basis upon which "
+       "the Transferor has agreed to transfer the Transfer Shares, and the Transferees would not "
+       "have been offered, and shall not be entitled to receive or to retain, the Transfer Shares "
+       "but for the arrangements set out in this Clause 7.")
+clause("7.2", "**Irrevocable Voting Undertaking.** Each Transferee irrevocably undertakes and "
+       "covenants to the Transferor that, in respect of every matter put to a vote of the "
+       "shareholders of the Company (whether at an ordinary general assembly, an extraordinary "
+       "general assembly, by written resolution or otherwise) and in respect of all consents, "
+       "approvals and decisions of the shareholders, he shall: (a) vote (and procure that any "
+       "proxy or representative on his behalf shall vote) all of the shares held by him strictly "
+       "in accordance with the written instructions of the Transferor (acting by the Founder); "
+       "and (b) abstain from voting where so instructed in writing by the Transferor.")
+clause("7.3", "**Irrevocable Proxy and Power of Attorney.** As security for the undertaking in "
+       "Clause 7.2, each Transferee shall, at Completion and from time to time thereafter at the "
+       "request of the Transferor, execute an irrevocable proxy and power of attorney in favour "
+       "of the Transferor (or its nominee) authorising the Transferor to attend, speak and vote "
+       "at all meetings of the shareholders of the Company in respect of the Transferee&#8217;s "
+       "shares, and to execute on the Transferee&#8217;s behalf any written resolution or "
+       "shareholder consent. To the maximum extent permitted by Applicable Law, such proxy and "
+       "power of attorney shall be **irrevocable and coupled with an interest**.")
+clause("7.4", "**Casting / Deciding Vote.** Where, in respect of any matter requiring the consent "
+       "or decision of the shareholders of the Company, the view of the Transferor differs from "
+       "that of either or both of the Transferees, the **view of the Transferor shall prevail "
+       "and shall constitute the binding decision of the shareholders**. The Parties shall "
+       "procure that the amended MOA expressly confers upon the Transferor a casting / deciding "
+       "vote to give effect to this Clause.")
+clause("7.5", "**Sole Right to Appoint the General Manager.** The Transferor shall have the sole "
+       "and exclusive right to nominate, appoint, re-appoint, remove and replace the General "
+       "Manager (and any other manager, director or officer) of the Company, and to determine "
+       "the terms of their appointment and remuneration. The Transferees shall vote in favour "
+       "of, and shall not oppose, any such nomination, appointment, re-appointment, removal or "
+       "replacement.")
+clause("7.6", "**Reserved Matters.** Without limiting the generality of the foregoing, none of "
+       "the following matters may be approved, undertaken or implemented by the Company, by any "
+       "shareholder or by any manager, director or officer of the Company without the "
+       "**prior written consent of the Transferor** (acting by the Founder): "
+       "(a) any amendment to the MOA, articles or constitutional documents of the Company; "
+       "(b) any increase, reduction, reorganisation or other change to the share capital of the "
+       "Company; (c) the declaration or payment of any dividend or other distribution to "
+       "shareholders; (d) the issuance, allotment, repurchase or redemption of any shares or "
+       "other securities; (e) any merger, consolidation, demerger, liquidation, winding-up or "
+       "dissolution of the Company; (f) any sale, lease, disposal or acquisition of assets or "
+       "businesses outside the ordinary course of business; (g) any incurrence of borrowing, "
+       "financial indebtedness, guarantee or surety, or the creation of any Encumbrance over the "
+       "assets of the Company; (h) the entry into, amendment or termination of any related-party "
+       "or affiliate transaction; (i) the approval of the annual budget, business plan and "
+       "audited financial statements; (j) the appointment, removal or remuneration of the "
+       "auditors and key management personnel; (k) the commencement, settlement or compromise of "
+       "any litigation, arbitration or material claim; (l) any change to the nature, scope or "
+       "location of the business activities of the Company; (m) the opening or closing of any "
+       "bank account, or any change to authorised signatories thereto; and (n) any transfer, "
+       "pledge or grant of any Encumbrance by a shareholder over its shares in the Company.")
+clause("7.7", "**Entrenchment in the Memorandum of Association.** The Parties shall procure that, "
+       "at Completion, the Company&#8217;s MOA is amended (and notarised before the Notary "
+       "Public and registered with the DET) so as to reflect and entrench the arrangements set "
+       "out in this Clause 7, including (i) the Transferor&#8217;s casting / deciding vote; "
+       "(ii) the Transferor&#8217;s sole right to appoint and remove the General Manager; and "
+       "(iii) the requirement that the Reserved Matters require the prior written consent of the "
+       "Transferor. Where, by Applicable Law, any such entrenchment must take the form of "
+       "weighted voting rights, super-majority requirements or a dedicated class of shares, the "
+       "Parties shall co-operate in good faith to give effect to the same in the manner most "
+       "likely to be enforceable under UAE law.")
+clause("7.8", "**No Variation Without Founder Consent.** The arrangements in this Clause 7 are a "
+       "fundamental condition of the transfer of the Transfer Shares and may not be varied, "
+       "suspended or waived save with the prior written consent of the Transferor (acting by the "
+       "Founder). Any purported variation or waiver in breach of this Clause shall be null and "
+       "void.")
+clause("7.9", "**Specific Performance.** The Parties acknowledge that damages would not be an "
+       "adequate remedy for any breach of this Clause 7 and that the Transferor shall be "
+       "entitled to seek specific performance, injunctive relief and any other equitable remedy "
+       "available under Applicable Law.")
+clause("7.10", "**Survival.** This Clause 7 shall take effect from Completion and shall continue "
+       "in force for so long as the Transferor holds any shares in the Company.")
+
+heading("8", "Consideration")
+clause("8.1", "In consideration of the achievement of the Performance Threshold and the past and "
        "continuing performance and services of the Transferees, the Transfer Shares shall be "
        "transferred to the Transferees for an **aggregate nominal consideration of AED 1.00 (one "
-       "UAE Dirham)** (or such nominal / par amount as the Notary Public may require to be stated), "
-       "the receipt and adequacy of which the Transferor acknowledges.")
-clause("7.2", "The Parties confirm that the transfer is by way of a **performance reward and "
-       "incentive** and is not a sale at market value. Each Party shall bear its own tax position "
-       "arising from the transfer and shall be responsible for obtaining its own independent tax "
-       "advice (including in relation to UAE Corporate Tax and any applicable VAT).")
-clause("7.3", "Nothing in this Clause 7 limits the Founder&#8217;s discretion under Clause 5 or "
-       "obliges the Transferor to transfer the Transfer Shares otherwise than in accordance with "
-       "this Agreement.")
+       "UAE Dirham)** (or such nominal / par amount as the Notary Public may require to be "
+       "stated), the receipt and adequacy of which the Transferor acknowledges.")
+clause("8.2", "The Parties confirm that the transfer is by way of a **performance reward and "
+       "incentive** and is not a sale at market value. Each Party shall bear its own tax "
+       "position arising from the transfer and shall be responsible for obtaining its own "
+       "independent tax advice (including in relation to UAE Corporate Tax and any applicable "
+       "VAT).")
+clause("8.3", "Nothing in this Clause 8 limits the Founder&#8217;s discretion under Clause 5 or "
+       "the rights reserved to the Transferor under Clause 7, nor obliges the Transferor to "
+       "transfer the Transfer Shares otherwise than in accordance with this Agreement.")
 
-heading("8", "Waiver of Pre-emption Rights")
-clause("8.1", "Each shareholder of the Company (including the Transferees) irrevocably and "
+heading("9", "Waiver of Pre-emption Rights")
+clause("9.1", "Each shareholder of the Company (including the Transferees) irrevocably and "
        "unconditionally **waives** any right of pre-emption, right of first refusal, tag-along, or "
        "similar right (whether arising under the CCL, the Company&#8217;s MOA or otherwise) to "
        "which it may be entitled in respect of the transfer of the Transfer Shares contemplated by "
        "this Agreement, and consents to such transfer.")
-clause("8.2", "Each shareholder shall execute such waivers, consents and resolutions as may be "
+clause("9.2", "Each shareholder shall execute such waivers, consents and resolutions as may be "
        "required to confirm the foregoing for the purposes of notarisation and DET registration.")
 
-heading("9", "Representations and Warranties")
-clause("9.1", "Each Party represents and warrants to the others that: (a) it has the power and "
-       "authority (and, where applicable, the requisite corporate authorisations) to enter into and "
-       "perform this Agreement; (b) this Agreement constitutes its legal, valid and binding "
+heading("10", "Representations and Warranties")
+clause("10.1", "Each Party represents and warrants to the others that: (a) it has the power and "
+       "authority (and, where applicable, the requisite corporate authorisations) to enter into "
+       "and perform this Agreement; (b) this Agreement constitutes its legal, valid and binding "
        "obligations; and (c) its entry into this Agreement does not breach any Applicable Law or "
        "any agreement binding upon it.")
-clause("9.2", "The Transferor further represents and warrants that, as at the Effective Date, it is "
-       "the legal and beneficial owner of 70% of the issued share capital of the Company, free from "
-       "Encumbrances, and that the Transfer Shares will at Completion be transferred free from "
-       "Encumbrances.")
-clause("9.3", "Each Transferee acknowledges that, save as expressly set out in this Agreement, no "
-       "representation, warranty or assurance has been given as to the future profitability or "
+clause("10.2", "The Transferor further represents and warrants that, as at the Effective Date, it "
+       "is the legal and beneficial owner of 70% of the issued share capital of the Company, free "
+       "from Encumbrances, and that the Transfer Shares will at Completion be transferred free "
+       "from Encumbrances.")
+clause("10.3", "Each Transferee acknowledges that, save as expressly set out in this Agreement, "
+       "no representation, warranty or assurance has been given as to the future profitability or "
        "value of the Company or the Transfer Shares.")
 
-heading("10", "Conduct Pending Completion")
-clause("10.1", "From the Effective Date until Completion or termination of this Agreement, the "
+heading("11", "Conduct Pending Completion")
+clause("11.1", "From the Effective Date until Completion or termination of this Agreement, the "
        "Transferor shall not create any Encumbrance over, or transfer to any third party, the "
        "Transfer Shares in a manner that would prevent it from performing its obligations under "
        "this Agreement, save with the prior written consent of the Founder.")
-clause("10.2", "Nothing in this Clause restricts the ordinary conduct of the business of the "
+clause("11.2", "Nothing in this Clause restricts the ordinary conduct of the business of the "
        "Company or the exercise by the Transferor of its rights as a 70% shareholder.")
 
-heading("11", "Confidentiality")
-clause("11.1", "Each Party shall keep confidential the terms of this Agreement and all information "
-       "concerning the other Parties and the Company obtained in connection with it, and shall not "
-       "disclose the same save: (a) as required by Applicable Law, a court or regulator (including "
-       "the DET and the Notary Public); (b) to its professional advisers under a duty of confidence; "
-       "or (c) with the prior written consent of the other Parties.")
+heading("12", "Confidentiality")
+clause("12.1", "Each Party shall keep confidential the terms of this Agreement and all "
+       "information concerning the other Parties and the Company obtained in connection with it, "
+       "and shall not disclose the same save: (a) as required by Applicable Law, a court or "
+       "regulator (including the DET and the Notary Public); (b) to its professional advisers "
+       "under a duty of confidence; or (c) with the prior written consent of the other Parties.")
 
-heading("12", "Costs, Fees and Taxes")
-clause("12.1", "Save as otherwise agreed in writing, the Transferor shall bear the Notary Public "
-       "fees, DET amendment fees and registration costs directly arising from Completion, and each "
-       "Party shall bear its own legal and advisory costs.")
-clause("12.2", "Each Party shall be responsible for its own taxes (if any) arising from the transfer "
-       "of the Transfer Shares.")
+heading("13", "Costs, Fees and Taxes")
+clause("13.1", "Save as otherwise agreed in writing, the Transferor shall bear the Notary Public "
+       "fees, DET amendment fees and registration costs directly arising from Completion, and "
+       "each Party shall bear its own legal and advisory costs.")
+clause("13.2", "Each Party shall be responsible for its own taxes (if any) arising from the "
+       "transfer of the Transfer Shares.")
 
-heading("13", "Term and Termination")
-clause("13.1", "This Agreement takes effect on the Effective Date and continues until the earlier of "
-       "(a) Completion and (b) termination in accordance with this Clause 13.")
-clause("13.2", "This Agreement may be terminated by the written agreement of the Transferor and the "
-       "Company, or by the Transferor (acting by the Founder) if the Performance Threshold has not "
-       "been achieved and the Transferor reasonably determines that it is no longer capable of being "
-       "achieved, in each case without liability save in respect of antecedent breaches.")
-clause("13.3", "Clauses 1, 11, 14 and 15 survive termination.")
+heading("14", "Term and Termination")
+clause("14.1", "This Agreement takes effect on the Effective Date and continues until the earlier "
+       "of (a) Completion and (b) termination in accordance with this Clause 14. The rights and "
+       "obligations of the Transferor under Clause 7 shall, however, take effect from Completion "
+       "and continue notwithstanding any termination thereafter, for so long as the Transferor "
+       "holds any shares in the Company.")
+clause("14.2", "This Agreement may be terminated by the written agreement of the Transferor and "
+       "the Company, or by the Transferor (acting by the Founder) if the Performance Threshold "
+       "has not been achieved and the Transferor reasonably determines that it is no longer "
+       "capable of being achieved, in each case without liability save in respect of antecedent "
+       "breaches.")
+clause("14.3", "Clauses 1, 7, 12, 15 and 16 survive termination.")
 
-heading("14", "Governing Law and Jurisdiction")
-clause("14.1", "This Agreement and any non-contractual obligations arising out of or in connection "
-       "with it are governed by, and shall be construed in accordance with, the **federal laws of "
-       "the United Arab Emirates as applied in the Emirate of Dubai**.")
-clause("14.2", "The Parties irrevocably submit to the **exclusive jurisdiction of the Courts of "
+heading("15", "Governing Law and Jurisdiction")
+clause("15.1", "This Agreement and any non-contractual obligations arising out of or in "
+       "connection with it are governed by, and shall be construed in accordance with, the "
+       "**federal laws of the United Arab Emirates as applied in the Emirate of Dubai**.")
+clause("15.2", "The Parties irrevocably submit to the **exclusive jurisdiction of the Courts of "
        "Dubai** in respect of any dispute arising out of or in connection with this Agreement, "
-       "without prejudice to any mandatory requirement for notarisation or registration before the "
-       "Notary Public and the DET.")
-clause("14.3", "The Parties may, by written agreement, elect to refer any dispute instead to "
-       "arbitration administered by the **Dubai International Arbitration Centre (DIAC)**, seated in "
-       "Dubai and conducted in the English language.")
+       "without prejudice to any mandatory requirement for notarisation or registration before "
+       "the Notary Public and the DET.")
+clause("15.3", "The Parties may, by written agreement, elect to refer any dispute instead to "
+       "arbitration administered by the **Dubai International Arbitration Centre (DIAC)**, "
+       "seated in Dubai and conducted in the English language.")
 
-heading("15", "General Provisions")
-clause("15.1", "**Entire Agreement.** This Agreement constitutes the entire agreement between the "
-       "Parties in relation to its subject matter and supersedes all prior arrangements and "
+heading("16", "General Provisions")
+clause("16.1", "**Entire Agreement.** This Agreement constitutes the entire agreement between "
+       "the Parties in relation to its subject matter and supersedes all prior arrangements and "
        "understandings.")
-clause("15.2", "**Amendments.** No amendment to this Agreement is effective unless in writing and "
-       "signed by or on behalf of each Party.")
-clause("15.3", "**No Waiver.** No failure or delay in exercising any right operates as a waiver of "
-       "it.")
-clause("15.4", "**Severability.** If any provision is or becomes invalid or unenforceable, the "
-       "remaining provisions continue in full force and the Parties shall negotiate in good faith to "
-       "replace the invalid provision with a valid one of similar effect.")
-clause("15.5", "**Assignment.** No Party may assign or transfer its rights or obligations under this "
-       "Agreement without the prior written consent of the Transferor (acting by the Founder).")
-clause("15.6", "**Further Assurance.** Each Party shall execute such further documents and do such "
-       "further acts as may reasonably be required to give full effect to this Agreement.")
-clause("15.7", "**Counterparts.** This Agreement may be executed in any number of counterparts, each "
-       "of which is an original and all of which together constitute one agreement.")
-clause("15.8", "**Notices.** Notices under this Agreement shall be in writing and delivered by hand, "
-       "courier or email to the addresses of the Parties set out in this Agreement (or as notified "
-       "in writing from time to time).")
-clause("15.9", "**Language.** This Agreement is executed in English. Where a notarised Arabic version "
-       "is required for registration before the Notary Public and the DET, the Parties shall procure "
-       "a certified Arabic translation; in the event of any conflict between the English and the "
-       "notarised Arabic version, the **Arabic version shall prevail** for the purposes of "
-       "registration before the Dubai authorities, and the English version shall otherwise govern "
-       "the commercial intention of the Parties.")
+clause("16.2", "**Amendments.** No amendment to this Agreement is effective unless in writing and "
+       "signed by or on behalf of each Party; and any amendment to Clause 7 is further subject "
+       "to Clause 7.8.")
+clause("16.3", "**No Waiver.** No failure or delay in exercising any right operates as a waiver "
+       "of it.")
+clause("16.4", "**Severability.** If any provision is or becomes invalid or unenforceable, the "
+       "remaining provisions continue in full force and the Parties shall negotiate in good faith "
+       "to replace the invalid provision with a valid one of similar effect.")
+clause("16.5", "**Assignment.** No Party may assign or transfer its rights or obligations under "
+       "this Agreement without the prior written consent of the Transferor (acting by the "
+       "Founder).")
+clause("16.6", "**Further Assurance.** Each Party shall execute such further documents and do "
+       "such further acts as may reasonably be required to give full effect to this Agreement, "
+       "including the irrevocable proxies and powers of attorney referred to in Clause 7.3.")
+clause("16.7", "**Counterparts.** This Agreement may be executed in any number of counterparts, "
+       "each of which is an original and all of which together constitute one agreement.")
+clause("16.8", "**Notices.** Notices under this Agreement shall be in writing and delivered by "
+       "hand, courier or email to the addresses of the Parties set out in this Agreement (or as "
+       "notified in writing from time to time).")
+clause("16.9", "**Language.** This Agreement is executed in English. Where a notarised Arabic "
+       "version is required for registration before the Notary Public and the DET, the Parties "
+       "shall procure a certified Arabic translation; in the event of any conflict between the "
+       "English and the notarised Arabic version, the **Arabic version shall prevail** for the "
+       "purposes of registration before the Dubai authorities, and the English version shall "
+       "otherwise govern the commercial intention of the Parties.")
 
 # ================================================================ EXECUTION
 section("Execution")
@@ -671,7 +763,9 @@ items = [
     "Mr. Orazdurdy Mamiyev &#8212; passport / Emirates ID number, nationality and address.",
     "Confirmation of the Company&#8217;s par value per share and total number of shares.",
     "Names and titles of the authorised signatories for each company.",
-    "Whether disputes go to Dubai Courts (Clause 14.2) or DIAC arbitration (Clause 14.3).",
+    "Whether disputes go to Dubai Courts (Clause 15.2) or DIAC arbitration (Clause 15.3).",
+    "Whether to add a specific AED threshold to Reserved Matter 7.6(f) (asset disposals outside ordinary course).",
+    "Confirmation that the amended MOA will entrench the Transferor&#8217;s casting vote, Reserved Matters and sole right to appoint the General Manager (Clause 7.7).",
     "Certified Arabic translation for notarisation and DET registration.",
 ]
 for it in items:
