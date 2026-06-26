@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
-"""Convert goget-research.md to a styled PDF via markdown + WeasyPrint."""
+"""Convert a research markdown file to a styled PDF via markdown + WeasyPrint.
+
+Usage: python3 build_pdf.py [name]
+  name defaults to "goget-research"; pass e.g. "malaysia-bnpl-research"
+  to build that file. Reads <name>.md, writes <name>.pdf.
+"""
+import sys
 import markdown
 from weasyprint import HTML
 from pathlib import Path
 
 HERE = Path(__file__).parent
-md_text = (HERE / "goget-research.md").read_text(encoding="utf-8")
+NAME = sys.argv[1] if len(sys.argv) > 1 else "goget-research"
+FOOTER = sys.argv[2] if len(sys.argv) > 2 else "GoGet.my Deep Research"
+md_text = (HERE / f"{NAME}.md").read_text(encoding="utf-8")
 
 html_body = markdown.markdown(
     md_text,
@@ -17,10 +25,10 @@ CSS = """
   size: A4;
   margin: 22mm 18mm 20mm 18mm;
   @bottom-center {
-    content: "GoGet.my Deep Research \\2014 page " counter(page) " of " counter(pages);
+    content: "__FOOTER__ \\2014 page " counter(page) " of " counter(pages);
     font-size: 8pt; color: #888;
   }
-}
+}""".replace("__FOOTER__", FOOTER) + """
 body { font-family: "DejaVu Sans", "Helvetica", sans-serif; font-size: 10.2pt;
        line-height: 1.5; color: #1f2328; }
 h1 { font-size: 22pt; color: #c0392b; border-bottom: 3px solid #c0392b;
@@ -49,6 +57,6 @@ a { color: #c0392b; text-decoration: none; }
 html_doc = f"""<!DOCTYPE html><html><head><meta charset="utf-8">
 <style>{CSS}</style></head><body>{html_body}</body></html>"""
 
-out = HERE / "goget-research.pdf"
+out = HERE / f"{NAME}.pdf"
 HTML(string=html_doc).write_pdf(str(out))
 print(f"Wrote {out} ({out.stat().st_size:,} bytes)")
