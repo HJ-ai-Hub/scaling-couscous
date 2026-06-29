@@ -99,7 +99,42 @@ This makes CompAsia **B2B infrastructure to its own retail "competitors"** — a
 
 ---
 
-## 5. Funding, Investors & IPO
+## 5. Income-Stream Breakdown
+
+CompAsia stacks **five revenue layers around a single device** — it monetises the same phone repeatedly across its life. That is the financial core of the "device circularity" model.
+
+> **Disclosure caveat:** No official segment split, gross margin by stream, take-rate, or ReNewNGo revenue-recognition method is public — those land only with the IPO prospectus. Figures below are **company/IPO-disclosed** unless marked *(estimate/reconstruction)*.
+
+### The five streams
+
+| # | Stream | Brand | How it earns | Role / margin profile |
+|---|---|---|---|---|
+| 1 | **Recommerce sales** | Shop CompAsia | Buy-low/sell-high **spread** on refurbished devices | Volume base + supply engine; ~30–50% gross *(industry estimate)* |
+| 2 | **Wholesale / distribution** | CompAsia Wholesale | **Bulk margin** on graded (A1/B1/C1) & as-is devices to global B2B buyers | High volume, thin margin; clears non-retail inventory |
+| 3 | **B2B2C trade-in services** | instaCash | **Service/assessment fee** from telco/OEM partners + **resale margin** on collected devices | Capital-light fee income; structure (per-device vs SaaS vs rev-share) not disclosed |
+| 4 | **Recurring: subscription + financing** | ReNewNGo, ReNew+ | **Monthly subscription** (subscribe-to-own) + **financing income** on installments | The IPO growth engine; recurring, higher margin |
+| 5 | **Protection / warranty** | instaCover, Replace Plus, Device Care | **Premium/fee income** for extended warranty + like-for-like swap | High-margin, attach-rate-driven add-on |
+
+### The recurring-revenue engine (the IPO story)
+
+- **ReNewNGo** (subscription, launched 2024): subscribe-to-own — upgrade/return after **12 months** (18 for MacBooks), full ownership after **36 monthly payments**; priced from **~RM3/day** (~RM99/mo phones, ~RM102/mo MacBooks). **~20,000 subscribers** → target **50,000 (end-2026)** → **100,000 (2027)**; explicitly the **main driver** of the RM180M → ~RM400M revenue jump. Returned devices re-enter the refurb funnel — a flywheel.
+- **ReNew+** (financing): installment income, tenors to 36 months, "instant credit scoring." Marketed as no finance charge/late fees, so CompAsia likely earns via device margin + financing structure rather than headline APR.
+
+### What the disclosed numbers imply
+
+The tell is in the margin trajectory: **PBT targeted to grow ~3.5× (RM12M → RM70M) while revenue grows ~2.2× (RM180M → ~RM400M).** That margin expansion signals the mix shifting toward the **higher-margin recurring layers** (subscription, financing, protection) and away from one-off resale.
+
+**Margin vs volume ranking** *(reconstruction)*: high-volume/thin = wholesale → retail resale; recurring/higher-margin = protection, financing, subscription; capital-light fee = B2B2C trade-in services.
+
+**Reconstructed unit economics** *(estimates, stated assumptions)*:
+- ReNewNGo run-rate ≈ 20,000 subs × ~RM99–150/mo ≈ **~RM24–36M annualised** — material, but the *growth* driver, not yet the majority of the RM180M base.
+- Old blended "~RM1,000/device" (2022: ~RM1bn ÷ ~1M devices) blends services + wholesale — **not a clean retail ASP**, order-of-magnitude only.
+
+> **Do not confuse two revenue figures:** RM180M (2025) is **Malaysia-only**; the old ~US$237M (2022) was **group/regional recommerce GMV-scope** — not comparable, not a decline.
+
+---
+
+## 6. Funding, Investors & IPO
 
 | Event | Date | Detail |
 |---|---|---|
@@ -115,7 +150,7 @@ This makes CompAsia **B2B infrastructure to its own retail "competitors"** — a
 
 ---
 
-## 6. Competitive Landscape
+## 7. Competitive Landscape
 
 CompAsia sits in a **B2B2C, owner-operator** position — distinct from pure marketplaces. Competitors fall into tiers:
 
@@ -138,7 +173,7 @@ CompAsia sits in a **B2B2C, owner-operator** position — distinct from pure mar
 
 ---
 
-## 7. Industry Context & Market Drivers
+## 8. Industry Context & Market Drivers
 
 - **APAC is the largest and fastest-growing refurbished-device region** (~41% of global revenue share, 2025), with used devices **outpacing new** (used ~3.2% YoY growth vs ~1% for new — IDC).
 - **SEA secondhand smartphone sales grew ~5% YoY (H1 2025)** (Counterpoint); emerging-market refurbished ASP is rising toward new-phone ASP.
@@ -148,7 +183,7 @@ CompAsia sits in a **B2B2C, owner-operator** position — distinct from pure mar
 
 ---
 
-## 8. SWOT Analysis
+## 9. SWOT Analysis
 
 **Strengths**
 - Profitable & growing (rare in recommerce); IPO-ready financials
@@ -176,7 +211,7 @@ CompAsia sits in a **B2B2C, owner-operator** position — distinct from pure mar
 
 ---
 
-## 9. Key Takeaways
+## 10. Key Takeaways
 
 1. **CompAsia is the infrastructure layer of SEA device recommerce**, not just a used-phone seller — it runs the trade-in programs its retail rivals depend on. Lead any analysis with this.
 2. **It is genuinely profitable and IPO-bound** (Bursa Main Market, 1H 2027, ~RM2bn target) — unusual in a category littered with cash-burning marketplaces.
