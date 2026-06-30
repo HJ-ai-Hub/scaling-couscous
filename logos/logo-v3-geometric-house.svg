@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 530" width="500" height="530">
+  <defs>
+    <style><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+    ]]></style>
+  </defs>
+
+  <rect width="500" height="530" fill="#F5F1E6"/>
+
+  <!-- ════════════════════════════════════════
+       THIN PARTIAL CIRCLE (320° arc)
+       A refined, thin ring — not Enso but an
+       elegant geometric frame, opening top-right
+       ════════════════════════════════════════ -->
+  <path d="
+    M 312,84
+    C 368,110 388,172 380,235
+    C 372,298 334,344 278,363
+    C 222,382 166,362 130,324
+    C 93,286 82,236 92,188
+    C 102,140 130,104 168,85
+    C 196,72 226,67 256,70"
+    fill="none" stroke="#8B0000" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- ════════════════════════════════════════
+       MOUNTAINS (lighter, background)
+       ════════════════════════════════════════ -->
+  <polygon points="165,228 218,172 272,228" fill="#8B8680" opacity="0.4"/>
+  <polygon points="230,228 274,185 328,228" fill="#8B8680" opacity="0.6"/>
+
+  <!-- ════════════════════════════════════════
+       RED SUN — upper right, partially obscured
+       ════════════════════════════════════════ -->
+  <circle cx="284" cy="128" r="30" fill="#8B0000"/>
+
+  <!-- ════════════════════════════════════════
+       GEOMETRIC ORIGAMI HOUSE
+       Faceted triangular planes with depth shading
+       ════════════════════════════════════════ -->
+
+  <!-- Left roof face — dark, in shadow -->
+  <polygon points="172,224 250,148 218,224" fill="#2C2C2C"/>
+
+  <!-- Right roof face — medium, forward-facing -->
+  <polygon points="218,224 250,148 328,224" fill="#5a5855"/>
+
+  <!-- Small crimson peak cap — fold accent at apex -->
+  <polygon points="250,148 240,168 260,168" fill="#8B0000"/>
+
+  <!-- Horizontal eave baseline -->
+  <line x1="172" y1="224" x2="328" y2="224" stroke="#2C2C2C" stroke-width="1.2"/>
+
+  <!-- Left wall section — lightest (cream tone) -->
+  <rect x="194" y="224" width="56" height="52" fill="#e8e4d8"/>
+
+  <!-- Right wall section — medium shadow -->
+  <rect x="250" y="224" width="56" height="52" fill="#c8c4b8"/>
+
+  <!-- Diagonal fold shadow on left wall (origami crease) -->
+  <polygon points="194,224 250,224 194,276" fill="#b0ac9e" opacity="0.6"/>
+
+  <!-- Outline walls -->
+  <rect x="194" y="224" width="112" height="52"
+    fill="none" stroke="#2C2C2C" stroke-width="1"/>
+
+  <!-- Center wall fold line -->
+  <line x1="250" y1="224" x2="250" y2="276" stroke="#2C2C2C" stroke-width="1"/>
+
+  <!-- Shoji detail on right wall panel -->
+  <line x1="270" y1="224" x2="270" y2="276" stroke="#2C2C2C" stroke-width="0.6" opacity="0.5"/>
+  <line x1="250" y1="248" x2="306" y2="248" stroke="#2C2C2C" stroke-width="0.6" opacity="0.5"/>
+
+  <!-- Ground line -->
+  <line x1="152" y1="276" x2="348" y2="276" stroke="#2C2C2C" stroke-width="1.5"/>
+
+  <!-- ════════════════════════════════════════
+       BONSAI TREE — right side, inside circle
+       Organic trunk with spreading canopy
+       ════════════════════════════════════════ -->
+  <!-- Trunk (slightly curved) -->
+  <path d="M 338,272 C 336,255 332,240 338,226 C 342,216 348,212 352,218"
+    fill="none" stroke="#2C2C2C" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Branch left -->
+  <path d="M 342,232 C 330,228 322,222 318,215"
+    fill="none" stroke="#2C2C2C" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Canopy clusters -->
+  <ellipse cx="348" cy="212" rx="22" ry="11" fill="#2C2C2C"/>
+  <ellipse cx="326" cy="208" rx="15" ry="9" fill="#2C2C2C"/>
+  <ellipse cx="362" cy="202" rx="16" ry="9" fill="#2C2C2C"/>
+
+  <!-- ════════════════════════════════════════
+       FOLD LINE ACCENT (origami detail)
+       A single angular mark echoing paper fold
+       ════════════════════════════════════════ -->
+  <polyline points="148,300 158,290 170,300"
+    fill="none" stroke="#8B0000" stroke-width="1.2"/>
+
+  <!-- ════════════════════════════════════════
+       WORDMARK
+       ════════════════════════════════════════ -->
+  <line x1="85" y1="350" x2="415" y2="350" stroke="#8B0000" stroke-width="0.8"/>
+
+  <text x="250" y="394"
+    text-anchor="middle"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-size="46" font-weight="700"
+    fill="#8B0000" letter-spacing="9">ORIZURU</text>
+
+  <text x="250" y="423"
+    text-anchor="middle"
+    font-family="'Playfair Display', Georgia, serif"
+    font-size="13" fill="#2C2C2C" letter-spacing="8">HOLIDAY HOMES</text>
+
+  <line x1="185" y1="441" x2="315" y2="441" stroke="#8B8680" stroke-width="0.6"/>
+
+  <text x="250" y="461"
+    text-anchor="middle"
+    font-family="Georgia, serif"
+    font-size="9" fill="#8B8680" letter-spacing="4">STAY . RELAX . EXPERIENCE</text>
+</svg>

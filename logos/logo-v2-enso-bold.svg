@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 540" width="500" height="540">
+  <defs>
+    <style><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+    ]]></style>
+  </defs>
+
+  <rect width="500" height="540" fill="#F5F1E6"/>
+
+  <!-- ════════════════════════════════════════
+       BRAND NAME — above circle, small
+       ════════════════════════════════════════ -->
+  <text x="250" y="28"
+    text-anchor="middle"
+    font-family="'Playfair Display', Georgia, serif"
+    font-size="11" fill="#8B0000" letter-spacing="8">ORIZURU</text>
+  <line x1="180" y1="34" x2="320" y2="34" stroke="#8B0000" stroke-width="0.6"/>
+
+  <!-- ════════════════════════════════════════
+       BOLD ENSO — opening on the right side
+       Start lower-right (~4:30), trace counter-
+       clockwise, end upper-right (~1:30)
+       ════════════════════════════════════════ -->
+  <path d="
+    M 372,268
+    C 360,335 296,380 238,382
+    C 180,384 126,350 102,305
+    C 78,260 82,204 106,164
+    C 130,124 168,98 212,86
+    C 238,78 268,76 294,82
+    C 322,90 350,108 368,135"
+    fill="none" stroke="#2C2C2C" stroke-width="26" stroke-linecap="round"/>
+
+  <!-- ════════════════════════════════════════
+       RED SUN — large, dominant
+       ════════════════════════════════════════ -->
+  <circle cx="290" cy="125" r="36" fill="#8B0000"/>
+
+  <!-- ════════════════════════════════════════
+       MOUNTAIN LAYERS
+       ════════════════════════════════════════ -->
+  <polygon points="158,232 215,174 272,232" fill="#8B8680" opacity="0.5"/>
+  <polygon points="235,232 282,182 335,232" fill="#8B8680" opacity="0.75"/>
+
+  <!-- ════════════════════════════════════════
+       JAPANESE HOUSE
+       ════════════════════════════════════════ -->
+  <polygon points="195,228 258,152 322,228" fill="#2C2C2C"/>
+  <polygon points="206,228 258,164 310,228" fill="#1e1e1e"/>
+  <rect x="215" y="228" width="86" height="50" fill="#2C2C2C"/>
+  <line x1="215" y1="248" x2="301" y2="248" stroke="#F5F1E6" stroke-width="1" opacity="0.3"/>
+  <line x1="237" y1="228" x2="237" y2="278" stroke="#F5F1E6" stroke-width="0.9" opacity="0.28"/>
+  <line x1="258" y1="228" x2="258" y2="278" stroke="#F5F1E6" stroke-width="0.9" opacity="0.28"/>
+  <line x1="279" y1="228" x2="279" y2="278" stroke="#F5F1E6" stroke-width="0.9" opacity="0.28"/>
+  <line x1="175" y1="278" x2="340" y2="278" stroke="#2C2C2C" stroke-width="1.5"/>
+
+  <!-- ════════════════════════════════════════
+       PINE TREE — inside circle, LEFT of house
+       ════════════════════════════════════════ -->
+  <rect x="163" y="260" width="5" height="20" fill="#2C2C2C"/>
+  <polygon points="144,266 165,245 186,266" fill="#2C2C2C"/>
+  <polygon points="149,253 165,234 181,253" fill="#2C2C2C"/>
+  <polygon points="155,241 165,223 175,241" fill="#2C2C2C"/>
+  <!-- Small horizontal branches extending left for bonsai feel -->
+  <line x1="144" y1="255" x2="152" y2="252" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="148" y1="244" x2="155" y2="242" stroke="#2C2C2C" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ════════════════════════════════════════
+       RED HANKO SEAL
+       ════════════════════════════════════════ -->
+  <rect x="305" y="288" width="20" height="20" rx="1" fill="#8B0000"/>
+  <text x="315" y="302" text-anchor="middle"
+    font-family="serif" font-size="10" fill="#F5F1E6">折</text>
+
+  <!-- ════════════════════════════════════════
+       WORDMARK — HOLIDAY HOMES primary
+       ════════════════════════════════════════ -->
+  <line x1="85" y1="356" x2="415" y2="356" stroke="#2C2C2C" stroke-width="0.8"/>
+
+  <text x="250" y="402"
+    text-anchor="middle"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-size="36" font-weight="700"
+    fill="#2C2C2C" letter-spacing="9">HOLIDAY HOMES</text>
+
+  <line x1="155" y1="420" x2="345" y2="420" stroke="#8B0000" stroke-width="0.7"/>
+
+  <text x="250" y="444"
+    text-anchor="middle"
+    font-family="Georgia, serif"
+    font-size="10" fill="#8B0000" letter-spacing="4">MAKE MEMORIES · STAY INSPIRED</text>
+
+  <text x="250" y="468"
+    text-anchor="middle"
+    font-family="'Noto Serif JP', 'Noto Sans JP', 'Hiragino Mincho ProN', serif"
+    font-size="18" fill="#8B8680" letter-spacing="4">折鶴</text>
+</svg>
