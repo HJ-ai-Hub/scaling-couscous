@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 580" width="500" height="580">
+  <defs>
+    <style>
+      <![CDATA[
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+      ]]>
+    </style>
+  </defs>
+
+  <!-- Cream aged-paper background -->
+  <rect width="500" height="580" fill="#F5F1E6"/>
+
+  <!-- ═══════════════════════════════════════════
+       CIRCULAR MON CREST — Japanese family crest style
+       Double ring with geometric fold-point accents
+       ═══════════════════════════════════════════ -->
+
+  <!-- Outer circle -->
+  <circle cx="250" cy="185" r="118" fill="none" stroke="#8B0000" stroke-width="2.2"/>
+  <!-- Inner circle (double-line refinement) -->
+  <circle cx="250" cy="185" r="110" fill="none" stroke="#8B0000" stroke-width="0.9"/>
+
+  <!-- Diamond fold-point accents at four cardinal positions -->
+  <!-- North -->
+  <polygon points="250,62 255,72 250,77 245,72" fill="#8B0000"/>
+  <!-- South -->
+  <polygon points="250,308 245,298 250,293 255,298" fill="#8B0000"/>
+  <!-- East -->
+  <polygon points="372,185 362,180 357,185 362,190" fill="#8B0000"/>
+  <!-- West -->
+  <polygon points="128,185 138,180 143,185 138,190" fill="#8B0000"/>
+
+  <!-- ═══════════════════════════════════════════
+       CRANE — geometric, symmetric, within circle
+       Crane center aligned with circle center (250, 188)
+       Wing tips must stay within radius ~95 from center
+       ═══════════════════════════════════════════ -->
+  <g fill="#8B0000">
+
+    <!-- Body -->
+    <ellipse cx="250" cy="200" rx="30" ry="14" transform="rotate(-6 250 200)"/>
+
+    <!-- Left wing — broad tapering arc, symmetric -->
+    <path d="
+      M 230,192
+      C 206,180 175,165 148,150
+      C 138,145 131,144 130,150
+      C 129,155 136,164 148,170
+      C 172,182 208,196 228,202
+      Z"/>
+
+    <!-- Right wing — mirrored (symmetric for Mon aesthetic) -->
+    <path d="
+      M 270,186
+      C 294,173 323,158 350,143
+      C 360,138 367,138 368,144
+      C 369,149 362,159 350,165
+      C 326,177 294,191 272,198
+      Z"/>
+
+    <!-- Neck — slender vertical connection -->
+    <path d="
+      M 257,187
+      C 259,168 262,148 260,126
+      C 257,120 253,120 252,126
+      C 250,148 250,168 252,188
+      Z"/>
+
+    <!-- Head -->
+    <ellipse cx="256" cy="119" rx="10" ry="8"/>
+
+    <!-- Tail feather 1 -->
+    <path d="
+      M 228,210
+      C 225,226 224,244 225,264
+      C 228,267 232,266 233,262
+      C 233,244 234,226 233,212
+      Z"/>
+
+    <!-- Tail feather 2 -->
+    <path d="
+      M 242,212
+      C 240,230 240,249 241,268
+      C 244,271 248,270 249,267
+      C 249,248 248,229 246,213
+      Z"/>
+  </g>
+
+  <!-- Cream crown detail on red head -->
+  <ellipse cx="256" cy="113" rx="4" ry="3" fill="#F5F1E6" opacity="0.8"/>
+
+  <!-- ═══════════════════════════════════════════
+       FOLD ACCENT LINE
+       ═══════════════════════════════════════════ -->
+  <line x1="80" y1="332" x2="420" y2="332" stroke="#8B0000" stroke-width="0.8"/>
+
+  <!-- ═══════════════════════════════════════════
+       WORDMARK
+       ═══════════════════════════════════════════ -->
+
+  <text
+    x="250" y="395"
+    text-anchor="middle"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-size="54"
+    font-weight="700"
+    fill="#8B0000"
+    letter-spacing="9">ORIZURU</text>
+
+  <text
+    x="250" y="433"
+    text-anchor="middle"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-size="13"
+    font-weight="400"
+    fill="#2C2C2C"
+    letter-spacing="8">HOLIDAY HOMES</text>
+
+  <line x1="185" y1="453" x2="315" y2="453" stroke="#8B8680" stroke-width="0.7"/>
+
+  <text
+    x="250" y="486"
+    text-anchor="middle"
+    font-family="'Noto Serif JP', 'Noto Sans JP', 'Hiragino Mincho ProN', 'MS Mincho', serif"
+    font-size="22"
+    fill="#8B8680"
+    letter-spacing="4">折鶴</text>
+
+</svg>

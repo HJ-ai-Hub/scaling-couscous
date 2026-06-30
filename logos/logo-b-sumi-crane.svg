@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 560" width="500" height="560">
+  <defs>
+    <style>
+      <![CDATA[
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+      ]]>
+    </style>
+  </defs>
+
+  <!-- Cream aged-paper background -->
+  <rect width="500" height="560" fill="#F5F1E6"/>
+
+  <!-- ═══════════════════════════════════════════
+       CRANE SILHOUETTE — sumi-e brushstroke style
+       All in deep crimson #8B0000 on cream
+       ═══════════════════════════════════════════ -->
+  <g fill="#8B0000">
+
+    <!-- Body — slightly tilted ellipse -->
+    <ellipse cx="250" cy="170" rx="50" ry="22" transform="rotate(-8 250 170)"/>
+
+    <!-- Left wing — broad brushstroke sweeping outward, tapering to tip -->
+    <path d="
+      M 212,160
+      C 178,148 135,128 88,108
+      C 76,103 67,104 65,110
+      C 63,116 70,126 85,133
+      C 125,152 175,165 210,172
+      Z"/>
+
+    <!-- Right wing — intentionally slightly shorter (wabi-sabi asymmetry) -->
+    <path d="
+      M 285,152
+      C 322,140 368,118 412,102
+      C 424,97 432,97 433,104
+      C 434,110 425,121 408,129
+      C 370,147 322,160 287,166
+      Z"/>
+
+    <!-- Neck — thin tapered path connecting body to head -->
+    <path d="
+      M 260,150
+      C 263,128 266,106 265,82
+      C 262,76 257,76 256,82
+      C 255,106 256,128 258,150
+      Z"/>
+
+    <!-- Head — small oval at top of neck -->
+    <ellipse cx="261" cy="74" rx="11" ry="9"/>
+
+    <!-- Tail feather 1 — drooping brushstroke from body rear -->
+    <path d="
+      M 220,182
+      C 216,202 214,228 215,255
+      C 219,258 224,257 225,253
+      C 225,228 226,202 228,183
+      Z"/>
+
+    <!-- Tail feather 2 — slightly longer for natural asymmetry -->
+    <path d="
+      M 237,184
+      C 235,206 234,232 235,260
+      C 239,263 244,262 245,258
+      C 245,232 244,206 242,185
+      Z"/>
+  </g>
+
+  <!-- Red crown accent — cream patch representing the crane's iconic red cap -->
+  <!-- On cream background, a small cream inset creates contrast on the red head -->
+  <ellipse cx="261" cy="68" rx="5" ry="3" fill="#F5F1E6" opacity="0.85"/>
+
+  <!-- ═══════════════════════════════════════════
+       FOLD ACCENT LINE
+       ═══════════════════════════════════════════ -->
+  <line x1="80" y1="305" x2="420" y2="305" stroke="#8B0000" stroke-width="0.8"/>
+
+  <!-- ═══════════════════════════════════════════
+       WORDMARK
+       ═══════════════════════════════════════════ -->
+
+  <!-- Brand name -->
+  <text
+    x="250" y="368"
+    text-anchor="middle"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-size="54"
+    font-weight="700"
+    fill="#8B0000"
+    letter-spacing="9">ORIZURU</text>
+
+  <!-- Descriptor -->
+  <text
+    x="250" y="408"
+    text-anchor="middle"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-size="13"
+    font-weight="400"
+    fill="#2C2C2C"
+    letter-spacing="8">HOLIDAY HOMES</text>
+
+  <!-- Thin rule -->
+  <line x1="185" y1="428" x2="315" y2="428" stroke="#8B8680" stroke-width="0.7"/>
+
+  <!-- Japanese kanji -->
+  <text
+    x="250" y="460"
+    text-anchor="middle"
+    font-family="'Noto Serif JP', 'Noto Sans JP', 'Hiragino Mincho ProN', 'MS Mincho', serif"
+    font-size="22"
+    fill="#8B8680"
+    letter-spacing="4">折鶴</text>
+
+</svg>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 560" width="500" height="560">
+  <defs>
+    <style>
+      <![CDATA[
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+      ]]>
+    </style>
+  </defs>
+
+  <!-- Cream aged-paper background -->
+  <rect width="500" height="560" fill="#F5F1E6"/>
+
+  <!-- ═══════════════════════════════════════════
+       LAYERED ORIGAMI PLANES MARK
+       Three offset diamond / rhombus shapes
+       rendered back → front to suggest stacked paper
+       ═══════════════════════════════════════════ -->
+
+  <!-- Plane 3 — furthest back, ghost outline only -->
+  <polygon
+    points="276,58 366,175 276,292 186,175"
+    fill="none"
+    stroke="#8B0000"
+    stroke-width="1.5"
+    opacity="0.28"/>
+
+  <!-- Plane 2 — middle depth, stronger outline -->
+  <polygon
+    points="263,52 353,168 263,285 173,168"
+    fill="none"
+    stroke="#8B0000"
+    stroke-width="1.6"
+    opacity="0.58"/>
+
+  <!-- Plane 1 — front face, solid crimson -->
+  <polygon
+    points="250,46 340,162 250,278 160,162"
+    fill="#8B0000"/>
+
+  <!-- Fold crease lines on the front plane —
+       the two diagonals that reveal paper construction -->
+  <line x1="250" y1="46"  x2="250" y2="278" stroke="#F5F1E6" stroke-width="1.2" opacity="0.45"/>
+  <line x1="160" y1="162" x2="340" y2="162" stroke="#F5F1E6" stroke-width="1.2" opacity="0.45"/>
+
+  <!-- Central fold intersection diamond — a subtle cream accent
+       where the two crease lines cross -->
+  <polygon
+    points="250,154 257,162 250,170 243,162"
+    fill="#F5F1E6"
+    opacity="0.7"/>
+
+  <!-- Small triangle in upper-right quadrant — a second fold detail
+       suggesting the paper corner being folded inward -->
+  <polygon
+    points="295,108 340,162 250,162"
+    fill="#F5F1E6"
+    opacity="0.18"/>
+
+  <!-- ═══════════════════════════════════════════
+       FOLD ACCENT LINE
+       ═══════════════════════════════════════════ -->
+  <line x1="80" y1="305" x2="420" y2="305" stroke="#8B0000" stroke-width="0.8"/>
+
+  <!-- ═══════════════════════════════════════════
+       WORDMARK
+       ═══════════════════════════════════════════ -->
+
+  <text
+    x="250" y="368"
+    text-anchor="middle"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-size="54"
+    font-weight="700"
+    fill="#8B0000"
+    letter-spacing="9">ORIZURU</text>
+
+  <text
+    x="250" y="408"
+    text-anchor="middle"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-size="13"
+    font-weight="400"
+    fill="#2C2C2C"
+    letter-spacing="8">HOLIDAY HOMES</text>
+
+  <line x1="185" y1="428" x2="315" y2="428" stroke="#8B8680" stroke-width="0.7"/>
+
+  <text
+    x="250" y="460"
+    text-anchor="middle"
+    font-family="'Noto Serif JP', 'Noto Sans JP', 'Hiragino Mincho ProN', 'MS Mincho', serif"
+    font-size="22"
+    fill="#8B8680"
+    letter-spacing="4">折鶴</text>
+
+</svg>
