@@ -429,7 +429,7 @@ opex_subtotals.append(("Premises", t))
 r, t = opex_section(r, "2. Staffing Costs (Doc §2.16 / auto-linked to Key Assumptions)", [
     ("Staff base salary", f"={A('Staff base salary')}", "Linked to Key Assumptions - staff base salary", True),
     ("EPF/SOCSO/EIS employer portion", f"={A('Staff base salary')}*{A('Employer EPF SOCSO EIS rate')}", "Formula: salary x employer contribution rate", True),
-    ("Sales commission (estimate; actual linked to gross margin in forecast sheet)", 300, "Initial estimate, calibrate with first month's actual gross margin", False),
+    ("Sales commission (kept at 0 here to avoid double-counting)", 0, "Commission is already auto-calculated in \"12-Month Cash Flow Forecast\" as gross margin x commission rate; a non-zero value here would be subtracted twice", False),
 ])
 opex_subtotals.append(("Staffing costs", t))
 
