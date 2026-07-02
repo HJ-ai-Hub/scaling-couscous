@@ -239,7 +239,7 @@ def capex_section(start_row, title, items):
         n.alignment = Alignment(wrap_text=True)
         r += 1
     last_data_row = r - 1
-    ws.cell(row=r, column=2, value=f"小计：{title}").font = total_font
+    ws.cell(row=r, column=2, value="小计").font = total_font
     ws.cell(row=r, column=2).fill = total_fill
     for col in (3, 4):
         ws.cell(row=r, column=col).fill = total_fill
@@ -269,7 +269,7 @@ def capex_formula_section(start_row, title, rows):
         n.alignment = Alignment(wrap_text=True)
         rr += 1
     last = rr - 1
-    ws.cell(row=rr, column=2, value=f"小计：{title}").font = total_font
+    ws.cell(row=rr, column=2, value="小计").font = total_font
     ws.cell(row=rr, column=2).fill = total_fill
     ws.cell(row=rr, column=3).fill = total_fill
     ws.cell(row=rr, column=4).fill = total_fill
@@ -348,7 +348,7 @@ subtotal_cells.append(("现金流保护储备", t))
 gt_row = r + 1
 style_section(ws, gt_row, 2, 5, "CAPEX 总计")
 gt_row += 1
-ws.cell(row=gt_row, column=2, value="CAPEX 总计（含现金储备）").font = Font(bold=True, size=12)
+ws.cell(row=gt_row, column=2, value="CAPEX 总计").font = Font(bold=True, size=12)
 formula_parts = "+".join(coord for _, coord in subtotal_cells)
 grand = ws.cell(row=gt_row, column=5, value=f"={formula_parts}")
 grand.number_format = RM
@@ -402,7 +402,7 @@ def opex_section(start_row, title, items):
         n.alignment = Alignment(wrap_text=True)
         r += 1
     last = r - 1
-    ws.cell(row=r, column=2, value=f"小计：{title}").font = total_font
+    ws.cell(row=r, column=2, value="小计").font = total_font
     ws.cell(row=r, column=2).fill = total_fill
     ws.cell(row=r, column=3).fill = total_fill
     tot = ws.cell(row=r, column=3, value=f"=SUM(C{first}:C{last})")
@@ -466,7 +466,7 @@ opex_subtotals.append(("其他行政", t))
 gt_row = r + 1
 style_section(ws, gt_row, 2, 3, "OPEX 总计")
 gt_row += 1
-ws.cell(row=gt_row, column=2, value="每月固定营运支出总计").font = Font(bold=True, size=12)
+ws.cell(row=gt_row, column=2, value="OPEX 总计").font = Font(bold=True, size=12)
 formula_parts = "+".join(coord for _, coord in opex_subtotals)
 opex_grand = ws.cell(row=gt_row, column=3, value=f"={formula_parts}")
 opex_grand.number_format = RM
