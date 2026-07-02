@@ -729,8 +729,16 @@ ws.row_dimensions[r].height = 30
 
 ws.sheet_view.showGridLines = False
 
-wb.save("SUN_SMART_CAPEX_OPEX.xlsx")
-print("Saved SUN_SMART_CAPEX_OPEX.xlsx")
+# Open on the "总览" (Summary) tab by default so the CAPEX/OPEX totals are the
+# first thing visible, instead of the text-only "使用说明" instructions tab.
+wb.active = wb.sheetnames.index("总览")
+
+OUTPUT_PATH = "SUN_SMART_CAPEX_OPEX.xlsx"
+wb.save(OUTPUT_PATH)
+
+from bake_cache import bake
+baked = bake(OUTPUT_PATH)
+print(f"Saved {OUTPUT_PATH} (baked {baked} cached formula value(s) for non-recalculating viewers)")
 print("Assumption cell map:")
 for k, v in AC.items():
     print(f"  {k}: {v}")
