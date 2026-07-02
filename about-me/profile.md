@@ -72,4 +72,4 @@ I value depth, accuracy, and practical recommendations over surface-level summar
 
 <!-- Anything that would save time if Claude knew it upfront — tools I use, constraints, domain knowledge -->
 
-- 
+- When researching vendors/companies (e.g. for RFQs, shortlists), proactively pull direct contact info (phone, email, address) without asking for confirmation first — just include it in the output.
