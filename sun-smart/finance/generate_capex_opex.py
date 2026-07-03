@@ -424,6 +424,7 @@ r, t = opex_section(r, "1. 场地相关 (文件 3.4)", [
 opex_subtotals.append(("场地相关", t))
 
 r, t = opex_section(r, "2. 人员成本 (文件 2.16 / 自动引用关键假设)", [
+    ("董事袍金/董事酬劳", 6000, "每月从生意中支取的董事酬劳", False),
     ("员工基本工资", f"={A('员工基本工资')}", "引用关键假设表·员工基本工资", True),
     ("EPF/SOCSO/EIS 雇主部分", f"={A('员工基本工资')}*{A('雇主EPF SOCSO EIS比例')}", "计算式：工资 × 雇主负担比例", True),
     ("销售佣金（此处保留0，避免与「12个月现金流预测」表按毛利动态计算的佣金重复扣除）", 0, "佣金已在「12个月现金流预测」表按当月毛利×佣金比例自动计算，此处若填数字会被重复扣除两次", False),
@@ -566,6 +567,16 @@ for i in range(12):
 total_rev_row = row
 
 row += 1
+# 显式列出销货成本，让整张表读起来是一个清晰的瀑布图：营收 − 销货成本 = 毛利。
+# 销货成本 = 营收 − 毛利，毛利行就在下一行（向下引用没问题）。
+cogs_row = row
+gross_margin_row_next = row + 1
+ws.cell(row=row, column=1, value="销货成本/进货成本 (RM) = 营收 − 毛利")
+for i in range(12):
+    col = col_letter_for_month(i)
+    ws.cell(row=row, column=2 + i, value=f"={col}{total_rev_row}-{col}{gross_margin_row_next}").number_format = RM
+
+row += 1
 ws.cell(row=row, column=1, value="估算毛利 (RM)  新机/二手机/配件加权")
 new_share = A('新机收入占比')
 used_share = A('二手机收入占比')
@@ -631,7 +642,7 @@ cum_row = row
 
 # totals column (N)
 n_col = 14
-for r_ in [qty_row, phone_rev_row, acc_qty_row, acc_rev_row, total_rev_row, gross_margin_row, fee_row, opex_row, commission_row, net_profit_row]:
+for r_ in [qty_row, phone_rev_row, acc_qty_row, acc_rev_row, total_rev_row, cogs_row, gross_margin_row, fee_row, opex_row, commission_row, net_profit_row]:
     c = ws.cell(row=r_, column=n_col, value=f"=SUM(B{r_}:M{r_})")
     c.number_format = "0.0" if r_ in (qty_row, acc_qty_row) else RM
     c.font = total_font

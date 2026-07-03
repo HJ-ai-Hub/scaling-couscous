@@ -427,6 +427,7 @@ r, t = opex_section(r, "1. Premises (Doc §3.4)", [
 opex_subtotals.append(("Premises", t))
 
 r, t = opex_section(r, "2. Staffing Costs (Doc §2.16 / auto-linked to Key Assumptions)", [
+    ("Director fees", 6000, "Monthly directors' remuneration drawn from the business", False),
     ("Staff base salary", f"={A('Staff base salary')}", "Linked to Key Assumptions - staff base salary", True),
     ("EPF/SOCSO/EIS employer portion", f"={A('Staff base salary')}*{A('Employer EPF SOCSO EIS rate')}", "Formula: salary x employer contribution rate", True),
     ("Sales commission (kept at 0 here to avoid double-counting)", 0, "Commission is already auto-calculated in \"12-Month Cash Flow Forecast\" as gross margin x commission rate; a non-zero value here would be subtracted twice", False),
@@ -569,6 +570,17 @@ for i in range(12):
 total_rev_row = row
 
 row += 1
+# Cost of goods sold, shown explicitly so the sheet reads as a clean
+# waterfall: Revenue - COGS = Gross margin. COGS = Revenue - Gross margin,
+# and the gross margin row is the very next row (forward reference is fine).
+cogs_row = row
+gross_margin_row_next = row + 1
+ws.cell(row=row, column=1, value="Cost of goods sold / stock cost (RM) = Revenue - Gross margin")
+for i in range(12):
+    col = col_letter_for_month(i)
+    ws.cell(row=row, column=2 + i, value=f"={col}{total_rev_row}-{col}{gross_margin_row_next}").number_format = RM
+
+row += 1
 ws.cell(row=row, column=1, value="Estimated gross margin (RM) - new/used/accessories blended")
 new_share = A('New phone revenue share')
 used_share = A('Used phone revenue share')
@@ -634,7 +646,7 @@ cum_row = row
 
 # totals column (N)
 n_col = 14
-for r_ in [qty_row, phone_rev_row, acc_qty_row, acc_rev_row, total_rev_row, gross_margin_row, fee_row, opex_row, commission_row, net_profit_row]:
+for r_ in [qty_row, phone_rev_row, acc_qty_row, acc_rev_row, total_rev_row, cogs_row, gross_margin_row, fee_row, opex_row, commission_row, net_profit_row]:
     c = ws.cell(row=r_, column=n_col, value=f"=SUM(B{r_}:M{r_})")
     c.number_format = "0.0" if r_ in (qty_row, acc_qty_row) else RM
     c.font = total_font
