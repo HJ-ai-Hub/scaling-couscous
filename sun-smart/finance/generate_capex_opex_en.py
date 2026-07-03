@@ -202,6 +202,7 @@ r = add_assumption_block(r, "Staffing Assumptions (Doc §2.14)", [
     ("Staff base salary", 2000, RM0, ""),
     ("Employer EPF SOCSO EIS rate", 0.13, PCT, "Approx. 13%"),
     ("Sales commission pct of gross margin", 0.03, PCT, "Assumed value, to be agreed with staff separately"),
+    ("Director fees (monthly)", 6000, RM0, "Monthly directors' remuneration. Edit here to test different draws; consider starting low and stepping up once monthly gross margin exceeds fixed costs"),
 ])
 
 ws.sheet_view.showGridLines = False
@@ -427,7 +428,7 @@ r, t = opex_section(r, "1. Premises (Doc §3.4)", [
 opex_subtotals.append(("Premises", t))
 
 r, t = opex_section(r, "2. Staffing Costs (Doc §2.16 / auto-linked to Key Assumptions)", [
-    ("Director fees", 6000, "Monthly directors' remuneration drawn from the business", False),
+    ("Director fees", f"={A('Director fees (monthly)')}", "Linked to Key Assumptions - edit the amount there", True),
     ("Staff base salary", f"={A('Staff base salary')}", "Linked to Key Assumptions - staff base salary", True),
     ("EPF/SOCSO/EIS employer portion", f"={A('Staff base salary')}*{A('Employer EPF SOCSO EIS rate')}", "Formula: salary x employer contribution rate", True),
     ("Sales commission (kept at 0 here to avoid double-counting)", 0, "Commission is already auto-calculated in \"12-Month Cash Flow Forecast\" as gross margin x commission rate; a non-zero value here would be subtracted twice", False),
