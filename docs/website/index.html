@@ -5,219 +5,219 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SUN SMART — Smart Choice, Brighter Connection</title>
 <meta name="description" content="SUN SMART — new & used smartphones and accessories at honest prices, flexible payment, in-store pickup in the Klang Valley.">
+<link rel="icon" href="assets/logo-color.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --blue:#111E6C;      /* Royal Blue */
-    --blue-2:#1c2f8f;
-    --red:#D0211F;       /* Burgundy Red */
-    --ink:#14161c;
-    --muted:#5c6270;
-    --line:#e7e9f0;
-    --bg:#ffffff;
-    --soft:#f6f7fb;
-    --radius:14px;
-    --shadow:0 10px 40px rgba(17,30,108,.08);
-    --shadow-sm:0 4px 18px rgba(17,30,108,.07);
-    --maxw:1140px;
+    --blue:#111E6C; --blue-2:#1c2f8f; --blue-3:#2340c8;
+    --red:#D0211F; --red-2:#e5484d;
+    --ink:#101423; --muted:#5b6274; --line:#e7e9f2;
+    --bg:#ffffff; --soft:#f4f6fc;
+    --radius:20px; --radius-sm:14px;
+    --shadow:0 24px 60px rgba(17,30,108,.12);
+    --shadow-sm:0 10px 30px rgba(17,30,108,.08);
+    --glass:rgba(255,255,255,.62);
+    --glass-brd:rgba(255,255,255,.75);
+    --maxw:1180px;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;font-family:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
-  h1,h2,h3,h4{font-weight:700;line-height:1.2;margin:0 0 .5em;color:var(--blue)}
-  h2{font-size:clamp(24px,3.4vw,34px)}
+  body{margin:0;font-family:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3,h4{line-height:1.15;margin:0 0 .5em;color:var(--blue);font-weight:800;letter-spacing:-.01em}
+  h2{font-size:clamp(26px,3.6vw,40px)}
   p{margin:0 0 1em}
   a{color:inherit;text-decoration:none}
-  img{max-width:100%}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
-  .center{text-align:center}
-  .muted{color:var(--muted)}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;position:relative;z-index:2}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+  .center{text-align:center}.muted{color:var(--muted)}
+
+  /* glass */
+  .glass{background:var(--glass);-webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%);border:1px solid var(--glass-brd);box-shadow:var(--shadow-sm)}
+  .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.42;z-index:0;pointer-events:none}
+  .blob.b{background:var(--blue-3)} .blob.r{background:var(--red-2)}
 
   /* ---------- header ---------- */
-  header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
-  .nav-inner{display:flex;align-items:center;gap:18px;height:70px;max-width:var(--maxw);margin:0 auto;padding:0 20px}
-  .brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}
-  .brand .mark{width:38px;height:38px;flex:0 0 auto}
-  .brand .wm{font-weight:700;letter-spacing:.22em;font-size:16px;color:var(--blue);white-space:nowrap}
-  nav.links{display:flex;gap:22px;margin-left:auto;align-items:center}
-  nav.links a{font-size:14px;font-weight:500;color:var(--ink);white-space:nowrap;transition:color .15s}
+  header.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;gap:18px;height:74px;max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .brand{display:flex;align-items:center;flex:0 0 auto}
+  .brand img{height:40px;width:auto}
+  nav.links{display:flex;gap:26px;margin-left:auto;align-items:center}
+  nav.links a{font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;transition:color .15s}
   nav.links a:hover{color:var(--red)}
-  .langs{display:flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px;flex:0 0 auto}
-  .langs button{border:0;background:transparent;font:inherit;font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;cursor:pointer;color:var(--muted)}
-  .langs button.active{background:var(--blue);color:#fff}
+  .langs{display:flex;gap:2px;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:3px}
+  .langs button{border:0;background:transparent;font:inherit;font-size:12px;font-weight:700;padding:6px 11px;border-radius:999px;cursor:pointer;color:var(--muted);transition:.15s}
+  .langs button.active{background:var(--blue);color:#fff;box-shadow:0 4px 12px rgba(17,30,108,.3)}
   .burger{display:none;margin-left:auto;background:none;border:0;cursor:pointer;padding:8px}
-  .burger span{display:block;width:24px;height:2px;background:var(--blue);margin:5px 0;transition:.2s}
+  .burger span{display:block;width:24px;height:2px;background:var(--blue);margin:5px 0;border-radius:2px}
 
   /* ---------- buttons ---------- */
-  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:13px 24px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;transition:transform .12s,box-shadow .2s,background .2s}
-  .btn:active{transform:translateY(1px)}
-  .btn-primary{background:var(--blue);color:#fff}
-  .btn-primary:hover{background:var(--blue-2)}
-  .btn-wa{background:#25D366;color:#fff}
-  .btn-wa:hover{background:#1fb857}
-  .btn-ghost{background:#fff;color:var(--blue);border-color:var(--blue)}
-  .btn-ghost:hover{background:var(--soft)}
-  .btn-lg{padding:15px 30px;font-size:16px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;padding:14px 26px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;transition:transform .14s,box-shadow .22s,background .2s;white-space:nowrap}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue-3));color:#fff;box-shadow:0 12px 28px rgba(17,30,108,.34)}
+  .btn-wa{background:#25D366;color:#fff;box-shadow:0 12px 28px rgba(37,211,102,.36)}
+  .btn-glass{background:rgba(255,255,255,.16);color:#fff;border-color:rgba(255,255,255,.4);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+  .btn-glass:hover{background:rgba(255,255,255,.26)}
+  .btn-ghost{background:#fff;color:var(--blue);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--blue)}
+  .btn-lg{padding:16px 32px;font-size:16px}
 
   /* ---------- hero ---------- */
-  .hero{position:relative;overflow:hidden;background:
-      radial-gradient(1200px 500px at 15% -10%, rgba(17,30,108,.06), transparent 60%),
-      radial-gradient(900px 500px at 100% 0%, rgba(208,33,31,.06), transparent 55%),
-      #fff;
-    border-bottom:1px solid var(--line)}
-  .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:70px 0 60px}
-  .hero h1{font-size:clamp(34px,5.4vw,56px);letter-spacing:-.01em}
-  .hero .tagline{font-weight:700;color:var(--red);font-size:clamp(15px,2vw,18px);letter-spacing:.02em;margin-bottom:16px}
-  .hero p.lead{font-size:18px;color:var(--muted);max-width:46ch}
-  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-  .hero-art{display:flex;align-items:center;justify-content:center}
-  .hero-badge{width:min(360px,80%);aspect-ratio:1;border-radius:32px;background:linear-gradient(150deg,#fff, #f2f4fb);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
-  .hero-badge svg{width:56%}
+  .hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;background:#0a0f36}
+  .hero-bg{position:absolute;inset:0;background:url('assets/signage.jpg') center 30%/cover no-repeat;opacity:.42;transform:scale(1.05)}
+  .hero-tint{position:absolute;inset:0;background:
+      linear-gradient(115deg, rgba(7,11,40,.94) 0%, rgba(12,18,66,.82) 46%, rgba(17,30,108,.55) 70%, rgba(208,33,31,.34) 100%)}
+  .hero-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center;padding:96px 0 84px}
+  .hero-pill{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.06em;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:8px 16px;border-radius:999px;margin-bottom:22px}
+  .hero-pill .d{width:8px;height:8px;border-radius:50%;background:var(--red-2);box-shadow:0 0 12px var(--red-2)}
+  .hero h1{color:#fff;font-size:clamp(34px,5vw,58px);font-weight:900;letter-spacing:-.02em;margin-bottom:8px;text-shadow:0 2px 30px rgba(0,0,0,.3)}
+  .hero .tagline{font-weight:700;color:#fff;font-size:clamp(15px,2vw,19px);margin-bottom:18px;background:linear-gradient(90deg,#9fb4ff,#ff9b9b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero p.lead{font-size:17.5px;color:rgba(255,255,255,.82);max-width:48ch;margin-bottom:30px}
+  .hero-cta{display:flex;gap:13px;flex-wrap:wrap}
+  .hero-trust{display:flex;gap:22px;flex-wrap:wrap;margin-top:30px}
+  .hero-trust span{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.8);font-size:13.5px;font-weight:500}
+  .hero-trust svg{width:18px;height:18px;stroke:#7fe7a8;fill:none;stroke-width:2.5}
+  /* brand plate */
+  .plate{background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);border:1px solid rgba(255,255,255,.85);border-radius:28px;padding:44px 40px;box-shadow:0 40px 90px rgba(0,0,0,.4);text-align:center;position:relative;overflow:hidden}
+  .plate::before{content:"";position:absolute;top:-40%;left:-30%;width:80%;height:80%;background:radial-gradient(circle,rgba(35,64,200,.16),transparent 70%);}
+  .plate::after{content:"";position:absolute;bottom:-40%;right:-30%;width:80%;height:80%;background:radial-gradient(circle,rgba(208,33,31,.16),transparent 70%);}
+  .plate img{width:min(320px,80%);margin:0 auto 6px;position:relative}
+  .plate .pt{position:relative;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-top:8px}
 
   /* ---------- sections ---------- */
-  section{padding:70px 0}
-  section.alt{background:var(--soft)}
-  .sec-head{max-width:640px;margin:0 auto 42px;text-align:center}
-  .sec-head p{color:var(--muted);margin:0}
+  section{padding:84px 0;position:relative;overflow:hidden}
+  section.soft{background:var(--soft)}
+  .sec-head{max-width:660px;margin:0 auto 48px;text-align:center}
+  .sec-head p{color:var(--muted);margin:0;font-size:16px}
 
   /* value props */
-  .grid{display:grid;gap:20px}
-  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid{display:grid;gap:22px}
   .grid-4{grid-template-columns:repeat(4,1fr)}
-  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow-sm)}
-  .card .ico{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(17,30,108,.07);margin-bottom:16px}
-  .card .ico svg{width:24px;height:24px;stroke:var(--blue)}
-  .card h3{font-size:18px;margin-bottom:6px}
-  .card p{font-size:14.5px;color:var(--muted);margin:0}
+  .vcard{border-radius:var(--radius);padding:30px 26px;transition:transform .2s,box-shadow .25s}
+  .vcard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .vcard .ico{width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--blue),var(--blue-3));margin-bottom:18px;box-shadow:0 10px 22px rgba(17,30,108,.28)}
+  .vcard .ico svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:2}
+  .vcard h3{font-size:18px;margin-bottom:7px}
+  .vcard p{font-size:14.5px;color:var(--muted);margin:0}
 
   /* about */
-  .about{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
-  .about ul{list-style:none;padding:0;margin:16px 0 0}
-  .about li{position:relative;padding-left:30px;margin-bottom:12px;color:var(--ink);font-size:15px}
-  .about li::before{content:"";position:absolute;left:0;top:8px;width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--red))}
-  .about-visual{background:linear-gradient(160deg,var(--blue),#0c1550);border-radius:20px;padding:40px;color:#fff;box-shadow:var(--shadow)}
-  .about-visual svg{width:90px;margin-bottom:16px}
-  .about-visual h3{color:#fff}
-  .about-visual .stat{display:flex;gap:26px;margin-top:22px;flex-wrap:wrap}
-  .about-visual .stat b{display:block;font-size:26px;color:#fff}
-  .about-visual .stat span{font-size:12.5px;color:rgba(255,255,255,.72)}
+  .about{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  .about ul{list-style:none;padding:0;margin:18px 0 0}
+  .about li{position:relative;padding-left:32px;margin-bottom:13px;font-size:15px}
+  .about li::before{content:"";position:absolute;left:0;top:7px;width:17px;height:17px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--red))}
+  .about-card{border-radius:24px;padding:44px;background:linear-gradient(155deg,var(--blue) 0%,#0b1350 60%,#2a0e2e 130%);color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .about-card::after{content:"";position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(208,33,31,.5),transparent 70%);filter:blur(20px)}
+  .about-card img{width:120px;margin-bottom:18px;position:relative}
+  .about-card h3{color:#fff;position:relative}
+  .about-card p{color:rgba(255,255,255,.85);position:relative;font-size:14.5px}
+  .about-stat{display:flex;gap:30px;margin-top:24px;flex-wrap:wrap;position:relative}
+  .about-stat b{display:block;font-size:24px;font-weight:800;color:#fff}
+  .about-stat span{font-size:12.5px;color:rgba(255,255,255,.7)}
 
   /* products */
-  .cat-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
-  .cat-tabs button{border:1.5px solid var(--line);background:#fff;font:inherit;font-weight:600;font-size:14px;padding:10px 20px;border-radius:999px;cursor:pointer;color:var(--muted);transition:.15s}
-  .cat-tabs button.active{border-color:var(--blue);color:#fff;background:var(--blue)}
-  .cat-panel{display:none}
-  .cat-panel.active{display:block}
-  .cat-intro{text-align:center;max-width:600px;margin:0 auto 26px}
-  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-  .prod{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:var(--shadow-sm)}
-  .prod .thumb{aspect-ratio:1;background:repeating-linear-gradient(45deg,#f4f5fa,#f4f5fa 12px,#eef0f7 12px,#eef0f7 24px);display:flex;align-items:center;justify-content:center;position:relative}
-  .prod .thumb .soon{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--muted);background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
-  .prod .body{padding:14px 16px}
-  .prod .body .nm{height:11px;width:70%;background:#eceef5;border-radius:6px;margin-bottom:9px}
-  .prod .body .pr{height:11px;width:40%;background:#eceef5;border-radius:6px}
-  .stock-legend{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:30px}
-  .stk{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
-  .dot{width:10px;height:10px;border-radius:50%}
-  .dot.in{background:#0ca30c}.dot.low{background:#e0a400}.dot.order{background:#8a90a0}
-  .note{background:#fff;border:1px dashed var(--line);border-radius:12px;padding:16px 18px;font-size:14px;color:var(--muted);text-align:center;margin-top:26px}
+  .cat-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:38px}
+  .cat-tabs button{border:1px solid var(--line);background:#fff;font:inherit;font-weight:700;font-size:14px;padding:11px 24px;border-radius:999px;cursor:pointer;color:var(--muted);transition:.16s}
+  .cat-tabs button.active{border-color:transparent;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-3));box-shadow:0 10px 24px rgba(17,30,108,.28)}
+  .cat-panel{display:none} .cat-panel.active{display:block}
+  .cat-intro{text-align:center;max-width:640px;margin:0 auto 30px}
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .prod{border-radius:var(--radius-sm);overflow:hidden;transition:transform .2s,box-shadow .25s}
+  .prod:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+  .prod .thumb{aspect-ratio:1;background:linear-gradient(150deg,#eef1fb,#e3e8f7);display:flex;align-items:center;justify-content:center;position:relative}
+  .prod .thumb svg{width:48px;height:48px;stroke:#b9c2e0;fill:none;stroke-width:1.5}
+  .prod .thumb .soon{position:absolute;bottom:12px;font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--blue);background:rgba(255,255,255,.85);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:5px 12px;border-radius:999px}
+  .prod .body{padding:15px 16px}
+  .prod .body .nm{height:11px;width:72%;background:#e7ebf6;border-radius:6px;margin-bottom:9px}
+  .prod .body .pr{height:11px;width:42%;background:#eef0f8;border-radius:6px}
+  .stock-legend{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .stk{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);font-weight:500}
+  .dot{width:11px;height:11px;border-radius:50%}
+  .dot.in{background:#0ca30c;box-shadow:0 0 0 4px rgba(12,163,12,.14)}
+  .dot.low{background:#e0a400;box-shadow:0 0 0 4px rgba(224,164,0,.14)}
+  .dot.order{background:#8a90a0;box-shadow:0 0 0 4px rgba(138,144,160,.14)}
+  .note{border-radius:16px;padding:18px 22px;font-size:14.5px;color:var(--muted);text-align:center;margin-top:30px}
 
   /* payment */
-  .pay-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-  .pay{border:1px solid var(--line);border-radius:12px;padding:20px 12px;text-align:center;background:#fff;box-shadow:var(--shadow-sm)}
-  .pay .pi{height:34px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-weight:800;color:var(--blue);font-size:15px}
-  .pay span{font-size:13px;color:var(--muted);font-weight:500}
+  .pay-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .pay{border-radius:16px;padding:24px 14px;text-align:center;transition:transform .18s,box-shadow .25s}
+  .pay:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .pay .pi{height:38px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-weight:800;color:var(--blue);font-size:15px}
+  .pay span{font-size:13px;color:var(--muted);font-weight:600}
 
   /* steps */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
-  .step{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;box-shadow:var(--shadow-sm)}
-  .step::before{counter-increment:s;content:counter(s);position:absolute;top:-14px;left:22px;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
-  .step h4{margin:10px 0 6px;font-size:16px}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+  .step{position:relative;border-radius:var(--radius-sm);padding:30px 24px 26px;transition:transform .2s,box-shadow .25s}
+  .step:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;top:-16px;left:24px;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--red),var(--red-2));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:0 10px 22px rgba(208,33,31,.32)}
+  .step h4{margin:14px 0 6px;font-size:16px}
   .step p{font-size:14px;color:var(--muted);margin:0}
 
   /* contact */
-  .contact{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:stretch}
-  .info-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm)}
-  .info-row{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
-  .info-row svg{width:22px;height:22px;stroke:var(--red);flex:0 0 auto;margin-top:2px}
-  .info-row div b{display:block;font-size:14px;color:var(--blue)}
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+  .info-card{border-radius:var(--radius);padding:34px}
+  .info-row{display:flex;gap:15px;margin-bottom:20px;align-items:flex-start}
+  .info-row .ic{width:42px;height:42px;border-radius:12px;background:rgba(208,33,31,.09);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .info-row .ic svg{width:20px;height:20px;stroke:var(--red);fill:none;stroke-width:2}
+  .info-row div b{display:block;font-size:14px;color:var(--blue);margin-bottom:2px}
   .info-row div span{font-size:14px;color:var(--muted)}
-  .ph{color:var(--red);font-weight:600}
-  .map{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:320px;background:
-    repeating-linear-gradient(45deg,#eef0f7,#eef0f7 16px,#f6f7fb 16px,#f6f7fb 32px);display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
-  .map .mapinner b{color:var(--blue)}
-  .socials{display:flex;gap:12px;margin-top:6px;flex-wrap:wrap}
-  .socials a{width:42px;height:42px;border-radius:10px;background:var(--soft);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--blue)}
+  .ph{color:var(--red)!important;font-weight:600}
+  .socials{display:flex;gap:11px;margin-top:8px;flex-wrap:wrap}
+  .socials a{width:44px;height:44px;border-radius:12px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--blue);transition:.15s}
+  .socials a:hover{border-color:var(--blue);transform:translateY(-2px)}
+  .map{border-radius:var(--radius);overflow:hidden;min-height:340px;display:flex;align-items:center;justify-content:center;text-align:center;padding:26px;background:linear-gradient(150deg,#eef1fb,#e3e8f7)}
+  .map .mapinner b{color:var(--blue);font-size:17px}
 
   /* legal */
-  .legal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  details.legal{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:0;box-shadow:var(--shadow-sm);overflow:hidden}
-  details.legal>summary{list-style:none;cursor:pointer;padding:22px 24px;font-weight:700;color:var(--blue);display:flex;justify-content:space-between;align-items:center;font-size:16px}
+  .legal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  details.legal{border-radius:var(--radius-sm);overflow:hidden}
+  details.legal>summary{list-style:none;cursor:pointer;padding:24px 26px;font-weight:800;color:var(--blue);display:flex;justify-content:space-between;align-items:center;font-size:16px}
   details.legal>summary::-webkit-details-marker{display:none}
-  details.legal>summary::after{content:"+";font-size:22px;color:var(--red);font-weight:400}
+  details.legal>summary::after{content:"+";font-size:24px;color:var(--red);font-weight:400;line-height:1}
   details.legal[open]>summary::after{content:"–"}
-  details.legal .lc{padding:0 24px 22px;font-size:13.5px;color:var(--muted)}
+  details.legal .lc{padding:0 26px 24px;font-size:13.5px;color:var(--muted)}
   details.legal .lc p{margin:0 0 .8em}
+  .draft-tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.05em;color:var(--red);background:rgba(208,33,31,.09);border:1px solid rgba(208,33,31,.22);padding:2px 8px;border-radius:6px;margin-right:6px;vertical-align:middle}
 
   /* footer */
-  footer{background:var(--blue);color:#fff;padding:56px 0 26px}
-  .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
-  .foot .wm{font-weight:700;letter-spacing:.22em;font-size:18px;margin-bottom:10px}
+  footer{background:linear-gradient(160deg,#0b1350,var(--blue));color:#fff;padding:64px 0 28px;position:relative;overflow:hidden}
+  footer::before{content:"";position:absolute;top:-80px;right:-40px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(208,33,31,.35),transparent 70%);filter:blur(30px)}
+  .foot{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:38px;position:relative;z-index:2}
+  .foot img{height:56px;margin-bottom:14px}
   .foot p{color:rgba(255,255,255,.72);font-size:14px}
-  .foot h5{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0 0 14px}
-  .foot a{display:block;color:rgba(255,255,255,.85);font-size:14px;margin-bottom:9px}
-  .foot a:hover{color:#fff}
-  .foot-bottom{border-top:1px solid rgba(255,255,255,.14);margin-top:34px;padding-top:20px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:rgba(255,255,255,.6);font-size:12.5px}
+  .foot h5{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:0 0 16px}
+  .foot a{display:block;color:rgba(255,255,255,.85);font-size:14px;margin-bottom:10px;transition:.15s}
+  .foot a:hover{color:#fff;padding-left:4px}
+  .foot .socials a{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.14);margin-top:38px;padding-top:22px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:rgba(255,255,255,.6);font-size:12.5px;position:relative;z-index:2}
 
   /* floating WhatsApp */
-  .wa-float{position:fixed;right:20px;bottom:20px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;box-shadow:0 8px 26px rgba(37,211,102,.5);display:flex;align-items:center;justify-content:center;transition:transform .15s}
-  .wa-float:hover{transform:scale(1.06)}
-  .wa-float svg{width:32px;height:32px;fill:#fff}
+  .wa-float{position:fixed;right:22px;bottom:22px;z-index:70;width:62px;height:62px;border-radius:50%;background:#25D366;box-shadow:0 12px 32px rgba(37,211,102,.55);display:flex;align-items:center;justify-content:center;transition:transform .16s}
+  .wa-float:hover{transform:scale(1.08)}
+  .wa-float svg{width:34px;height:34px;fill:#fff}
 
-  /* disclaimers */
-  .draft-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--red);background:rgba(208,33,31,.08);border:1px solid rgba(208,33,31,.2);padding:2px 8px;border-radius:6px;margin-left:8px;vertical-align:middle}
-
-  /* responsive */
-  @media(max-width:920px){
-    nav.links{display:none;position:absolute;top:70px;left:0;right:0;flex-direction:column;background:#fff;border-bottom:1px solid var(--line);padding:12px 20px;gap:2px}
+  @media(max-width:940px){
+    nav.links{display:none;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:14px 22px;gap:2px}
     nav.links.open{display:flex}
-    nav.links a{padding:12px 4px;border-bottom:1px solid var(--line)}
+    nav.links a{padding:13px 4px;border-bottom:1px solid var(--line)}
     .burger{display:block}
-    .hero-inner{grid-template-columns:1fr;text-align:center}
-    .hero p.lead{margin-inline:auto}
-    .hero-cta{justify-content:center}
-    .hero-art{order:-1}
+    .hero-inner{grid-template-columns:1fr;text-align:center;padding:70px 0 60px}
+    .hero p.lead{margin-inline:auto}.hero-cta,.hero-trust{justify-content:center}
+    .hero-pill{margin-inline:auto}
+    .plate{order:-1;margin-bottom:8px}
     .about{grid-template-columns:1fr}
-    .grid-3,.grid-4,.prod-grid,.pay-grid,.steps,.legal-grid,.contact,.foot{grid-template-columns:1fr}
-    .prod-grid{grid-template-columns:1fr 1fr}
-    .pay-grid{grid-template-columns:1fr 1fr}
-    .steps{grid-template-columns:1fr}
+    .grid-4,.prod-grid,.pay-grid,.steps,.legal-grid,.contact,.foot{grid-template-columns:1fr}
+    .prod-grid,.pay-grid{grid-template-columns:1fr 1fr}
   }
-  @media(max-width:520px){
-    .prod-grid{grid-template-columns:1fr 1fr}
-    .brand .wm{display:none}
-  }
+  @media(max-width:520px){.prod-grid{grid-template-columns:1fr 1fr}.pay-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 
-<!-- ===== S MARK (reusable) ===== -->
-<template id="smark">
-  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="SUN SMART">
-    <path d="M78 30 C78 16 44 12 32 24 C21 35 34 45 50 51" stroke="#111E6C" stroke-width="15" stroke-linecap="round"/>
-    <path d="M50 51 C66 57 79 63 68 76 C56 88 22 84 22 70" stroke="#D0211F" stroke-width="15" stroke-linecap="round"/>
-  </svg>
-</template>
-
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="#home" aria-label="SUN SMART home">
-      <span class="mark" data-smark></span>
-      <span class="wm">SUN&nbsp;SMART</span>
-    </a>
+    <a class="brand" href="#home" aria-label="SUN SMART home"><img src="assets/logo-color.png" alt="SUN SMART"></a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     <nav class="links" id="links">
       <a href="#about" data-i18n="nav_about">About</a>
@@ -236,56 +236,50 @@
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="home" style="padding:0">
+  <div class="hero-bg"></div><div class="hero-tint"></div>
   <div class="wrap hero-inner">
     <div>
-      <div class="tagline" data-i18n="hero_tagline">Smart Choice, Brighter Connection</div>
+      <span class="hero-pill"><span class="d"></span><span data-i18n="hero_badge">New · Used · Accessories · Klang Valley</span></span>
       <h1 data-i18n="hero_title">New &amp; used smartphones you can trust.</h1>
+      <div class="tagline" data-i18n="hero_tagline">Smart Choice, Brighter Connection</div>
       <p class="lead" data-i18n="hero_lead">New phones, quality-checked used phones and accessories at honest prices — with flexible payment and easy in-store pickup in the Klang Valley.</p>
       <div class="hero-cta">
         <a class="btn btn-primary btn-lg" href="#products" data-i18n="hero_cta1">Browse products</a>
         <a class="btn btn-wa btn-lg" data-wa href="#" data-i18n="hero_cta2">Enquire on WhatsApp</a>
       </div>
+      <div class="hero-trust">
+        <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="why1_t">Honest pricing</span></span>
+        <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="why2_t">Checked used phones</span></span>
+        <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="why3_t">Flexible payment</span></span>
+      </div>
     </div>
-    <div class="hero-art">
-      <div class="hero-badge"><span data-smark></span></div>
+    <div class="plate">
+      <img src="assets/logo-color.png" alt="SUN SMART logo">
+      <div class="pt" data-i18n="hero_tagline">Smart Choice, Brighter Connection</div>
     </div>
   </div>
 </section>
 
 <!-- ===== VALUE PROPS ===== -->
 <section id="why">
+  <div class="blob b" style="width:340px;height:340px;top:-80px;left:-100px"></div>
+  <div class="blob r" style="width:300px;height:300px;bottom:-90px;right:-90px"></div>
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="why_eyebrow">Why SUN SMART</div>
       <h2 data-i18n="why_title">A simpler, more honest way to buy a phone</h2>
     </div>
     <div class="grid grid-4">
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-        <h3 data-i18n="why1_t">Honest pricing</h3>
-        <p data-i18n="why1_d">Fair market prices with clear product conditions — no hidden costs, no pressure selling.</p>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 12l2 2 4-4M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/></svg></div>
-        <h3 data-i18n="why2_t">Checked used phones</h3>
-        <p data-i18n="why2_d">Every used phone is inspected and graded, with battery health and condition clearly stated.</p>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
-        <h3 data-i18n="why3_t">Flexible payment</h3>
-        <p data-i18n="why3_d">Cash, bank transfer, DuitNow QR, credit/debit card, and PayLater / BNPL options.</p>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <h3 data-i18n="why4_t">Online enquiry, store pickup</h3>
-        <p data-i18n="why4_d">Browse and ask on WhatsApp, then collect and check your device in person at our store.</p>
-      </div>
+      <div class="vcard glass"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3 data-i18n="why1_t">Honest pricing</h3><p data-i18n="why1_d">Fair market prices with clear product conditions — no hidden costs, no pressure selling.</p></div>
+      <div class="vcard glass"><div class="ico"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/></svg></div><h3 data-i18n="why2_t">Checked used phones</h3><p data-i18n="why2_d">Every used phone is inspected and graded, with battery health and condition clearly stated.</p></div>
+      <div class="vcard glass"><div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><h3 data-i18n="why3_t">Flexible payment</h3><p data-i18n="why3_d">Cash, bank transfer, DuitNow QR, credit/debit card, and PayLater / BNPL options.</p></div>
+      <div class="vcard glass"><div class="ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3 data-i18n="why4_t">Online enquiry, store pickup</h3><p data-i18n="why4_d">Browse and ask on WhatsApp, then collect and check your device in person at our store.</p></div>
     </div>
   </div>
 </section>
 
 <!-- ===== ABOUT ===== -->
-<section id="about" class="alt">
+<section id="about" class="soft">
   <div class="wrap about">
     <div>
       <div class="eyebrow" data-i18n="about_eyebrow">About us</div>
@@ -298,11 +292,11 @@
         <li data-i18n="about_l4">Online browsing, WhatsApp ordering, in-store pickup</li>
       </ul>
     </div>
-    <div class="about-visual">
-      <span data-smark></span>
+    <div class="about-card">
+      <img src="assets/logo-white.png" alt="SUN SMART">
       <h3 data-i18n="about_mission_t">Our promise</h3>
-      <p style="color:rgba(255,255,255,.82);font-size:14.5px" data-i18n="about_mission_d">Quality you can check, prices you can trust, and payment that fits your budget — that's the SUN SMART way.</p>
-      <div class="stat">
+      <p data-i18n="about_mission_d">Quality you can check, prices you can trust, and payment that fits your budget — that's the SUN SMART way.</p>
+      <div class="about-stat">
         <div><b data-i18n="about_s1n">RM500–3,000</b><span data-i18n="about_s1l">Everyday price range</span></div>
         <div><b data-i18n="about_s2n">3-in-1</b><span data-i18n="about_s2l">New · Used · Accessories</span></div>
       </div>
@@ -312,58 +306,42 @@
 
 <!-- ===== PRODUCTS ===== -->
 <section id="products">
+  <div class="blob b" style="width:320px;height:320px;top:40px;right:-110px"></div>
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="prod_eyebrow">Our products</div>
       <h2 data-i18n="prod_title">New phones · Used phones · Accessories</h2>
       <p data-i18n="prod_sub">Our full catalogue with live prices and stock is on the way. For now, tap WhatsApp for the latest models, prices and availability.</p>
     </div>
-
     <div class="cat-tabs">
       <button class="active" data-cat="new" data-i18n="cat_new">New Phones</button>
       <button data-cat="used" data-i18n="cat_used">Used Phones</button>
       <button data-cat="acc" data-i18n="cat_acc">Accessories</button>
     </div>
-
-    <!-- NEW -->
     <div class="cat-panel active" id="cat-new">
-      <div class="cat-intro">
-        <h3 data-i18n="catnew_t">New Phones</h3>
-        <p class="muted" data-i18n="catnew_d">Mid-range Android from leading brands and popular iPhone models, typically RM500–RM3,000, all Malaysia set with manufacturer warranty.</p>
-      </div>
+      <div class="cat-intro"><h3 data-i18n="catnew_t">New Phones</h3><p class="muted" data-i18n="catnew_d">Mid-range Android from leading brands and popular iPhone models, typically RM500–RM3,000, all Malaysia set with manufacturer warranty.</p></div>
       <div class="prod-grid" data-skeleton></div>
     </div>
-    <!-- USED -->
     <div class="cat-panel" id="cat-used">
-      <div class="cat-intro">
-        <h3 data-i18n="catused_t">Used Phones</h3>
-        <p class="muted" data-i18n="catused_d">Quality-checked pre-owned phones, graded by condition, with battery health and functions tested and clearly stated before you buy.</p>
-      </div>
+      <div class="cat-intro"><h3 data-i18n="catused_t">Used Phones</h3><p class="muted" data-i18n="catused_d">Quality-checked pre-owned phones, graded by condition, with battery health and functions tested and clearly stated before you buy.</p></div>
       <div class="prod-grid" data-skeleton></div>
     </div>
-    <!-- ACC -->
     <div class="cat-panel" id="cat-acc">
-      <div class="cat-intro">
-        <h3 data-i18n="catacc_t">Accessories</h3>
-        <p class="muted" data-i18n="catacc_d">Cases, tempered glass, chargers, cables, power banks, wireless earbuds and other everyday essentials.</p>
-      </div>
+      <div class="cat-intro"><h3 data-i18n="catacc_t">Accessories</h3><p class="muted" data-i18n="catacc_d">Cases, tempered glass, chargers, cables, power banks, wireless earbuds and other everyday essentials.</p></div>
       <div class="prod-grid" data-skeleton></div>
     </div>
-
     <div class="stock-legend">
       <span class="stk"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></span>
       <span class="stk"><span class="dot low"></span><span data-i18n="stk_low">Low stock</span></span>
       <span class="stk"><span class="dot order"></span><span data-i18n="stk_order">Available to order</span></span>
     </div>
-    <div class="note" data-i18n="prod_note">💬 Prices &amp; live stock will appear here once our catalogue is online. Message us on WhatsApp for the current price and availability of any model.</div>
-    <div class="center" style="margin-top:26px">
-      <a class="btn btn-wa" data-wa href="#" data-i18n="prod_cta">Ask about a model on WhatsApp</a>
-    </div>
+    <div class="note glass" data-i18n="prod_note">💬 Prices &amp; live stock will appear here once our catalogue is online. Message us on WhatsApp for the current price and availability of any model.</div>
+    <div class="center" style="margin-top:28px"><a class="btn btn-wa" data-wa href="#" data-i18n="prod_cta">Ask about a model on WhatsApp</a></div>
   </div>
 </section>
 
 <!-- ===== PAYMENT ===== -->
-<section id="payment" class="alt">
+<section id="payment" class="soft">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="pay_eyebrow">Payment methods</div>
@@ -371,18 +349,19 @@
       <p data-i18n="pay_sub">We accept a wide range of payment options so higher-value phones are easier to afford.</p>
     </div>
     <div class="pay-grid">
-      <div class="pay"><div class="pi">💵</div><span data-i18n="pay_cash">Cash</span></div>
-      <div class="pay"><div class="pi">🏦</div><span data-i18n="pay_transfer">Bank Transfer</span></div>
-      <div class="pay"><div class="pi">DuitNow</div><span data-i18n="pay_qr">DuitNow QR</span></div>
-      <div class="pay"><div class="pi">💳</div><span data-i18n="pay_card">Credit / Debit Card</span></div>
-      <div class="pay"><div class="pi">PayLater</div><span data-i18n="pay_bnpl">PayLater / BNPL</span></div>
+      <div class="pay glass"><div class="pi">💵</div><span data-i18n="pay_cash">Cash</span></div>
+      <div class="pay glass"><div class="pi">🏦</div><span data-i18n="pay_transfer">Bank Transfer</span></div>
+      <div class="pay glass"><div class="pi">DuitNow</div><span data-i18n="pay_qr">DuitNow QR</span></div>
+      <div class="pay glass"><div class="pi">💳</div><span data-i18n="pay_card">Credit / Debit Card</span></div>
+      <div class="pay glass"><div class="pi">PayLater</div><span data-i18n="pay_bnpl">PayLater / BNPL</span></div>
     </div>
-    <p class="note" data-i18n="pay_note">Some card and PayLater / BNPL transactions may carry a processing fee, which will always be clearly explained before you pay.</p>
+    <p class="note glass" data-i18n="pay_note">Some card and PayLater / BNPL transactions may carry a processing fee, which will always be clearly explained before you pay.</p>
   </div>
 </section>
 
 <!-- ===== PICKUP ===== -->
 <section id="pickup">
+  <div class="blob r" style="width:300px;height:300px;bottom:-80px;left:-90px"></div>
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="pick_eyebrow">How it works</div>
@@ -390,59 +369,34 @@
       <p data-i18n="pick_sub">Simple and safe — you confirm everything on WhatsApp, then collect and check your device at our store.</p>
     </div>
     <div class="steps">
-      <div class="step"><h4 data-i18n="pick1_t">1. Browse online</h4><p data-i18n="pick1_d">Find the model you want on our site or social pages.</p></div>
-      <div class="step"><h4 data-i18n="pick2_t">2. Confirm on WhatsApp</h4><p data-i18n="pick2_d">Message us to confirm the model, price, condition and stock.</p></div>
-      <div class="step"><h4 data-i18n="pick3_t">3. Pay</h4><p data-i18n="pick3_d">Pay by online transfer or in store — deposit or full payment.</p></div>
-      <div class="step"><h4 data-i18n="pick4_t">4. Collect &amp; check</h4><p data-i18n="pick4_d">Pick up at our store and inspect your device before you leave.</p></div>
+      <div class="step glass"><h4 data-i18n="pick1_t">1. Browse online</h4><p data-i18n="pick1_d">Find the model you want on our site or social pages.</p></div>
+      <div class="step glass"><h4 data-i18n="pick2_t">2. Confirm on WhatsApp</h4><p data-i18n="pick2_d">Message us to confirm the model, price, condition and stock.</p></div>
+      <div class="step glass"><h4 data-i18n="pick3_t">3. Pay</h4><p data-i18n="pick3_d">Pay by online transfer or in store — deposit or full payment.</p></div>
+      <div class="step glass"><h4 data-i18n="pick4_t">4. Collect &amp; check</h4><p data-i18n="pick4_d">Pick up at our store and inspect your device before you leave.</p></div>
     </div>
-    <p class="note" data-i18n="pick_note">For now we offer in-store pickup only (no nationwide courier yet), so you can check your phone in person and buy with confidence.</p>
+    <p class="note glass" data-i18n="pick_note">For now we offer in-store pickup only (no nationwide courier yet), so you can check your phone in person and buy with confidence.</p>
   </div>
 </section>
 
-<!-- ===== CONTACT / STORE / MAP ===== -->
-<section id="contact" class="alt">
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="soft">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="con_eyebrow">Visit &amp; contact</div>
       <h2 data-i18n="con_title">店铺地址 · 联系方式 · Find us</h2>
     </div>
     <div class="contact">
-      <div class="info-card">
-        <div class="info-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <div><b data-i18n="con_addr_t">Store address</b><span class="ph" data-i18n="con_addr_v">[Store address — to be confirmed after the shop location is finalised]</span></div>
-        </div>
-        <div class="info-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          <div><b data-i18n="con_hours_t">Opening hours</b><span class="ph" data-i18n="con_hours_v">[Daily 10:00am – 10:00pm — to be confirmed]</span></div>
-        </div>
-        <div class="info-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
-          <div><b data-i18n="con_phone_t">Phone / WhatsApp</b><span class="ph" data-i18n="con_phone_v">[+60 1X-XXX XXXX — to be confirmed]</span></div>
-        </div>
-        <div class="info-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg>
-          <div><b data-i18n="con_email_t">Email</b><span class="ph" data-i18n="con_email_v">[hello@sunsmart.my — to be confirmed]</span></div>
-        </div>
-        <div style="margin-top:6px">
-          <b style="font-size:13px;color:var(--blue);letter-spacing:.05em" data-i18n="con_follow">FOLLOW US</b>
-          <div class="socials">
-            <a href="#" aria-label="Facebook">FB</a>
-            <a href="#" aria-label="Instagram">IG</a>
-            <a href="#" aria-label="TikTok">TT</a>
-            <a data-wa href="#" aria-label="WhatsApp">WA</a>
-            <a href="#" aria-label="Google Business">G</a>
-          </div>
-        </div>
-        <div style="margin-top:22px">
-          <a class="btn btn-wa" data-wa href="#" data-i18n="con_cta">Chat with us on WhatsApp</a>
-        </div>
+      <div class="info-card glass">
+        <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><b data-i18n="con_addr_t">Store address</b><span class="ph" data-i18n="con_addr_v">[Store address — to be confirmed after the shop location is finalised]</span></div></div>
+        <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><b data-i18n="con_hours_t">Opening hours</b><span class="ph" data-i18n="con_hours_v">[Daily 10:00am – 10:00pm — to be confirmed]</span></div></div>
+        <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div><div><b data-i18n="con_phone_t">Phone / WhatsApp</b><span class="ph" data-i18n="con_phone_v">[+60 1X-XXX XXXX — to be confirmed]</span></div></div>
+        <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg></div><div><b data-i18n="con_email_t">Email</b><span class="ph" data-i18n="con_email_v">[hello@sunsmart.my — to be confirmed]</span></div></div>
+        <div style="margin-top:4px"><b style="font-size:12.5px;color:var(--blue);letter-spacing:.06em" data-i18n="con_follow">FOLLOW US</b>
+          <div class="socials"><a href="#">FB</a><a href="#">IG</a><a href="#">TT</a><a data-wa href="#">WA</a><a href="#">G</a></div></div>
+        <div style="margin-top:24px"><a class="btn btn-wa" data-wa href="#" data-i18n="con_cta">Chat with us on WhatsApp</a></div>
       </div>
       <div class="map">
-        <div class="mapinner">
-          <b data-i18n="map_t">📍 Google Maps</b>
-          <p class="muted" style="margin:8px 0 0;font-size:13.5px" data-i18n="map_d">The map will appear here once the store location is confirmed. (Embed your Google Maps location in place of this box.)</p>
-        </div>
+        <div class="mapinner"><b data-i18n="map_t">📍 Google Maps</b><p class="muted" style="margin:8px 0 0;font-size:13.5px" data-i18n="map_d">The map will appear here once the store location is confirmed. (Embed your Google Maps location in place of this box.)</p></div>
       </div>
     </div>
   </div>
@@ -456,33 +410,15 @@
       <h2 data-i18n="leg_title">售后条款 · 退换货政策 · 隐私政策</h2>
     </div>
     <div class="legal-grid">
-      <details class="legal" id="aftersales">
-        <summary><span data-i18n="leg_after_t">After-Sales &amp; Warranty</span></summary>
-        <div class="lc">
-          <p data-i18n="leg_after_1"><b>New phones:</b> covered by the manufacturer's warranty. Where possible we help you send the device to the brand or supplier for warranty service.</p>
-          <p data-i18n="leg_after_2"><b>Used phones:</b> covered by a shop warranty. The warranty period, coverage and battery terms are stated at the point of sale.</p>
-          <p data-i18n="leg_after_3">We do not provide in-house repair; for repairs we may refer you to a trusted partner workshop. Full condition, warranty scope and terms are explained before every purchase.</p>
-          <p class="muted"><span class="draft-tag" data-i18n="leg_draft">DRAFT</span> <span data-i18n="leg_after_4">Final warranty terms are being confirmed with our suppliers.</span></p>
-        </div>
-      </details>
-      <details class="legal" id="returns">
-        <summary><span data-i18n="leg_ret_t">Returns &amp; Exchange</span></summary>
-        <div class="lc">
-          <p data-i18n="leg_ret_1">Please inspect and test your device at pickup before payment is completed. Once checked and accepted, the sale is confirmed.</p>
-          <p data-i18n="leg_ret_2"><b>Dead-on-arrival / defects:</b> if a genuine fault appears within the stated period, we will assist with repair, exchange or resolution under the applicable warranty.</p>
-          <p data-i18n="leg_ret_3">Physical or liquid damage, and issues caused by misuse, are not covered. Used phones are sold in their described condition.</p>
-          <p class="muted"><span class="draft-tag" data-i18n="leg_draft">DRAFT</span> <span data-i18n="leg_ret_4">Exact return windows and conditions are being finalised.</span></p>
-        </div>
-      </details>
-      <details class="legal" id="privacy">
-        <summary><span data-i18n="leg_priv_t">Privacy Policy</span></summary>
-        <div class="lc">
-          <p data-i18n="leg_priv_1">We collect only the information needed to serve you — such as your name, contact number and purchase details — in line with Malaysia's Personal Data Protection Act 2010 (PDPA).</p>
-          <p data-i18n="leg_priv_2">We use it to process orders, provide after-sales support and, with your consent, share offers. We do not sell your personal data to third parties.</p>
-          <p data-i18n="leg_priv_3">You may contact us at any time to access, correct or request deletion of your personal data.</p>
-          <p class="muted"><span class="draft-tag" data-i18n="leg_draft">DRAFT</span> <span data-i18n="leg_priv_4">Please have this policy reviewed before launch.</span></p>
-        </div>
-      </details>
+      <details class="legal glass" id="aftersales"><summary><span data-i18n="leg_after_t">After-Sales &amp; Warranty</span></summary><div class="lc">
+        <p data-i18n="leg_after_1"></p><p data-i18n="leg_after_2"></p><p data-i18n="leg_after_3"></p>
+        <p class="muted"><span class="draft-tag" data-i18n="leg_draft">DRAFT</span><span data-i18n="leg_after_4">Final warranty terms are being confirmed with our suppliers.</span></p></div></details>
+      <details class="legal glass" id="returns"><summary><span data-i18n="leg_ret_t">Returns &amp; Exchange</span></summary><div class="lc">
+        <p data-i18n="leg_ret_1"></p><p data-i18n="leg_ret_2"></p><p data-i18n="leg_ret_3"></p>
+        <p class="muted"><span class="draft-tag" data-i18n="leg_draft">DRAFT</span><span data-i18n="leg_ret_4">Exact return windows and conditions are being finalised.</span></p></div></details>
+      <details class="legal glass" id="privacy"><summary><span data-i18n="leg_priv_t">Privacy Policy</span></summary><div class="lc">
+        <p data-i18n="leg_priv_1"></p><p data-i18n="leg_priv_2"></p><p data-i18n="leg_priv_3"></p>
+        <p class="muted"><span class="draft-tag" data-i18n="leg_draft">DRAFT</span><span data-i18n="leg_priv_4">Please have this policy reviewed before launch.</span></p></div></details>
     </div>
   </div>
 </section>
@@ -492,29 +428,17 @@
   <div class="wrap">
     <div class="foot">
       <div>
-        <div class="wm">SUN&nbsp;SMART</div>
+        <img src="assets/logo-white.png" alt="SUN SMART">
         <p data-i18n="foot_tag">Smart Choice, Brighter Connection. New &amp; used smartphones and accessories in the Klang Valley.</p>
-        <div class="socials" style="margin-top:6px">
-          <a href="#" aria-label="Facebook" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff">FB</a>
-          <a href="#" aria-label="Instagram" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff">IG</a>
-          <a href="#" aria-label="TikTok" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff">TT</a>
-          <a data-wa href="#" aria-label="WhatsApp" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff">WA</a>
-        </div>
+        <div class="socials"><a href="#">FB</a><a href="#">IG</a><a href="#">TT</a><a data-wa href="#">WA</a></div>
       </div>
-      <div>
-        <h5 data-i18n="foot_explore">Explore</h5>
-        <a href="#about" data-i18n="nav_about">About</a>
-        <a href="#products" data-i18n="nav_products">Products</a>
-        <a href="#payment" data-i18n="nav_payment">Payment</a>
-        <a href="#pickup" data-i18n="nav_pickup">Pickup</a>
-        <a href="#contact" data-i18n="nav_contact">Contact</a>
-      </div>
-      <div>
-        <h5 data-i18n="foot_policies">Policies</h5>
+      <div><h5 data-i18n="foot_explore">Explore</h5>
+        <a href="#about" data-i18n="nav_about">About</a><a href="#products" data-i18n="nav_products">Products</a>
+        <a href="#payment" data-i18n="nav_payment">Payment</a><a href="#pickup" data-i18n="nav_pickup">Pickup</a><a href="#contact" data-i18n="nav_contact">Contact</a></div>
+      <div><h5 data-i18n="foot_policies">Policies</h5>
         <a href="#aftersales" data-i18n="leg_after_t">After-Sales &amp; Warranty</a>
         <a href="#returns" data-i18n="leg_ret_t">Returns &amp; Exchange</a>
-        <a href="#privacy" data-i18n="leg_priv_t">Privacy Policy</a>
-      </div>
+        <a href="#privacy" data-i18n="leg_priv_t">Privacy Policy</a></div>
     </div>
     <div class="foot-bottom">
       <span data-i18n="foot_copy">© 2026 SUN SMART. All rights reserved.</span>
@@ -523,17 +447,13 @@
   </div>
 </footer>
 
-<a class="wa-float" data-wa href="#" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg>
-</a>
+<a class="wa-float" data-wa href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a>
 
 <script>
-/* ================= i18n ================= */
 const I18N = {
-  en:{
-    nav_about:"About",nav_products:"Products",nav_payment:"Payment",nav_pickup:"Pickup",nav_contact:"Contact",
-    hero_tagline:"Smart Choice, Brighter Connection",
-    hero_title:"New & used smartphones you can trust.",
+  en:{nav_about:"About",nav_products:"Products",nav_payment:"Payment",nav_pickup:"Pickup",nav_contact:"Contact",
+    hero_badge:"New · Used · Accessories · Klang Valley",
+    hero_tagline:"Smart Choice, Brighter Connection",hero_title:"New & used smartphones you can trust.",
     hero_lead:"New phones, quality-checked used phones and accessories at honest prices — with flexible payment and easy in-store pickup in the Klang Valley.",
     hero_cta1:"Browse products",hero_cta2:"Enquire on WhatsApp",
     why_eyebrow:"Why SUN SMART",why_title:"A simpler, more honest way to buy a phone",
@@ -543,12 +463,9 @@ const I18N = {
     why4_t:"Online enquiry, store pickup",why4_d:"Browse and ask on WhatsApp, then collect and check your device in person at our store.",
     about_eyebrow:"About us",about_title:"About SUN SMART",
     about_p1:"SUN SMART is a mobile phone retailer in the Klang Valley offering new phones, quality-checked used phones, and everyday accessories. We focus on fair prices, clear product conditions, flexible payment and a relaxed, no-pressure buying experience.",
-    about_l1:"New & used smartphones and accessories under one roof",
-    about_l2:"Transparent pricing and clearly stated product condition",
-    about_l3:"Flexible payment including PayLater / BNPL",
-    about_l4:"Online browsing, WhatsApp ordering, in-store pickup",
-    about_mission_t:"Our promise",
-    about_mission_d:"Quality you can check, prices you can trust, and payment that fits your budget — that's the SUN SMART way.",
+    about_l1:"New & used smartphones and accessories under one roof",about_l2:"Transparent pricing and clearly stated product condition",
+    about_l3:"Flexible payment including PayLater / BNPL",about_l4:"Online browsing, WhatsApp ordering, in-store pickup",
+    about_mission_t:"Our promise",about_mission_d:"Quality you can check, prices you can trust, and payment that fits your budget — that's the SUN SMART way.",
     about_s1n:"RM500–3,000",about_s1l:"Everyday price range",about_s2n:"3-in-1",about_s2l:"New · Used · Accessories",
     prod_eyebrow:"Our products",prod_title:"New phones · Used phones · Accessories",
     prod_sub:"Our full catalogue with live prices and stock is on the way. For now, tap WhatsApp for the latest models, prices and availability.",
@@ -559,12 +476,10 @@ const I18N = {
     stk_in:"In stock",stk_low:"Low stock",stk_order:"Available to order",
     prod_note:"💬 Prices & live stock will appear here once our catalogue is online. Message us on WhatsApp for the current price and availability of any model.",
     prod_cta:"Ask about a model on WhatsApp",
-    pay_eyebrow:"Payment methods",pay_title:"Pay the way that suits you",
-    pay_sub:"We accept a wide range of payment options so higher-value phones are easier to afford.",
+    pay_eyebrow:"Payment methods",pay_title:"Pay the way that suits you",pay_sub:"We accept a wide range of payment options so higher-value phones are easier to afford.",
     pay_cash:"Cash",pay_transfer:"Bank Transfer",pay_qr:"DuitNow QR",pay_card:"Credit / Debit Card",pay_bnpl:"PayLater / BNPL",
     pay_note:"Some card and PayLater / BNPL transactions may carry a processing fee, which will always be clearly explained before you pay.",
-    pick_eyebrow:"How it works",pick_title:"Online enquiry, in-store pickup",
-    pick_sub:"Simple and safe — you confirm everything on WhatsApp, then collect and check your device at our store.",
+    pick_eyebrow:"How it works",pick_title:"Online enquiry, in-store pickup",pick_sub:"Simple and safe — you confirm everything on WhatsApp, then collect and check your device at our store.",
     pick1_t:"1. Browse online",pick1_d:"Find the model you want on our site or social pages.",
     pick2_t:"2. Confirm on WhatsApp",pick2_d:"Message us to confirm the model, price, condition and stock.",
     pick3_t:"3. Pay",pick3_d:"Pay by online transfer or in store — deposit or full payment.",
@@ -594,13 +509,10 @@ const I18N = {
     leg_priv_3:"You may contact us at any time to access, correct or request deletion of your personal data.",
     leg_priv_4:"Please have this policy reviewed before launch.",
     foot_tag:"Smart Choice, Brighter Connection. New & used smartphones and accessories in the Klang Valley.",
-    foot_explore:"Explore",foot_policies:"Policies",
-    foot_copy:"© 2026 SUN SMART. All rights reserved.",foot_reg:"SUN SMART SDN BHD · [Company No. to be added]"
-  },
-  zh:{
-    nav_about:"关于我们",nav_products:"产品",nav_payment:"付款方式",nav_pickup:"到店取货",nav_contact:"联系我们",
-    hero_tagline:"智慧之选，亮点连接",
-    hero_title:"值得信赖的新机与二手机。",
+    foot_explore:"Explore",foot_policies:"Policies",foot_copy:"© 2026 SUN SMART. All rights reserved.",foot_reg:"SUN SMART SDN BHD · [Company No. to be added]"},
+  zh:{nav_about:"关于我们",nav_products:"产品",nav_payment:"付款方式",nav_pickup:"到店取货",nav_contact:"联系我们",
+    hero_badge:"新机 · 二手机 · 配件 · 雪隆区",
+    hero_tagline:"智慧之选，亮点连接",hero_title:"值得信赖的新机与二手机。",
     hero_lead:"新手机、经过检测的二手机与手机配件，价格实在，付款灵活，雪隆区到店取货，方便安心。",
     hero_cta1:"浏览产品",hero_cta2:"WhatsApp 咨询",
     why_eyebrow:"为什么选择 SUN SMART",why_title:"买手机，更简单、更透明",
@@ -610,12 +522,8 @@ const I18N = {
     why4_t:"线上咨询，到店取货",why4_d:"先在 WhatsApp 咨询，再到店取货并当场检查手机。",
     about_eyebrow:"关于我们",about_title:"公司简介 · 关于 SUN SMART",
     about_p1:"SUN SMART 是一家位于雪隆区的手机零售店，销售新手机、经过检测的二手机及各类手机配件。我们注重价格合理、产品状况透明、付款方式灵活，以及轻松、不强迫的购物体验。",
-    about_l1:"新机、二手机与配件，一站购齐",
-    about_l2:"价格透明，产品状况清楚说明",
-    about_l3:"付款灵活，支持 PayLater / BNPL 分期",
-    about_l4:"线上浏览、WhatsApp 下单、到店取货",
-    about_mission_t:"我们的承诺",
-    about_mission_d:"品质看得见，价格可信赖，付款合预算——这就是 SUN SMART 的方式。",
+    about_l1:"新机、二手机与配件，一站购齐",about_l2:"价格透明，产品状况清楚说明",about_l3:"付款灵活，支持 PayLater / BNPL 分期",about_l4:"线上浏览、WhatsApp 下单、到店取货",
+    about_mission_t:"我们的承诺",about_mission_d:"品质看得见，价格可信赖，付款合预算——这就是 SUN SMART 的方式。",
     about_s1n:"RM500–3,000",about_s1l:"主要价格区间",about_s2n:"三合一",about_s2l:"新机 · 二手机 · 配件",
     prod_eyebrow:"我们的产品",prod_title:"新手机 · 二手机 · 配件",
     prod_sub:"完整产品目录与实时价格库存即将上线。目前请点击 WhatsApp 查询最新型号、价格与库存。",
@@ -626,12 +534,10 @@ const I18N = {
     stk_in:"有现货",stk_low:"库存不多",stk_order:"可订货",
     prod_note:"💬 产品目录上线后，价格与实时库存将显示于此。任何型号的最新价格与库存，请 WhatsApp 咨询。",
     prod_cta:"WhatsApp 咨询型号",
-    pay_eyebrow:"付款方式",pay_title:"付款方式 · 选择最适合你的方式",
-    pay_sub:"我们提供多种付款方式，让较高价位的手机更容易负担。",
+    pay_eyebrow:"付款方式",pay_title:"付款方式 · 选择最适合你的方式",pay_sub:"我们提供多种付款方式，让较高价位的手机更容易负担。",
     pay_cash:"现金",pay_transfer:"银行转账",pay_qr:"DuitNow QR",pay_card:"信用卡 / 借记卡",pay_bnpl:"PayLater / 分期",
     pay_note:"部分信用卡及 PayLater / BNPL 交易可能收取手续费，付款前一定会清楚说明。",
-    pick_eyebrow:"购买流程",pick_title:"到店取货说明 · 线上咨询，到店取货",
-    pick_sub:"简单又安心——先在 WhatsApp 确认一切，再到店取货并检查手机。",
+    pick_eyebrow:"购买流程",pick_title:"到店取货说明 · 线上咨询，到店取货",pick_sub:"简单又安心——先在 WhatsApp 确认一切，再到店取货并检查手机。",
     pick1_t:"1. 线上浏览",pick1_d:"在网站或社交平台找到你想要的型号。",
     pick2_t:"2. WhatsApp 确认",pick2_d:"联系我们确认型号、价格、状况与库存。",
     pick3_t:"3. 付款",pick3_d:"可网上转账或到店付款——订金或全额。",
@@ -661,13 +567,10 @@ const I18N = {
     leg_priv_3:"你可随时联系我们，查阅、更正或要求删除你的个人资料。",
     leg_priv_4:"上线前请让专业人士审阅本政策。",
     foot_tag:"智慧之选，亮点连接。雪隆区新机、二手机与手机配件。",
-    foot_explore:"浏览",foot_policies:"条款政策",
-    foot_copy:"© 2026 SUN SMART 版权所有。",foot_reg:"SUN SMART SDN BHD · ［公司注册号待补］"
-  },
-  ms:{
-    nav_about:"Tentang",nav_products:"Produk",nav_payment:"Pembayaran",nav_pickup:"Ambil di Kedai",nav_contact:"Hubungi",
-    hero_tagline:"Pilihan Bijak, Hubungan Lebih Cerah",
-    hero_title:"Telefon pintar baharu & terpakai yang boleh dipercayai.",
+    foot_explore:"浏览",foot_policies:"条款政策",foot_copy:"© 2026 SUN SMART 版权所有。",foot_reg:"SUN SMART SDN BHD · ［公司注册号待补］"},
+  ms:{nav_about:"Tentang",nav_products:"Produk",nav_payment:"Pembayaran",nav_pickup:"Ambil di Kedai",nav_contact:"Hubungi",
+    hero_badge:"Baharu · Terpakai · Aksesori · Lembah Klang",
+    hero_tagline:"Pilihan Bijak, Hubungan Lebih Cerah",hero_title:"Telefon pintar baharu & terpakai yang boleh dipercayai.",
     hero_lead:"Telefon baharu, telefon terpakai yang disemak kualiti, dan aksesori pada harga jujur — dengan pembayaran fleksibel dan ambilan mudah di kedai sekitar Lembah Klang.",
     hero_cta1:"Lihat produk",hero_cta2:"Tanya di WhatsApp",
     why_eyebrow:"Kenapa SUN SMART",why_title:"Cara yang lebih mudah dan jujur untuk beli telefon",
@@ -677,12 +580,8 @@ const I18N = {
     why4_t:"Tanya dalam talian, ambil di kedai",why4_d:"Lihat dan tanya melalui WhatsApp, kemudian ambil dan periksa telefon anda sendiri di kedai kami.",
     about_eyebrow:"Tentang kami",about_title:"Tentang SUN SMART",
     about_p1:"SUN SMART ialah peruncit telefon pintar di Lembah Klang yang menawarkan telefon baharu, telefon terpakai yang disemak kualiti, dan aksesori harian. Kami menumpukan pada harga berpatutan, keadaan produk yang jelas, pembayaran fleksibel dan pengalaman membeli yang santai tanpa paksaan.",
-    about_l1:"Telefon baharu & terpakai serta aksesori di satu tempat",
-    about_l2:"Harga telus dan keadaan produk dinyatakan dengan jelas",
-    about_l3:"Pembayaran fleksibel termasuk PayLater / BNPL",
-    about_l4:"Lihat dalam talian, tempah di WhatsApp, ambil di kedai",
-    about_mission_t:"Janji kami",
-    about_mission_d:"Kualiti yang boleh diperiksa, harga yang boleh dipercayai, dan pembayaran yang sesuai dengan bajet anda — itulah cara SUN SMART.",
+    about_l1:"Telefon baharu & terpakai serta aksesori di satu tempat",about_l2:"Harga telus dan keadaan produk dinyatakan dengan jelas",about_l3:"Pembayaran fleksibel termasuk PayLater / BNPL",about_l4:"Lihat dalam talian, tempah di WhatsApp, ambil di kedai",
+    about_mission_t:"Janji kami",about_mission_d:"Kualiti yang boleh diperiksa, harga yang boleh dipercayai, dan pembayaran yang sesuai dengan bajet anda — itulah cara SUN SMART.",
     about_s1n:"RM500–3,000",about_s1l:"Julat harga harian",about_s2n:"3-dalam-1",about_s2l:"Baharu · Terpakai · Aksesori",
     prod_eyebrow:"Produk kami",prod_title:"Telefon baharu · Telefon terpakai · Aksesori",
     prod_sub:"Katalog penuh dengan harga dan stok langsung akan menyusul. Buat masa ini, tekan WhatsApp untuk model, harga dan ketersediaan terkini.",
@@ -693,12 +592,10 @@ const I18N = {
     stk_in:"Ada stok",stk_low:"Stok rendah",stk_order:"Boleh ditempah",
     prod_note:"💬 Harga & stok langsung akan dipaparkan di sini sebaik katalog kami dalam talian. Hubungi kami di WhatsApp untuk harga dan ketersediaan semasa mana-mana model.",
     prod_cta:"Tanya tentang model di WhatsApp",
-    pay_eyebrow:"Kaedah pembayaran",pay_title:"Bayar mengikut cara yang sesuai untuk anda",
-    pay_sub:"Kami menerima pelbagai pilihan pembayaran supaya telefon bernilai tinggi lebih mudah dimiliki.",
+    pay_eyebrow:"Kaedah pembayaran",pay_title:"Bayar mengikut cara yang sesuai untuk anda",pay_sub:"Kami menerima pelbagai pilihan pembayaran supaya telefon bernilai tinggi lebih mudah dimiliki.",
     pay_cash:"Tunai",pay_transfer:"Pindahan Bank",pay_qr:"DuitNow QR",pay_card:"Kad Kredit / Debit",pay_bnpl:"PayLater / BNPL",
     pay_note:"Sesetengah transaksi kad dan PayLater / BNPL mungkin dikenakan caj pemprosesan, yang akan sentiasa dijelaskan sebelum anda membayar.",
-    pick_eyebrow:"Cara ia berfungsi",pick_title:"Tanya dalam talian, ambil di kedai",
-    pick_sub:"Mudah dan selamat — anda sahkan semuanya di WhatsApp, kemudian ambil dan periksa telefon anda di kedai kami.",
+    pick_eyebrow:"Cara ia berfungsi",pick_title:"Tanya dalam talian, ambil di kedai",pick_sub:"Mudah dan selamat — anda sahkan semuanya di WhatsApp, kemudian ambil dan periksa telefon anda di kedai kami.",
     pick1_t:"1. Lihat dalam talian",pick1_d:"Cari model yang anda mahu di laman atau media sosial kami.",
     pick2_t:"2. Sahkan di WhatsApp",pick2_d:"Hubungi kami untuk sahkan model, harga, keadaan dan stok.",
     pick3_t:"3. Bayar",pick3_d:"Bayar melalui pindahan dalam talian atau di kedai — deposit atau bayaran penuh.",
@@ -728,74 +625,27 @@ const I18N = {
     leg_priv_3:"Anda boleh menghubungi kami pada bila-bila masa untuk mengakses, membetulkan atau meminta pemadaman data peribadi anda.",
     leg_priv_4:"Sila semak dasar ini sebelum pelancaran.",
     foot_tag:"Pilihan Bijak, Hubungan Lebih Cerah. Telefon baharu & terpakai serta aksesori di Lembah Klang.",
-    foot_explore:"Terokai",foot_policies:"Dasar",
-    foot_copy:"© 2026 SUN SMART. Hak cipta terpelihara.",foot_reg:"SUN SMART SDN BHD · [No. Syarikat akan ditambah]"
-  }
+    foot_explore:"Terokai",foot_policies:"Dasar",foot_copy:"© 2026 SUN SMART. Hak cipta terpelihara.",foot_reg:"SUN SMART SDN BHD · [No. Syarikat akan ditambah]"}
 };
-
-/* WhatsApp placeholder — replace 60XXXXXXXXX with the real number */
-const WA_NUMBER = "60XXXXXXXXX";
-const WA_MSG = { en:"Hi SUN SMART, I'd like to enquire about a phone.", zh:"你好 SUN SMART，我想咨询手机。", ms:"Hai SUN SMART, saya ingin bertanya tentang telefon." };
-
+const WA_NUMBER="60XXXXXXXXX";
+const WA_MSG={en:"Hi SUN SMART, I'd like to enquire about a phone.",zh:"你好 SUN SMART，我想咨询手机。",ms:"Hai SUN SMART, saya ingin bertanya tentang telefon."};
 function applyLang(lang){
-  const dict = I18N[lang] || I18N.en;
-  document.documentElement.lang = (lang==="zh"?"zh-CN":lang==="ms"?"ms":"en");
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    const k = el.getAttribute("data-i18n");
-    if(dict[k]!=null) el.innerHTML = dict[k];
-  });
-  document.querySelectorAll(".langs button").forEach(b=>b.classList.toggle("active", b.dataset.lang===lang));
-  // whatsapp links
-  const href = "https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(WA_MSG[lang]||WA_MSG.en);
+  const d=I18N[lang]||I18N.en;
+  document.documentElement.lang=(lang==="zh"?"zh-CN":lang==="ms"?"ms":"en");
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(d[k]!=null)el.innerHTML=d[k];});
+  document.querySelectorAll(".langs button").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
+  const href="https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(WA_MSG[lang]||WA_MSG.en);
   document.querySelectorAll("[data-wa]").forEach(a=>a.setAttribute("href",href));
   try{localStorage.setItem("ss_lang",lang);}catch(e){}
 }
-
-/* clone S-mark into placeholders */
-(function(){
-  const tpl = document.getElementById("smark");
-  document.querySelectorAll("[data-smark]").forEach(slot=>slot.appendChild(tpl.content.cloneNode(true)));
-})();
-
-/* skeleton product cards */
-(function(){
-  document.querySelectorAll("[data-skeleton]").forEach(grid=>{
-    for(let i=0;i<4;i++){
-      const el=document.createElement("div");
-      el.className="prod";
-      el.innerHTML='<div class="thumb"><span class="soon">COMING SOON</span></div><div class="body"><div class="nm"></div><div class="pr"></div></div>';
-      grid.appendChild(el);
-    }
-  });
-})();
-
-/* category tabs */
-document.querySelectorAll(".cat-tabs button").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    document.querySelectorAll(".cat-tabs button").forEach(b=>b.classList.remove("active"));
-    btn.classList.add("active");
-    document.querySelectorAll(".cat-panel").forEach(p=>p.classList.remove("active"));
-    document.getElementById("cat-"+btn.dataset.cat).classList.add("active");
-  });
-});
-
-/* language buttons */
+(function(){document.querySelectorAll("[data-skeleton]").forEach(g=>{for(let i=0;i<4;i++){const e=document.createElement("div");e.className="prod glass";e.innerHTML='<div class="thumb"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 5h2"/></svg><span class="soon">COMING SOON</span></div><div class="body"><div class="nm"></div><div class="pr"></div></div>';g.appendChild(e);}});})();
+document.querySelectorAll(".cat-tabs button").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".cat-tabs button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".cat-panel").forEach(p=>p.classList.remove("active"));document.getElementById("cat-"+b.dataset.cat).classList.add("active");}));
 document.querySelectorAll(".langs button").forEach(b=>b.addEventListener("click",()=>applyLang(b.dataset.lang)));
-
-/* mobile menu */
-const burger=document.getElementById("burger"), links=document.getElementById("links");
+const burger=document.getElementById("burger"),links=document.getElementById("links");
 burger.addEventListener("click",()=>links.classList.toggle("open"));
 links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>links.classList.remove("open")));
-
-/* open legal accordion when linked from footer */
-window.addEventListener("hashchange",()=>{
-  const id=location.hash.replace("#","");
-  const d=document.getElementById(id);
-  if(d && d.tagName==="DETAILS") d.open=true;
-});
-
-/* init */
-let saved="en"; try{saved=localStorage.getItem("ss_lang")||"en";}catch(e){}
+window.addEventListener("hashchange",()=>{const el=document.getElementById(location.hash.replace("#",""));if(el&&el.tagName==="DETAILS")el.open=true;});
+let saved="en";try{saved=localStorage.getItem("ss_lang")||"en";}catch(e){}
 applyLang(saved);
 </script>
 </body>
