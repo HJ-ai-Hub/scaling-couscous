@@ -220,6 +220,7 @@
     <nav class="links" id="links">
       <a href="#about" data-i18n="nav_about">About</a>
       <a href="#products" data-i18n="nav_products">Products</a>
+      <a href="#repair" data-i18n="nav_repair">Repair</a>
       <a href="#payment" data-i18n="nav_payment">Payment</a>
       <a href="#pickup" data-i18n="nav_pickup">Pickup</a>
       <a href="#contact" data-i18n="nav_contact">Contact</a>
@@ -338,8 +339,28 @@
   </div>
 </section>
 
+<!-- ===== REPAIR ===== -->
+<section id="repair" class="soft">
+  <div class="blob b" style="width:300px;height:300px;top:-70px;right:-90px"></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="rep_eyebrow">New service</div>
+      <h2 data-i18n="rep_title">Phone Repair</h2>
+      <p data-i18n="rep_sub">Professional repair on a booking basis — a full diagnostic and a clear quotation before any work begins.</p>
+    </div>
+    <div class="steps">
+      <div class="step glass"><h4 data-i18n="rep1_t">1. Book a slot</h4><p data-i18n="rep1_d">Message us on WhatsApp to book your repair.</p></div>
+      <div class="step glass"><h4 data-i18n="rep2_t">2. Drop off your device</h4><p data-i18n="rep2_d">Bring your phone to our shop; we'll advise the turnaround time (TAT) when you drop it off.</p></div>
+      <div class="step glass"><h4 data-i18n="rep3_t">3. 360° check &amp; quotation</h4><p data-i18n="rep3_d">Our professional technician runs a full 360° diagnostic and gives you a clear repair quotation.</p></div>
+      <div class="step glass"><h4 data-i18n="rep4_t">4. Approve, repair &amp; collect</h4><p data-i18n="rep4_d">Repair proceeds only after you approve the quote; then collect and check your device.</p></div>
+    </div>
+    <p class="note glass" data-i18n="rep_note">No repair is carried out until you have approved the quotation. The turnaround time (TAT) is confirmed when you drop off your device.</p>
+    <div class="center" style="margin-top:28px"><a class="btn btn-wa" data-wa="repair" href="#" data-i18n="rep_cta">Book a repair on WhatsApp</a></div>
+  </div>
+</section>
+
 <!-- ===== PAYMENT ===== -->
-<section id="payment" class="soft">
+<section id="payment">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="pay_eyebrow">Payment methods</div>
@@ -358,7 +379,7 @@
 </section>
 
 <!-- ===== PICKUP ===== -->
-<section id="pickup">
+<section id="pickup" class="soft">
   <div class="blob r" style="width:300px;height:300px;bottom:-80px;left:-90px"></div>
   <div class="wrap">
     <div class="sec-head">
@@ -377,7 +398,7 @@
 </section>
 
 <!-- ===== CONTACT ===== -->
-<section id="contact" class="soft">
+<section id="contact">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="con_eyebrow">Visit &amp; contact</div>
@@ -401,7 +422,7 @@
 </section>
 
 <!-- ===== LEGAL ===== -->
-<section id="legal">
+<section id="legal" class="soft">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="leg_eyebrow">Policies</div>
@@ -432,6 +453,7 @@
       </div>
       <div><h5 data-i18n="foot_explore">Explore</h5>
         <a href="#about" data-i18n="nav_about">About</a><a href="#products" data-i18n="nav_products">Products</a>
+        <a href="#repair" data-i18n="nav_repair">Repair</a>
         <a href="#payment" data-i18n="nav_payment">Payment</a><a href="#pickup" data-i18n="nav_pickup">Pickup</a><a href="#contact" data-i18n="nav_contact">Contact</a></div>
       <div><h5 data-i18n="foot_policies">Policies</h5>
         <a href="#aftersales" data-i18n="leg_after_t">After-Sales &amp; Warranty</a>
@@ -474,6 +496,15 @@ const I18N = {
     stk_in:"In stock",stk_low:"Low stock",stk_order:"Available to order",
     prod_note:"💬 Prices & live stock will appear here once our catalogue is online. Message us on WhatsApp for the current price and availability of any model.",
     prod_cta:"Ask about a model on WhatsApp",
+    nav_repair:"Repair",
+    rep_eyebrow:"New service",rep_title:"Phone Repair",
+    rep_sub:"Professional repair on a booking basis — a full diagnostic and a clear quotation before any work begins.",
+    rep1_t:"1. Book a slot",rep1_d:"Message us on WhatsApp to book your repair.",
+    rep2_t:"2. Drop off your device",rep2_d:"Bring your phone to our shop; we'll advise the turnaround time (TAT) when you drop it off.",
+    rep3_t:"3. 360° check & quotation",rep3_d:"Our professional technician runs a full 360° diagnostic and gives you a clear repair quotation.",
+    rep4_t:"4. Approve, repair & collect",rep4_d:"Repair proceeds only after you approve the quote; then collect and check your device.",
+    rep_note:"No repair is carried out until you have approved the quotation. The turnaround time (TAT) is confirmed when you drop off your device.",
+    rep_cta:"Book a repair on WhatsApp",
     pay_eyebrow:"Payment methods",pay_title:"Pay the way that suits you",pay_sub:"We accept a wide range of payment options so higher-value phones are easier to afford.",
     pay_cash:"Cash",pay_transfer:"Bank Transfer",pay_qr:"DuitNow QR",pay_card:"Credit / Debit Card",pay_bnpl:"PayLater / BNPL",
     pay_note:"Some card and PayLater / BNPL transactions may carry a processing fee, which will always be clearly explained before you pay.",
@@ -532,6 +563,15 @@ const I18N = {
     stk_in:"有现货",stk_low:"库存不多",stk_order:"可订货",
     prod_note:"💬 产品目录上线后，价格与实时库存将显示于此。任何型号的最新价格与库存，请 WhatsApp 咨询。",
     prod_cta:"WhatsApp 咨询型号",
+    nav_repair:"维修",
+    rep_eyebrow:"新服务",rep_title:"手机维修",
+    rep_sub:"专业手机维修，采用预约制——先由技师全面检测并提供报价，确认后才进行维修。",
+    rep1_t:"1. 预约",rep1_d:"通过 WhatsApp 预约维修。",
+    rep2_t:"2. 送修（到店寄放）",rep2_d:"将手机送到本店；寄放时我们会告知预计维修时间（TAT）。",
+    rep3_t:"3. 360° 检测与报价",rep3_d:"由专业技师进行全面 360° 检测，并提供清楚的维修报价。",
+    rep4_t:"4. 确认、维修与取件",rep4_d:"报价经你确认后才开始维修；完成后到店取件并检查。",
+    rep_note:"未经你确认报价前，绝不进行任何维修。预计维修时间（TAT）会在送修时告知。",
+    rep_cta:"WhatsApp 预约维修",
     pay_eyebrow:"付款方式",pay_title:"付款方式 · 选择最适合你的方式",pay_sub:"我们提供多种付款方式，让较高价位的手机更容易负担。",
     pay_cash:"现金",pay_transfer:"银行转账",pay_qr:"DuitNow QR",pay_card:"信用卡 / 借记卡",pay_bnpl:"PayLater / 分期",
     pay_note:"部分信用卡及 PayLater / BNPL 交易可能收取手续费，付款前一定会清楚说明。",
@@ -590,6 +630,15 @@ const I18N = {
     stk_in:"Ada stok",stk_low:"Stok rendah",stk_order:"Boleh ditempah",
     prod_note:"💬 Harga & stok langsung akan dipaparkan di sini sebaik katalog kami dalam talian. Hubungi kami di WhatsApp untuk harga dan ketersediaan semasa mana-mana model.",
     prod_cta:"Tanya tentang model di WhatsApp",
+    nav_repair:"Pembaikan",
+    rep_eyebrow:"Perkhidmatan baharu",rep_title:"Pembaikan Telefon",
+    rep_sub:"Pembaikan profesional secara temujanji — diagnosis penuh dan sebut harga yang jelas sebelum sebarang kerja bermula.",
+    rep1_t:"1. Tempah slot",rep1_d:"Hubungi kami di WhatsApp untuk menempah pembaikan.",
+    rep2_t:"2. Hantar peranti",rep2_d:"Bawa telefon anda ke kedai kami; kami akan memaklumkan masa siap (TAT) semasa anda menghantarnya.",
+    rep3_t:"3. Semakan 360° & sebut harga",rep3_d:"Juruteknik profesional kami menjalankan diagnosis 360° penuh dan memberi sebut harga pembaikan yang jelas.",
+    rep4_t:"4. Sahkan, baiki & ambil",rep4_d:"Pembaikan hanya diteruskan selepas anda meluluskan sebut harga; kemudian ambil dan periksa peranti anda.",
+    rep_note:"Tiada pembaikan dilakukan sehingga anda meluluskan sebut harga. Masa siap (TAT) disahkan semasa anda menghantar peranti.",
+    rep_cta:"Tempah pembaikan di WhatsApp",
     pay_eyebrow:"Kaedah pembayaran",pay_title:"Bayar mengikut cara yang sesuai untuk anda",pay_sub:"Kami menerima pelbagai pilihan pembayaran supaya telefon bernilai tinggi lebih mudah dimiliki.",
     pay_cash:"Tunai",pay_transfer:"Pindahan Bank",pay_qr:"DuitNow QR",pay_card:"Kad Kredit / Debit",pay_bnpl:"PayLater / BNPL",
     pay_note:"Sesetengah transaksi kad dan PayLater / BNPL mungkin dikenakan caj pemprosesan, yang akan sentiasa dijelaskan sebelum anda membayar.",
@@ -626,14 +675,19 @@ const I18N = {
     foot_explore:"Terokai",foot_policies:"Dasar",foot_copy:"© 2026 SUN SMART. Hak cipta terpelihara.",foot_reg:"SUN SMART SDN BHD · [No. Syarikat akan ditambah]"}
 };
 const WA_NUMBER="60XXXXXXXXX";
-const WA_MSG={en:"Hi SUN SMART, I'd like to enquire about a phone.",zh:"你好 SUN SMART，我想咨询手机。",ms:"Hai SUN SMART, saya ingin bertanya tentang telefon."};
+const WA_MSG={
+  enquire:{en:"Hi SUN SMART, I'd like to enquire about a phone.",zh:"你好 SUN SMART，我想咨询手机。",ms:"Hai SUN SMART, saya ingin bertanya tentang telefon."},
+  repair:{en:"Hi SUN SMART, I'd like to book a phone repair.",zh:"你好 SUN SMART，我想预约手机维修。",ms:"Hai SUN SMART, saya ingin menempah pembaikan telefon."}
+};
 function applyLang(lang){
   const d=I18N[lang]||I18N.en;
   document.documentElement.lang=(lang==="zh"?"zh-CN":lang==="ms"?"ms":"en");
   document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(d[k]!=null)el.innerHTML=d[k];});
   document.querySelectorAll(".langs button").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
-  const href="https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(WA_MSG[lang]||WA_MSG.en);
-  document.querySelectorAll("[data-wa]").forEach(a=>a.setAttribute("href",href));
+  document.querySelectorAll("[data-wa]").forEach(a=>{
+    const set=WA_MSG[a.getAttribute("data-wa")||"enquire"]||WA_MSG.enquire;
+    a.setAttribute("href","https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(set[lang]||set.en));
+  });
   try{localStorage.setItem("ss_lang",lang);}catch(e){}
 }
 (function(){document.querySelectorAll("[data-skeleton]").forEach(g=>{for(let i=0;i<4;i++){const e=document.createElement("div");e.className="prod glass";e.innerHTML='<div class="thumb"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 5h2"/></svg><span class="soon">COMING SOON</span></div><div class="body"><div class="nm"></div><div class="pr"></div></div>';g.appendChild(e);}});})();
