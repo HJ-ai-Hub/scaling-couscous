@@ -87,6 +87,8 @@
   @keyframes fadeScaleIn{from{opacity:0;transform:scale(.93) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
   @keyframes logoGlow{0%,100%{filter:drop-shadow(0 0 16px rgba(120,150,255,.5)) drop-shadow(0 0 30px rgba(208,33,31,.3))}50%{filter:drop-shadow(0 0 26px rgba(120,150,255,.8)) drop-shadow(0 0 46px rgba(208,33,31,.5))}}
   @keyframes eyebrowGlow{0%,100%{text-shadow:0 0 0 rgba(208,33,31,0)}50%{text-shadow:0 0 12px rgba(208,33,31,.6)}}
+  @keyframes headingGlow{0%,100%{text-shadow:0 0 0 rgba(35,64,200,0)}50%{text-shadow:0 0 20px rgba(35,64,200,.45)}}
+  @keyframes bodyGlow{0%,100%{text-shadow:0 0 0 rgba(35,64,200,0)}50%{text-shadow:0 0 10px rgba(35,64,200,.22)}}
 
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
   .reveal.in{opacity:1;transform:translateY(0)}
@@ -154,7 +156,8 @@
   section{padding:84px 0;position:relative;overflow:hidden}
   section.soft{background:var(--soft)}
   .sec-head{max-width:660px;margin:0 auto 48px;text-align:center}
-  .sec-head p{color:var(--muted);margin:0;font-size:16px}
+  .sec-head h2{animation:headingGlow 2.8s ease-in-out infinite}
+  .sec-head p{color:var(--muted);margin:0;font-size:16px;animation:bodyGlow 2.8s ease-in-out infinite}
 
   /* value props */
   .grid{display:grid;gap:22px}
@@ -837,7 +840,7 @@ window.addEventListener("hashchange",()=>{const el=document.getElementById(locat
 /* ---- scroll-reveal ---- */
 if ("IntersectionObserver" in window) {
   const revealIO = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add("in"); revealIO.unobserve(entry.target); } });
+    entries.forEach(entry=>{ entry.target.classList.toggle("in", entry.isIntersecting); });
   }, { threshold:0.12, rootMargin:"0px 0px -6% 0px" });
   document.querySelectorAll(".reveal,.reveal-left,.reveal-right").forEach(el=>revealIO.observe(el));
 } else {
