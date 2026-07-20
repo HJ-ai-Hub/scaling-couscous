@@ -76,8 +76,26 @@
   p{margin:0 0 1em}
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
+  a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2.5px solid var(--red);outline-offset:3px;border-radius:6px}
+
+  /* ---------- motion ---------- */
+  @media(prefers-reduced-motion:reduce){
+    *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+    .reveal,.reveal-left,.reveal-right{opacity:1!important;transform:none!important}
+  }
+  @keyframes fadeSlideUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeScaleIn{from{opacity:0;transform:scale(.93) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  @keyframes logoGlow{0%,100%{filter:drop-shadow(0 0 16px rgba(120,150,255,.5)) drop-shadow(0 0 30px rgba(208,33,31,.3))}50%{filter:drop-shadow(0 0 26px rgba(120,150,255,.8)) drop-shadow(0 0 46px rgba(208,33,31,.5))}}
+  @keyframes eyebrowGlow{0%,100%{text-shadow:0 0 0 rgba(208,33,31,0)}50%{text-shadow:0 0 12px rgba(208,33,31,.6)}}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  .reveal-left{opacity:0;transform:translateX(-46px);transition:opacity .8s ease,transform .8s ease}
+  .reveal-left.in{opacity:1;transform:translateX(0)}
+  .reveal-right{opacity:0;transform:translateX(46px);transition:opacity .8s ease,transform .8s ease}
+  .reveal-right.in{opacity:1;transform:translateX(0)}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;position:relative;z-index:2}
-  .eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:14px;animation:eyebrowGlow 2.8s ease-in-out infinite}
   .center{text-align:center}.muted{color:var(--muted)}
 
   /* glass */
@@ -117,18 +135,18 @@
   .hero-tint{position:absolute;inset:0;background:
       linear-gradient(115deg, rgba(7,11,40,.94) 0%, rgba(12,18,66,.82) 46%, rgba(17,30,108,.55) 70%, rgba(208,33,31,.34) 100%)}
   .hero-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center;padding:96px 0 84px}
-  .hero-pill{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.06em;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:8px 16px;border-radius:999px;margin-bottom:22px}
+  .hero-pill{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.06em;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:8px 16px;border-radius:999px;margin-bottom:22px;animation:fadeSlideUp .7s ease both}
   .hero-pill .d{width:8px;height:8px;border-radius:50%;background:var(--red-2);box-shadow:0 0 12px var(--red-2)}
-  .hero h1{color:#fff;font-size:clamp(34px,5vw,58px);font-weight:900;letter-spacing:-.02em;margin-bottom:8px;text-shadow:0 2px 30px rgba(0,0,0,.3)}
-  .hero .tagline{font-weight:700;color:#fff;font-size:clamp(15px,2vw,19px);margin-bottom:18px;background:linear-gradient(90deg,#9fb4ff,#ff9b9b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .hero p.lead{font-size:17.5px;color:rgba(255,255,255,.82);max-width:48ch;margin-bottom:30px}
-  .hero-cta{display:flex;gap:13px;flex-wrap:wrap}
-  .hero-trust{display:flex;gap:22px;flex-wrap:wrap;margin-top:30px}
+  .hero h1{color:#fff;font-size:clamp(34px,5vw,58px);font-weight:900;letter-spacing:-.02em;margin-bottom:8px;text-shadow:0 2px 30px rgba(0,0,0,.3);animation:fadeSlideUp .7s ease .1s both}
+  .hero .tagline{font-weight:700;color:#fff;font-size:clamp(15px,2vw,19px);margin-bottom:18px;background:linear-gradient(90deg,#9fb4ff,#ff9b9b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:fadeSlideUp .7s ease .2s both}
+  .hero p.lead{font-size:17.5px;color:rgba(255,255,255,.82);max-width:48ch;margin-bottom:30px;animation:fadeSlideUp .7s ease .3s both}
+  .hero-cta{display:flex;gap:13px;flex-wrap:wrap;animation:fadeSlideUp .7s ease .4s both}
+  .hero-trust{display:flex;gap:22px;flex-wrap:wrap;margin-top:30px;animation:fadeSlideUp .7s ease .5s both}
   .hero-trust span{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.8);font-size:13.5px;font-weight:500}
   .hero-trust svg{width:18px;height:18px;stroke:#7fe7a8;fill:none;stroke-width:2.5}
   /* brand plate */
-  .plate{background:rgba(255,255,255,.05);-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);border:1px solid rgba(255,255,255,.26);border-radius:28px;padding:46px 40px;box-shadow:0 30px 70px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.24);text-align:center;position:relative;overflow:hidden}
-  .plate img{width:min(260px,58%);margin:0 auto;position:relative}
+  .plate{background:rgba(255,255,255,.05);-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);border:1px solid rgba(255,255,255,.26);border-radius:28px;padding:46px 40px;box-shadow:0 30px 70px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.24);text-align:center;position:relative;overflow:hidden;animation:fadeScaleIn .8s cubic-bezier(.16,1,.3,1) .2s both}
+  .plate img{width:min(260px,58%);margin:0 auto;position:relative;animation:logoGlow 3.2s ease-in-out infinite}
   .plate .brand-word{position:relative;font-size:clamp(28px,4.4vw,40px);font-weight:900;letter-spacing:.09em;color:#fff;margin:6px 0 4px;text-shadow:0 2px 18px rgba(0,0,0,.35)}
   .plate .pt{position:relative;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);margin-top:8px;text-shadow:0 1px 10px rgba(0,0,0,.35)}
 
@@ -352,15 +370,15 @@
   <div class="blob b" style="width:340px;height:340px;top:-80px;left:-100px"></div>
   <div class="blob r" style="width:300px;height:300px;bottom:-90px;right:-90px"></div>
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head reveal">
       <div class="eyebrow" data-i18n="why_eyebrow">Why SUN SMART</div>
       <h2 data-i18n="why_title">A simpler, more honest way to buy a phone</h2>
     </div>
     <div class="grid grid-4">
-      <div class="vcard glass"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3 data-i18n="why1_t">Honest pricing</h3><p data-i18n="why1_d">Fair market prices with clear product conditions — no hidden costs, no pressure selling.</p></div>
-      <div class="vcard glass"><div class="ico"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/></svg></div><h3 data-i18n="why2_t">Checked used phones</h3><p data-i18n="why2_d">Every used phone is inspected and graded, with battery health and condition clearly stated.</p></div>
-      <div class="vcard glass"><div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><h3 data-i18n="why3_t">Flexible payment</h3><p data-i18n="why3_d">Cash, bank transfer, DuitNow QR, credit/debit card, and PayLater / BNPL options.</p></div>
-      <div class="vcard glass"><div class="ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3 data-i18n="why4_t">Online enquiry, store pickup</h3><p data-i18n="why4_d">Browse and ask on WhatsApp, then collect and check your device in person at our store.</p></div>
+      <div class="vcard glass reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3 data-i18n="why1_t">Honest pricing</h3><p data-i18n="why1_d">Fair market prices with clear product conditions — no hidden costs, no pressure selling.</p></div>
+      <div class="vcard glass reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/></svg></div><h3 data-i18n="why2_t">Checked used phones</h3><p data-i18n="why2_d">Every used phone is inspected and graded, with battery health and condition clearly stated.</p></div>
+      <div class="vcard glass reveal"><div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><h3 data-i18n="why3_t">Flexible payment</h3><p data-i18n="why3_d">Cash, bank transfer, DuitNow QR, credit/debit card, and PayLater / BNPL options.</p></div>
+      <div class="vcard glass reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3 data-i18n="why4_t">Online enquiry, store pickup</h3><p data-i18n="why4_d">Browse and ask on WhatsApp, then collect and check your device in person at our store.</p></div>
     </div>
   </div>
 </section>
@@ -368,7 +386,7 @@
 <!-- ===== ABOUT ===== -->
 <section id="about" class="soft">
   <div class="wrap about">
-    <div>
+    <div class="reveal-left">
       <div class="eyebrow" data-i18n="about_eyebrow">About us</div>
       <h2 data-i18n="about_title">公司简介 · About SUN SMART</h2>
       <p class="muted" data-i18n="about_p1">SUN SMART is a mobile phone retailer in the Klang Valley offering new phones, quality-checked used phones, and everyday accessories. We focus on fair prices, clear product conditions, flexible payment and a relaxed, no-pressure buying experience.</p>
@@ -379,7 +397,7 @@
         <li data-i18n="about_l4">Online browsing, WhatsApp ordering, in-store pickup</li>
       </ul>
     </div>
-    <div class="about-card">
+    <div class="about-card reveal-right">
       <img src="assets/logo-white.png" alt="SUN SMART">
       <h3 data-i18n="about_mission_t">Our promise</h3>
       <p data-i18n="about_mission_d">Quality you can check, prices you can trust, and payment that fits your budget — that's the SUN SMART way.</p>
@@ -395,7 +413,7 @@
 <section id="products">
   <div class="blob b" style="width:320px;height:320px;top:40px;right:-110px"></div>
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head reveal">
       <div class="eyebrow" data-i18n="prod_eyebrow">Our products</div>
       <h2 data-i18n="prod_title">New phones · Used phones · Accessories</h2>
       <p data-i18n="prod_sub">Our full catalogue with live prices and stock is on the way. For now, tap WhatsApp for the latest models, prices and availability.</p>
@@ -431,16 +449,16 @@
 <section id="repair" class="soft">
   <div class="blob b" style="width:300px;height:300px;top:-70px;right:-90px"></div>
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head reveal">
       <div class="eyebrow" data-i18n="rep_eyebrow">New service</div>
       <h2 data-i18n="rep_title">Phone Repair</h2>
       <p data-i18n="rep_sub">Professional repair on a booking basis — a full diagnostic and a clear quotation before any work begins.</p>
     </div>
     <div class="steps">
-      <div class="step glass"><h4 data-i18n="rep1_t">1. Book a slot</h4><p data-i18n="rep1_d">Message us on WhatsApp to book your repair.</p></div>
-      <div class="step glass"><h4 data-i18n="rep2_t">2. Drop off your device</h4><p data-i18n="rep2_d">Bring your phone to our shop; we'll advise the turnaround time (TAT) when you drop it off.</p></div>
-      <div class="step glass"><h4 data-i18n="rep3_t">3. 360° check &amp; quotation</h4><p data-i18n="rep3_d">Our professional technician runs a full 360° diagnostic and gives you a clear repair quotation.</p></div>
-      <div class="step glass"><h4 data-i18n="rep4_t">4. Approve, repair &amp; collect</h4><p data-i18n="rep4_d">Repair proceeds only after you approve the quote; then collect and check your device.</p></div>
+      <div class="step glass reveal"><h4 data-i18n="rep1_t">1. Book a slot</h4><p data-i18n="rep1_d">Message us on WhatsApp to book your repair.</p></div>
+      <div class="step glass reveal"><h4 data-i18n="rep2_t">2. Drop off your device</h4><p data-i18n="rep2_d">Bring your phone to our shop; we'll advise the turnaround time (TAT) when you drop it off.</p></div>
+      <div class="step glass reveal"><h4 data-i18n="rep3_t">3. 360° check &amp; quotation</h4><p data-i18n="rep3_d">Our professional technician runs a full 360° diagnostic and gives you a clear repair quotation.</p></div>
+      <div class="step glass reveal"><h4 data-i18n="rep4_t">4. Approve, repair &amp; collect</h4><p data-i18n="rep4_d">Repair proceeds only after you approve the quote; then collect and check your device.</p></div>
     </div>
     <p class="note glass" data-i18n="rep_note">No repair is carried out until you have approved the quotation. The turnaround time (TAT) is confirmed when you drop off your device.</p>
     <div class="center" style="margin-top:28px"><a class="btn btn-wa" data-wa="repair" href="#" data-i18n="rep_cta">Book a repair on WhatsApp</a></div>
@@ -451,17 +469,17 @@
 <section id="payment">
   <div class="blob r" style="width:300px;height:300px;top:-60px;left:-100px"></div>
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head reveal">
       <div class="eyebrow" data-i18n="pay_eyebrow">Payment methods</div>
       <h2 data-i18n="pay_title">付款方式 · Pay the way that suits you</h2>
       <p data-i18n="pay_sub">We accept a wide range of payment options so higher-value phones are easier to afford.</p>
     </div>
     <div class="pay-grid">
-      <div class="pay glass"><div class="pi">💵</div><span data-i18n="pay_cash">Cash</span></div>
-      <div class="pay glass"><div class="pi">🏦</div><span data-i18n="pay_transfer">Bank Transfer</span></div>
-      <div class="pay glass"><div class="pi">DuitNow</div><span data-i18n="pay_qr">DuitNow QR</span></div>
-      <div class="pay glass"><div class="pi">💳</div><span data-i18n="pay_card">Credit / Debit Card</span></div>
-      <div class="pay glass"><div class="pi">PayLater</div><span data-i18n="pay_bnpl">PayLater / BNPL</span></div>
+      <div class="pay glass reveal"><div class="pi">💵</div><span data-i18n="pay_cash">Cash</span></div>
+      <div class="pay glass reveal"><div class="pi">🏦</div><span data-i18n="pay_transfer">Bank Transfer</span></div>
+      <div class="pay glass reveal"><div class="pi">DuitNow</div><span data-i18n="pay_qr">DuitNow QR</span></div>
+      <div class="pay glass reveal"><div class="pi">💳</div><span data-i18n="pay_card">Credit / Debit Card</span></div>
+      <div class="pay glass reveal"><div class="pi">PayLater</div><span data-i18n="pay_bnpl">PayLater / BNPL</span></div>
     </div>
     <p class="note glass" data-i18n="pay_note">Some card and PayLater / BNPL transactions may carry a processing fee, which will always be clearly explained before you pay.</p>
   </div>
@@ -471,16 +489,16 @@
 <section id="pickup" class="soft">
   <div class="blob r" style="width:300px;height:300px;bottom:-80px;left:-90px"></div>
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head reveal">
       <div class="eyebrow" data-i18n="pick_eyebrow">How it works</div>
       <h2 data-i18n="pick_title">到店取货说明 · Online enquiry, in-store pickup</h2>
       <p data-i18n="pick_sub">Simple and safe — you confirm everything on WhatsApp, then collect and check your device at our store.</p>
     </div>
     <div class="steps">
-      <div class="step glass"><h4 data-i18n="pick1_t">1. Browse online</h4><p data-i18n="pick1_d">Find the model you want on our site or social pages.</p></div>
-      <div class="step glass"><h4 data-i18n="pick2_t">2. Confirm on WhatsApp</h4><p data-i18n="pick2_d">Message us to confirm the model, price, condition and stock.</p></div>
-      <div class="step glass"><h4 data-i18n="pick3_t">3. Pay</h4><p data-i18n="pick3_d">Pay by online transfer or in store — deposit or full payment.</p></div>
-      <div class="step glass"><h4 data-i18n="pick4_t">4. Collect &amp; check</h4><p data-i18n="pick4_d">Pick up at our store and inspect your device before you leave.</p></div>
+      <div class="step glass reveal"><h4 data-i18n="pick1_t">1. Browse online</h4><p data-i18n="pick1_d">Find the model you want on our site or social pages.</p></div>
+      <div class="step glass reveal"><h4 data-i18n="pick2_t">2. Confirm on WhatsApp</h4><p data-i18n="pick2_d">Message us to confirm the model, price, condition and stock.</p></div>
+      <div class="step glass reveal"><h4 data-i18n="pick3_t">3. Pay</h4><p data-i18n="pick3_d">Pay by online transfer or in store — deposit or full payment.</p></div>
+      <div class="step glass reveal"><h4 data-i18n="pick4_t">4. Collect &amp; check</h4><p data-i18n="pick4_d">Pick up at our store and inspect your device before you leave.</p></div>
     </div>
     <p class="note glass" data-i18n="pick_note">For now we offer in-store pickup only (no nationwide courier yet), so you can check your phone in person and buy with confidence.</p>
   </div>
@@ -490,12 +508,12 @@
 <section id="contact">
   <div class="blob b" style="width:320px;height:320px;bottom:-90px;right:-100px"></div>
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head reveal">
       <div class="eyebrow" data-i18n="con_eyebrow">Visit &amp; contact</div>
       <h2 data-i18n="con_title">店铺地址 · 联系方式 · Find us</h2>
     </div>
     <div class="contact">
-      <div class="info-card glass">
+      <div class="info-card glass reveal">
         <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><b data-i18n="con_addr_t">Store address</b><span class="ph" data-i18n="con_addr_v">[Store address — to be confirmed after the shop location is finalised]</span></div></div>
         <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><b data-i18n="con_hours_t">Opening hours</b><span class="ph" data-i18n="con_hours_v">[Daily 10:00am – 10:00pm — to be confirmed]</span></div></div>
         <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div><div><b data-i18n="con_phone_t">Phone / WhatsApp</b><span class="ph" data-i18n="con_phone_v">[+60 1X-XXX XXXX — to be confirmed]</span></div></div>
@@ -504,7 +522,7 @@
           <div class="socials"><a href="#">FB</a><a href="#">IG</a><a href="#">TT</a><a data-wa href="#">WA</a><a href="#">G</a></div></div>
         <div style="margin-top:24px"><a class="btn btn-wa" data-wa href="#" data-i18n="con_cta">Chat with us on WhatsApp</a></div>
       </div>
-      <div class="map">
+      <div class="map reveal">
         <div class="mapinner"><b data-i18n="map_t">📍 Google Maps</b><p class="muted" style="margin:8px 0 0;font-size:13.5px" data-i18n="map_d">The map will appear here once the store location is confirmed. (Embed your Google Maps location in place of this box.)</p></div>
       </div>
     </div>
@@ -514,18 +532,18 @@
 <!-- ===== LEGAL ===== -->
 <section id="legal" class="soft">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head reveal">
       <div class="eyebrow" data-i18n="leg_eyebrow">Policies</div>
       <h2 data-i18n="leg_title">售后条款 · 退换货政策 · 隐私政策</h2>
     </div>
     <div class="legal-grid">
-      <details class="legal glass" id="aftersales"><summary><span data-i18n="leg_after_t">After-Sales &amp; Warranty</span></summary><div class="lc">
+      <details class="legal glass reveal" id="aftersales"><summary><span data-i18n="leg_after_t">After-Sales &amp; Warranty</span></summary><div class="lc">
         <p data-i18n="leg_after_1"></p><p data-i18n="leg_after_2"></p><p data-i18n="leg_after_3"></p>
         <p class="muted"><span class="draft-tag" data-i18n="leg_draft">DRAFT</span><span data-i18n="leg_after_4">Final warranty terms are being confirmed with our suppliers.</span></p></div></details>
-      <details class="legal glass" id="returns"><summary><span data-i18n="leg_ret_t">Returns &amp; Exchange</span></summary><div class="lc">
+      <details class="legal glass reveal" id="returns"><summary><span data-i18n="leg_ret_t">Returns &amp; Exchange</span></summary><div class="lc">
         <p data-i18n="leg_ret_1"></p><p data-i18n="leg_ret_2"></p><p data-i18n="leg_ret_3"></p>
         <p class="muted"><span class="draft-tag" data-i18n="leg_draft">DRAFT</span><span data-i18n="leg_ret_4">Exact return windows and conditions are being finalised.</span></p></div></details>
-      <details class="legal glass" id="privacy"><summary><span data-i18n="leg_priv_t">Privacy Policy</span></summary><div class="lc">
+      <details class="legal glass reveal" id="privacy"><summary><span data-i18n="leg_priv_t">Privacy Policy</span></summary><div class="lc">
         <p data-i18n="leg_priv_1"></p><p data-i18n="leg_priv_2"></p><p data-i18n="leg_priv_3"></p>
         <p class="muted"><span class="draft-tag" data-i18n="leg_draft">DRAFT</span><span data-i18n="leg_priv_4">Please have this policy reviewed before launch.</span></p></div></details>
     </div>
@@ -815,6 +833,16 @@ const burger=document.getElementById("burger"),links=document.getElementById("li
 burger.addEventListener("click",()=>links.classList.toggle("open"));
 links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>links.classList.remove("open")));
 window.addEventListener("hashchange",()=>{const el=document.getElementById(location.hash.replace("#",""));if(el&&el.tagName==="DETAILS")el.open=true;});
+
+/* ---- scroll-reveal ---- */
+if ("IntersectionObserver" in window) {
+  const revealIO = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add("in"); revealIO.unobserve(entry.target); } });
+  }, { threshold:0.12, rootMargin:"0px 0px -6% 0px" });
+  document.querySelectorAll(".reveal,.reveal-left,.reveal-right").forEach(el=>revealIO.observe(el));
+} else {
+  document.querySelectorAll(".reveal,.reveal-left,.reveal-right").forEach(el=>el.classList.add("in"));
+}
 /* ================= AI ASSISTANT (rule-based, on-site knowledge only) ================= */
 /* Reads its answers live from the page's own translated content (via data-i18n text),
    so it always matches whatever is actually published -- update the site copy once,
