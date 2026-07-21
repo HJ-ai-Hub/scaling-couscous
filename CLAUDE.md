@@ -16,6 +16,19 @@ Read `about-me/profile.md` at the start of every session — it contains context
 `templates/amana-pharma/` contains reference material for Amana Pharma Sdn Bhd (pharmaceutical distributor/wholesaler):
 - `amana-pharma-session-compendium.html` — full session knowledge base covering company profile, ePharma strategy, HeyDoc competitor analysis, NPP market research, competitive landscape (15 players), 26 target institutions, 3 new business lines (IMP supply, PSP management, market access consultancy), 36-month roadmap, and key data index
 
+## GajiPay website
+
+`website/` is a separate Next.js 15 app: the marketing site for GajiPay Sdn Bhd (Malaysian payroll/EWA platform — see `templates/gajipay/GajiPay_Business_Strategy.md` for the underlying business strategy this site implements). It has its own `README.md`, `CLAUDE.md`/`AGENTS.md`, and dependency tree — treat it as an independent project rooted at `website/`, not part of the Python market-brief tool below.
+
+```bash
+cd website
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build + type-check + lint
+```
+
+See `website/README.md` for structure, content notes (placeholder testimonials/pricing/legal that need real data before launch), and brand asset locations.
+
 ## What this project does
 
 A single-script Python tool that generates a daily financial/AI market brief using Claude with live web search, then emails it as formatted HTML via Gmail SMTP. Designed to be run once a day via cron or Task Scheduler.

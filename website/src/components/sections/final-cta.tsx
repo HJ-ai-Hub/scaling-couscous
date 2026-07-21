@@ -1,0 +1,42 @@
+import Link from "next/link";
+
+import { SectionReveal } from "@/components/layout/section-reveal";
+import { Button } from "@/components/ui/button";
+import { LogoMark } from "@/components/brand/logo-mark";
+
+export function FinalCta() {
+  return (
+    <section className="px-4 py-20 sm:px-6 lg:py-28">
+      <SectionReveal className="container-page">
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-ink px-8 py-16 text-center sm:px-16 sm:py-20">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(161,254,239,0.22),transparent_70%)]"
+          />
+          <div className="relative">
+            <LogoMark className="mx-auto h-14 w-14" monochrome="light" />
+            <h2 className="mx-auto mt-8 max-w-2xl text-balance font-brand text-3xl font-bold text-white sm:text-4xl">
+              Give your team payroll, HR and financial wellness that actually works together
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-balance text-lg text-white/70">
+              Book a walkthrough with our team, or get started with a compliance-first bundle today.
+            </p>
+            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Button asChild size="lg" variant="accent">
+                <Link href="/book-demo">Book Demo</Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="secondary"
+                className="border-white/20 bg-white/10 text-white hover:border-white/40 hover:bg-white/15"
+              >
+                <Link href="/contact">Get Started</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </SectionReveal>
+    </section>
+  );
+}
