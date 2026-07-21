@@ -1,0 +1,884 @@
+<title>GajiPay Sdn Bhd — Business Strategy</title>
+<style>
+  :root {
+    --navy-950: #10182c;
+    --navy-900: #1a2440;
+    --navy-800: #253358;
+    --navy-700: #33437a;
+    --gold-600: #a3803f;
+    --gold-500: #b8935a;
+    --gold-300: #d9bd8c;
+    --paper: #faf7f1;
+    --paper-raised: #ffffff;
+    --ink: #1c1a16;
+    --ink-soft: #504b42;
+    --ink-faint: #857f72;
+    --line: #e4ddce;
+    --line-soft: #eee8db;
+    --stripe: #f3efe4;
+    --good-bg: #eef3ea;
+    --good-ink: #3c5a34;
+    --warn-bg: #f7ecdf;
+    --warn-ink: #7a501f;
+    --accent: var(--gold-600);
+    --shadow: 0 1px 2px rgba(28,26,22,0.06), 0 8px 24px -12px rgba(28,26,22,0.18);
+    --serif: Iowan Old Style, "Palatino Linotype", Palatino, Georgia, "Noto Serif", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  :root[data-theme="dark"] {
+    --navy-950: #050810;
+    --navy-900: #0b1120;
+    --navy-800: #131c33;
+    --navy-700: #1c2947;
+    --gold-600: #d3ab6b;
+    --gold-500: #e0bd85;
+    --gold-300: #f0dcb4;
+    --paper: #10131a;
+    --paper-raised: #161b26;
+    --ink: #ece7db;
+    --ink-soft: #b7b0a0;
+    --ink-faint: #837c6c;
+    --line: #2a2c30;
+    --line-soft: #20222a;
+    --stripe: #171c26;
+    --good-bg: #1c2a1c;
+    --good-ink: #a9cf9c;
+    --warn-bg: #2c2416;
+    --warn-ink: #e2b985;
+    --accent: var(--gold-500);
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.6);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --navy-950: #050810;
+      --navy-900: #0b1120;
+      --navy-800: #131c33;
+      --navy-700: #1c2947;
+      --gold-600: #d3ab6b;
+      --gold-500: #e0bd85;
+      --gold-300: #f0dcb4;
+      --paper: #10131a;
+      --paper-raised: #161b26;
+      --ink: #ece7db;
+      --ink-soft: #b7b0a0;
+      --ink-faint: #837c6c;
+      --line: #2a2c30;
+      --line-soft: #20222a;
+      --stripe: #171c26;
+      --good-bg: #1c2a1c;
+      --good-ink: #a9cf9c;
+      --warn-bg: #2c2416;
+      --warn-ink: #e2b985;
+      --accent: var(--gold-500);
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.6);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell {
+    display: grid;
+    grid-template-columns: 272px minmax(0, 1fr);
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 28px 20px 40px 28px;
+    border-right: 1px solid var(--line);
+    scrollbar-width: thin;
+  }
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand .mark {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--navy-900);
+    letter-spacing: 0.01em;
+  }
+  :root[data-theme="dark"] .brand .mark,
+  @media (prefers-color-scheme: dark) { .brand .mark { color: var(--gold-300); } }
+  .brand .sub {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .toc {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .toc a {
+    display: block;
+    padding: 6px 10px;
+    border-radius: 5px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.84rem;
+    line-height: 1.35;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .toc a:hover { background: var(--stripe); color: var(--ink); }
+  .toc a.active {
+    background: var(--stripe);
+    color: var(--navy-900);
+    font-weight: 600;
+    box-shadow: inset 2px 0 0 var(--accent);
+  }
+  :root[data-theme="dark"] .toc a.active { color: var(--gold-300); }
+  @media (prefers-color-scheme: dark) { .toc a.active { color: var(--gold-300); } }
+  .toc-status {
+    margin-top: 20px;
+    padding: 12px 12px;
+    border-radius: 8px;
+    background: var(--stripe);
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .toc-status b { color: var(--ink); }
+
+  /* ---------- Main ---------- */
+  main { min-width: 0; padding: 0 0 80px; }
+
+  .cover {
+    padding: 76px 64px 46px;
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(1100px 380px at 15% -10%, color-mix(in srgb, var(--navy-900) 8%, transparent), transparent);
+  }
+  .eyebrow {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 14px;
+  }
+  .cover h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(2.1rem, 3.6vw, 3rem);
+    line-height: 1.12;
+    margin: 0 0 14px;
+    color: var(--navy-900);
+    text-wrap: balance;
+    max-width: 16ch;
+  }
+  :root[data-theme="dark"] .cover h1 { color: var(--gold-300); }
+  @media (prefers-color-scheme: dark) { .cover h1 { color: var(--gold-300); } }
+  .cover .dek {
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    margin: 0 0 26px;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--stripe);
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+  }
+  .pill.status { background: var(--warn-bg); color: var(--warn-ink); border-color: transparent; }
+  .pill.status::before { content: "●"; font-size: 0.6em; }
+
+  section.block { padding: 46px 64px; border-bottom: 1px solid var(--line-soft); }
+  section.block:last-of-type { border-bottom: none; }
+
+  .kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    margin: 0 0 6px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.7rem;
+    color: var(--navy-900);
+    margin: 0 0 18px;
+    text-wrap: balance;
+    scroll-margin-top: 20px;
+  }
+  :root[data-theme="dark"] h2 { color: var(--gold-300); }
+  @media (prefers-color-scheme: dark) { h2 { color: var(--gold-300); } }
+  h3 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.18rem;
+    color: var(--navy-800);
+    margin: 30px 0 12px;
+  }
+  :root[data-theme="dark"] h3 { color: var(--gold-500); }
+  @media (prefers-color-scheme: dark) { h3 { color: var(--gold-500); } }
+  h4 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--ink);
+    margin: 22px 0 8px;
+  }
+
+  .prose { max-width: 68ch; }
+  .prose p { margin: 0 0 14px; color: var(--ink-soft); }
+  .prose p b, .prose li b { color: var(--ink); }
+  .prose ul, .prose ol { margin: 0 0 14px; padding-left: 22px; color: var(--ink-soft); }
+  .prose li { margin-bottom: 7px; }
+  .prose li li { margin-top: 7px; }
+
+  .callout {
+    max-width: 68ch;
+    margin: 20px 0;
+    padding: 16px 20px;
+    border-radius: 10px;
+    background: var(--navy-900);
+    color: #f3efe4;
+    box-shadow: var(--shadow);
+  }
+  .callout p { color: #d9d2c0; margin: 0; }
+  .callout p + p { margin-top: 8px; }
+  .callout b { color: #fff; }
+  .callout .label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold-300);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 24px;
+    font-size: 0.88rem;
+  }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+  .table-wrap table { margin: 0; }
+  thead th {
+    background: var(--navy-900);
+    color: #f3efe4;
+    text-align: left;
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 11px 14px;
+    border-top: 1px solid var(--line-soft);
+    color: var(--ink-soft);
+    vertical-align: top;
+  }
+  tbody td:first-child { color: var(--ink); font-weight: 600; }
+  tbody tr:nth-child(even) { background: var(--stripe); }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 16px;
+    max-width: 900px;
+  }
+  @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+    background: var(--paper-raised);
+  }
+  .card h4 { margin-top: 0; }
+  .card.strength { border-top: 3px solid #5c8a4e; }
+  .card.weakness { border-top: 3px solid #b3543f; }
+  .card.opportunity { border-top: 3px solid var(--gold-500); }
+  .card.threat { border-top: 3px solid #7a5c99; }
+  .card ul { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 0.92rem; }
+  .card li { margin-bottom: 6px; }
+
+  .flywheel {
+    max-width: 640px;
+    margin: 8px 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .flywheel .step {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 10px 0;
+  }
+  .flywheel .n {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--accent);
+    font-weight: 700;
+    width: 20px;
+    flex-shrink: 0;
+  }
+  .flywheel .t { color: var(--ink); font-size: 0.95rem; }
+  .flywheel .t span { color: var(--ink-faint); font-size: 0.85rem; display: block; }
+  .flywheel .step:not(:last-child) {
+    border-left: 1px dashed var(--line);
+    margin-left: 9px;
+    padding-left: 21px;
+  }
+
+  .roadmap { display: flex; flex-direction: column; gap: 14px; max-width: 760px; }
+  .phase {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 20px;
+    background: var(--paper-raised);
+  }
+  .phase .phase-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .phase .phase-head h4 { margin: 0; font-size: 1rem; color: var(--navy-900); }
+  :root[data-theme="dark"] .phase .phase-head h4 { color: var(--gold-300); }
+  @media (prefers-color-scheme: dark) { .phase .phase-head h4 { color: var(--gold-300); } }
+  .phase .when {
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    white-space: nowrap;
+  }
+  .phase ul { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 0.92rem; }
+  .phase li { margin-bottom: 5px; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 12px; max-width: 900px; margin: 8px 0 20px; }
+  .kpi-card { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; background: var(--paper-raised); }
+  .kpi-card .kh { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+  .kpi-card p { margin: 0; font-size: 0.86rem; color: var(--ink-soft); }
+
+  .sources { max-width: 68ch; }
+  .sources ol { padding-left: 20px; margin: 0; }
+  .sources li { font-size: 0.84rem; color: var(--ink-faint); margin-bottom: 6px; }
+  .sources a { color: var(--ink-soft); }
+
+  footer.doc-footer {
+    padding: 36px 64px 60px;
+    color: var(--ink-faint);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 900px) {
+    .shell { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); }
+    section.block, .cover, footer.doc-footer { padding-left: 26px; padding-right: 26px; }
+  }
+</style>
+
+<div class="shell">
+  <nav class="sidebar" aria-label="Table of contents">
+    <div class="brand">
+      <span class="mark">GajiPay</span>
+      <span class="sub">Business Strategy</span>
+    </div>
+    <ul class="toc" id="toc">
+      <li><a href="#exec">1. Executive Summary</a></li>
+      <li><a href="#company">2. Company Overview</a></li>
+      <li><a href="#market">3. Market Analysis</a></li>
+      <li><a href="#competitive">4. Competitive Landscape</a></li>
+      <li><a href="#swot">5. SWOT</a></li>
+      <li><a href="#segments">6. Target Segments</a></li>
+      <li><a href="#services">7. Service Line Strategy</a></li>
+      <li><a href="#regulatory">8. Regulatory &amp; Compliance</a></li>
+      <li><a href="#gtm">9. Go-to-Market</a></li>
+      <li><a href="#marketing">10. Marketing &amp; Brand</a></li>
+      <li><a href="#ops">11. Operations &amp; Technology</a></li>
+      <li><a href="#risk">12. Risk Analysis</a></li>
+      <li><a href="#roadmap">13. Phased Roadmap</a></li>
+      <li><a href="#kpi">14. Success Metrics</a></li>
+      <li><a href="#conclusion">15. Conclusion &amp; Next Steps</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ul>
+    <div class="toc-status">
+      <b>Task 1 of 3.</b> Website and brand identity are on hold pending sign-off of this strategy.
+    </div>
+  </nav>
+
+  <main>
+    <div class="cover">
+      <p class="eyebrow">Strictly Private &amp; Confidential — Prepared July 2026</p>
+      <h1>Business Strategy &amp; Corporate Proposal</h1>
+      <p class="dek">GajiPay Sdn Bhd — an integrated Earned Wage Access, HR, and corporate compliance platform for the Malaysia SME market.</p>
+      <div class="meta-row">
+        <span class="pill">Advance Pay (EWA)</span>
+        <span class="pill">HR Portal</span>
+        <span class="pill">Payroll Services</span>
+        <span class="pill">Company Secretary</span>
+        <span class="pill">Audit &amp; Accounting Referral</span>
+        <span class="pill status">No moneylending license required</span>
+      </div>
+    </div>
+
+    <section class="block" id="exec">
+      <p class="kicker">§ 01</p>
+      <h2>Executive Summary</h2>
+      <div class="prose">
+        <p>GajiPay Sdn Bhd is positioned to become Malaysia's leading <b>integrated employee financial wellness and HR compliance platform</b>, built around a flagship <b>Earned Wage Access (EWA) "Advance Pay"</b> product and cross-sold through four supporting service lines: HR Portal, Payroll Services, Company Secretary Services, and an Audit &amp; Accounting referral channel.</p>
+        <p>Malaysia's 1.2+ million MSMEs — 97% of all business establishments, 48% of national employment, 39.5% of GDP — are structurally underserved: enterprise-grade HR suites like Employment Hero price them out or over-serve them, pure-play EWA fintechs (Paywatch, Payd, HariGaji) sell a single point-solution with no compliance stack behind it, and traditional company secretary, payroll, and audit firms remain paper-based, disconnected, and reactive.</p>
+        <p>GajiPay's strategy is to <b>win the compliance relationship first, then unlock the fintech relationship</b>. Every company in Malaysia must have a company secretary and run statutory payroll (EPF/SOCSO/EIS/PCB) — mandatory, sticky, recurring, and the wedge. Once GajiPay operates the payroll data pipe, it can safely and accurately calculate real-time earned-wage balances, the hardest technical and compliance problem in EWA — a data advantage competitors without a payroll book cannot easily replicate.</p>
+      </div>
+      <div class="callout">
+        <span class="label">Load-bearing legal structure</span>
+        <p>GajiPay will <b>not</b> hold a moneylending license and does not intend to obtain one. Advance Pay is structured within the <b>Moneylenders Act 1951</b> exemption for employer-facilitated financial assistance to employees, combined with strict adherence to <b>Sections 22 and 27 of the Employment Act 1955</b> (advances capped at wages already earned; no interest charged) — the same structure used successfully by HariGaji/altHR and Paywatch, and reinforced by the AmBank–Ramssol "Pay Day Now" precedent.</p>
+      </div>
+      <div class="prose">
+        <p>This document sets out the market analysis, competitive landscape, differentiated positioning, prioritized service-line strategy, go-to-market plan, regulatory strategy, operating model, risks, and phased roadmap. Financial projections (P&amp;L, cash flow, break-even, IRR) are intentionally scoped out and will follow as a separate financial model once this strategy is approved.</p>
+      </div>
+    </section>
+
+    <section class="block" id="company">
+      <p class="kicker">§ 02</p>
+      <h2>Company Overview</h2>
+      <div class="prose">
+        <p><b>Company:</b> GajiPay Sdn Bhd &nbsp;·&nbsp; <b>Tagline (working):</b> "From payslip to progress."</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:6%">#</th><th style="width:28%">Service</th><th>Role in the business</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Advance Pay (EWA)</td><td>Flagship growth product; primary brand driver; embedded in HR Portal</td></tr>
+            <tr><td>2</td><td>HR Portal</td><td>Acquisition and retention wedge; system of record that powers EWA eligibility</td></tr>
+            <tr><td>3</td><td>Payroll Services</td><td>Recurring statutory revenue; the data engine EWA depends on</td></tr>
+            <tr><td>4</td><td>Company Secretary</td><td>Mandatory, high-retention, low-cost-to-serve compliance revenue and lead source</td></tr>
+            <tr><td>5</td><td>Audit &amp; Accounting (referral)</td><td>Zero-license, margin-accretive referral revenue; deepens the trusted back-office relationship</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="prose">
+        <p><b>Mission:</b> Give every Malaysian employee real-time visibility and fair access to wages they have already earned, while giving every Malaysian employer a single, compliant back office for HR, payroll, and statutory obligations.</p>
+        <p><b>Vision:</b> Become the default back-office and financial wellness layer for Malaysian SMEs — the "operating system" between employer and employee.</p>
+      </div>
+    </section>
+
+    <section class="block" id="market">
+      <p class="kicker">§ 03</p>
+      <h2>Market Analysis</h2>
+      <h3>3.1 Malaysia macro context</h3>
+      <div class="prose">
+        <ul>
+          <li>MSMEs account for <b>~97%</b> of all business establishments, <b>~48%</b> of total employment, and contributed <b>RM652.4 billion (39.5% of GDP)</b> in 2024 — growing faster than the overall economy (5.8% vs. 5.1% national GDP growth).</li>
+          <li>This is GajiPay's addressable base: a huge, fragmented population of employers legally obligated to run payroll and retain a company secretary, but largely unable to afford — or uninterested in — enterprise HR software.</li>
+          <li>Malaysia's workforce skews heavily toward hourly, shift, and lower-to-middle income employees (retail, F&amp;B, manufacturing, logistics, security, construction, healthcare support) — the primary beneficiaries of EWA and the most turnover-sensitive to cash-flow stress.</li>
+        </ul>
+      </div>
+      <h3>3.2 Earned Wage Access market</h3>
+      <div class="prose">
+        <ul>
+          <li>The global EWA market is projected to grow from roughly <b>USD 8.8B (2026) to USD 52B by 2034</b>; Southeast Asia is one of the fastest-growing regions, evidenced by Kredivo Group's acquisition of Indonesia's GajiGesa (350,000+ employees on platform) in February 2025.</li>
+          <li>Malaysia already has multiple live EWA players — Paywatch, Payd, HariGaji, and the newly launched bank-backed Pay Day Now — which validates demand and regulatory feasibility, but the market is still early and fragmented: no single player has become the default, and none bundles EWA with a full statutory compliance stack.</li>
+          <li>Employer-sponsored EWA (integrated with payroll, at no or low cost to the employer) is the dominant and fastest-growing global model, reinforcing GajiPay's payroll-led approach over a standalone consumer app.</li>
+        </ul>
+      </div>
+      <h3>3.3 Regulatory environment <span style="font-weight:400;color:var(--ink-faint);font-size:0.8em;">— summary, full treatment in §8</span></h3>
+      <div class="prose">
+        <ul>
+          <li><b>Employment Act 1955, s.22(1):</b> an employer may not advance wages beyond what has already been earned — the legal ceiling on Advance Pay balances.</li>
+          <li><b>Employment Act 1955, s.27:</b> employers are prohibited from charging interest on salary advances — GajiPay's revenue must be a flat processing/service fee.</li>
+          <li><b>Moneylenders Act 1951:</b> employer-to-own-employee financial assistance, non-profit or reasonable-fee, is excluded from moneylending licensing — the load-bearing structure for Advance Pay.</li>
+          <li><b>PDPA 2010:</b> GajiPay will process sensitive payroll, salary, and banking data at scale, requiring a robust data protection and consent framework from day one.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block" id="competitive">
+      <p class="kicker">§ 04</p>
+      <h2>Competitive Landscape</h2>
+      <h3>4.1 Direct EWA competitors</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Player</th><th>Model</th><th>Fee</th><th>Backing / Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Paywatch</td><td>Leading SEA EWA by volume; app-based, employer API integration; withdraw up to 50% of earned wages</td><td>Flat RM2/txn</td><td>RM141M Series A raised; expanding MY, PH, ID, KR</td></tr>
+            <tr><td>Payd</td><td>Shariah-compliant EWA; on-demand access</td><td>Not fully disclosed</td><td>US$400K seed extension (2025); 100,000+ employees; expanding to Thailand</td></tr>
+            <tr><td>HariGaji (altHR / Digi)</td><td>Bundled free into Digi's altHR HR super-app; up to 50% of earned wages</td><td>RM15 first withdrawal/mo, free after</td><td>First mover in Malaysia (2020); Digi telco distribution</td></tr>
+            <tr><td>Pay Day Now (AmBank × Ramssol)</td><td>Bank-backed, integrated into Ramssol payroll; up to 25% of earned wages weekly</td><td>RM2–5/withdrawal</td><td>Launched 2026; strong AmBank trust signal; SME to public sector</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="prose">
+        <p><b>Read-through:</b> every credible player has converged on the same legal/fee structure GajiPay must use (flat fee, no interest, capped % of earned wages), and the market leaders increasingly have a distribution advantage from an adjacent core business — Digi's HR platform, Ramssol's payroll base, AmBank's banking relationships. GajiPay's adjacent core business is its own payroll and company secretary book: a comparable, and for the SME segment arguably stronger, distribution advantage.</p>
+      </div>
+
+      <h3>4.2 HR / Payroll software competitors</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Player</th><th>Positioning</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>Employment Hero</td><td>Enterprise-grade HR/payroll/benefits suite, AU-origin, MY presence</td><td>From ~A$10/employee/mo, 10-user minimum — often too expensive/complex for micro-SMEs; no EWA or CoSec</td></tr>
+            <tr><td>Swingvy</td><td>Design-forward HRMS for SMEs</td><td>Strong UX, no compliance bundle</td></tr>
+            <tr><td>Talenox</td><td>Cloud HRIS, MY payroll compliance</td><td>Payroll-only focus</td></tr>
+            <tr><td>HR2eazy, BrioHR, SQL Payroll, Kakitangan</td><td>Various SME-focused HR/payroll tools</td><td>Fragmented, feature-competitive, none bundle EWA + CoSec + audit referral</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="prose"><p>The HR software market is commoditizing on payroll compliance alone. None of these players combine mandatory compliance (company secretary, audit) with financial wellness (EWA) — this white space is GajiPay's core differentiation.</p></div>
+
+      <h3>4.3 Company secretary / compliance competitors</h3>
+      <div class="prose">
+        <ul>
+          <li>Every Malaysian company must appoint an SSM-authorized company secretary within 30 days of incorporation (Companies Act 2016, s.235). Market retainer rates run RM60–150/month, with RM200–500 for annual return filings.</li>
+          <li>Digital company secretary platforms are digitizing incorporation, e-signature board resolutions, and compliance calendars, increasingly competing on flat, transparent pricing versus traditional firms.</li>
+          <li>None currently bundle payroll, HR, or EWA — the second half of GajiPay's white space.</li>
+        </ul>
+      </div>
+
+      <h3>4.4 Positioning summary</h3>
+      <div class="prose"><p>GajiPay is not trying to out-build Employment Hero's enterprise suite, nor out-fund Paywatch's regional EWA scale. GajiPay's wedge is being the <b>only platform that bundles the mandatory compliance stack (Company Secretary + Payroll) with the financial wellness stack (EWA)</b> for the Malaysian SME segment, with Audit &amp; Accounting referral as a natural, low-effort extension once trust is established.</p></div>
+    </section>
+
+    <section class="block" id="swot">
+      <p class="kicker">§ 05</p>
+      <h2>SWOT</h2>
+      <div class="grid-2">
+        <div class="card strength">
+          <h4>Strengths</h4>
+          <ul>
+            <li>Green-field brand, no legacy tech debt — payroll-EWA data pipeline designed correctly from day one</li>
+            <li>Bundled model creates stickier, higher-LTV customers than any single-service competitor</li>
+            <li>No moneylending license required — lower regulatory capital burden than a lending-licensed fintech</li>
+          </ul>
+        </div>
+        <div class="card weakness">
+          <h4>Weaknesses</h4>
+          <ul>
+            <li>New entrant, no brand trust, track record, or existing book of business</li>
+            <li>No banking/EMI license — reliant on a partner institution for fund flow and disbursement</li>
+            <li>Thin working-capital base versus bank-backed (AmBank) or well-funded (Paywatch: RM141M raised) rivals</li>
+          </ul>
+        </div>
+        <div class="card opportunity">
+          <h4>Opportunities</h4>
+          <ul>
+            <li>97% of Malaysian businesses are MSMEs; digital CoSec/payroll remains fragmented, no dominant one-stop player</li>
+            <li>Cross-sell flywheel: CoSec/Payroll → HR Portal → EWA → Audit referral, each layer raising switching cost</li>
+            <li>Partnership potential mirroring the Digi–altHR–HariGaji and AmBank–Ramssol precedents</li>
+          </ul>
+        </div>
+        <div class="card threat">
+          <h4>Threats</h4>
+          <ul>
+            <li>Incumbent EWA players have first-mover distribution advantages through telco/bank partners</li>
+            <li>A bank-backed entrant (Pay Day Now) can undercut on trust and capital cost</li>
+            <li>Regulatory tightening could raise compliance costs — engage proactively, not reactively</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="segments">
+      <p class="kicker">§ 06</p>
+      <h2>Target Segments</h2>
+      <h3>Primary (Phase 1)</h3>
+      <div class="prose">
+        <p>Malaysian SMEs with 20–500 employees in sectors with high proportions of hourly/shift, lower-to-middle income staff and elevated turnover sensitivity:</p>
+        <ul>
+          <li>Food &amp; beverage / retail chains</li>
+          <li>Manufacturing (factory floor staff)</li>
+          <li>Logistics, warehousing, last-mile delivery</li>
+          <li>Security services</li>
+          <li>Construction and facilities management</li>
+          <li>Healthcare support / eldercare staffing agencies</li>
+        </ul>
+      </div>
+      <h3>Secondary (Phase 2)</h3>
+      <div class="prose">
+        <p>Micro-enterprises (&lt;20 employees) via a lightweight, self-serve HR Portal + CoSec bundle, and larger corporates (500+ employees) via direct sales once GajiPay has reference customers and a proven compliance track record.</p>
+        <p><b>Why this segmentation:</b> these sectors combine statutory payroll complexity that creates CoSec/payroll pull, with a workforce demographic with demonstrated appetite for EWA — maximizing the odds that a compliance customer converts into an EWA customer.</p>
+      </div>
+    </section>
+
+    <section class="block" id="services">
+      <p class="kicker">§ 07</p>
+      <h2>Service Line Strategy</h2>
+
+      <h3>7.1 Advance Pay (EWA) — the flagship</h3>
+      <div class="prose">
+        <ul>
+          <li><b>Mechanic:</b> employees access a portion of already-earned wages after the 15th of each month, capped at a conservative percentage of wages earned to date — recommend starting at <b>30–40%</b>, below Paywatch/HariGaji's 50% ceiling and above Pay Day Now's 25%.</li>
+          <li><b>Revenue:</b> flat processing fee per withdrawal (benchmark RM2–5), paid by the employee or subsidized by the employer as a benefit — offer both models.</li>
+          <li><b>Dependency:</b> requires accurate, real-time attendance/earned-wage data — built on GajiPay's own Payroll/HR data, not sold standalone in Phase 1.</li>
+          <li><b>Legal structure:</b> GajiPay is the technology/servicing provider enabling the employer to advance already-earned wages, within the Moneylenders Act 1951 exemption. Disbursement runs through a partner bank/EMI, not GajiPay's balance sheet.</li>
+        </ul>
+      </div>
+
+      <h3>7.2 HR Portal — the acquisition and data wedge</h3>
+      <div class="prose"><p>Free-to-low-cost entry point (echoing altHR's bundling logic): leave/attendance management, employee self-service, org chart, basic performance tools. Not built to compete feature-for-feature with Employment Hero/Swingvy on day one — it exists to win the employer relationship cheaply, generate the data Advance Pay needs, and build the login habit that makes Advance Pay a one-tap experience.</p></div>
+
+      <h3>7.3 Payroll Services — the compliance and data engine</h3>
+      <div class="prose"><p>Full statutory payroll processing (EPF, SOCSO, EIS, PCB/MTD, EA forms), priced per-employee/month, competitive with Talenox/HR2eazy/SQL Payroll benchmarks. Once GajiPay runs payroll, switching cost rises sharply across every other service line, and GajiPay holds clean first-party earned-wage data that pure-play EWA competitors must obtain via often-imperfect third-party integrations.</p></div>
+
+      <h3>7.4 Company Secretary Services — the mandatory wedge</h3>
+      <div class="prose"><p>Every Sdn Bhd needs one — a compliance necessity, not a discretionary purchase, making it an efficient, low-CAC lead-generation and retention product. Bundle CoSec + incorporation + annual return filing at competitive flat-fee pricing (RM60–150/month retainer, RM500–1,500 incorporation, RM200–500 annual return) with a modern, digital-first client experience. CoSec is often the <i>first</i> vendor relationship a new Sdn Bhd forms — winning it early positions GajiPay to cross-sell Payroll, HR Portal, and eventually Advance Pay.</p></div>
+
+      <h3>7.5 Audit &amp; Accounting — referral revenue</h3>
+      <div class="prose"><p>GajiPay does not hold audit/accounting licenses and will not build this in-house; formal referral partnerships with licensed audit firms and chartered accountants earn referral/commission fees. This closes the "trusted back-office partner" loop at zero regulatory risk and near-zero delivery cost, and keeps GajiPay engaged with clients at audit season.</p></div>
+
+      <h3>7.6 Cross-sell flywheel</h3>
+      <div class="flywheel">
+        <div class="step"><span class="n">01</span><span class="t">New Sdn Bhd incorporated</span></div>
+        <div class="step"><span class="n">02</span><span class="t">Company Secretary Services <span>Mandatory, low CAC</span></span></div>
+        <div class="step"><span class="n">03</span><span class="t">Payroll Services <span>As the company hires staff</span></span></div>
+        <div class="step"><span class="n">04</span><span class="t">HR Portal <span>Bundled/low-cost, drives engagement + data</span></span></div>
+        <div class="step"><span class="n">05</span><span class="t">Advance Pay (EWA) <span>Flagship — highest engagement + revenue per user</span></span></div>
+        <div class="step"><span class="n">06</span><span class="t">Audit &amp; Accounting referral <span>Annual, margin-accretive, zero license risk</span></span></div>
+      </div>
+      <div class="prose"><p>Each stage raises switching cost and lifetime value; Advance Pay is the emotional, high-frequency touchpoint that keeps employees — not just the HR/finance decision-maker — engaged with the GajiPay brand daily.</p></div>
+    </section>
+
+    <section class="block" id="regulatory">
+      <p class="kicker">§ 08</p>
+      <h2>Regulatory &amp; Compliance Strategy</h2>
+      <div class="prose">
+        <ul>
+          <li>Commission a formal legal opinion before public launch confirming Advance Pay's structuring under the Moneylenders Act 1951 exemption and Employment Act 1955 ss.22/27 — specifically GajiPay's role as technology/servicing provider versus the employer as the party extending the advance.</li>
+          <li>Do not hold, lend, or float funds from GajiPay's own balance sheet. Structure disbursement through a partner bank or licensed e-money issuer under BNM's e-money framework — mirroring the AmBank–Ramssol precedent — both to avoid inadvertently triggering licensing thresholds and to build institutional trust.</li>
+          <li>PDPA 2010 compliance by design: formal data protection policy, encryption of salary/bank data at rest and in transit, documented consent flows, and a data retention/deletion policy.</li>
+          <li>Proactively engage BNM and relevant industry bodies (e.g., Fintech Association of Malaysia) as the EWA category matures, rather than waiting for reactive regulation.</li>
+          <li>AML/CFT screening on payroll accounts and disbursement flows, particularly at scale.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block" id="gtm">
+      <p class="kicker">§ 09</p>
+      <h2>Go-to-Market Strategy</h2>
+      <h3>9.1 Channels</h3>
+      <div class="prose">
+        <ul>
+          <li><b>Accounting &amp; audit firm partnerships:</b> high-trust referral channel into their SME client base for CoSec and Payroll.</li>
+          <li><b>SME associations &amp; chambers of commerce</b> (SME Corp Malaysia programs, FMM, sector-specific associations) for direct access to the target segment.</li>
+          <li><b>Bank and telco partnerships:</b> the Digi–altHR–HariGaji and AmBank–Ramssol deals show distribution partnerships with institutions that already touch SMEs are the fastest way to scale trust and reach — pursue at least one within 12–18 months of launch.</li>
+          <li><b>Direct/inside sales</b> targeting the primary segment sectors, leading with CoSec/Payroll (lower resistance) and Advance Pay as the expansion sell.</li>
+          <li><b>Digital marketing &amp; SEO:</b> Malaysian searches around "gaji," payroll calculators, and company secretary requirements show meaningful organic volume — a content and calculator-tool strategy can capture top-of-funnel demand cheaply.</li>
+        </ul>
+      </div>
+      <h3>9.2 Sequencing</h3>
+      <div class="prose">
+        <ol>
+          <li>Land with Company Secretary + Payroll bundle (lowest resistance, mandatory need).</li>
+          <li>Expand with HR Portal at low/no incremental cost to deepen the relationship and capture attendance data.</li>
+          <li>Activate Advance Pay once payroll/attendance data is clean and the employer relationship is established.</li>
+          <li>Extend with Audit &amp; Accounting referral at each client's financial year-end.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="block" id="marketing">
+      <p class="kicker">§ 10</p>
+      <h2>Marketing &amp; Brand Strategy</h2>
+      <div class="prose">
+        <p><b>Positioning:</b> GajiPay is the back office that also looks after your people — not just another payroll vendor, and not just another salary-advance app.</p>
+        <p><b>Employer-facing message:</b> "One partner for compliance and people — company secretary, payroll, HR, and financial wellness, without the enterprise price tag or the fragmented vendor list."</p>
+        <p><b>Employee-facing message:</b> "Your money, when you need it — access wages you've already earned, transparently, with no interest and no debt."</p>
+        <p><b>Content strategy:</b> SME compliance guides (incorporation checklists, EPF/SOCSO/EIS explainers, annual return deadlines), employer case studies quantifying turnover reduction from Advance Pay (industry benchmarks cited by competitors range 16–25%), and a free payroll/EPF/SOCSO calculator tool as an SEO and lead-gen asset.</p>
+        <p><b>Trust-building assets:</b> transparent fee disclosure (flat fee, no interest — mirrored prominently against payday-loan alternatives), a published legal/compliance explainer on the Moneylenders Act exemption, and visible partner branding once a bank/EMI partnership is secured.</p>
+        <p style="color:var(--ink-faint);font-size:0.9rem;">Website and full brand identity (logo, visual system) are explicitly out of scope for this document and will follow as Task 2 once this strategy is approved.</p>
+      </div>
+    </section>
+
+    <section class="block" id="ops">
+      <p class="kicker">§ 11</p>
+      <h2>Operations &amp; Technology</h2>
+      <div class="prose">
+        <ul>
+          <li><b>Core platform:</b> unified employer dashboard (payroll, HR, CoSec case management) and employee mobile/web app (payslips, leave, Advance Pay).</li>
+          <li><b>Payroll engine:</b> native support for EPF, SOCSO, EIS, PCB/MTD, and EA form generation, with an audit trail suitable for statutory inspection.</li>
+          <li><b>Advance Pay ledger:</b> real-time earned-wage calculation engine, hard-capped against s.22 Employment Act limits, reconciled daily against payroll run data.</li>
+          <li><b>Integration layer:</b> APIs for the bank/EMI disbursement partner, plus import/export tooling so early clients on competitor payroll systems migrate without a hard cutover.</li>
+          <li><b>Security &amp; compliance:</b> PDPA-aligned data governance from day one; target ISO 27001 alignment once transaction volume justifies the cost.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block" id="risk">
+      <p class="kicker">§ 12</p>
+      <h2>Risk Analysis</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:42%">Risk</th><th>Mitigation</th></tr></thead>
+          <tbody>
+            <tr><td>Regulatory reclassification of EWA as lending</td><td>Formal legal opinion pre-launch; conservative fee structure (flat fee, no interest); proactive regulator engagement; partner-bank disbursement model</td></tr>
+            <tr><td>Employer fails to fund/reconcile advances at payroll run</td><td>Contractual reconciliation terms; disbursement via partner bank with employer-funded settlement account, not GajiPay balance sheet</td></tr>
+            <tr><td>Low differentiation if bundling doesn't convert to cross-sell</td><td>Sequence GTM to prove the CoSec→Payroll→HR→EWA flywheel with a pilot cohort before scaling spend</td></tr>
+            <tr><td>Incumbent distribution advantage (Digi/AmBank-backed rivals)</td><td>Pursue GajiPay's own bank/association partnership within 12–18 months; compete on SME-segment service quality and bundle economics</td></tr>
+            <tr><td>Data breach of payroll/salary data</td><td>PDPA-by-design architecture, encryption, access controls, incident response plan</td></tr>
+            <tr><td>Working capital / cash-flow strain from disbursement float</td><td>Structure disbursement through partner bank/EMI, not GajiPay capital, from day one</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="block" id="roadmap">
+      <p class="kicker">§ 13</p>
+      <h2>Phased Roadmap</h2>
+      <div class="roadmap">
+        <div class="phase">
+          <div class="phase-head"><h4>Phase 0 — Foundation</h4><span class="when">Months 0–3</span></div>
+          <ul>
+            <li>Finalize legal opinion on Advance Pay structuring; select and formalize partner bank/EMI for disbursement</li>
+            <li>Build MVP: Payroll engine + CoSec case management + HR Portal core</li>
+            <li>Pilot with 5–10 friendly SME clients across target sectors</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="phase-head"><h4>Phase 1 — Launch</h4><span class="when">Months 3–9</span></div>
+          <ul>
+            <li>Public launch of Payroll + CoSec + HR Portal bundle</li>
+            <li>Launch Advance Pay to pilot cohort's employees; validate fee model, cap %, and reconciliation process</li>
+            <li>Stand up Audit &amp; Accounting referral partnerships</li>
+            <li><i>Website and brand identity (Task 2) begin here, once this strategy and the Phase 0 pilot validate positioning</i></li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="phase-head"><h4>Phase 2 — Scale</h4><span class="when">Months 9–18</span></div>
+          <ul>
+            <li>Expand direct sales and channel partnerships (accounting firms, SME associations)</li>
+            <li>Pursue first bank/telco distribution partnership</li>
+            <li>Expand Advance Pay to full client base; publish turnover-reduction case studies</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="phase-head"><h4>Phase 3 — Extend</h4><span class="when">Months 18+</span></div>
+          <ul>
+            <li>Evaluate micro-enterprise self-serve tier and larger-corporate direct sales motion</li>
+            <li>Evaluate regional expansion (Southeast Asia) once the Malaysia playbook is proven, following the pattern set by Paywatch, Payd, and GajiGesa</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="kpi">
+      <p class="kicker">§ 14</p>
+      <h2>Success Metrics (KPIs)</h2>
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kh">Compliance base</div><p>Active CoSec clients; active Payroll clients; net retention rate</p></div>
+        <div class="kpi-card"><div class="kh">Cross-sell conversion</div><p>% of CoSec/Payroll clients activating HR Portal within 90 days; % activating Advance Pay within 6 months</p></div>
+        <div class="kpi-card"><div class="kh">Advance Pay engagement</div><p>% of eligible employees activated; average withdrawals per active user/month; take-rate on flat fees</p></div>
+        <div class="kpi-card"><div class="kh">Employer outcomes</div><p>Measured turnover reduction among Advance Pay clients vs. non-Advance-Pay clients (target: 15–25% benchmark)</p></div>
+        <div class="kpi-card"><div class="kh">Referral revenue</div><p>Audit &amp; Accounting referrals converted; referral revenue as % of total revenue</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="conclusion">
+      <p class="kicker">§ 15</p>
+      <h2>Conclusion &amp; Next Steps</h2>
+      <div class="prose">
+        <p>GajiPay's opportunity is not to out-compete any single incumbent at their own game — it is to be the first platform to seriously bundle Malaysia's mandatory SME compliance stack (Company Secretary, Payroll) with the fastest-growing employee financial wellness product in the region (Advance Pay/EWA), with Audit &amp; Accounting referral as a natural extension. The legal path to Advance Pay without a moneylending license is well-precedented by HariGaji and Paywatch, and further legitimized by the AmBank-backed Pay Day Now launch — GajiPay's job is to execute that structure carefully, lead with compliance trust, and let the cross-sell flywheel convert a mandatory back-office relationship into a daily-engagement fintech relationship.</p>
+      </div>
+      <h3>Immediate next steps (pending your sign-off)</h3>
+      <div class="prose">
+        <ol>
+          <li>Commission the formal legal opinion on Advance Pay structuring (§8).</li>
+          <li>Identify and approach candidate bank/EMI disbursement partners.</li>
+          <li>Select the Phase 0 pilot cohort (5–10 SMEs across the target sectors in §6).</li>
+          <li>Approve this strategy so Task 2 (website) and Task 3 (logo/brand identity) can proceed.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="block sources" id="sources">
+      <p class="kicker">Sources</p>
+      <h2 style="font-size:1.3rem;">Sources referenced in market &amp; competitive research</h2>
+      <ol>
+        <li>AmBank, Ramssol launch Pay Day Now platform for earned wage access — <a href="https://www.thestar.com.my/business/business-news/2026/07/20/ambank-ramssol-launch-pay-day-now-platform-for-earned-wage-access" target="_blank" rel="noopener">The Star</a></li>
+        <li>Earned wage access provider Payd bags $400k to expand in Malaysia and Thailand — <a href="https://fintech.global/2025/02/10/earned-wage-access-provider-payd-bags-400k-to-expand-in-malaysia-and-thailand/" target="_blank" rel="noopener">fintech.global</a></li>
+        <li>What is Earned Wage Access? — <a href="https://althr.my/resources/what-is-earned-wage-access-how-can-it-benefit-employers-employees-in-malaysia" target="_blank" rel="noopener">altHR Blog</a></li>
+        <li>HariGaji and Digi's altHR team up — <a href="https://althr.my/announcements/harigaji-digi-althr-earned-wage-access-employees-malaysia" target="_blank" rel="noopener">altHR Announcements</a></li>
+        <li>Paywatch: Championing Fair Financial Access in Southeast Asia — <a href="https://www.mida.gov.my/paywatch-championing-fair-financial-access-in-southeast-asia/" target="_blank" rel="noopener">MIDA</a></li>
+        <li>Paywatch — How Flexible Payroll Works — <a href="https://www.paywatch.com.my/how-it-works" target="_blank" rel="noopener">paywatch.com.my</a></li>
+        <li>Paywatch bags RM141mil to grow earned wage access solution — <a href="https://vulcanpost.com/863472/paywatch-earned-wage-access-series-a-funding-malaysia/" target="_blank" rel="noopener">Vulcan Post</a></li>
+        <li>Kredivo Group acquires GajiGesa — <a href="https://kredivocorp.com/2025/02/kredivo-acquires-earned-wage-access-platform-gajigesa/" target="_blank" rel="noopener">Kredivo Corp</a></li>
+        <li>Salary Advance: What Malaysian Employers Need To Know — <a href="https://www.synergy-outsourcing.com/post/salary-advance-what-malaysian-employers-need-to-know" target="_blank" rel="noopener">Synergy Outsourcing</a></li>
+        <li>Financial Assistance for Employees: Legal Insights for Malaysian Employers — <a href="https://www.nurmaidin.com/post/financial-assistance-for-employees-legal-insights-for-malaysian-employers" target="_blank" rel="noopener">nurmaidin.com</a></li>
+        <li>Department of Statistics Malaysia — MSME Performance 2024 — <a href="https://www.dosm.gov.my/portal-main/release-content/micro-small--medium-enterprises-msmes-performance-2024" target="_blank" rel="noopener">dosm.gov.my</a></li>
+        <li>Employment Hero Pricing Tiers &amp; Costs — <a href="https://peoplemanagingpeople.com/tools/employment-hero-pricing/" target="_blank" rel="noopener">People Managing People</a></li>
+        <li>Company Secretary Fees in Malaysia (2026 Pricing Guide) — <a href="https://consistantinfo.com.my/company-secretary-fees-in-malaysia-2026-pricing-guide/" target="_blank" rel="noopener">Consistant</a></li>
+        <li>How to Appoint A Company Secretary in Malaysia — <a href="https://malaysia.acclime.com/guides/how-to-appoint-company-secretary/" target="_blank" rel="noopener">Acclime</a></li>
+      </ol>
+    </section>
+
+    <footer class="doc-footer">GajiPay Sdn Bhd — Business Strategy &amp; Corporate Proposal — Strictly Private &amp; Confidential</footer>
+  </main>
+</div>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+    var sections = links.map(function (a) {
+      return document.querySelector(a.getAttribute('href'));
+    }).filter(Boolean);
+
+    if (!('IntersectionObserver' in window) || sections.length === 0) return;
+
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var link = byId[entry.target.id];
+        if (!link) return;
+        if (entry.isIntersecting) {
+          links.forEach(function (l) { l.classList.remove('active'); });
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-10% 0px -75% 0px', threshold: 0 });
+
+    sections.forEach(function (s) { observer.observe(s); });
+  })();
+</script>
