@@ -1,7 +1,17 @@
 import { getRequestConfig } from "next-intl/server";
 import { hasLocale } from "next-intl";
 
-import { routing } from "./routing";
+import { routing, type Locale } from "./routing";
+
+// Static imports (rather than a template-literal `import(...)`) so
+// serverless bundlers can trace and include every locale's messages in the
+// deployed function — a dynamic path here works with `next start` locally
+// but can silently get pruned from a traced serverless bundle (e.g. Netlify).
+const messagesByLocale: Record<Locale, () => Promise<{ default: Record<string, unknown> }>> = {
+  en: () => import("../../messages/en.json"),
+  zh: () => import("../../messages/zh.json"),
+  ms: () => import("../../messages/ms.json"),
+};
 
 export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;
@@ -9,6 +19,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   return {
     locale,
-    messages: (await import(`../../messages/${locale}.json`)).default,
+    messages: (await messagesByLocale[locale]()).default,
   };
 });
