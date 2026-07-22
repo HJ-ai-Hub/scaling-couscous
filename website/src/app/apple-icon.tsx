@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 export const runtime = "nodejs";
-export const size = { width: 64, height: 64 };
+export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
 const iconDataUrl = (() => {
@@ -12,7 +12,7 @@ const iconDataUrl = (() => {
   return `data:image/png;base64,${base64}`;
 })();
 
-export default function Icon() {
+export default function AppleIcon() {
   return new ImageResponse(
     (
       <div
@@ -25,7 +25,7 @@ export default function Icon() {
           background: "#FFFFFF",
         }}
       >
-        <img src={iconDataUrl} width={56} height={56} alt="" />
+        <img src={iconDataUrl} width={148} height={148} alt="" />
       </div>
     ),
     { ...size },

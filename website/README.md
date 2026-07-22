@@ -59,8 +59,18 @@ src/
 
 ## Brand
 
-Brand palette, type system and motion timeline live in `src/app/globals.css` (`@theme`
-tokens) and `src/components/brand/`. The original uploaded logo/brand-board reference
-images are kept in `public/brand/` for reference; the working logo is a hand-authored
-SVG recreation (`logo-paths.ts`) so it can be animated and recolored without a raster
-dependency.
+Brand palette and type system live in `src/app/globals.css` (`@theme` tokens).
+
+**The logo is a fixed client-supplied asset — treat it as final, do not redraw or
+recolor it.** The source file lives at `public/brand/gajipay-logo-full.png` (untouched
+original) with two derived crops for layout purposes only, no redesign:
+
+- `gajipay-logo-trimmed.png` — outer whitespace trimmed, used via `LogoMark` (nav,
+  footer, 404, loading state) so it reads clearly at small sizes.
+- `gajipay-icon.png` — the monogram only (wordmark cropped out), used for
+  `icon.tsx` / `apple-icon.tsx` (favicon/app icon) and `opengraph-image.tsx`.
+
+`src/components/brand/motion-logo.tsx` (the homepage hero) animates the full logo
+image — entrance, reflection sweep, idle float, tagline fade-in — but never alters
+the artwork itself. If a different crop or size is needed somewhere, regenerate it
+from `gajipay-logo-full.png` rather than approximating it by hand.

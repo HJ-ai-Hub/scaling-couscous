@@ -14,7 +14,9 @@ export function FinalCta() {
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(161,254,239,0.22),transparent_70%)]"
           />
           <div className="relative">
-            <LogoMark className="mx-auto h-14 w-14" monochrome="light" />
+            <div className="mx-auto flex w-fit items-center rounded-3xl bg-white px-5 py-3 shadow-lift">
+              <LogoMark className="h-10 w-auto" />
+            </div>
             <h2 className="mx-auto mt-8 max-w-2xl text-balance font-brand text-3xl font-bold text-white sm:text-4xl">
               Give your team payroll, HR and financial wellness that actually works together
             </h2>

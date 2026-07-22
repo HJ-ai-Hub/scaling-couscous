@@ -8,7 +8,7 @@ export default function NotFound() {
   return (
     <section className="flex min-h-[80vh] items-center justify-center px-6 py-32">
       <div className="text-center">
-        <LogoMark className="mx-auto h-14 w-14" monochrome="dark" />
+        <LogoMark className="mx-auto h-20 w-auto" />
         <p className="mt-8 font-brand text-6xl font-bold text-ink">404</p>
         <h1 className="mt-3 text-balance font-brand text-2xl font-semibold text-ink">
           This page has already been paid out

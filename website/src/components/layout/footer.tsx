@@ -13,9 +13,8 @@ export function Footer() {
     <footer className="border-t border-border bg-surface-alt">
       <div className="container-page grid grid-cols-1 gap-12 py-16 sm:grid-cols-2 lg:grid-cols-5 lg:py-24">
         <div className="sm:col-span-2 lg:col-span-2">
-          <Link href="/" className="flex items-center gap-2.5" aria-label="GajiPay home">
-            <LogoMark className="h-9 w-9" />
-            <span className="font-brand text-xl font-semibold text-ink">GajiPay</span>
+          <Link href="/" className="flex items-center" aria-label="GajiPay home">
+            <LogoMark className="h-11 w-auto" />
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-soft">
             {siteConfig.description}

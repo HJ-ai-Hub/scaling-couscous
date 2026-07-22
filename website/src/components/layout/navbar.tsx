@@ -97,9 +97,8 @@ export function Navbar() {
         Skip to content
       </a>
       <div className="container-page flex h-20 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5" aria-label="GajiPay home">
-          <LogoMark className="h-9 w-9" titleId="nav-logo-title" />
-          <span className="font-brand text-xl font-semibold tracking-tight text-ink">GajiPay</span>
+        <Link href="/" className="flex items-center" aria-label="GajiPay home">
+          <LogoMark className="h-11 w-auto" priority />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
@@ -138,9 +137,8 @@ export function Navbar() {
             </button>
           </SheetTrigger>
           <SheetContent>
-            <Link href="/" className="flex items-center gap-2.5" aria-label="GajiPay home">
-              <LogoMark className="h-8 w-8" />
-              <span className="font-brand text-lg font-semibold text-ink">GajiPay</span>
+            <Link href="/" className="flex items-center" aria-label="GajiPay home">
+              <LogoMark className="h-9 w-auto" />
             </Link>
             <nav className="flex flex-1 flex-col gap-1 overflow-y-auto" aria-label="Mobile">
               <MobileGroup title={solutionsNavGroup.label} href={solutionsNavGroup.href} items={solutionsNavGroup.items} />
