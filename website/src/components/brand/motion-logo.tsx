@@ -5,12 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 
 import { cn } from "@/lib/utils";
-
-// Intrinsic size shared by every /public/brand/layer-*.png asset — they're all
-// full-canvas cutouts of the same original artwork, so they stack in perfect
-// registration without any manual offsetting.
-const CANVAS_WIDTH = 1253;
-const CANVAS_HEIGHT = 1015;
+import { CANVAS_WIDTH, CANVAS_HEIGHT, TRACE_TRANSFORM, G_TRACED_PATH } from "./logo-paths";
 
 interface MotionLogoProps {
   className?: string;
@@ -18,87 +13,88 @@ interface MotionLogoProps {
 }
 
 /**
- * The GajiPay motion identity, staged from the official fixed logo artwork.
+ * The GajiPay motion identity.
  *
- * The source file (public/brand/*.png) is the client's locked design — this
- * component never redraws, recolors, or recomposes it. What it animates are
- * three exact pixel-for-pixel cutouts of that same file (the G, the P, and
- * the wordmark), which is why they recombine into a result identical to the
- * original at rest. Two details from the brief don't survive the jump from a
- * vector brand system to a flat raster file, called out inline below.
+ * The client's logo file (public/brand/*.png) is the locked design — this
+ * component never redraws, recolors, or recomposes it. But two beats from
+ * the brief genuinely need something other than a flat raster image:
+ *
+ * 1. The G is drawn with a real stroke-dasharray animation along
+ *    `G_TRACED_PATH`, a vector outline traced directly from the client's own
+ *    artwork (see logo-paths.ts) — an actual line growing around an actual
+ *    curve, not a mask trick. Once it's traced and filled flat, it
+ *    cross-fades into the exact raster artwork (full matte/bevel/shadow
+ *    detail) for the "material becomes premium 3D" beat — so the resting
+ *    frame is still the client's exact file, pixel for pixel.
+ * 2. The wordmark is live type (Gill Sans stack, #28314E), not a raster
+ *    crop, so it can carry a real letter-tracking animation the way the
+ *    brief describes. The tagline was already live type.
  */
 export function MotionLogo({ className, showTagline = true }: MotionLogoProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const gRef = useRef<HTMLDivElement>(null);
-  const pRef = useRef<HTMLDivElement>(null);
-  const wordmarkRef = useRef<HTMLDivElement>(null);
+  const gPathRef = useRef<SVGPathElement>(null);
+  const gRasterRef = useRef<HTMLDivElement>(null);
+  const pRasterRef = useRef<HTMLDivElement>(null);
   const sweepRef = useRef<HTMLDivElement>(null);
+  const wordmarkRef = useRef<HTMLHeadingElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const wrap = wrapRef.current;
-    const gLayer = gRef.current;
-    const pLayer = pRef.current;
-    const wordmark = wordmarkRef.current;
+    const gPath = gPathRef.current;
+    const gRaster = gRasterRef.current;
+    const pRaster = pRasterRef.current;
     const sweep = sweepRef.current;
+    const wordmark = wordmarkRef.current;
     const tagline = taglineRef.current;
-    if (!wrap || !gLayer || !pLayer || !wordmark) return;
+    if (!wrap || !gPath || !gRaster || !pRaster || !wordmark) return;
 
-    const setGReveal = (deg: number) => {
-      const mask = `conic-gradient(from -90deg at 50% 50%, #000 ${deg}deg, transparent ${deg}deg)`;
-      gLayer.style.setProperty("mask-image", mask);
-      gLayer.style.setProperty("-webkit-mask-image", mask);
-    };
+    const length = gPath.getTotalLength();
 
     if (reduceMotion) {
-      setGReveal(360);
-      gsap.set(gLayer, { opacity: 1 });
-      gsap.set(pLayer, { opacity: 1, x: 0, y: 0 });
+      gsap.set(gPath, { opacity: 0 });
+      gsap.set(gRaster, { opacity: 1 });
+      gsap.set(pRaster, { opacity: 1, x: 0, y: 0 });
       gsap.set(wrap, { scale: 1, filter: "drop-shadow(0 18px 30px rgba(40,49,78,0.16))" });
-      gsap.set(wordmark, { opacity: 1, clipPath: "inset(0 0 0% 0)" });
+      gsap.set(wordmark, { opacity: 1, letterSpacing: "normal" });
       if (tagline) gsap.set(tagline, { opacity: 1 });
       return;
     }
 
-    // Initial state: nothing visible (pure white / silence, per the brief).
-    setGReveal(0);
-    gsap.set(gLayer, { opacity: 0 });
-    gsap.set(pLayer, { opacity: 0, x: 22, y: 16 });
+    gsap.set(gPath, {
+      strokeDasharray: length,
+      strokeDashoffset: length,
+      fillOpacity: 0,
+      opacity: 1,
+    });
+    gsap.set(gRaster, { opacity: 0 });
+    gsap.set(pRaster, { opacity: 0, x: 22, y: 16 });
     gsap.set(wrap, { scale: 0.98, filter: "drop-shadow(0 0px 0px rgba(40,49,78,0))" });
-    gsap.set(wordmark, { opacity: 0, clipPath: "inset(0 0 100% 0)" });
+    gsap.set(wordmark, { opacity: 0, letterSpacing: "-0.02em" });
     if (tagline) gsap.set(tagline, { opacity: 0 });
 
-    const reveal = { deg: 0 };
     const tl = gsap.timeline({ delay: 0.1 });
 
-    // 0.2s -> 0.9s: a thin line grows and bends into the G's outer curve.
-    // A raster file has no path to hand-draw, so a conic mask sweeping around
-    // the G's own centre stands in for the stroke-by-stroke line-growth —
-    // same visual read (the arc traces itself into being), same fixed artwork.
-    tl.to(gLayer, { opacity: 1, duration: 0.15, ease: "power1.out" }, 0.2);
-    tl.to(
-      reveal,
-      {
-        deg: 360,
-        duration: 0.7,
-        ease: "power2.inOut",
-        onUpdate: () => setGReveal(reveal.deg),
-      },
-      0.2,
-    );
+    // 0.2s -> 0.75s: a thin line grows and bends, tracing the G's real
+    // outline (this is an actual stroke-dasharray draw, not a mask sweep).
+    tl.to(gPath, { strokeDashoffset: 0, duration: 0.55, ease: "power2.inOut" }, 0.2);
+    // 0.75s -> 0.95s: the traced outline fills solid — "the G becomes complete".
+    tl.to(gPath, { fillOpacity: 1, duration: 0.2, ease: "power1.out" }, 0.75);
 
-    // 1.2s -> 1.6s: the P glides in from the lower right and locks into place.
-    // Smooth ease, no overshoot — nothing bounces.
-    tl.to(pLayer, { opacity: 1, x: 0, y: 0, duration: 0.4, ease: "power3.out" }, 1.2);
+    // 1.2s -> 1.6s: the P glides in from the lower right, no bounce.
+    tl.to(pRaster, { opacity: 1, x: 0, y: 0, duration: 0.4, ease: "power3.out" }, 1.2);
 
-    // 1.6s -> 2.0s: material settles — soft ambient shadow fades in, a hair
-    // of scale settle (0.98 -> 1), no rotation.
+    // 1.6s -> 2.0s: material change — the flat traced G cross-fades into the
+    // exact raster artwork (full matte 3D + bevel + shadow), shadow fades in,
+    // a hair of scale settle. No rotation.
+    tl.to(gRaster, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.6);
+    tl.to(gPath, { opacity: 0, duration: 0.35, ease: "power2.out" }, 1.6);
     tl.to(wrap, { scale: 1, duration: 0.4, ease: "power2.out" }, 1.6);
     tl.to(wrap, { filter: "drop-shadow(0 18px 30px rgba(40,49,78,0.16))", duration: 0.4, ease: "power2.out" }, 1.6);
 
-    // 2.0s: soft light sweep across the top edge — subtle, no glow/flare.
+    // 2.0s: soft light sweep across the top edge — no glow, no flare.
     if (sweep) {
       tl.fromTo(
         sweep,
@@ -108,14 +104,10 @@ export function MotionLogo({ className, showTagline = true }: MotionLogoProps) {
       );
     }
 
-    // 2.4s: the GajiPay wordmark fades in below the mark.
-    // It's baked into the fixed artwork as pixels, not live type, so the
-    // brief's letter-tracking animation (-15 -> 0) isn't something we can
-    // apply to it — a soft upward wipe + fade stands in instead.
-    tl.to(wordmark, { opacity: 1, clipPath: "inset(0 0 0% 0)", duration: 0.4, ease: "power2.out" }, 2.4);
+    // 2.4s: the GajiPay wordmark fades in — real type, real tracking animation.
+    tl.to(wordmark, { opacity: 1, letterSpacing: "normal", duration: 0.45, ease: "power2.out" }, 2.4);
 
-    // 2.8s: tagline fades in — this one IS live type, so it gets the real
-    // tracking animation from the brief.
+    // 2.8s: tagline fades in with its own tracking sweep.
     if (tagline) {
       tl.fromTo(
         tagline,
@@ -155,14 +147,24 @@ export function MotionLogo({ className, showTagline = true }: MotionLogoProps) {
     <div className={cn("flex flex-col items-center", className)}>
       <div ref={wrapRef} className="relative w-56 overflow-hidden rounded-3xl sm:w-64">
         <div className="relative" style={{ aspectRatio: `${CANVAS_WIDTH} / ${CANVAS_HEIGHT}` }}>
-          <div ref={gRef} className="absolute inset-0">
+          <svg viewBox={`0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}`} className="absolute inset-0 h-full w-full" aria-hidden>
+            <g transform={TRACE_TRANSFORM}>
+              <path
+                ref={gPathRef}
+                d={G_TRACED_PATH}
+                fill="#5FC8B6"
+                stroke="#5FC8B6"
+                strokeWidth={5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </g>
+          </svg>
+          <div ref={gRasterRef} className="absolute inset-0">
             <Image src="/brand/layer-g.png" alt="" width={CANVAS_WIDTH} height={CANVAS_HEIGHT} priority className="h-full w-full object-contain" />
           </div>
-          <div ref={pRef} className="absolute inset-0">
+          <div ref={pRasterRef} className="absolute inset-0">
             <Image src="/brand/layer-p.png" alt="" width={CANVAS_WIDTH} height={CANVAS_HEIGHT} priority className="h-full w-full object-contain" />
-          </div>
-          <div ref={wordmarkRef} className="absolute inset-0">
-            <Image src="/brand/layer-wordmark.png" alt="GajiPay" width={CANVAS_WIDTH} height={CANVAS_HEIGHT} priority className="h-full w-full object-contain" />
           </div>
         </div>
         <div
@@ -172,8 +174,12 @@ export function MotionLogo({ className, showTagline = true }: MotionLogoProps) {
         />
       </div>
 
+      <h2 ref={wordmarkRef} className="mt-5 font-brand text-3xl font-semibold text-ink sm:text-4xl">
+        GajiPay
+      </h2>
+
       {showTagline ? (
-        <p ref={taglineRef} className="mt-3 text-xs font-medium uppercase text-ink-faint">
+        <p ref={taglineRef} className="mt-2 text-xs font-medium uppercase text-ink-faint">
           Pay Earned &middot; Live Empowered
         </p>
       ) : null}
