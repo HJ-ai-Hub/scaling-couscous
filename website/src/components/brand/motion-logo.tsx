@@ -39,13 +39,13 @@ export function MotionLogo({ className, showTagline = true }: MotionLogoProps) {
 
     if (reduceMotion) {
       gsap.set(mark, { opacity: 1, scale: 1, y: 0 });
-      if (glow) gsap.set(glow, { opacity: 0.55 });
+      if (glow) gsap.set(glow, { opacity: 0.85 });
       if (tagline) gsap.set(tagline, { opacity: 1 });
       return;
     }
 
     gsap.set(mark, { opacity: 0, scale: 0.94, y: 16 });
-    if (glow) gsap.set(glow, { opacity: 0, scale: 0.9 });
+    if (glow) gsap.set(glow, { opacity: 0, scale: 0.85 });
     if (tagline) gsap.set(tagline, { opacity: 0, y: 8 });
 
     const tl = gsap.timeline({ delay: 0.15 });
@@ -80,14 +80,14 @@ export function MotionLogo({ className, showTagline = true }: MotionLogoProps) {
       });
     }, 1.5);
 
-    // Idle: soft ambient glow, breathing continuously behind the mark
+    // Idle: ambient glow, breathing continuously behind the mark
     if (glow) {
-      tl.to(glow, { opacity: 0.55, scale: 1, duration: 0.6, ease: "power2.out" }, 1.2);
+      tl.to(glow, { opacity: 0.85, scale: 1, duration: 0.6, ease: "power2.out" }, 1.2);
       tl.add(() => {
         gsap.to(glow, {
-          opacity: 0.85,
-          scale: 1.06,
-          duration: 3.2,
+          opacity: 1,
+          scale: 1.18,
+          duration: 2.6,
           repeat: -1,
           yoyo: true,
           ease: "sine.inOut",
@@ -119,15 +119,24 @@ export function MotionLogo({ className, showTagline = true }: MotionLogoProps) {
   return (
     <div className={cn("flex flex-col items-center", className)}>
       <div className="relative">
-        <div
-          ref={glowRef}
-          aria-hidden
-          className="pointer-events-none absolute -inset-6 -z-10 rounded-full opacity-0 blur-2xl sm:-inset-8"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(161,254,239,0.55) 0%, rgba(101,138,228,0.35) 55%, transparent 75%)",
-          }}
-        />
+        <div ref={glowRef} aria-hidden className="pointer-events-none absolute -inset-12 -z-10 opacity-0 sm:-inset-16">
+          {/* Outer soft halo — wide spread */}
+          <div
+            className="absolute inset-0 rounded-full blur-2xl"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(161,254,239,0.85) 0%, rgba(101,138,228,0.6) 45%, transparent 72%)",
+            }}
+          />
+          {/* Inner bright core — gives the glow a visible centre, not just haze */}
+          <div
+            className="absolute inset-10 rounded-full blur-lg sm:inset-14"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(94,231,255,0.9) 0%, rgba(161,254,239,0.7) 50%, transparent 75%)",
+            }}
+          />
+        </div>
         <div ref={markRef} className="relative w-56 overflow-hidden rounded-3xl sm:w-64">
           <Image
             src="/brand/gajipay-logo-full.png"
