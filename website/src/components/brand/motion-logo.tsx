@@ -24,6 +24,7 @@ interface MotionLogoProps {
  */
 export function MotionLogo({ className, showTagline = true }: MotionLogoProps) {
   const markRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
   const sweepRef = useRef<HTMLDivElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
 
@@ -31,17 +32,20 @@ export function MotionLogo({ className, showTagline = true }: MotionLogoProps) {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const mark = markRef.current;
+    const glow = glowRef.current;
     const sweep = sweepRef.current;
     const tagline = taglineRef.current;
     if (!mark) return;
 
     if (reduceMotion) {
       gsap.set(mark, { opacity: 1, scale: 1, y: 0 });
+      if (glow) gsap.set(glow, { opacity: 0.55 });
       if (tagline) gsap.set(tagline, { opacity: 1 });
       return;
     }
 
     gsap.set(mark, { opacity: 0, scale: 0.94, y: 16 });
+    if (glow) gsap.set(glow, { opacity: 0, scale: 0.9 });
     if (tagline) gsap.set(tagline, { opacity: 0, y: 8 });
 
     const tl = gsap.timeline({ delay: 0.15 });
@@ -76,6 +80,21 @@ export function MotionLogo({ className, showTagline = true }: MotionLogoProps) {
       });
     }, 1.5);
 
+    // Idle: soft ambient glow, breathing continuously behind the mark
+    if (glow) {
+      tl.to(glow, { opacity: 0.55, scale: 1, duration: 0.6, ease: "power2.out" }, 1.2);
+      tl.add(() => {
+        gsap.to(glow, {
+          opacity: 0.85,
+          scale: 1.06,
+          duration: 3.2,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      }, 1.8);
+    }
+
     // Idle: reflection sweep repeats every 10s
     if (sweep) {
       tl.add(() => {
@@ -93,26 +112,37 @@ export function MotionLogo({ className, showTagline = true }: MotionLogoProps) {
 
     return () => {
       tl.kill();
-      gsap.killTweensOf([mark, sweep]);
+      gsap.killTweensOf([mark, glow, sweep]);
     };
   }, []);
 
   return (
     <div className={cn("flex flex-col items-center", className)}>
-      <div ref={markRef} className="relative w-56 overflow-hidden rounded-3xl sm:w-64">
-        <Image
-          src="/brand/gajipay-logo-full.png"
-          alt="GajiPay"
-          width={FULL_WIDTH}
-          height={FULL_HEIGHT}
-          priority
-          className="h-auto w-full object-contain"
-        />
+      <div className="relative">
         <div
-          ref={sweepRef}
+          ref={glowRef}
           aria-hidden
-          className="pointer-events-none absolute inset-0 w-[45%] -skew-x-12 bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-0"
+          className="pointer-events-none absolute -inset-6 -z-10 rounded-full opacity-0 blur-2xl sm:-inset-8"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(161,254,239,0.55) 0%, rgba(101,138,228,0.35) 55%, transparent 75%)",
+          }}
         />
+        <div ref={markRef} className="relative w-56 overflow-hidden rounded-3xl sm:w-64">
+          <Image
+            src="/brand/gajipay-logo-full.png"
+            alt="GajiPay"
+            width={FULL_WIDTH}
+            height={FULL_HEIGHT}
+            priority
+            className="h-auto w-full object-contain"
+          />
+          <div
+            ref={sweepRef}
+            aria-hidden
+            className="pointer-events-none absolute inset-0 w-[45%] -skew-x-12 bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-0"
+          />
+        </div>
       </div>
 
       {showTagline ? (
