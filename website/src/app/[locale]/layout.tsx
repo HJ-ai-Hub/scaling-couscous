@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import "../globals.css";
@@ -74,6 +74,7 @@ export default async function LocaleLayout({
     notFound();
   }
   setRequestLocale(locale as Locale);
+  const messages = await getMessages();
 
   return (
     <html lang={locale} className={inter.variable}>
@@ -82,7 +83,7 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
-        <NextIntlClientProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <SmoothScrollProvider>
             <Navbar />
             <main id="main-content">{children}</main>
