@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations, useLocale } from "next-intl";
 import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -10,13 +11,34 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { demoSchema, type DemoFormValues } from "@/lib/validation";
-import { products } from "@/content/products";
+import { createDemoSchema, type DemoFormValues } from "@/lib/validation";
+import { getProducts } from "@/content/products";
+import type { Locale } from "@/i18n/routing";
 
 const companySizes: DemoFormValues["companySize"][] = ["1-19", "20-49", "50-199", "200-499", "500+"];
 
 export function DemoForm() {
+  const t = useTranslations("forms.demo");
+  const tValidation = useTranslations("forms.validation");
+  const locale = useLocale() as Locale;
+  const products = getProducts(locale);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const demoSchema = useMemo(
+    () =>
+      createDemoSchema({
+        nameRequired: tValidation("nameRequired"),
+        companyRequired: tValidation("companyRequired"),
+        emailInvalid: tValidation("emailInvalid"),
+        workEmailInvalid: tValidation("workEmailInvalid"),
+        phoneInvalid: tValidation("phoneInvalid"),
+        messageMin: tValidation("messageMin"),
+        companySizeRequired: tValidation("companySizeRequired"),
+        interestsRequired: tValidation("interestsRequired"),
+      }),
+    [tValidation],
+  );
+
   const {
     register,
     handleSubmit,
@@ -50,13 +72,10 @@ export function DemoForm() {
         <span className="flex size-14 items-center justify-center rounded-full bg-mint/30 text-[#0f5c50]">
           <CheckCircle2 className="size-7" />
         </span>
-        <h3 className="mt-5 font-brand text-xl font-semibold text-ink">Demo request received</h3>
-        <p className="mt-2 max-w-sm text-sm leading-relaxed text-ink-soft">
-          We&apos;ll follow up by email within one business day to find a time that works for your
-          team.
-        </p>
+        <h3 className="mt-5 font-brand text-xl font-semibold text-ink">{t("successTitle")}</h3>
+        <p className="mt-2 max-w-sm text-sm leading-relaxed text-ink-soft">{t("successDescription")}</p>
         <Button variant="secondary" className="mt-6" onClick={() => setStatus("idle")}>
-          Book another demo
+          {t("bookAnother")}
         </Button>
       </div>
     );
@@ -66,28 +85,28 @@ export function DemoForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="rounded-card border border-border bg-white p-8 shadow-soft sm:p-10" noValidate>
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="demo-name">Full name</Label>
-          <Input id="demo-name" placeholder="Nurul Ain" autoComplete="name" {...register("name")} aria-invalid={!!errors.name} />
+          <Label htmlFor="demo-name">{t("nameLabel")}</Label>
+          <Input id="demo-name" placeholder={t("namePlaceholder")} autoComplete="name" {...register("name")} aria-invalid={!!errors.name} />
           {errors.name ? <FieldError message={errors.name.message} /> : null}
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="demo-company">Company</Label>
-          <Input id="demo-company" placeholder="Kedai Kopi Kayangan Sdn Bhd" autoComplete="organization" {...register("company")} aria-invalid={!!errors.company} />
+          <Label htmlFor="demo-company">{t("companyLabel")}</Label>
+          <Input id="demo-company" placeholder={t("companyPlaceholder")} autoComplete="organization" {...register("company")} aria-invalid={!!errors.company} />
           {errors.company ? <FieldError message={errors.company.message} /> : null}
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="demo-email">Work email</Label>
-          <Input id="demo-email" type="email" placeholder="you@company.com" autoComplete="email" {...register("workEmail")} aria-invalid={!!errors.workEmail} />
+          <Label htmlFor="demo-email">{t("workEmailLabel")}</Label>
+          <Input id="demo-email" type="email" placeholder={t("emailPlaceholder")} autoComplete="email" {...register("workEmail")} aria-invalid={!!errors.workEmail} />
           {errors.workEmail ? <FieldError message={errors.workEmail.message} /> : null}
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="demo-phone">Phone</Label>
-          <Input id="demo-phone" type="tel" placeholder="+60 12-345 6789" autoComplete="tel" {...register("phone")} aria-invalid={!!errors.phone} />
+          <Label htmlFor="demo-phone">{t("phoneLabel")}</Label>
+          <Input id="demo-phone" type="tel" placeholder={t("phonePlaceholder")} autoComplete="tel" {...register("phone")} aria-invalid={!!errors.phone} />
           {errors.phone ? <FieldError message={errors.phone.message} /> : null}
         </div>
 
         <div className="flex flex-col gap-2 sm:col-span-2">
-          <Label htmlFor="demo-size">Company size</Label>
+          <Label htmlFor="demo-size">{t("companySizeLabel")}</Label>
           <select
             id="demo-size"
             defaultValue=""
@@ -96,11 +115,11 @@ export function DemoForm() {
             aria-invalid={!!errors.companySize}
           >
             <option value="" disabled>
-              Select employee count
+              {t("selectEmployeeCount")}
             </option>
             {companySizes.map((size) => (
               <option key={size} value={size}>
-                {size} employees
+                {size} {t("employeesSuffix")}
               </option>
             ))}
           </select>
@@ -108,7 +127,7 @@ export function DemoForm() {
         </div>
 
         <div className="flex flex-col gap-3 sm:col-span-2">
-          <Label>What are you interested in?</Label>
+          <Label>{t("interestsLabel")}</Label>
           <Controller
             control={control}
             name="interests"
@@ -146,20 +165,20 @@ export function DemoForm() {
         </div>
 
         <div className="flex flex-col gap-2 sm:col-span-2">
-          <Label htmlFor="demo-message">Anything else we should know?</Label>
-          <Textarea id="demo-message" placeholder="Optional — tell us about your current setup" {...register("message")} />
+          <Label htmlFor="demo-message">{t("messageLabel")}</Label>
+          <Textarea id="demo-message" placeholder={t("messagePlaceholder")} {...register("message")} />
         </div>
       </div>
 
       {status === "error" ? (
         <p className="mt-5 flex items-center gap-2 text-sm font-medium text-rose-600">
-          <AlertCircle className="size-4" /> Something went wrong — please try again in a moment.
+          <AlertCircle className="size-4" /> {t("errorGeneric")}
         </p>
       ) : null}
 
       <Button type="submit" size="lg" className="mt-7 w-full sm:w-auto" disabled={isSubmitting}>
         {isSubmitting ? <Loader2 className="size-4 animate-spin" /> : null}
-        {isSubmitting ? "Submitting..." : "Book Demo"}
+        {isSubmitting ? t("submitLoading") : t("submitIdle")}
       </Button>
     </form>
   );

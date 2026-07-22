@@ -1,13 +1,18 @@
-import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 import { LogoMark } from "@/components/brand/logo-mark";
 import { LinkedInIcon, FacebookIcon, InstagramIcon } from "@/components/icons/social";
-import { footerNav } from "@/content/nav";
+import { Link } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/routing";
+import { getFooterNav } from "@/content/nav";
 import { siteConfig } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const locale = useLocale() as Locale;
+  const t = useTranslations("footer");
+  const footerNav = getFooterNav(locale);
 
   return (
     <footer className="border-t border-border bg-surface-alt">
@@ -17,10 +22,10 @@ export function Footer() {
             <LogoMark className="h-11 w-auto" />
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-soft">
-            {siteConfig.description}
+            {t("description")}
           </p>
           <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint">
-            Pay Earned &middot; Live Empowered
+            {t("tagline")}
           </p>
           <div className="mt-6 flex flex-col gap-2.5 text-sm text-ink-soft">
             <a href={`mailto:${siteConfig.contact.email}`} className="flex items-center gap-2 hover:text-ink">
@@ -64,15 +69,15 @@ export function Footer() {
           </div>
         </div>
 
-        <FooterColumn title="Products" links={footerNav.products} />
-        <FooterColumn title="Solutions" links={footerNav.solutions} />
-        <FooterColumn title="Company" links={footerNav.company} />
+        <FooterColumn title={productsTitle(locale)} links={footerNav.products} />
+        <FooterColumn title={solutionsTitle(locale)} links={footerNav.solutions} />
+        <FooterColumn title={companyTitle(locale)} links={footerNav.company} />
       </div>
 
       <div className="border-t border-border">
         <div className="container-page flex flex-col-reverse items-center justify-between gap-4 py-6 sm:flex-row">
           <p className="text-xs text-ink-faint">
-            &copy; {year} {siteConfig.legalName}. All rights reserved.
+            &copy; {year} {siteConfig.legalName}. {t("rights")}
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             {footerNav.legal.map((item) => (
@@ -85,6 +90,22 @@ export function Footer() {
       </div>
     </footer>
   );
+}
+
+const columnTitles: Record<Locale, { products: string; solutions: string; company: string }> = {
+  en: { products: "Products", solutions: "Solutions", company: "Company" },
+  zh: { products: "产品", solutions: "解决方案", company: "公司" },
+  ms: { products: "Produk", solutions: "Penyelesaian", company: "Syarikat" },
+};
+
+function productsTitle(locale: Locale) {
+  return columnTitles[locale].products;
+}
+function solutionsTitle(locale: Locale) {
+  return columnTitles[locale].solutions;
+}
+function companyTitle(locale: Locale) {
+  return columnTitles[locale].company;
 }
 
 function FooterColumn({ title, links }: { title: string; links: { label: string; href: string }[] }) {

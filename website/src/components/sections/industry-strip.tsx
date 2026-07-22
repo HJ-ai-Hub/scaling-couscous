@@ -1,7 +1,14 @@
-import { SectionReveal } from "@/components/layout/section-reveal";
-import { industryStrip, marketStats } from "@/content/perspectives";
+import { getTranslations, getLocale } from "next-intl/server";
 
-export function IndustryStrip() {
+import { SectionReveal } from "@/components/layout/section-reveal";
+import type { Locale } from "@/i18n/routing";
+import { getIndustryStrip, getMarketStats } from "@/content/perspectives";
+
+export async function IndustryStrip() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("home.industryStrip");
+  const industryStrip = getIndustryStrip(locale);
+  const marketStats = getMarketStats(locale);
   const loopedIndustries = [...industryStrip, ...industryStrip];
 
   return (
@@ -10,7 +17,7 @@ export function IndustryStrip() {
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_auto]">
           <div>
             <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-ink-faint lg:text-left">
-              Built for the sectors that carry Malaysia&apos;s SME economy
+              {t("heading")}
             </p>
             <div className="group relative mt-5 overflow-hidden">
               <div className="flex w-max animate-marquee gap-10 group-hover:[animation-play-state:paused]">

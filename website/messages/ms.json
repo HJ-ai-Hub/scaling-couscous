@@ -1,0 +1,296 @@
+{
+  "metadata": {
+    "defaultTitle": "Platform Penggajian Moden Dibina untuk Perniagaan Malaysia",
+    "description": "GajiPay memudahkan HR, penggajian dan Akses Gaji Yang Diperoleh dalam satu platform pintar — ditambah rujukan setiausaha syarikat dan audit & perakaunan untuk PKS Malaysia."
+  },
+  "nav": {
+    "skipToContent": "Langkau ke kandungan",
+    "openMenu": "Buka menu",
+    "contact": "Hubungi Kami",
+    "bookDemo": "Tempah demo",
+    "getStarted": "Mula Sekarang",
+    "language": "Bahasa"
+  },
+  "footer": {
+    "description": "GajiPay ialah platform teknologi penggajian moden untuk perniagaan Malaysia — Portal HR, Penggajian, Akses Gaji Yang Diperoleh, Setiausaha Syarikat dan rujukan Audit & Perakaunan dalam satu platform pintar.",
+    "tagline": "Gaji Diperoleh. Hidup Berdaya.",
+    "rights": "Hak cipta terpelihara."
+  },
+  "home": {
+    "hero": {
+      "badge": "Akses Gaji Yang Diperoleh · Bukan pinjaman",
+      "title": "Platform penggajian moden, dibina untuk perniagaan Malaysia",
+      "description": "Permudahkan HR, penggajian dan Akses Gaji Yang Diperoleh dalam satu platform pintar — ditambah rujukan setiausaha syarikat dan audit & perakaunan, supaya pejabat belakang anda akhirnya berfungsi sebagai satu.",
+      "ctaBookDemo": "Tempah Demo",
+      "ctaGetStarted": "Mula Sekarang",
+      "ctaWatchDemo": "Tonton Demo",
+      "disclaimer": "Tiada lesen pemberi pinjam. Tiada faedah. Hanya gaji yang telah diperoleh oleh kakitangan anda."
+    },
+    "industryStrip": {
+      "heading": "Dibina untuk sektor yang menggerakkan ekonomi PKS Malaysia"
+    },
+    "whyGajipay": {
+      "eyebrow": "Mengapa GajiPay",
+      "title": "Pejabat belakang anda, akhirnya berfungsi sebagai satu sistem",
+      "description": "Kebanyakan PKS Malaysia menggabungkan alat penggajian, hamparan HR, retainer setiausaha syarikat dan aplikasi pendahuluan gaji secara berasingan. GajiPay menggantikan gabungan itu.",
+      "pillars": [
+        {
+          "title": "Satu platform, bukan lima vendor",
+          "description": "HR, penggajian, pematuhan statutori dan kesejahteraan kewangan biasanya bermaksud lima log masuk dan lima invois. GajiPay menjalankannya pada satu rekod pekerja, jadi tiada apa yang dimasukkan dua kali."
+        },
+        {
+          "title": "Pematuhan dahulu, fintech mengikut",
+          "description": "Kami bermula dengan apa yang setiap syarikat mesti ada — setiausaha syarikat, penggajian statutori yang betul — kemudian menggunakan data yang sama untuk menggerakkan Advance Pay dengan tepat. Kepercayaan sebelum transaksi."
+        },
+        {
+          "title": "Dibina untuk Malaysia, bukan disesuaikan untuknya",
+          "description": "KWSP, PERKESO, SIP, PCB dan Akta Kerja bukan renungan kemudian yang ditampal pada templat serantau — ia adalah asas seluruh platform ini dibina."
+        }
+      ]
+    },
+    "ewa": {
+      "eyebrow": "Advance Pay",
+      "title": "Akses Gaji Yang Diperoleh, dilakukan dengan cara yang betul",
+      "description": "Selepas 15hb setiap bulan, pekerja boleh mengeluarkan sebahagian gaji yang telah mereka peroleh — terus daripada aplikasi GajiPay, diselaraskan secara automatik pada hari gaji. Tiada faedah. Tiada lesen pemberi pinjam diperlukan. Tiada hutang diwujudkan.",
+      "facts": [
+        {
+          "title": "Bukan pinjaman",
+          "description": "Tiada faedah, tiada semakan kredit, tiada hutang — hanya gaji yang telah diperoleh, dikeluarkan lebih awal."
+        },
+        {
+          "title": "Dihadkan, sentiasa",
+          "description": "Pendahuluan dihadkan dengan ketat mengikut gaji yang telah diperoleh, selaras dengan Akta Kerja 1955."
+        },
+        {
+          "title": "Pembayaran melalui rakan bank",
+          "description": "Dana bergerak melalui rakan kongsi perbankan berlesen — tidak sekali-kali daripada kunci kira-kira GajiPay sendiri."
+        }
+      ],
+      "cta": "Lihat bagaimana Advance Pay berfungsi"
+    },
+    "dashboard": {
+      "eyebrow": "HR & Penggajian, dalam satu paparan",
+      "title": "Semua yang HR dan kewangan perlu lihat, dalam satu papan pemuka",
+      "description": "Penggajian, pekerja, cuti, kehadiran, Advance Pay dan analitik — beralih antara mereka tanpa bertukar alat."
+    },
+    "features": {
+      "eyebrow": "Platform",
+      "title": "Setiap ciri memperoleh tempatnya",
+      "description": "Tiada bengkak, tiada modul yang anda tidak akan sentuh — hanya alat yang benar-benar digunakan oleh HR, kewangan dan kakitangan anda setiap kitaran."
+    },
+    "security": {
+      "eyebrow": "Keselamatan & kepercayaan",
+      "title": "Dikendalikan dengan cara yang selayaknya untuk data penggajian sensitif",
+      "description": "Data gaji, kehadiran dan perbankan adalah antara maklumat paling sensitif yang dipegang oleh syarikat anda. GajiPay mengendalikannya sedemikian sejak baris kod pertama."
+    },
+    "perspectives": {
+      "eyebrow": "Dibina berdasarkan aliran kerja sebenar",
+      "title": "Direka untuk semua yang terlibat dengan penggajian",
+      "description": "GajiPay berada dalam akses awal bersama rakan kongsi perintis pertama kami di seluruh Malaysia. Berikut adalah untuk siapa kami membinanya."
+    },
+    "faq": {
+      "eyebrow": "Soalan Lazim",
+      "title": "Soalan yang paling kerap ditanya",
+      "description": "Terutamanya tentang bagaimana Advance Pay berfungsi, dan mengapa ia bukan pinjaman."
+    },
+    "finalCta": {
+      "title": "Berikan pasukan anda penggajian, HR dan kesejahteraan kewangan yang benar-benar berfungsi bersama",
+      "description": "Tempah sesi santai bersama pasukan kami, atau mula dengan pakej yang mengutamakan pematuhan hari ini.",
+      "ctaBookDemo": "Tempah Demo",
+      "ctaGetStarted": "Mula Sekarang"
+    }
+  },
+  "about": {
+    "metaTitle": "Tentang Kami",
+    "metaDescription": "GajiPay sedang membina platform pematuhan dan kesejahteraan kewangan yang PKS Malaysia terpaksa gabungkan sendiri — setiausaha syarikat, penggajian, HR dan Akses Gaji Yang Diperoleh, dalam satu tempat.",
+    "eyebrow": "Tentang GajiPay",
+    "title": "Pejabat belakang yang PKS Malaysia terpaksa gabungkan sendiri",
+    "description": "GajiPay Sdn Bhd wujud kerana 97% perniagaan Malaysia adalah PMKS, dan hampir tiada satu pun mampu — atau mahu — lima vendor berasingan untuk penggajian, HR, pematuhan dan kesejahteraan kewangan.",
+    "intro": [
+      "Kebanyakan PKS menjalankan penggajian melalui satu alat, HR melalui hamparan, setiausaha syarikat melalui retainer yang hampir tidak difikirkan, dan — jika pekerja mereka bertuah — aplikasi pendahuluan gaji yang ditampal daripada pembekal keempat yang sama sekali berlainan. Tiada satu pun sistem ini berhubung antara satu sama lain, dan tiada satu pun dibina berdasarkan realiti pematuhan statutori Malaysia.",
+      "GajiPay bermula daripada pematuhan yang setiap Sdn Bhd sudah perlukan — setiausaha syarikat, penggajian KWSP/PERKESO/SIP/PCB yang betul — dan dibina ke luar dari situ. Sebaik sahaja data penggajian dan kehadiran berada dalam satu tempat, kami boleh melakukan sesuatu yang tiada aplikasi tampalan boleh lakukan: mengira dengan tepat berapa banyak gaji pekerja yang benar-benar telah diperoleh, secara masa nyata, dan membenarkan mereka mengaksesnya lebih awal, secara adil, dan tanpa hutang."
+    ],
+    "valuesEyebrow": "Apa yang kami percaya",
+    "valuesTitle": "Tiga perkara yang kami tidak akan berkompromi",
+    "values": [
+      {
+        "title": "Pematuhan dahulu, sentiasa",
+        "description": "Kami bermula dengan apa yang sebenarnya dikehendaki oleh undang-undang Malaysia — setiausaha syarikat, penggajian statutori yang betul — sebelum kami membina apa-apa yang melibatkan wang."
+      },
+      {
+        "title": "Dibina khusus untuk Malaysia",
+        "description": "Bukan templat serantau dengan logo tempatan ditukar. KWSP, PERKESO, SIP, PCB dan Akta Kerja adalah asas, bukan tambahan."
+      },
+      {
+        "title": "Tiada hutang, sama sekali",
+        "description": "Advance Pay hanya mengeluarkan gaji yang telah diperoleh. Kami bukan pemberi pinjam, kami tidak memiliki lesen pemberi pinjam wang, dan kami tidak akan berpura-pura sebaliknya."
+      }
+    ],
+    "statusEyebrow": "Di mana kami hari ini",
+    "statusText": "GajiPay berada dalam akses awal, mengambil rakan kongsi perintis pertama kami merentas runcit, F&B, perkilangan, logistik dan perkhidmatan keselamatan di Malaysia. Jika itu kedengaran seperti perniagaan anda, kami ingin mendengar daripada anda."
+  },
+  "contactPage": {
+    "metaTitle": "Hubungi Kami",
+    "metaDescription": "Hubungi pasukan GajiPay — soalan tentang penggajian, HR, Advance Pay, setiausaha syarikat atau rujukan audit.",
+    "eyebrow": "Hubungi Kami",
+    "title": "Mari bincang tentang pasukan anda",
+    "description": "Sama ada anda bermula dengan perkhidmatan setiausaha syarikat atau sudah bersedia membawa keseluruhan sistem penggajian dan HR anda, kami akan menghubungi anda semula dalam masa satu hari perniagaan.",
+    "labels": {
+      "email": "E-mel",
+      "phone": "Telefon",
+      "office": "Pejabat",
+      "responseTime": "Masa respons",
+      "responseTimeValue": "Dalam masa satu hari perniagaan"
+    }
+  },
+  "bookDemoPage": {
+    "metaTitle": "Tempah Demo",
+    "metaDescription": "Lihat Portal HR, Penggajian dan Advance Pay GajiPay beraksi — tempah sesi santai bersama pasukan kami.",
+    "eyebrow": "Tempah Demo",
+    "title": "Lihat GajiPay berjalan dengan pasukan seperti anda",
+    "description": "Beritahu kami sedikit tentang syarikat anda dan kami akan menyediakan sesi santai yang memberi tumpuan kepada apa yang benar-benar penting kepada anda — penggajian, HR, Advance Pay, atau ketiga-tiganya.",
+    "whatToExpect": "Apa yang boleh dijangka",
+    "expectations": [
+      "Sesi santai 30 minit mengenai Penggajian, Portal HR, Advance Pay dan Setiausaha Syarikat, disesuaikan dengan industri anda",
+      "Jawapan terus tentang bagaimana Advance Pay distrukturkan dari segi undang-undang — tiada lesen pemberi pinjam, tiada faedah",
+      "Anggaran harga kasar sebelum anda menamatkan panggilan",
+      "Tiada tekanan untuk menandatangani apa-apa serta-merta"
+    ]
+  },
+  "pricingPage": {
+    "metaTitle": "Harga",
+    "metaDescription": "Harga pakej yang telus untuk Setiausaha Syarikat, Penggajian, Portal HR dan Advance Pay — berskala mengikut bilangan kakitangan, disebut harga selepas panggilan penerokaan ringkas.",
+    "eyebrow": "Harga",
+    "title": "Harga yang berskala mengikut apa yang benar-benar anda gunakan",
+    "description": "Setiap pelan menggabungkan pematuhan statutori dengan lapisan fintech di atasnya — dikenakan bayaran mengikut bilangan kakitangan dan perkhidmatan, tidak pernah secara mengejut.",
+    "mostPopular": "Paling popular",
+    "getAQuote": "Dapatkan sebut harga",
+    "disclaimer": "Harga tepat bergantung pada bilangan kakitangan dan perkhidmatan yang anda gabungkan — kami akan sebut harga selepas panggilan penerokaan ringkas, biasanya dalam masa satu hari perniagaan.",
+    "advancePayTitle": "Harga Advance Pay",
+    "advancePayDescription": "Tidak sekali-kali faedah — yuran pemprosesan rata setiap pengeluaran, biasanya RM2–5 bergantung pada pelan anda. Majikan boleh menanggungnya sebagai faedah, atau membenarkan pekerja memilih untuk membayarnya sendiri.",
+    "csTitle": "Harga Setiausaha Syarikat",
+    "csDescription": "Retainer bulanan rata ditambah yuran pemfailan statutori, selaras dengan kadar pasaran Malaysia yang biasa — disahkan tepat untuk entiti anda sebelum anda menandatangani apa-apa.",
+    "faqEyebrow": "Soalan Lazim Harga",
+    "faqTitle": "Sebelum anda bercakap dengan kami"
+  },
+  "productsPage": {
+    "metaTitle": "Produk",
+    "metaDescription": "Advance Pay (EWA), Penggajian, Portal HR, Setiausaha Syarikat dan rujukan Audit & Perakaunan — lima perkhidmatan berhubung pada satu platform GajiPay.",
+    "eyebrow": "Produk",
+    "title": "Satu platform, lima perkhidmatan berhubung",
+    "description": "Setiap produk membaca daripada rekod pekerja yang sama, jadi tiada apa yang dimasukkan dua kali — dan Advance Pay kekal tepat kerana ia dibina di atas data penggajian GajiPay sendiri.",
+    "learnMore": "Ketahui lebih lanjut"
+  },
+  "productDetail": {
+    "whatYouGet": "Apa yang anda dapat",
+    "howItWorksEyebrow": "Cara ia berfungsi",
+    "howItWorksTitle": "Dari persediaan hingga kitaran pertama anda",
+    "faqEyebrow": "Soalan Lazim",
+    "faqTitle": "Soalan lazim tentang {name}",
+    "exploreRest": "Terokai selebihnya platform ini",
+    "learnMore": "Ketahui lebih lanjut",
+    "bookDemo": "Tempah Demo",
+    "getStarted": "Mula Sekarang"
+  },
+  "solutionsPage": {
+    "metaTitle": "Penyelesaian",
+    "metaDescription": "GajiPay dibina berdasarkan cara PKS Malaysia sebenarnya mengurus kakitangan — runcit & F&B, perkilangan, logistik, perkhidmatan keselamatan dan pembinaan.",
+    "eyebrow": "Penyelesaian",
+    "title": "Dibina berdasarkan cara anda sebenarnya mengurus kakitangan",
+    "description": "Pekerja shif, lantai kilang, penunggang bertaburan, pengawal merentas banyak tapak — GajiPay dibentuk berdasarkan sektor yang menggerakkan ekonomi PKS Malaysia.",
+    "seeHowItFits": "Lihat bagaimana ia sesuai"
+  },
+  "solutionDetail": {
+    "eyebrowPrefix": "Penyelesaian",
+    "painPointsTitle": "Di mana ia menjadi sukar",
+    "outcomesTitle": "Apa yang berubah dengan GajiPay",
+    "bookDemo": "Tempah Demo",
+    "getStarted": "Mula Sekarang"
+  },
+  "resourcesPage": {
+    "metaTitle": "Sumber",
+    "metaDescription": "Panduan mengenai pematuhan penggajian Malaysia, peraturan Akses Gaji Yang Diperoleh, dan keperluan setiausaha syarikat.",
+    "eyebrow": "Sumber",
+    "title": "Pematuhan, penggajian dan kesejahteraan kewangan, dijelaskan secara mudah",
+    "description": "Tiada risalah undang-undang yang penuh jargon — hanya jawapan terus kepada soalan yang majikan Malaysia sebenarnya tanya kami.",
+    "readTheGuide": "Baca panduan"
+  },
+  "resourceDetail": {
+    "backToResources": "Kembali ke sumber",
+    "keepReading": "Teruskan membaca",
+    "read": "Baca"
+  },
+  "legalPage": {
+    "eyebrow": "Undang-undang",
+    "lastUpdated": "Terakhir dikemas kini: {date}",
+    "disclaimer": "Dokumen ini adalah draf kerja yang disediakan untuk perancangan pelancaran. Ia perlu disemak dan dimuktamadkan oleh peguam Malaysia yang layak sebelum digunakan sebagai perjanjian yang mengikat."
+  },
+  "forms": {
+    "contact": {
+      "nameLabel": "Nama penuh",
+      "namePlaceholder": "Nurul Ain",
+      "companyLabel": "Syarikat",
+      "companyPlaceholder": "Kedai Kopi Kayangan Sdn Bhd",
+      "emailLabel": "E-mel",
+      "emailPlaceholder": "you@company.com",
+      "phoneLabel": "Telefon",
+      "phonePlaceholder": "+60 12-345 6789",
+      "messageLabel": "Bagaimana kami boleh membantu?",
+      "messagePlaceholder": "Beritahu kami tentang pasukan anda dan apa yang anda cari...",
+      "submitIdle": "Hantar mesej",
+      "submitLoading": "Menghantar...",
+      "errorGeneric": "Sesuatu tidak kena — sila cuba lagi sebentar.",
+      "successTitle": "Mesej dihantar",
+      "successDescription": "Terima kasih kerana menghubungi kami — seseorang daripada pasukan GajiPay akan menghubungi anda semula dalam masa satu hari perniagaan.",
+      "sendAnother": "Hantar mesej lain"
+    },
+    "demo": {
+      "nameLabel": "Nama penuh",
+      "namePlaceholder": "Nurul Ain",
+      "companyLabel": "Syarikat",
+      "companyPlaceholder": "Kedai Kopi Kayangan Sdn Bhd",
+      "workEmailLabel": "E-mel kerja",
+      "emailPlaceholder": "you@company.com",
+      "phoneLabel": "Telefon",
+      "phonePlaceholder": "+60 12-345 6789",
+      "companySizeLabel": "Saiz syarikat",
+      "selectEmployeeCount": "Pilih bilangan pekerja",
+      "employeesSuffix": "pekerja",
+      "interestsLabel": "Apa yang anda minati?",
+      "messageLabel": "Ada apa-apa lagi yang perlu kami tahu?",
+      "messagePlaceholder": "Pilihan — beritahu kami tentang persediaan semasa anda",
+      "submitIdle": "Tempah Demo",
+      "submitLoading": "Menghantar...",
+      "errorGeneric": "Sesuatu tidak kena — sila cuba lagi sebentar.",
+      "successTitle": "Permintaan demo diterima",
+      "successDescription": "Kami akan menyusuli melalui e-mel dalam masa satu hari perniagaan untuk mencari masa yang sesuai untuk pasukan anda.",
+      "bookAnother": "Tempah demo lain"
+    },
+    "validation": {
+      "nameRequired": "Masukkan nama penuh anda",
+      "companyRequired": "Masukkan nama syarikat anda",
+      "emailInvalid": "Masukkan alamat e-mel yang sah",
+      "workEmailInvalid": "Masukkan alamat e-mel kerja yang sah",
+      "phoneInvalid": "Masukkan nombor telefon yang sah",
+      "messageMin": "Beritahu kami sedikit lagi (sekurang-kurangnya 10 aksara)",
+      "companySizeRequired": "Pilih saiz syarikat anda",
+      "interestsRequired": "Pilih sekurang-kurangnya satu produk yang anda minati"
+    }
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Halaman ini telah pun dibayar",
+    "description": "Kami tidak dapat menjumpai apa yang anda cari. Ia mungkin telah dipindahkan, atau pautan mungkin telah lapuk.",
+    "backHome": "Kembali ke laman utama",
+    "contactSupport": "Hubungi sokongan"
+  },
+  "errorPage": {
+    "title": "Sesuatu tidak kena",
+    "description": "Ralat yang tidak dijangka berlaku semasa memuatkan halaman ini. Anda boleh cuba lagi, atau kembali ke laman utama.",
+    "tryAgain": "Cuba lagi",
+    "backHome": "Kembali ke laman utama"
+  },
+  "loading": {
+    "text": "Memuatkan GajiPay…"
+  }
+}

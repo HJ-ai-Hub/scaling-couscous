@@ -1,19 +1,23 @@
-import { SectionReveal } from "@/components/layout/section-reveal";
-import { perspectives } from "@/content/perspectives";
+import { getTranslations, getLocale } from "next-intl/server";
 
-export function Perspectives() {
+import { SectionReveal } from "@/components/layout/section-reveal";
+import type { Locale } from "@/i18n/routing";
+import { getPerspectives } from "@/content/perspectives";
+
+export async function Perspectives() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("home.perspectives");
+  const perspectives = getPerspectives(locale);
+
   return (
     <section className="bg-surface-alt py-24 lg:py-32">
       <div className="container-page">
         <SectionReveal className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-deep">Built around real workflows</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-deep">{t("eyebrow")}</p>
           <h2 className="mt-4 text-balance font-brand text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-            Designed for everyone touching payroll
+            {t("title")}
           </h2>
-          <p className="mt-4 text-balance text-lg leading-relaxed text-ink-soft">
-            GajiPay is in early access with our first pilot partners across Malaysia. Here&apos;s
-            who we&apos;re building it for.
-          </p>
+          <p className="mt-4 text-balance text-lg leading-relaxed text-ink-soft">{t("description")}</p>
         </SectionReveal>
 
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">

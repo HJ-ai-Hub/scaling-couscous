@@ -1,19 +1,23 @@
-import { SectionReveal } from "@/components/layout/section-reveal";
-import { platformFeatures } from "@/content/features";
+import { getTranslations, getLocale } from "next-intl/server";
 
-export function Features() {
+import { SectionReveal } from "@/components/layout/section-reveal";
+import type { Locale } from "@/i18n/routing";
+import { getPlatformFeatures } from "@/content/features";
+
+export async function Features() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("home.features");
+  const platformFeatures = getPlatformFeatures(locale);
+
   return (
     <section className="bg-surface-alt py-24 lg:py-32">
       <div className="container-page">
         <SectionReveal className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-deep">Platform</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-deep">{t("eyebrow")}</p>
           <h2 className="mt-4 text-balance font-brand text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-            Every feature earns its place
+            {t("title")}
           </h2>
-          <p className="mt-4 text-balance text-lg leading-relaxed text-ink-soft">
-            No bloat, no modules you&apos;ll never touch — just the tools HR, finance and your
-            people actually use every cycle.
-          </p>
+          <p className="mt-4 text-balance text-lg leading-relaxed text-ink-soft">{t("description")}</p>
         </SectionReveal>
 
         <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

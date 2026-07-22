@@ -1,19 +1,23 @@
-import { SectionReveal } from "@/components/layout/section-reveal";
-import { securityPillars } from "@/content/features";
+import { getTranslations, getLocale } from "next-intl/server";
 
-export function Security() {
+import { SectionReveal } from "@/components/layout/section-reveal";
+import type { Locale } from "@/i18n/routing";
+import { getSecurityPillars } from "@/content/features";
+
+export async function Security() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("home.security");
+  const securityPillars = getSecurityPillars(locale);
+
   return (
     <section className="py-24 lg:py-32">
       <div className="container-page grid grid-cols-1 gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <SectionReveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-deep">Security &amp; trust</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-deep">{t("eyebrow")}</p>
           <h2 className="mt-4 text-balance font-brand text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-            Handled the way sensitive payroll data deserves
+            {t("title")}
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-            Salary, attendance and banking data are some of the most sensitive information your
-            company holds. GajiPay treats it that way from the first line of code.
-          </p>
+          <p className="mt-4 text-lg leading-relaxed text-ink-soft">{t("description")}</p>
         </SectionReveal>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">

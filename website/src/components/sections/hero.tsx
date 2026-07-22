@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { PlayCircle } from "lucide-react";
 
@@ -8,8 +8,11 @@ import { Button } from "@/components/ui/button";
 import { MotionLogo } from "@/components/brand/motion-logo";
 import { HeroDashboard } from "@/components/marketing/hero-dashboard";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "@/i18n/navigation";
 
 export function Hero() {
+  const t = useTranslations("home.hero");
+
   return (
     <section className="relative overflow-hidden pb-20 pt-36 sm:pt-44 lg:pb-28">
       <div
@@ -29,7 +32,7 @@ export function Hero() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             className="mt-8 flex justify-center lg:justify-start"
           >
-            <Badge variant="mint">Earned Wage Access &middot; Not a loan</Badge>
+            <Badge variant="mint">{t("badge")}</Badge>
           </motion.div>
 
           <motion.h1
@@ -38,7 +41,7 @@ export function Hero() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="mt-6 text-balance text-center font-brand text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-left lg:text-6xl"
           >
-            Modern payroll platform, built for Malaysian businesses
+            {t("title")}
           </motion.h1>
 
           <motion.p
@@ -47,8 +50,7 @@ export function Hero() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.32 }}
             className="mx-auto mt-6 max-w-xl text-balance text-center text-lg leading-relaxed text-ink-soft lg:mx-0 lg:text-left"
           >
-            Simplify HR, payroll and Earned Wage Access in one intelligent platform — plus company
-            secretary and audit &amp; accounting referral, so your back office finally works as one.
+            {t("description")}
           </motion.p>
 
           <motion.div
@@ -58,15 +60,15 @@ export function Hero() {
             className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start"
           >
             <Button asChild size="lg">
-              <Link href="/book-demo">Book Demo</Link>
+              <Link href="/book-demo">{t("ctaBookDemo")}</Link>
             </Button>
             <Button asChild variant="secondary" size="lg">
-              <Link href="/contact">Get Started</Link>
+              <Link href="/contact">{t("ctaGetStarted")}</Link>
             </Button>
             <Button asChild variant="ghost" size="lg">
               <Link href="#dashboard-preview" className="group">
                 <PlayCircle className="size-5 text-blue-deep transition-transform group-hover:scale-105" />
-                Watch Demo
+                {t("ctaWatchDemo")}
               </Link>
             </Button>
           </motion.div>
@@ -77,7 +79,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.55 }}
             className="mt-8 text-center text-sm text-ink-faint lg:text-left"
           >
-            No lending licence. No interest. Just wages your people have already earned.
+            {t("disclaimer")}
           </motion.p>
         </div>
 

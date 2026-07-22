@@ -1,10 +1,13 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 import { SectionReveal } from "@/components/layout/section-reveal";
 import { Button } from "@/components/ui/button";
 import { LogoMark } from "@/components/brand/logo-mark";
+import { Link } from "@/i18n/navigation";
 
-export function FinalCta() {
+export async function FinalCta() {
+  const t = await getTranslations("home.finalCta");
+
   return (
     <section className="px-4 py-20 sm:px-6 lg:py-28">
       <SectionReveal className="container-page">
@@ -18,14 +21,12 @@ export function FinalCta() {
               <LogoMark className="h-10 w-auto" />
             </div>
             <h2 className="mx-auto mt-8 max-w-2xl text-balance font-brand text-3xl font-bold text-white sm:text-4xl">
-              Give your team payroll, HR and financial wellness that actually works together
+              {t("title")}
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-balance text-lg text-white/70">
-              Book a walkthrough with our team, or get started with a compliance-first bundle today.
-            </p>
+            <p className="mx-auto mt-4 max-w-xl text-balance text-lg text-white/70">{t("description")}</p>
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button asChild size="lg" variant="accent">
-                <Link href="/book-demo">Book Demo</Link>
+                <Link href="/book-demo">{t("ctaBookDemo")}</Link>
               </Button>
               <Button
                 asChild
@@ -33,7 +34,7 @@ export function FinalCta() {
                 variant="secondary"
                 className="border-white/20 bg-white/10 text-white hover:border-white/40 hover:bg-white/15"
               >
-                <Link href="/contact">Get Started</Link>
+                <Link href="/contact">{t("ctaGetStarted")}</Link>
               </Button>
             </div>
           </div>

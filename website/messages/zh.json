@@ -1,0 +1,296 @@
+{
+  "metadata": {
+    "defaultTitle": "专为马来西亚企业打造的现代薪资平台",
+    "description": "GajiPay在一个智能平台中整合了人力资源、薪资处理与已赚工资提取——并为马来西亚中小企业提供公司秘书及审计与会计转介服务。"
+  },
+  "nav": {
+    "skipToContent": "跳至内容",
+    "openMenu": "打开菜单",
+    "contact": "联络我们",
+    "bookDemo": "预约演示",
+    "getStarted": "立即开始",
+    "language": "语言"
+  },
+  "footer": {
+    "description": "GajiPay是专为马来西亚企业打造的现代薪资技术平台——在一个智能平台中整合人力资源门户、薪资处理、已赚工资提取、公司秘书与审计及会计转介服务。",
+    "tagline": "赚多少，领多少。活出自主人生。",
+    "rights": "版权所有。"
+  },
+  "home": {
+    "hero": {
+      "badge": "已赚工资提取 · 并非贷款",
+      "title": "专为马来西亚企业打造的现代薪资平台",
+      "description": "在一个智能平台中整合人力资源、薪资处理与已赚工资提取——并提供公司秘书及审计与会计转介服务，让您的后勤事务终于合而为一。",
+      "ctaBookDemo": "预约演示",
+      "ctaGetStarted": "立即开始",
+      "ctaWatchDemo": "观看演示",
+      "disclaimer": "无需放贷执照，不收取利息，只是员工已经赚取的工资。"
+    },
+    "industryStrip": {
+      "heading": "为支撑马来西亚中小企业经济的各行业而设计"
+    },
+    "whyGajipay": {
+      "eyebrow": "为何选择GajiPay",
+      "title": "让您的后勤事务，终于成为一套完整系统",
+      "description": "大多数马来西亚中小企业需要拼凑一套薪资工具、一份人力资源表格、一份公司秘书服务合约，以及一款薪资预支应用程式。GajiPay则将这些拼凑一次整合。",
+      "pillars": [
+        {
+          "title": "一个平台，而非五家供应商",
+          "description": "人力资源、薪资、法定合规与财务健康通常意味着五组登入账号与五张账单。GajiPay将这一切运行于同一份员工数据档案之上，无需重复输入。"
+        },
+        {
+          "title": "先合规，金融科技随后跟进",
+          "description": "我们从每家公司必备的事务出发——公司秘书服务、正确的法定薪资处理——再运用同一份数据准确驱动预支薪资功能。信任先于交易。"
+        },
+        {
+          "title": "为马来西亚量身打造，而非事后改造",
+          "description": "EPF、SOCSO、EIS、PCB与《雇佣法令》并非套用区域模板后临时添加的功能，而是整个平台建构的根基。"
+        }
+      ]
+    },
+    "ewa": {
+      "eyebrow": "预支薪资",
+      "title": "以正确的方式实现已赚工资提取",
+      "description": "每月15日之后，员工即可提取已赚取工资的一部分——直接透过GajiPay应用程式操作，并于发薪日自动核对结算。不收取利息，无需放贷执照，也不会产生任何债务。",
+      "facts": [
+        {
+          "title": "并非贷款",
+          "description": "不收取利息、不进行信用审查、不产生债务——仅是提前释放已赚取的工资。"
+        },
+        {
+          "title": "始终封顶限制",
+          "description": "预支金额严格封顶于已赚取的工资，符合《1955年雇佣法令》的规定。"
+        },
+        {
+          "title": "透过银行合作伙伴发放",
+          "description": "资金透过持牌银行合作伙伴发放——绝非来自GajiPay自身的资产负债表。"
+        }
+      ],
+      "cta": "了解预支薪资的运作方式"
+    },
+    "dashboard": {
+      "eyebrow": "人力资源与薪资，一览无遗",
+      "title": "人力资源与财务所需查看的一切，尽在同一仪表板",
+      "description": "薪资、员工、请假、考勤、预支薪资与数据分析——在同一处切换查看，无需切换不同工具。"
+    },
+    "features": {
+      "eyebrow": "平台功能",
+      "title": "每一项功能都物有所值",
+      "description": "没有冗余功能，也没有您永远用不到的模组——只有人力资源、财务与您团队每个周期都会实际使用的工具。"
+    },
+    "security": {
+      "eyebrow": "安全与信任",
+      "title": "以敏感薪资数据应得的方式妥善处理",
+      "description": "薪资、考勤与银行数据，是您公司所持有最为敏感的信息之一。GajiPay从第一行程式代码起，便以此标准对待这些数据。"
+    },
+    "perspectives": {
+      "eyebrow": "依据真实工作流程而设计",
+      "title": "为每一位涉及薪资事务的人而设计",
+      "description": "GajiPay目前正与马来西亚各地的首批试点合作伙伴进行早期体验。以下便是我们所服务的对象。"
+    },
+    "faq": {
+      "eyebrow": "常见问题",
+      "title": "我们最常被问到的问题",
+      "description": "尤其是关于预支薪资的运作方式，以及它为何不属于贷款。"
+    },
+    "finalCta": {
+      "title": "让您的团队拥有真正协同运作的薪资、人力资源与财务健康服务",
+      "description": "立即与我们团队预约演示，或从合规优先的服务组合开始使用。",
+      "ctaBookDemo": "预约演示",
+      "ctaGetStarted": "立即开始"
+    }
+  },
+  "about": {
+    "metaTitle": "关于我们",
+    "metaDescription": "GajiPay正在打造马来西亚中小企业过去必须自行拼凑的合规与财务健康平台——公司秘书、薪资、人力资源与已赚工资提取，尽在一处。",
+    "eyebrow": "关于GajiPay",
+    "title": "马来西亚中小企业过去必须自行拼凑的后勤事务",
+    "description": "GajiPay Sdn Bhd的成立，源于马来西亚97%的企业属于中小微企业，而其中几乎没有企业能够负担——或愿意——为薪资、人力资源、合规与财务健康分别聘用五家不同的供应商。",
+    "intro": [
+      "大多数中小企业透过一套工具处理薪资，用表格管理人力资源，以一份几乎不太理会的合约聘用公司秘书，若员工够幸运的话，还会额外使用第四家供应商提供的薪资预支应用程式。这些系统彼此互不相通，也没有一个是依据马来西亚法定合规的实际情况而设计的。",
+      "GajiPay从每家私人有限公司都已需要的合规事务出发——公司秘书、正确的EPF/SOCSO/EIS/PCB薪资处理——并由此向外扩展。一旦薪资与考勤数据集中于同一处，我们便能做到额外拼凑应用程式无法做到的事：实时精确计算员工实际已赚取的工资金额，并让他们能提前、公平且无需负债地提取。"
+    ],
+    "valuesEyebrow": "我们所坚信的",
+    "valuesTitle": "三项我们绝不妥协的原则",
+    "values": [
+      {
+        "title": "始终合规优先",
+        "description": "在开发任何涉及资金的功能之前，我们先确保满足马来西亚法律的实际要求——公司秘书服务、正确的法定薪资处理。"
+      },
+      {
+        "title": "专为马来西亚打造",
+        "description": "并非套用区域模板、换上本地商标而已。EPF、SOCSO、EIS、PCB与《雇佣法令》是根基，而非附加功能。"
+      },
+      {
+        "title": "绝不产生债务",
+        "description": "预支薪资仅释放已赚取的工资。我们并非放贷机构，也未持有放贷执照，且绝不会佯装成其他角色。"
+      }
+    ],
+    "statusEyebrow": "我们目前的进展",
+    "statusText": "GajiPay目前处于早期体验阶段，正在马来西亚的零售、餐饮、制造、物流与保安服务等行业引入首批试点合作伙伴。如果这听起来符合您的业务，欢迎与我们联系。"
+  },
+  "contactPage": {
+    "metaTitle": "联络我们",
+    "metaDescription": "与GajiPay团队联系——关于薪资、人力资源、预支薪资、公司秘书或审计转介的相关问题。",
+    "eyebrow": "联络我们",
+    "title": "让我们聊聊您的团队",
+    "description": "无论您是想从公司秘书服务开始，或已准备好将整套薪资与人力资源系统迁移过来，我们都会在一个工作日内回复您。",
+    "labels": {
+      "email": "电邮",
+      "phone": "电话",
+      "office": "办公室",
+      "responseTime": "回复时间",
+      "responseTimeValue": "一个工作日内"
+    }
+  },
+  "bookDemoPage": {
+    "metaTitle": "预约演示",
+    "metaDescription": "实际体验GajiPay的人力资源门户、薪资处理与预支薪资功能——立即与我们团队预约演示。",
+    "eyebrow": "预约演示",
+    "title": "看看GajiPay如何适用于您的团队",
+    "description": "简单告诉我们关于您公司的信息，我们将为您安排一场聚焦于真正重要事项的演示——薪资、人力资源、预支薪资，或三者兼具。",
+    "whatToExpect": "您可以期待什么",
+    "expectations": [
+      "针对您所属行业量身定制、时长30分钟的薪资、人力资源门户、预支薪资与公司秘书服务导览",
+      "关于预支薪资法律架构的直接说明——无需放贷执照，不收取利息",
+      "在通话结束前提供大致的价格参考",
+      "绝不施压要求当场签约"
+    ]
+  },
+  "pricingPage": {
+    "metaTitle": "价格方案",
+    "metaDescription": "公司秘书、薪资、人力资源门户与预支薪资的透明套装价格——依员工人数计算，经简短了解会议后提供报价。",
+    "eyebrow": "价格方案",
+    "title": "价格随您实际使用的服务而灵活调整",
+    "description": "每个方案都将法定合规与金融科技功能整合为一——依员工人数与服务项目计费，绝无意外收费。",
+    "mostPopular": "最受欢迎",
+    "getAQuote": "获取报价",
+    "disclaimer": "确切价格取决于员工人数与所搭配的服务项目——经过简短的了解会议后，我们会为您提供报价，通常在一个工作日内完成。",
+    "advancePayTitle": "预支薪资价格",
+    "advancePayDescription": "绝不收取利息——每次提取仅收取单一固定手续费，依方案不同通常介于RM2至RM5之间。雇主可作为福利承担该费用，或让员工自行选择支付。",
+    "csTitle": "公司秘书价格",
+    "csDescription": "固定月费加上法定申报费用，符合马来西亚市场一般行情——在您签约前，我们会为您的公司确切核实费用。",
+    "faqEyebrow": "价格常见问题",
+    "faqTitle": "在与我们联系之前"
+  },
+  "productsPage": {
+    "metaTitle": "产品",
+    "metaDescription": "预支薪资（EWA）、薪资处理、人力资源门户、公司秘书与审计及会计转介服务——五项互联服务，同一个GajiPay平台。",
+    "eyebrow": "产品",
+    "title": "一个平台，五项互联服务",
+    "description": "每项产品皆读取自同一份员工数据档案，无需重复输入——而预支薪资之所以保持准确，正是因为它建构于GajiPay自身的薪资数据之上。",
+    "learnMore": "了解更多"
+  },
+  "productDetail": {
+    "whatYouGet": "您将获得什么",
+    "howItWorksEyebrow": "运作方式",
+    "howItWorksTitle": "从设置到您的第一个薪资周期",
+    "faqEyebrow": "常见问题",
+    "faqTitle": "关于{name}的常见问题",
+    "exploreRest": "探索平台的其他功能",
+    "learnMore": "了解更多",
+    "bookDemo": "预约演示",
+    "getStarted": "立即开始"
+  },
+  "solutionsPage": {
+    "metaTitle": "解决方案",
+    "metaDescription": "GajiPay依据马来西亚中小企业实际的用工方式而设计——零售与餐饮、制造业、物流、保安服务与建筑业。",
+    "eyebrow": "解决方案",
+    "title": "依据您实际的用工方式而设计",
+    "description": "轮班员工、工厂现场人员、分散各地的骑手、遍布多个据点的保安人员——GajiPay正是依据支撑马来西亚中小企业经济的各行业而打造。",
+    "seeHowItFits": "了解如何契合您的需求"
+  },
+  "solutionDetail": {
+    "eyebrowPrefix": "解决方案",
+    "painPointsTitle": "困难之处",
+    "outcomesTitle": "使用GajiPay后的转变",
+    "bookDemo": "预约演示",
+    "getStarted": "立即开始"
+  },
+  "resourcesPage": {
+    "metaTitle": "资源中心",
+    "metaDescription": "关于马来西亚薪资合规、已赚工资提取相关法规，以及公司秘书要求的指南。",
+    "eyebrow": "资源中心",
+    "title": "以简明方式解说合规、薪资与财务健康",
+    "description": "没有充斥术语的法律简报——只有马来西亚雇主实际会问我们的问题的直接解答。",
+    "readTheGuide": "阅读指南"
+  },
+  "resourceDetail": {
+    "backToResources": "返回资源中心",
+    "keepReading": "继续阅读",
+    "read": "阅读"
+  },
+  "legalPage": {
+    "eyebrow": "法律文件",
+    "lastUpdated": "最后更新：{date}",
+    "disclaimer": "本文件为筹备上线所准备的工作草案，在作为具约束力的协议之前，应由合格的马来西亚法律顾问审阅并定稿。"
+  },
+  "forms": {
+    "contact": {
+      "nameLabel": "全名",
+      "namePlaceholder": "Nurul Ain",
+      "companyLabel": "公司",
+      "companyPlaceholder": "Kedai Kopi Kayangan Sdn Bhd",
+      "emailLabel": "电邮",
+      "emailPlaceholder": "you@company.com",
+      "phoneLabel": "电话",
+      "phonePlaceholder": "+60 12-345 6789",
+      "messageLabel": "我们可以如何协助您？",
+      "messagePlaceholder": "请告诉我们关于您团队的情况，以及您正在寻找的服务……",
+      "submitIdle": "发送讯息",
+      "submitLoading": "发送中……",
+      "errorGeneric": "发生错误——请稍后再试。",
+      "successTitle": "讯息已发送",
+      "successDescription": "感谢您的联系——GajiPay团队将在一个工作日内与您回复。",
+      "sendAnother": "发送另一则讯息"
+    },
+    "demo": {
+      "nameLabel": "全名",
+      "namePlaceholder": "Nurul Ain",
+      "companyLabel": "公司",
+      "companyPlaceholder": "Kedai Kopi Kayangan Sdn Bhd",
+      "workEmailLabel": "工作电邮",
+      "emailPlaceholder": "you@company.com",
+      "phoneLabel": "电话",
+      "phonePlaceholder": "+60 12-345 6789",
+      "companySizeLabel": "公司规模",
+      "selectEmployeeCount": "请选择员工人数",
+      "employeesSuffix": "名员工",
+      "interestsLabel": "您对哪些服务感兴趣？",
+      "messageLabel": "还有其他我们应该了解的信息吗？",
+      "messagePlaceholder": "选填——请告诉我们您目前的使用情况",
+      "submitIdle": "预约演示",
+      "submitLoading": "提交中……",
+      "errorGeneric": "发生错误——请稍后再试。",
+      "successTitle": "演示预约请求已收到",
+      "successDescription": "我们将在一个工作日内透过电邮跟进，为您的团队安排合适的时间。",
+      "bookAnother": "预约另一场演示"
+    },
+    "validation": {
+      "nameRequired": "请输入您的全名",
+      "companyRequired": "请输入您的公司名称",
+      "emailInvalid": "请输入有效的电邮地址",
+      "workEmailInvalid": "请输入有效的工作电邮地址",
+      "phoneInvalid": "请输入有效的电话号码",
+      "messageMin": "请再多告诉我们一些（至少10个字符）",
+      "companySizeRequired": "请选择您的公司规模",
+      "interestsRequired": "请至少选择一项您感兴趣的产品"
+    }
+  },
+  "notFound": {
+    "code": "404",
+    "title": "此页面已经支付完毕",
+    "description": "我们找不到您要寻找的内容。该页面可能已经移动，或链接可能已经过期。",
+    "backHome": "返回首页",
+    "contactSupport": "联络支持团队"
+  },
+  "errorPage": {
+    "title": "发生错误",
+    "description": "载入此页面时发生意外错误。您可以重试，或返回首页。",
+    "tryAgain": "重试",
+    "backHome": "返回首页"
+  },
+  "loading": {
+    "text": "GajiPay 载入中……"
+  }
+}

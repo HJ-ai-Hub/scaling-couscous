@@ -1,0 +1,296 @@
+{
+  "metadata": {
+    "defaultTitle": "Modern Payroll Platform Built for Malaysian Businesses",
+    "description": "GajiPay simplifies HR, payroll and Earned Wage Access in one intelligent platform — plus company secretary and audit & accounting referral for Malaysian SMEs."
+  },
+  "nav": {
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "contact": "Contact",
+    "bookDemo": "Book Demo",
+    "getStarted": "Get Started",
+    "language": "Language"
+  },
+  "footer": {
+    "description": "GajiPay is a modern payroll technology platform for Malaysian businesses — HR Portal, Payroll, Earned Wage Access, Company Secretary and Audit & Accounting referral in one intelligent platform.",
+    "tagline": "Pay Earned. Live Empowered.",
+    "rights": "All rights reserved."
+  },
+  "home": {
+    "hero": {
+      "badge": "Earned Wage Access · Not a loan",
+      "title": "Modern payroll platform, built for Malaysian businesses",
+      "description": "Simplify HR, payroll and Earned Wage Access in one intelligent platform — plus company secretary and audit & accounting referral, so your back office finally works as one.",
+      "ctaBookDemo": "Book Demo",
+      "ctaGetStarted": "Get Started",
+      "ctaWatchDemo": "Watch Demo",
+      "disclaimer": "No lending licence. No interest. Just wages your people have already earned."
+    },
+    "industryStrip": {
+      "heading": "Built for the sectors that carry Malaysia's SME economy"
+    },
+    "whyGajipay": {
+      "eyebrow": "Why GajiPay",
+      "title": "Your back office, finally working as one system",
+      "description": "Most Malaysian SMEs stitch together a payroll tool, an HR spreadsheet, a company secretary retainer and a salary-advance app. GajiPay replaces the stitching.",
+      "pillars": [
+        {
+          "title": "One platform, not five vendors",
+          "description": "HR, payroll, statutory compliance and financial wellness usually mean five logins and five invoices. GajiPay runs them on one employee record, so nothing gets re-entered twice."
+        },
+        {
+          "title": "Compliance-first, so fintech follows",
+          "description": "We start with what every company must have — a company secretary, correct statutory payroll — then use that same data to power Advance Pay accurately. Trust before transactions."
+        },
+        {
+          "title": "Built for Malaysia, not adapted to it",
+          "description": "EPF, SOCSO, EIS, PCB and the Employment Act aren't an afterthought bolted onto a regional template — they're the foundation the whole platform is built on."
+        }
+      ]
+    },
+    "ewa": {
+      "eyebrow": "Advance Pay",
+      "title": "Earned Wage Access, done the right way",
+      "description": "After the 15th of every month, employees can draw down a share of the wages they've already earned — directly from the GajiPay app, reconciled automatically at payday. No interest. No lending licence required. No debt created.",
+      "facts": [
+        {
+          "title": "Not a loan",
+          "description": "No interest, no credit check, no debt — just wages already earned, released early."
+        },
+        {
+          "title": "Capped, always",
+          "description": "Advances are hard-capped against wages already earned, in line with the Employment Act 1955."
+        },
+        {
+          "title": "Bank-partner disbursement",
+          "description": "Funds move through a licensed banking partner — never from GajiPay's own balance sheet."
+        }
+      ],
+      "cta": "See how Advance Pay works"
+    },
+    "dashboard": {
+      "eyebrow": "HR & Payroll, in one view",
+      "title": "Everything HR and finance need to see, in one dashboard",
+      "description": "Payroll, employees, leave, attendance, Advance Pay and analytics — switch between them without switching tools."
+    },
+    "features": {
+      "eyebrow": "Platform",
+      "title": "Every feature earns its place",
+      "description": "No bloat, no modules you'll never touch — just the tools HR, finance and your people actually use every cycle."
+    },
+    "security": {
+      "eyebrow": "Security & trust",
+      "title": "Handled the way sensitive payroll data deserves",
+      "description": "Salary, attendance and banking data are some of the most sensitive information your company holds. GajiPay treats it that way from the first line of code."
+    },
+    "perspectives": {
+      "eyebrow": "Built around real workflows",
+      "title": "Designed for everyone touching payroll",
+      "description": "GajiPay is in early access with our first pilot partners across Malaysia. Here's who we're building it for."
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Questions we get asked first",
+      "description": "Especially about how Advance Pay works, and why it isn't a loan."
+    },
+    "finalCta": {
+      "title": "Give your team payroll, HR and financial wellness that actually works together",
+      "description": "Book a walkthrough with our team, or get started with a compliance-first bundle today.",
+      "ctaBookDemo": "Book Demo",
+      "ctaGetStarted": "Get Started"
+    }
+  },
+  "about": {
+    "metaTitle": "About",
+    "metaDescription": "GajiPay is building the compliance and financial wellness platform Malaysian SMEs have had to stitch together themselves — company secretary, payroll, HR and Earned Wage Access, in one place.",
+    "eyebrow": "About GajiPay",
+    "title": "The back office Malaysian SMEs have had to stitch together themselves",
+    "description": "GajiPay Sdn Bhd exists because 97% of Malaysian businesses are MSMEs, and almost none of them can afford — or want — five separate vendors for payroll, HR, compliance and financial wellness.",
+    "intro": [
+      "Most SMEs run payroll through one tool, HR through a spreadsheet, a company secretary through a retainer they barely think about, and — if their employees are lucky — a bolted-on salary-advance app from a fourth provider entirely. None of these systems talk to each other, and none of them were built around the reality of Malaysian statutory compliance.",
+      "GajiPay starts from the compliance every Sdn Bhd already needs — a company secretary, correct EPF/SOCSO/EIS/PCB payroll — and builds outward from there. Once payroll and attendance data lives in one place, we can do something no bolted-on app can: calculate exactly how much of an employee's wage has actually been earned, in real time, and let them access it early, fairly, and without debt."
+    ],
+    "valuesEyebrow": "What we believe",
+    "valuesTitle": "Three things we won't compromise on",
+    "values": [
+      {
+        "title": "Compliance first, always",
+        "description": "We start with what Malaysian law actually requires — a company secretary, correct statutory payroll — before we build anything that touches money."
+      },
+      {
+        "title": "Built for Malaysia specifically",
+        "description": "Not a regional template with local logos swapped in. EPF, SOCSO, EIS, PCB and the Employment Act are the foundation, not an add-on."
+      },
+      {
+        "title": "No debt, ever",
+        "description": "Advance Pay only ever releases wages already earned. We are not a lender, we don't hold a moneylending licence, and we never will pretend otherwise."
+      }
+    ],
+    "statusEyebrow": "Where we are today",
+    "statusText": "GajiPay is in early access, onboarding our first pilot partners across retail, F&B, manufacturing, logistics and security services in Malaysia. If that sounds like your business, we'd like to hear from you."
+  },
+  "contactPage": {
+    "metaTitle": "Contact",
+    "metaDescription": "Get in touch with the GajiPay team — questions about payroll, HR, Advance Pay, company secretary or audit referral.",
+    "eyebrow": "Contact",
+    "title": "Let's talk about your team",
+    "description": "Whether you're starting with company secretary services or ready to bring your whole payroll and HR stack over, we'll get back to you within one business day.",
+    "labels": {
+      "email": "Email",
+      "phone": "Phone",
+      "office": "Office",
+      "responseTime": "Response time",
+      "responseTimeValue": "Within one business day"
+    }
+  },
+  "bookDemoPage": {
+    "metaTitle": "Book a Demo",
+    "metaDescription": "See GajiPay's HR Portal, Payroll and Advance Pay in action — book a walkthrough with our team.",
+    "eyebrow": "Book Demo",
+    "title": "See GajiPay running with your kind of team",
+    "description": "Tell us a bit about your company and we'll set up a walkthrough focused on what actually matters to you — payroll, HR, Advance Pay, or all three.",
+    "whatToExpect": "What to expect",
+    "expectations": [
+      "A 30-minute walkthrough of Payroll, HR Portal, Advance Pay and Company Secretary, tailored to your industry",
+      "A straight answer on how Advance Pay is structured legally — no lending licence, no interest",
+      "A rough pricing indication before you leave the call",
+      "No pressure to sign anything on the spot"
+    ]
+  },
+  "pricingPage": {
+    "metaTitle": "Pricing",
+    "metaDescription": "Transparent, bundled pricing for Company Secretary, Payroll, HR Portal and Advance Pay — scaled to your headcount, quoted after a short discovery call.",
+    "eyebrow": "Pricing",
+    "title": "Pricing that scales with what you actually use",
+    "description": "Every plan bundles statutory compliance with the fintech layer on top — priced by headcount and services, never by surprise.",
+    "mostPopular": "Most popular",
+    "getAQuote": "Get a quote",
+    "disclaimer": "Exact pricing depends on headcount and which services you bundle — we'll quote you after a short discovery call, usually within one business day.",
+    "advancePayTitle": "Advance Pay pricing",
+    "advancePayDescription": "Never interest — a flat processing fee per withdrawal, typically RM2–5 depending on your plan. Employers can absorb it as a benefit, or let employees opt to pay it themselves.",
+    "csTitle": "Company Secretary pricing",
+    "csDescription": "A flat monthly retainer plus statutory filing fees, in line with typical Malaysian market rates — confirmed exactly for your entity before you sign anything.",
+    "faqEyebrow": "Pricing FAQ",
+    "faqTitle": "Before you talk to us"
+  },
+  "productsPage": {
+    "metaTitle": "Products",
+    "metaDescription": "Advance Pay (EWA), Payroll, HR Portal, Company Secretary and Audit & Accounting referral — five connected services on one GajiPay platform.",
+    "eyebrow": "Products",
+    "title": "One platform, five connected services",
+    "description": "Every product reads from the same employee record, so nothing gets entered twice — and Advance Pay stays accurate because it's built on GajiPay's own payroll data.",
+    "learnMore": "Learn more"
+  },
+  "productDetail": {
+    "whatYouGet": "What you get",
+    "howItWorksEyebrow": "How it works",
+    "howItWorksTitle": "From setup to your first cycle",
+    "faqEyebrow": "FAQ",
+    "faqTitle": "Common questions about {name}",
+    "exploreRest": "Explore the rest of the platform",
+    "learnMore": "Learn more",
+    "bookDemo": "Book Demo",
+    "getStarted": "Get Started"
+  },
+  "solutionsPage": {
+    "metaTitle": "Solutions",
+    "metaDescription": "GajiPay built around how Malaysian SMEs actually staff up — retail & F&B, manufacturing, logistics, security services and construction.",
+    "eyebrow": "Solutions",
+    "title": "Built around how you actually staff up",
+    "description": "Shift workers, factory floors, distributed riders, guards across many sites — GajiPay is shaped around the sectors that carry Malaysia's SME economy.",
+    "seeHowItFits": "See how it fits"
+  },
+  "solutionDetail": {
+    "eyebrowPrefix": "Solutions",
+    "painPointsTitle": "Where it gets hard",
+    "outcomesTitle": "What changes with GajiPay",
+    "bookDemo": "Book Demo",
+    "getStarted": "Get Started"
+  },
+  "resourcesPage": {
+    "metaTitle": "Resources",
+    "metaDescription": "Guides on Malaysian payroll compliance, Earned Wage Access regulation, and company secretary requirements.",
+    "eyebrow": "Resources",
+    "title": "Compliance, payroll and financial wellness, explained plainly",
+    "description": "No jargon-first legal briefs — just straight answers to the questions Malaysian employers actually ask us.",
+    "readTheGuide": "Read the guide"
+  },
+  "resourceDetail": {
+    "backToResources": "Back to resources",
+    "keepReading": "Keep reading",
+    "read": "Read"
+  },
+  "legalPage": {
+    "eyebrow": "Legal",
+    "lastUpdated": "Last updated: {date}",
+    "disclaimer": "This document is a working draft prepared for launch planning. It should be reviewed and finalised by qualified Malaysian legal counsel before being relied upon as a binding agreement."
+  },
+  "forms": {
+    "contact": {
+      "nameLabel": "Full name",
+      "namePlaceholder": "Nurul Ain",
+      "companyLabel": "Company",
+      "companyPlaceholder": "Kedai Kopi Kayangan Sdn Bhd",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@company.com",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "+60 12-345 6789",
+      "messageLabel": "How can we help?",
+      "messagePlaceholder": "Tell us about your team and what you're looking for...",
+      "submitIdle": "Send message",
+      "submitLoading": "Sending...",
+      "errorGeneric": "Something went wrong — please try again in a moment.",
+      "successTitle": "Message sent",
+      "successDescription": "Thanks for reaching out — someone from the GajiPay team will get back to you within one business day.",
+      "sendAnother": "Send another message"
+    },
+    "demo": {
+      "nameLabel": "Full name",
+      "namePlaceholder": "Nurul Ain",
+      "companyLabel": "Company",
+      "companyPlaceholder": "Kedai Kopi Kayangan Sdn Bhd",
+      "workEmailLabel": "Work email",
+      "emailPlaceholder": "you@company.com",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "+60 12-345 6789",
+      "companySizeLabel": "Company size",
+      "selectEmployeeCount": "Select employee count",
+      "employeesSuffix": "employees",
+      "interestsLabel": "What are you interested in?",
+      "messageLabel": "Anything else we should know?",
+      "messagePlaceholder": "Optional — tell us about your current setup",
+      "submitIdle": "Book Demo",
+      "submitLoading": "Submitting...",
+      "errorGeneric": "Something went wrong — please try again in a moment.",
+      "successTitle": "Demo request received",
+      "successDescription": "We'll follow up by email within one business day to find a time that works for your team.",
+      "bookAnother": "Book another demo"
+    },
+    "validation": {
+      "nameRequired": "Enter your full name",
+      "companyRequired": "Enter your company name",
+      "emailInvalid": "Enter a valid email address",
+      "workEmailInvalid": "Enter a valid work email address",
+      "phoneInvalid": "Enter a valid phone number",
+      "messageMin": "Tell us a little more (at least 10 characters)",
+      "companySizeRequired": "Select your company size",
+      "interestsRequired": "Select at least one product you're interested in"
+    }
+  },
+  "notFound": {
+    "code": "404",
+    "title": "This page has already been paid out",
+    "description": "We couldn't find what you were looking for. It may have moved, or the link might be out of date.",
+    "backHome": "Back to home",
+    "contactSupport": "Contact support"
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred while loading this page. You can try again, or head back to the homepage.",
+    "tryAgain": "Try again",
+    "backHome": "Back to home"
+  },
+  "loading": {
+    "text": "Loading GajiPay…"
+  }
+}
