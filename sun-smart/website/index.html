@@ -150,6 +150,7 @@
   /* ---------- sections ---------- */
   section{padding:84px 0;position:relative;overflow:hidden}
   section.soft{background:var(--soft)}
+  section.hide-until-nav{display:none}
   .sec-head{max-width:660px;margin:0 auto 48px;text-align:center}
   .sec-head h2{animation:headingGlow 2.8s ease-in-out infinite}
   .sec-head p{color:var(--muted);margin:0;font-size:16px;animation:bodyGlow 2.8s ease-in-out infinite}
@@ -452,7 +453,7 @@
 </section>
 
 <!-- ===== REPAIR ===== -->
-<section id="repair" class="soft">
+<section id="repair" class="soft hide-until-nav">
   <div class="blob b" style="width:300px;height:300px;top:-70px;right:-90px"></div>
   <div class="wrap">
     <div class="sec-head reveal">
@@ -492,7 +493,7 @@
 </section>
 
 <!-- ===== PAYMENT ===== -->
-<section id="payment">
+<section id="payment" class="hide-until-nav">
   <div class="blob r" style="width:300px;height:300px;top:-60px;left:-100px"></div>
   <div class="wrap">
     <div class="sec-head reveal">
@@ -512,7 +513,7 @@
 </section>
 
 <!-- ===== PICKUP ===== -->
-<section id="pickup" class="soft">
+<section id="pickup" class="soft hide-until-nav">
   <div class="blob r" style="width:300px;height:300px;bottom:-80px;left:-90px"></div>
   <div class="wrap">
     <div class="sec-head reveal">
@@ -957,6 +958,28 @@ const burger=document.getElementById("burger"),links=document.getElementById("li
 burger.addEventListener("click",()=>links.classList.toggle("open"));
 links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>links.classList.remove("open")));
 window.addEventListener("hashchange",()=>{const el=document.getElementById(location.hash.replace("#",""));if(el&&el.tagName==="DETAILS")el.open=true;});
+
+/* ---- collapsed sections: reveal on nav click, then scroll to them ---- */
+function revealSection(id){
+  const el=document.getElementById(id);
+  if(el && el.classList.contains("hide-until-nav")) el.classList.remove("hide-until-nav");
+  return el;
+}
+document.querySelectorAll('a[href="#repair"],a[href="#payment"],a[href="#pickup"]').forEach(a=>{
+  a.addEventListener("click",(e)=>{
+    const id=a.getAttribute("href").slice(1);
+    const el=revealSection(id);
+    if(el){
+      e.preventDefault();
+      requestAnimationFrame(()=>el.scrollIntoView({behavior:"smooth",block:"start"}));
+      history.pushState(null,"","#"+id);
+    }
+  });
+});
+if(["repair","payment","pickup"].includes(location.hash.replace("#",""))){
+  const el=revealSection(location.hash.replace("#",""));
+  if(el) requestAnimationFrame(()=>el.scrollIntoView({behavior:"instant",block:"start"}));
+}
 
 /* ---- scroll-reveal ---- */
 if ("IntersectionObserver" in window) {
