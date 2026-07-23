@@ -14,7 +14,7 @@ const floatTransition = {
 
 export function HeroDashboard() {
   return (
-    <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
+    <div className="relative mx-auto w-full max-w-2xl">
       <div
         aria-hidden
         className="absolute -inset-x-10 -top-16 -bottom-10 -z-10 rounded-[3rem] bg-gradient-to-br from-mint/40 via-white to-blue/20 blur-2xl"

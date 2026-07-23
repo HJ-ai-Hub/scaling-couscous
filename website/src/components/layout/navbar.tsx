@@ -45,7 +45,7 @@ function NavDropdown({ group }: { group: NavGroup }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute left-1/2 top-full z-50 mt-3 w-[min(90vw,640px)] -translate-x-1/2 rounded-card border border-border bg-white p-6 shadow-lift"
+            className="absolute left-0 top-full z-50 mt-3 w-[min(90vw,640px)] rounded-card border border-border bg-white p-6 shadow-lift"
           >
             <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-ink-faint">
               {group.description}
