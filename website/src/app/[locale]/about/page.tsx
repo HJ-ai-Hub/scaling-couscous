@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: AboutPageProps): Promise<Meta
 export default async function AboutPage({ params }: AboutPageProps) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
-  const t = await getTranslations("about");
+  const t = await getTranslations({ locale, namespace: "about" });
   const intro = t.raw("intro") as string[];
   const values = t.raw("values") as { title: string; description: string }[];
 
@@ -84,7 +84,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
         </div>
       </section>
 
-      <FinalCta />
+      <FinalCta locale={locale as Locale} />
     </>
   );
 }

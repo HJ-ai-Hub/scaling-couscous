@@ -5,11 +5,12 @@ import { SectionReveal } from "@/components/layout/section-reveal";
 import { AdvancePayMock } from "@/components/marketing/advance-pay-mock";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/routing";
 
 const factIcons = [ShieldCheck, PercentCircle, Landmark];
 
-export async function EarnedWageAccessSection() {
-  const t = await getTranslations("home.ewa");
+export async function EarnedWageAccessSection({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "home.ewa" });
   const facts = t.raw("facts") as { title: string; description: string }[];
 
   return (

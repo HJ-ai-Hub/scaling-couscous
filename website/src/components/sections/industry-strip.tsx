@@ -1,12 +1,11 @@
-import { getTranslations, getLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 import { SectionReveal } from "@/components/layout/section-reveal";
 import type { Locale } from "@/i18n/routing";
 import { getIndustryStrip, getMarketStats } from "@/content/perspectives";
 
-export async function IndustryStrip() {
-  const locale = (await getLocale()) as Locale;
-  const t = await getTranslations("home.industryStrip");
+export async function IndustryStrip({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "home.industryStrip" });
   const industryStrip = getIndustryStrip(locale);
   const marketStats = getMarketStats(locale);
   const loopedIndustries = [...industryStrip, ...industryStrip];

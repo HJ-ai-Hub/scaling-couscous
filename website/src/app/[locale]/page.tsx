@@ -30,8 +30,9 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
-  setRequestLocale(locale as Locale);
-  const homeFaq = getHomeFaq(locale as Locale);
+  const typedLocale = locale as Locale;
+  setRequestLocale(typedLocale);
+  const homeFaq = getHomeFaq(typedLocale);
 
   return (
     <>
@@ -40,15 +41,15 @@ export default async function HomePage({ params }: HomePageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(homeFaq)) }}
       />
       <Hero />
-      <IndustryStrip />
-      <WhyGajiPay />
-      <EarnedWageAccessSection />
-      <DashboardSection />
-      <Features />
-      <Security />
-      <Perspectives />
-      <Faq />
-      <FinalCta />
+      <IndustryStrip locale={typedLocale} />
+      <WhyGajiPay locale={typedLocale} />
+      <EarnedWageAccessSection locale={typedLocale} />
+      <DashboardSection locale={typedLocale} />
+      <Features locale={typedLocale} />
+      <Security locale={typedLocale} />
+      <Perspectives locale={typedLocale} />
+      <Faq locale={typedLocale} />
+      <FinalCta locale={typedLocale} />
     </>
   );
 }

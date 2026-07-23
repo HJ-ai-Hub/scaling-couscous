@@ -31,7 +31,7 @@ export default async function LegalPage({ params }: LegalPageProps) {
   const doc = getLegalDocBySlug(locale as Locale, slug);
   if (!doc) notFound();
 
-  const t = await getTranslations("legalPage");
+  const t = await getTranslations({ locale, namespace: "legalPage" });
 
   return (
     <article className="pb-24 pt-36 sm:pt-44">

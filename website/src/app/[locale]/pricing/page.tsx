@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PricingPageProps): Promise<Me
 export default async function PricingPage({ params }: PricingPageProps) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
-  const t = await getTranslations("pricingPage");
+  const t = await getTranslations({ locale, namespace: "pricingPage" });
   const pricingTiers = getPricingTiers(locale as Locale);
   const pricingFaq = getPricingFaq(locale as Locale);
 
@@ -119,7 +119,7 @@ export default async function PricingPage({ params }: PricingPageProps) {
         </div>
       </section>
 
-      <FinalCta />
+      <FinalCta locale={locale as Locale} />
     </>
   );
 }

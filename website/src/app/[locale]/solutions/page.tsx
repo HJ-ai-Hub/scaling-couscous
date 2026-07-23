@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: SolutionsPageProps): Promise<
 export default async function SolutionsPage({ params }: SolutionsPageProps) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
-  const t = await getTranslations("solutionsPage");
+  const t = await getTranslations({ locale, namespace: "solutionsPage" });
   const solutions = getSolutions(locale as Locale);
 
   return (
@@ -57,7 +57,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
         </div>
       </section>
 
-      <FinalCta />
+      <FinalCta locale={locale as Locale} />
     </>
   );
 }

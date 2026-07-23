@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: ResourcesPageProps): Promise<
 export default async function ResourcesPage({ params }: ResourcesPageProps) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
-  const t = await getTranslations("resourcesPage");
+  const t = await getTranslations({ locale, namespace: "resourcesPage" });
   const resources = getResources(locale as Locale);
 
   return (

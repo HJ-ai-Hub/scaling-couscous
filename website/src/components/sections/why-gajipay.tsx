@@ -2,11 +2,12 @@ import { Layers, ShieldCheck, MapPinned } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { SectionReveal } from "@/components/layout/section-reveal";
+import type { Locale } from "@/i18n/routing";
 
 const pillarIcons = [Layers, ShieldCheck, MapPinned];
 
-export async function WhyGajiPay() {
-  const t = await getTranslations("home.whyGajipay");
+export async function WhyGajiPay({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "home.whyGajipay" });
   const pillars = t.raw("pillars") as { title: string; description: string }[];
 
   return (

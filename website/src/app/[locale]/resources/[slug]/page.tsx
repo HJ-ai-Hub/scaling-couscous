@@ -34,7 +34,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
   const resource = getResourceBySlug(locale as Locale, slug);
   if (!resource) notFound();
 
-  const t = await getTranslations("resourceDetail");
+  const t = await getTranslations({ locale, namespace: "resourceDetail" });
   const related = getResources(locale as Locale).filter((r) => r.slug !== resource.slug).slice(0, 2);
 
   return (
@@ -98,7 +98,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
         </section>
       ) : null}
 
-      <FinalCta />
+      <FinalCta locale={locale as Locale} />
     </>
   );
 }

@@ -1,13 +1,12 @@
-import { getTranslations, getLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 import { SectionReveal } from "@/components/layout/section-reveal";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import type { Locale } from "@/i18n/routing";
 import { getHomeFaq } from "@/content/faq";
 
-export async function Faq() {
-  const locale = (await getLocale()) as Locale;
-  const t = await getTranslations("home.faq");
+export async function Faq({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "home.faq" });
   const homeFaq = getHomeFaq(locale);
 
   return (

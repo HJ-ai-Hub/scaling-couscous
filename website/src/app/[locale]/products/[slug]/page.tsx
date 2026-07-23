@@ -37,7 +37,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const product = getProductBySlug(locale as Locale, slug);
   if (!product) notFound();
 
-  const t = await getTranslations("productDetail");
+  const t = await getTranslations({ locale, namespace: "productDetail" });
   const otherProducts = getProducts(locale as Locale).filter((p) => p.slug !== product.slug);
 
   return (
@@ -151,7 +151,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
       </section>
 
-      <FinalCta />
+      <FinalCta locale={locale as Locale} />
     </>
   );
 }

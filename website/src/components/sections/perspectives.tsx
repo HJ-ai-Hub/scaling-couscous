@@ -1,12 +1,11 @@
-import { getTranslations, getLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 import { SectionReveal } from "@/components/layout/section-reveal";
 import type { Locale } from "@/i18n/routing";
 import { getPerspectives } from "@/content/perspectives";
 
-export async function Perspectives() {
-  const locale = (await getLocale()) as Locale;
-  const t = await getTranslations("home.perspectives");
+export async function Perspectives({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "home.perspectives" });
   const perspectives = getPerspectives(locale);
 
   return (

@@ -35,7 +35,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
   const solution = getSolutionBySlug(locale as Locale, slug);
   if (!solution) notFound();
 
-  const t = await getTranslations("solutionDetail");
+  const t = await getTranslations({ locale, namespace: "solutionDetail" });
 
   return (
     <>
@@ -88,7 +88,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
         </div>
       </section>
 
-      <FinalCta />
+      <FinalCta locale={locale as Locale} />
     </>
   );
 }

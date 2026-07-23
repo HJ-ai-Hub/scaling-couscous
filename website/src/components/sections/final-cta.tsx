@@ -4,9 +4,10 @@ import { SectionReveal } from "@/components/layout/section-reveal";
 import { Button } from "@/components/ui/button";
 import { LogoMark } from "@/components/brand/logo-mark";
 import { Link } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/routing";
 
-export async function FinalCta() {
-  const t = await getTranslations("home.finalCta");
+export async function FinalCta({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "home.finalCta" });
 
   return (
     <section className="px-4 py-20 sm:px-6 lg:py-28">

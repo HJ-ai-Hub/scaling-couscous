@@ -1,12 +1,11 @@
-import { getTranslations, getLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 import { SectionReveal } from "@/components/layout/section-reveal";
 import type { Locale } from "@/i18n/routing";
 import { getPlatformFeatures } from "@/content/features";
 
-export async function Features() {
-  const locale = (await getLocale()) as Locale;
-  const t = await getTranslations("home.features");
+export async function Features({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "home.features" });
   const platformFeatures = getPlatformFeatures(locale);
 
   return (

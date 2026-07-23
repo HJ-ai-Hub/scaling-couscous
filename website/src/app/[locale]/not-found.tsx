@@ -4,9 +4,16 @@ import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import { LogoMark } from "@/components/brand/logo-mark";
 import { Link } from "@/i18n/navigation";
+import { routing, type Locale } from "@/i18n/routing";
 
-export default async function NotFound() {
-  const t = await getTranslations("notFound");
+interface NotFoundProps {
+  params?: Promise<{ locale: string }>;
+}
+
+export default async function NotFound({ params }: NotFoundProps) {
+  const resolved = params ? await params.catch(() => null) : null;
+  const locale = (resolved?.locale as Locale) ?? routing.defaultLocale;
+  const t = await getTranslations({ locale, namespace: "notFound" });
 
   return (
     <section className="flex min-h-[80vh] items-center justify-center px-6 py-32">

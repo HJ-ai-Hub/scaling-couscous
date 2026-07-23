@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: ProductsPageProps): Promise<M
 export default async function ProductsPage({ params }: ProductsPageProps) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
-  const t = await getTranslations("productsPage");
+  const t = await getTranslations({ locale, namespace: "productsPage" });
   const products = getProducts(locale as Locale);
 
   return (
@@ -58,7 +58,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         </div>
       </section>
 
-      <FinalCta />
+      <FinalCta locale={locale as Locale} />
     </>
   );
 }

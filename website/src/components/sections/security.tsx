@@ -1,12 +1,11 @@
-import { getTranslations, getLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 import { SectionReveal } from "@/components/layout/section-reveal";
 import type { Locale } from "@/i18n/routing";
 import { getSecurityPillars } from "@/content/features";
 
-export async function Security() {
-  const locale = (await getLocale()) as Locale;
-  const t = await getTranslations("home.security");
+export async function Security({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "home.security" });
   const securityPillars = getSecurityPillars(locale);
 
   return (

@@ -2,9 +2,10 @@ import { getTranslations } from "next-intl/server";
 
 import { SectionReveal } from "@/components/layout/section-reveal";
 import { PlatformDashboard } from "@/components/marketing/platform-dashboard";
+import type { Locale } from "@/i18n/routing";
 
-export async function DashboardSection() {
-  const t = await getTranslations("home.dashboard");
+export async function DashboardSection({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "home.dashboard" });
 
   return (
     <section className="py-24 lg:py-32">

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: BookDemoPageProps): Promise<M
 export default async function BookDemoPage({ params }: BookDemoPageProps) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
-  const t = await getTranslations("bookDemoPage");
+  const t = await getTranslations({ locale, namespace: "bookDemoPage" });
   const expectations = t.raw("expectations") as string[];
 
   return (
