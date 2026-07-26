@@ -205,6 +205,17 @@
   .prod .body{padding:15px 16px}
   .prod .body .nm{height:11px;width:72%;background:#e7ebf6;border-radius:6px;margin-bottom:9px}
   .prod .body .pr{height:11px;width:42%;background:#eef0f8;border-radius:6px}
+  .prod-real .thumb{background:#f3f5fb;overflow:hidden}
+  .prod-real .thumb img{width:100%;height:100%;object-fit:cover}
+  .prod-name{font-size:14.5px;font-weight:700;color:var(--ink);margin:0 0 4px;line-height:1.3}
+  .prod-price{font-size:17px;font-weight:800;color:var(--blue);margin:0 0 7px}
+  .prod-meta{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-bottom:10px}
+  .prod-meta .dot{width:8px;height:8px;flex:0 0 auto}
+  .prod-colors{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px}
+  .cswatch{width:15px;height:15px;border-radius:50%;box-shadow:0 0 0 1.5px var(--line);display:inline-block}
+  .prod-link{display:block;color:inherit}
+  .prod-link:hover .prod-name{color:var(--blue)}
+  .prod-cta-row{padding:0 16px 15px;margin-top:-4px}
   .stock-legend{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:34px}
   .stk{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);font-weight:500}
   .dot{width:11px;height:11px;border-radius:50%}
@@ -441,7 +452,76 @@
     </div>
     <div class="cat-panel active" id="cat-new">
       <div class="cat-intro"><h3 data-i18n="catnew_t">New Phones</h3><p class="muted" data-i18n="catnew_d">Mid-range Android from leading brands and popular iPhone models, typically RM500–RM3,000, all Malaysia set with manufacturer warranty.</p></div>
-      <div class="prod-grid" data-skeleton></div>
+      <div class="prod-grid">
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-16-pro-max.html" aria-label="View iPhone 16 Pro Max 256GB details">
+            <div class="thumb"><img src="assets/products/iphone-16-pro-max/iphone-16-pro-max-natural-titanium.jpg" alt="iPhone 16 Pro Max 256GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 16 Pro Max 256GB</div>
+              <div class="prod-price">RM3759</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
+                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
+                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
+                <span class="cswatch" style="background:#a9906f" title="Desert Titanium"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone16promax" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-15-pro.html" aria-label="View iPhone 15 Pro 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-15-pro/iphone-15-pro-natural-titanium.jpg" alt="iPhone 15 Pro 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 15 Pro 128GB</div>
+              <div class="prod-price">RM2619</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
+                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
+                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
+                <span class="cswatch" style="background:#4d5b64" title="Blue Titanium"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone15pro" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-samsung-a56.html" aria-label="View Samsung Galaxy A56 5G 12GB+256GB details">
+            <div class="thumb"><img src="assets/products/samsung-a56/samsung-a56-awesome-graphite.jpg" alt="Samsung Galaxy A56 5G 12GB+256GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">Samsung Galaxy A56 5G 12GB+256GB</div>
+              <div class="prod-price">RM1789</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#3d3f42" title="Awesome Graphite"></span>
+                <span class="cswatch" style="background:#c4c6c9" title="Awesome Lightgray"></span>
+                <span class="cswatch" style="background:#5a5e42" title="Awesome Olive"></span>
+                <span class="cswatch" style="background:#e0b8c4" title="Awesome Pink"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="samsunga56" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-honor-x9d.html" aria-label="View HONOR X9d 12GB+256GB details">
+            <div class="thumb"><img src="assets/products/honor-x9d/honor-x9d-midnight-black.jpg" alt="HONOR X9d 12GB+256GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">HONOR X9d 12GB+256GB</div>
+              <div class="prod-price">RM1699</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#2b2b2d" title="Midnight Black"></span>
+                <span class="cswatch" style="background:#3d4a3a" title="Forest Green"></span>
+                <span class="cswatch" style="background:#c9a86a" title="Sunrise Gold"></span>
+                <span class="cswatch" style="background:#6b4a3a" title="Reddish Brown"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="honorx9d" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+        </div>
+      </div>
     </div>
     <div class="cat-panel" id="cat-used">
       <div class="cat-intro"><h3 data-i18n="catused_t">Pre-owned Phones</h3><p class="muted" data-i18n="catused_d">Quality-checked pre-owned phones, graded by condition, with battery health and functions tested and clearly stated before you buy.</p></div>
@@ -451,12 +531,6 @@
       <div class="cat-intro"><h3 data-i18n="catacc_t">Accessories</h3><p class="muted" data-i18n="catacc_d">Cases, tempered glass, chargers, cables, power banks, wireless earbuds and other everyday essentials.</p></div>
       <div class="prod-grid" data-skeleton></div>
     </div>
-
-    <div class="cat-intro" style="margin-top:54px"><h3 data-i18n="prod_popular_t">Popular Devices</h3></div>
-    <div class="prod-grid" data-skeleton></div>
-
-    <div class="cat-intro" style="margin-top:54px"><h3 data-i18n="prod_newarrival_t">New Arrivals</h3></div>
-    <div class="prod-grid" data-skeleton></div>
 
     <div class="stock-legend">
       <span class="stk"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></span>
@@ -892,7 +966,11 @@ const WA_NUMBER="60XXXXXXXXX";
 const WA_MSG={
   enquire:{en:"Hi SUN SMART, I'd like to enquire about a phone.",zh:"你好 SUN SMART，我想咨询手机。",ms:"Hai SUN SMART, saya ingin bertanya tentang telefon."},
   repair:{en:"Hi SUN SMART, I'd like to book a phone repair.",zh:"你好 SUN SMART，我想预约手机维修。",ms:"Hai SUN SMART, saya ingin menempah pembaikan telefon."},
-  tradein:{en:"Hi SUN SMART, I'd like to get a trade-in quote for my phone.",zh:"你好 SUN SMART，我想咨询手机换购价值。",ms:"Hai SUN SMART, saya ingin mendapatkan sebut harga tukar ganti telefon saya."}
+  tradein:{en:"Hi SUN SMART, I'd like to get a trade-in quote for my phone.",zh:"你好 SUN SMART，我想咨询手机换购价值。",ms:"Hai SUN SMART, saya ingin mendapatkan sebut harga tukar ganti telefon saya."},
+  iphone16promax:{en:"Hi SUN SMART, I'd like to enquire about the iPhone 16 Pro Max 256GB (RM3759).",zh:"你好 SUN SMART，我想咨询 iPhone 16 Pro Max 256GB（RM3759）。",ms:"Hai SUN SMART, saya ingin bertanya tentang iPhone 16 Pro Max 256GB (RM3759)."},
+  iphone15pro:{en:"Hi SUN SMART, I'd like to enquire about the iPhone 15 Pro 128GB (RM2619).",zh:"你好 SUN SMART，我想咨询 iPhone 15 Pro 128GB（RM2619）。",ms:"Hai SUN SMART, saya ingin bertanya tentang iPhone 15 Pro 128GB (RM2619)."},
+  samsunga56:{en:"Hi SUN SMART, I'd like to enquire about the Samsung Galaxy A56 5G 12GB+256GB (RM1789).",zh:"你好 SUN SMART，我想咨询 Samsung Galaxy A56 5G 12GB+256GB（RM1789）。",ms:"Hai SUN SMART, saya ingin bertanya tentang Samsung Galaxy A56 5G 12GB+256GB (RM1789)."},
+  honorx9d:{en:"Hi SUN SMART, I'd like to enquire about the HONOR X9d 12GB+256GB (RM1699).",zh:"你好 SUN SMART，我想咨询 HONOR X9d 12GB+256GB（RM1699）。",ms:"Hai SUN SMART, saya ingin bertanya tentang HONOR X9d 12GB+256GB (RM1699)."}
 };
 function applyLang(lang){
   const d=I18N[lang]||I18N.en;
