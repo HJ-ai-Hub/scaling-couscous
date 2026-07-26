@@ -449,6 +449,7 @@
       <button class="active" data-cat="new" data-i18n="cat_new">New Phones</button>
       <button data-cat="used" data-i18n="cat_used">Pre-owned Phones</button>
       <button data-cat="acc" data-i18n="cat_acc">Accessories</button>
+      <button data-cat="pad" data-i18n="cat_pad">Pad/Tab</button>
     </div>
     <div class="cat-panel active" id="cat-new">
       <div class="cat-intro"><h3 data-i18n="catnew_t">New Phones</h3><p class="muted" data-i18n="catnew_d">Mid-range Android from leading brands and popular iPhone models, typically RM500–RM3,000, all Malaysia set with manufacturer warranty.</p></div>
@@ -529,7 +530,66 @@
     </div>
     <div class="cat-panel" id="cat-acc">
       <div class="cat-intro"><h3 data-i18n="catacc_t">Accessories</h3><p class="muted" data-i18n="catacc_d">Cases, tempered glass, chargers, cables, power banks, wireless earbuds and other everyday essentials.</p></div>
-      <div class="prod-grid" data-skeleton></div>
+      <div class="prod-grid">
+        <div class="prod prod-real glass">
+          <div class="thumb"><img src="assets/products/accessories/baseus-powerbank-pd-22.5w-dualcable.jpg" alt="Baseus Power Bank PD 22.5W Dual Cable Digital Display" loading="lazy"></div>
+          <div class="body">
+            <div class="prod-name">Baseus Power Bank PD 22.5W Dual Cable Digital Display</div>
+            <div class="prod-price">RM68</div>
+            <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></div>
+          </div>
+          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="acc_powerbank_pd" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <div class="thumb"><img src="assets/products/accessories/baseus-powerbank-10000mah-magnetic.jpg" alt="Baseus Power Bank 10000mAh Mini Magnetic Wireless Fast Charge" loading="lazy"></div>
+          <div class="body">
+            <div class="prod-name">Baseus Power Bank 10000mAh Mini Magnetic Wireless Fast Charge</div>
+            <div class="prod-price">RM55</div>
+            <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></div>
+          </div>
+          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="acc_powerbank_magnetic" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <div class="thumb"><img src="assets/products/accessories/baseus-tempered-glass-iphone15promax.jpg" alt="Baseus Corning Series Full Coverage HD Tempered Glass - iPhone 15 Pro Max" loading="lazy"></div>
+          <div class="body">
+            <div class="prod-name">Baseus Corning Series Tempered Glass — iPhone 15 Pro Max</div>
+            <div class="prod-price">RM15</div>
+            <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></div>
+          </div>
+          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="acc_temperedglass" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <div class="thumb"><img src="assets/products/accessories/baseus-cable-usb-ip-1.2m.jpg" alt="Baseus Fast Charging Data Cable USB to iP 1.2M" loading="lazy"></div>
+          <div class="body">
+            <div class="prod-name">Baseus Fast Charging Data Cable USB to iP (1.2M)</div>
+            <div class="prod-price">RM10</div>
+            <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></div>
+          </div>
+          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="acc_cable_usbip" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="cat-panel" id="cat-pad">
+      <div class="cat-intro"><h3 data-i18n="catpad_t">Pad/Tab</h3><p class="muted" data-i18n="catpad_d">iPads and Android tablets for work, study and entertainment, all Malaysia set with manufacturer warranty.</p></div>
+      <div class="prod-grid">
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-ipad-11.html" aria-label="View iPad 11th Gen 2025 Wi-Fi 128GB details">
+            <div class="thumb"><img src="assets/products/ipad-11/ipad-11-blue.jpg" alt="iPad 11th Gen 2025 Wi-Fi 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPad 11th Gen 2025 Wi-Fi 128GB</div>
+              <div class="prod-price">RM1229</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#7ba7d6" title="Blue"></span>
+                <span class="cswatch" style="background:#e8b8c8" title="Pink"></span>
+                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
+                <span class="cswatch" style="background:#f2df8a" title="Yellow"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="ipad11" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+        </div>
+      </div>
     </div>
 
     <div class="stock-legend">
@@ -770,13 +830,14 @@ const I18N = {
     prodfull_eyebrow:"Full Catalogue",prodfull_title:"Browse All Products",
     prodfull_sub:"Explore our full range by category and brand. Message us on WhatsApp for the current price and availability of any model.",
     brand_all:"All Brands",brand_apple:"Apple",brand_samsung:"Samsung",brand_android:"Android",
-    cat_new:"New Phones",cat_used:"Pre-owned Phones",cat_acc:"Accessories",
+    cat_new:"New Phones",cat_used:"Pre-owned Phones",cat_acc:"Accessories",cat_pad:"Pad/Tab",
     catnew_t:"New Phones",catnew_d:"Mid-range Android from leading brands and popular iPhone models, typically RM500–RM3,000, all Malaysia set with manufacturer warranty.",
     catused_t:"Pre-owned Phones",catused_d:"Quality-checked pre-owned phones, graded by condition, with battery health and functions tested and clearly stated before you buy.",
     catacc_t:"Accessories",catacc_d:"Cases, tempered glass, chargers, cables, power banks, wireless earbuds and other everyday essentials.",
+    catpad_t:"Pad/Tab",catpad_d:"iPads and Android tablets for work, study and entertainment, all Malaysia set with manufacturer warranty.",
     stk_in:"In stock",stk_low:"Low stock",stk_order:"Available to order",
     prod_note:"💬 Prices & live stock will appear here once our catalogue is online. Message us on WhatsApp for the current price and availability of any model.",
-    prod_cta:"Ask about a model on WhatsApp",
+    prod_cta:"Ask about a model on WhatsApp",prod_ask_wa:"Ask on WhatsApp",
     nav_repair:"Repair",nav_tradein:"Trade-In",back_home:"← Back to Home",
     rep_eyebrow:"New service",rep_title:"Phone Repair",
     rep_sub:"Professional repair on a booking basis — a full diagnostic and a clear quotation before any work begins.",
@@ -841,13 +902,14 @@ const I18N = {
     prodfull_sub:"按分类与品牌浏览我们的完整系列。WhatsApp 咨询任何型号的最新价格与库存。",
     brand_all:"所有品牌",brand_apple:"Apple",brand_samsung:"Samsung",brand_android:"Android",
     prod_sub:"先睹为快——浏览完整产品目录，查看各品牌的完整系列。",
-    cat_new:"新手机",cat_used:"二手机",cat_acc:"配件",
+    cat_new:"新手机",cat_used:"二手机",cat_acc:"配件",cat_pad:"平板",
     catnew_t:"新手机",catnew_d:"主流品牌的中低价 Android 手机及热门 iPhone 型号，价格多在 RM500–RM3,000，均为马来西亚版并附原厂保修。",
     catused_t:"二手机",catused_d:"经过检测的二手机，按外观分级，电池健康度与功能均已测试，购买前清楚说明。",
     catacc_t:"配件",catacc_d:"手机壳、钢化膜、充电器、充电线、移动电源、蓝牙耳机等常用配件。",
+    catpad_t:"平板",catpad_d:"iPad 及 Android 平板电脑，适合工作、学习与娱乐，均为马来西亚版并附原厂保修。",
     stk_in:"有现货",stk_low:"库存不多",stk_order:"可订货",
     prod_note:"💬 产品目录上线后，价格与实时库存将显示于此。任何型号的最新价格与库存，请 WhatsApp 咨询。",
-    prod_cta:"WhatsApp 咨询型号",
+    prod_cta:"WhatsApp 咨询型号",prod_ask_wa:"WhatsApp 咨询",
     nav_repair:"维修",nav_tradein:"以旧换新",back_home:"← 返回首页",
     rep_eyebrow:"新服务",rep_title:"手机维修",
     rep_sub:"专业手机维修，采用预约制——先由技师全面检测并提供报价，确认后才进行维修。",
@@ -912,13 +974,14 @@ const I18N = {
     prodfull_sub:"Terokai julat penuh kami mengikut kategori dan jenama. Hubungi kami di WhatsApp untuk harga dan ketersediaan semasa mana-mana model.",
     brand_all:"Semua Jenama",brand_apple:"Apple",brand_samsung:"Samsung",brand_android:"Android",
     prod_sub:"Sekilas pandang apa yang kami ada — lihat katalog penuh untuk julat lengkap mengikut jenama.",
-    cat_new:"Telefon Baharu",cat_used:"Telefon Terpakai",cat_acc:"Aksesori",
+    cat_new:"Telefon Baharu",cat_used:"Telefon Terpakai",cat_acc:"Aksesori",cat_pad:"Pad/Tab",
     catnew_t:"Telefon Baharu",catnew_d:"Android pertengahan daripada jenama terkemuka dan model iPhone popular, biasanya RM500–RM3,000, semuanya set Malaysia dengan waranti pengeluar.",
     catused_t:"Telefon Terpakai",catused_d:"Telefon terpakai yang disemak kualiti, digredkan mengikut keadaan, dengan kesihatan bateri dan fungsi diuji serta dinyatakan dengan jelas sebelum anda membeli.",
     catacc_t:"Aksesori",catacc_d:"Casing, cermin tempered, pengecas, kabel, power bank, fon telinga wayarles dan keperluan harian lain.",
+    catpad_t:"Pad/Tab",catpad_d:"iPad dan tablet Android untuk kerja, belajar dan hiburan, semuanya set Malaysia dengan waranti pengeluar.",
     stk_in:"Ada stok",stk_low:"Stok rendah",stk_order:"Boleh ditempah",
     prod_note:"💬 Harga & stok langsung akan dipaparkan di sini sebaik katalog kami dalam talian. Hubungi kami di WhatsApp untuk harga dan ketersediaan semasa mana-mana model.",
-    prod_cta:"Tanya tentang model di WhatsApp",
+    prod_cta:"Tanya tentang model di WhatsApp",prod_ask_wa:"Tanya di WhatsApp",
     nav_repair:"Pembaikan",nav_tradein:"Tukar Ganti",back_home:"← Kembali ke Laman Utama",
     rep_eyebrow:"Perkhidmatan baharu",rep_title:"Pembaikan Telefon",
     rep_sub:"Pembaikan profesional secara temujanji — diagnosis penuh dan sebut harga yang jelas sebelum sebarang kerja bermula.",
@@ -970,7 +1033,12 @@ const WA_MSG={
   iphone16promax:{en:"Hi SUN SMART, I'd like to enquire about the iPhone 16 Pro Max 256GB (RM3759).",zh:"你好 SUN SMART，我想咨询 iPhone 16 Pro Max 256GB（RM3759）。",ms:"Hai SUN SMART, saya ingin bertanya tentang iPhone 16 Pro Max 256GB (RM3759)."},
   iphone15pro:{en:"Hi SUN SMART, I'd like to enquire about the iPhone 15 Pro 128GB (RM2619).",zh:"你好 SUN SMART，我想咨询 iPhone 15 Pro 128GB（RM2619）。",ms:"Hai SUN SMART, saya ingin bertanya tentang iPhone 15 Pro 128GB (RM2619)."},
   samsunga56:{en:"Hi SUN SMART, I'd like to enquire about the Samsung Galaxy A56 5G 12GB+256GB (RM1789).",zh:"你好 SUN SMART，我想咨询 Samsung Galaxy A56 5G 12GB+256GB（RM1789）。",ms:"Hai SUN SMART, saya ingin bertanya tentang Samsung Galaxy A56 5G 12GB+256GB (RM1789)."},
-  honorx9d:{en:"Hi SUN SMART, I'd like to enquire about the HONOR X9d 12GB+256GB (RM1699).",zh:"你好 SUN SMART，我想咨询 HONOR X9d 12GB+256GB（RM1699）。",ms:"Hai SUN SMART, saya ingin bertanya tentang HONOR X9d 12GB+256GB (RM1699)."}
+  honorx9d:{en:"Hi SUN SMART, I'd like to enquire about the HONOR X9d 12GB+256GB (RM1699).",zh:"你好 SUN SMART，我想咨询 HONOR X9d 12GB+256GB（RM1699）。",ms:"Hai SUN SMART, saya ingin bertanya tentang HONOR X9d 12GB+256GB (RM1699)."},
+  acc_powerbank_pd:{en:"Hi SUN SMART, I'd like to enquire about the Baseus Power Bank PD 22.5W Dual Cable Digital Display (RM68).",zh:"你好 SUN SMART，我想咨询 Baseus Power Bank PD 22.5W Dual Cable Digital Display（RM68）。",ms:"Hai SUN SMART, saya ingin bertanya tentang Baseus Power Bank PD 22.5W Dual Cable Digital Display (RM68)."},
+  acc_powerbank_magnetic:{en:"Hi SUN SMART, I'd like to enquire about the Baseus Power Bank 10000mAh Mini Magnetic Wireless Fast Charge (RM55).",zh:"你好 SUN SMART，我想咨询 Baseus Power Bank 10000mAh Mini Magnetic Wireless Fast Charge（RM55）。",ms:"Hai SUN SMART, saya ingin bertanya tentang Baseus Power Bank 10000mAh Mini Magnetic Wireless Fast Charge (RM55)."},
+  acc_temperedglass:{en:"Hi SUN SMART, I'd like to enquire about the Baseus Corning Series Tempered Glass for iPhone 15 Pro Max (RM15).",zh:"你好 SUN SMART，我想咨询 Baseus Corning 系列 iPhone 15 Pro Max 钢化膜（RM15）。",ms:"Hai SUN SMART, saya ingin bertanya tentang Baseus Corning Series Tempered Glass untuk iPhone 15 Pro Max (RM15)."},
+  acc_cable_usbip:{en:"Hi SUN SMART, I'd like to enquire about the Baseus Fast Charging Data Cable USB to iP 1.2M (RM10).",zh:"你好 SUN SMART，我想咨询 Baseus USB to iP 1.2米快充数据线（RM10）。",ms:"Hai SUN SMART, saya ingin bertanya tentang Baseus Fast Charging Data Cable USB to iP 1.2M (RM10)."},
+  ipad11:{en:"Hi SUN SMART, I'd like to enquire about the iPad 11th Gen 2025 Wi-Fi 128GB (RM1229).",zh:"你好 SUN SMART，我想咨询 iPad 11th Gen 2025 Wi-Fi 128GB（RM1229）。",ms:"Hai SUN SMART, saya ingin bertanya tentang iPad 11th Gen 2025 Wi-Fi 128GB (RM1229)."}
 };
 function applyLang(lang){
   const d=I18N[lang]||I18N.en;
