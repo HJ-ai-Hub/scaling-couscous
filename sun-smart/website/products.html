@@ -193,7 +193,12 @@
   .prod-cta-link:hover{text-decoration:underline}
   .prod-link{display:block;color:inherit}
   .prod-link:hover .prod-name{color:var(--blue)}
-  .prod-cta-row{padding:0 16px 15px;margin-top:-4px}
+  .prod-cta-row{padding:0 16px 15px;margin-top:-4px;display:flex;align-items:center;gap:8px}
+  .prod-cta-link{display:inline-flex;align-items:center;gap:6px;flex:1;justify-content:center;background:linear-gradient(135deg,var(--blue),var(--blue-3));color:#fff;font:inherit;font-weight:700;font-size:12.5px;padding:9px 10px;border-radius:999px;border:0;cursor:pointer;transition:transform .14s,box-shadow .2s}
+  .prod-cta-link:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(17,30,108,.28)}
+  .prod-cta-wa{flex:0 0 auto;width:34px;height:34px;border-radius:999px;background:#e9f9ee;color:#1fa855;display:inline-flex;align-items:center;justify-content:center;transition:.15s}
+  .prod-cta-wa:hover{background:#25D366;color:#fff}
+  .prod-cta-wa svg{width:16px;height:16px}
   .stock-legend{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:34px}
   .stk{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);font-weight:500}
   .dot{width:11px;height:11px;border-radius:50%}
@@ -231,6 +236,7 @@
   .socials{display:flex;gap:11px;margin-top:8px;flex-wrap:wrap}
   .socials a{width:44px;height:44px;border-radius:12px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--blue);transition:.15s}
   .socials a:hover{border-color:var(--blue);transform:translateY(-2px)}
+  .socials a svg{width:20px;height:20px}
   .map{border-radius:var(--radius);overflow:hidden;min-height:340px;display:flex;align-items:center;justify-content:center;text-align:center;padding:26px;background:linear-gradient(150deg,#e3e9fb,#d6e0f7)}
   .map .mapinner b{color:var(--blue);font-size:17px}
 
@@ -351,6 +357,37 @@
     .pd-top{grid-template-columns:1fr;gap:26px}
     .pd-spec-grid{grid-template-columns:1fr}
   }
+
+  .cart-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:999px;border:1px solid var(--line);background:var(--soft);color:var(--ink);cursor:pointer;transition:.15s}
+  .cart-btn:hover{border-color:var(--blue);color:var(--blue)}
+  .cart-btn svg{width:19px;height:19px}
+  .cart-badge{position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 4px;border-radius:999px;background:var(--red-2,#e5484d);color:#fff;font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center;line-height:1}
+  .cart-badge[hidden]{display:none}
+  .cart-overlay{position:fixed;inset:0;background:rgba(10,15,30,.5);z-index:190;opacity:0;pointer-events:none;transition:opacity .2s}
+  .cart-overlay.open{opacity:1;pointer-events:auto}
+  .cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:#fff;z-index:191;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .25s ease;box-shadow:-12px 0 40px rgba(0,0,0,.18)}
+  .cart-drawer.open{transform:translateX(0)}
+  .cart-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid var(--line)}
+  .cart-head h3{font-size:17px;font-weight:800;margin:0}
+  .cart-close{border:0;background:none;cursor:pointer;color:var(--muted);font-size:22px;line-height:1;padding:4px}
+  .cart-close:hover{color:var(--ink)}
+  .cart-items{flex:1;overflow-y:auto;padding:14px 22px}
+  .cart-empty{color:var(--muted);text-align:center;padding:60px 10px;font-size:14px}
+  .cart-line{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .cart-line img{width:60px;height:60px;object-fit:cover;border-radius:10px;background:var(--soft);flex:0 0 auto}
+  .cart-line-body{flex:1;min-width:0}
+  .cart-line-name{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:4px;line-height:1.3}
+  .cart-line-price{font-size:13px;color:var(--muted);margin-bottom:8px}
+  .cart-qty{display:inline-flex;align-items:center;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+  .cart-qty button{border:0;background:var(--soft);width:26px;height:26px;cursor:pointer;font-size:14px;font-weight:700;color:var(--ink)}
+  .cart-qty span{width:28px;text-align:center;font-size:13px;font-weight:700}
+  .cart-line-remove{background:none;border:0;color:var(--muted);font-size:12px;cursor:pointer;margin-left:10px;text-decoration:underline}
+  .cart-line-remove:hover{color:var(--red)}
+  .cart-line-sub{font-size:13.5px;font-weight:800;color:var(--ink);white-space:nowrap}
+  .cart-foot{border-top:1px solid var(--line);padding:18px 22px 22px}
+  .cart-total-row{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:800;margin-bottom:14px}
+  .cart-clear{display:block;text-align:center;font-size:12.5px;color:var(--muted);text-decoration:underline;cursor:pointer;margin-top:10px;background:none;border:0;width:100%}
+  .cart-clear:hover{color:var(--red)}
 </style>
 </head>
 <body>
@@ -372,6 +409,10 @@
         <button data-lang="zh">中文</button>
         <button data-lang="ms">BM</button>
       </div>
+      <button class="cart-btn" id="cartBtn" type="button" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="cart-badge" id="cartBadge" hidden>0</span>
+      </button>
     </nav>
   </div>
 </header>
@@ -391,320 +432,17 @@
       <button class="active" data-cat="new" data-i18n="cat_new">New Phones</button>
       <button data-cat="used" data-i18n="cat_used">Pre-owned Phones</button>
       <button data-cat="acc" data-i18n="cat_acc">Accessories</button>
-      <button data-cat="pad" data-i18n="cat_pad">Pad/Tab</button>
+      <button data-cat="pad" data-i18n="cat_pad">Tablets</button>
     </div>
     <div class="cat-panel active" id="cat-new">
-      <div class="cat-intro"><h3 data-i18n="catnew_t">New Phones</h3><p class="muted" data-i18n="catnew_d">Mid-range Android from leading brands and popular iPhone models, typically RM500–RM3,000, all Malaysia set with manufacturer warranty.</p></div>
+      <div class="cat-intro"><h3 data-i18n="catnew_t">New Phones</h3><p class="muted" data-i18n="catnew_d">Mid-range Android smartphones from leading brands, typically RM500–RM3,000, all Malaysia set with manufacturer warranty.</p></div>
       <div class="brand-tabs">
         <button class="active" data-brand="all" data-i18n="brand_all">All Brands</button>
         <button data-brand="apple" data-i18n="brand_apple">Apple</button>
         <button data-brand="samsung" data-i18n="brand_samsung">Samsung</button>
         <button data-brand="android" data-i18n="brand_android">Android</button>
       </div>
-      <div class="brand-panel active" data-brand="all"><div class="prod-grid" data-skeleton>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-11.html" aria-label="View iPhone 11 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-11/iphone-11-black.jpg" alt="iPhone 11 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 11 128GB</div>
-              <div class="prod-price">RM869</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#1d1d1f" title="Black"></span>
-                <span class="cswatch" style="background:#4a5d52" title="Green"></span>
-                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
-                <span class="cswatch" style="background:#5c4a6b" title="Purple"></span>
-                <span class="cswatch" style="background:#f2f1ec" title="White"></span>
-                <span class="cswatch" style="background:#f2d675" title="Yellow"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone11" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-11-pro-max.html" aria-label="View iPhone 11 Pro Max 256GB details">
-            <div class="thumb"><img src="assets/products/iphone-11-pro-max/iphone-11-pro-max-space-gray.jpg" alt="iPhone 11 Pro Max 256GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 11 Pro Max 256GB</div>
-              <div class="prod-price">RM1209</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#55585c" title="Space Gray"></span>
-                <span class="cswatch" style="background:#dcc8a0" title="Gold"></span>
-                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
-                <span class="cswatch" style="background:#4a5850" title="Midnight Green"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone11promax" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-12.html" aria-label="View iPhone 12 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-12/iphone-12-black.jpg" alt="iPhone 12 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 12 128GB</div>
-              <div class="prod-price">RM1209</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#1d1d1f" title="Black"></span>
-                <span class="cswatch" style="background:#4a6b8a" title="Blue"></span>
-                <span class="cswatch" style="background:#a9c1a4" title="Green"></span>
-                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
-                <span class="cswatch" style="background:#b7a9cd" title="Purple"></span>
-                <span class="cswatch" style="background:#f2f1ec" title="White"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone12" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-12-pro.html" aria-label="View iPhone 12 Pro 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-12-pro/iphone-12-pro-graphite.jpg" alt="iPhone 12 Pro 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 12 Pro 128GB</div>
-              <div class="prod-price">RM1159</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
-                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
-                <span class="cswatch" style="background:#33556e" title="Pacific Blue"></span>
-                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone12pro" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-12-pro-max.html" aria-label="View iPhone 12 Pro Max 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-12-pro-max/iphone-12-pro-max-graphite.jpg" alt="iPhone 12 Pro Max 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 12 Pro Max 128GB</div>
-              <div class="prod-price">RM1459</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
-                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
-                <span class="cswatch" style="background:#33556e" title="Pacific Blue"></span>
-                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone12promax" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-13.html" aria-label="View iPhone 13 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-13/iphone-13-midnight.jpg" alt="iPhone 13 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 13 128GB</div>
-              <div class="prod-price">RM1219</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#2f3136" title="Midnight"></span>
-                <span class="cswatch" style="background:#f2f0e6" title="Starlight"></span>
-                <span class="cswatch" style="background:#5c7fa6" title="Blue"></span>
-                <span class="cswatch" style="background:#d9a8b3" title="Pink"></span>
-                <span class="cswatch" style="background:#a9c1a4" title="Green"></span>
-                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone13" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-13-pro.html" aria-label="View iPhone 13 Pro 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-13-pro/iphone-13-pro-graphite.jpg" alt="iPhone 13 Pro 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 13 Pro 128GB</div>
-              <div class="prod-price">RM1529</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
-                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
-                <span class="cswatch" style="background:#6f90ab" title="Sierra Blue"></span>
-                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
-                <span class="cswatch" style="background:#5c6b57" title="Alpine Green"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone13pro" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-13-pro-max.html" aria-label="View iPhone 13 Pro Max 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-13-pro-max/iphone-13-pro-max-graphite.jpg" alt="iPhone 13 Pro Max 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 13 Pro Max 128GB</div>
-              <div class="prod-price">RM1719</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
-                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
-                <span class="cswatch" style="background:#6f90ab" title="Sierra Blue"></span>
-                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
-                <span class="cswatch" style="background:#5c6b57" title="Alpine Green"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone13promax" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-14.html" aria-label="View iPhone 14 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-14/iphone-14-midnight.jpg" alt="iPhone 14 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 14 128GB</div>
-              <div class="prod-price">RM1439</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#2f3136" title="Midnight"></span>
-                <span class="cswatch" style="background:#f2f0e6" title="Starlight"></span>
-                <span class="cswatch" style="background:#5c7fa6" title="Blue"></span>
-                <span class="cswatch" style="background:#b7a9cd" title="Purple"></span>
-                <span class="cswatch" style="background:#f2df8a" title="Yellow"></span>
-                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone14" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-14-plus.html" aria-label="View iPhone 14 Plus 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-14-plus/iphone-14-plus-midnight.jpg" alt="iPhone 14 Plus 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 14 Plus 128GB</div>
-              <div class="prod-price">RM1669</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#2f3136" title="Midnight"></span>
-                <span class="cswatch" style="background:#f2f0e6" title="Starlight"></span>
-                <span class="cswatch" style="background:#5c7fa6" title="Blue"></span>
-                <span class="cswatch" style="background:#b7a9cd" title="Purple"></span>
-                <span class="cswatch" style="background:#f2df8a" title="Yellow"></span>
-                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone14plus" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-14-pro-max.html" aria-label="View iPhone 14 Pro Max 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-14-pro-max/iphone-14-pro-max-space-black.jpg" alt="iPhone 14 Pro Max 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 14 Pro Max 128GB</div>
-              <div class="prod-price">RM2269</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#2b2b2d" title="Space Black"></span>
-                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
-                <span class="cswatch" style="background:#5c4a6b" title="Deep Purple"></span>
-                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone14promax" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-15.html" aria-label="View iPhone 15 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-15/iphone-15-black.jpg" alt="iPhone 15 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 15 128GB</div>
-              <div class="prod-price">RM2059</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#2b2b2d" title="Black"></span>
-                <span class="cswatch" style="background:#dce7ef" title="Blue"></span>
-                <span class="cswatch" style="background:#e8d3d8" title="Pink"></span>
-                <span class="cswatch" style="background:#d5e3d1" title="Green"></span>
-                <span class="cswatch" style="background:#f2df8a" title="Yellow"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone15" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-15-pro.html" aria-label="View iPhone 15 Pro 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-15-pro/iphone-15-pro-natural-titanium.jpg" alt="iPhone 15 Pro 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 15 Pro 128GB</div>
-              <div class="prod-price">RM2619</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
-                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
-                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
-                <span class="cswatch" style="background:#4d5b64" title="Blue Titanium"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone15pro" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-15-pro-max.html" aria-label="View iPhone 15 Pro Max 256GB details">
-            <div class="thumb"><img src="assets/products/iphone-15-pro-max/iphone-15-pro-max-natural-titanium.jpg" alt="iPhone 15 Pro Max 256GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 15 Pro Max 256GB</div>
-              <div class="prod-price">RM2899</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
-                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
-                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
-                <span class="cswatch" style="background:#4d5b64" title="Blue Titanium"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone15promax" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-16.html" aria-label="View iPhone 16 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-16/iphone-16-black.jpg" alt="iPhone 16 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 16 128GB</div>
-              <div class="prod-price">RM2429</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#2b2b2d" title="Black"></span>
-                <span class="cswatch" style="background:#f2f1ec" title="White"></span>
-                <span class="cswatch" style="background:#a8c9c4" title="Teal"></span>
-                <span class="cswatch" style="background:#8a9bd6" title="Ultramarine"></span>
-                <span class="cswatch" style="background:#e8a8c8" title="Pink"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone16" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-16-pro.html" aria-label="View iPhone 16 Pro 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-16-pro/iphone-16-pro-natural-titanium.jpg" alt="iPhone 16 Pro 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 16 Pro 128GB</div>
-              <div class="prod-price">RM3189</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
-                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
-                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
-                <span class="cswatch" style="background:#a9906f" title="Desert Titanium"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone16pro" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-16-pro-max.html" aria-label="View iPhone 16 Pro Max 256GB details">
-            <div class="thumb"><img src="assets/products/iphone-16-pro-max/iphone-16-pro-max-natural-titanium.jpg" alt="iPhone 16 Pro Max 256GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 16 Pro Max 256GB</div>
-              <div class="prod-price">RM3759</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
-                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
-                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
-                <span class="cswatch" style="background:#a9906f" title="Desert Titanium"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone16promax" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
+      <div class="brand-panel active" data-brand="all"><div class="prod-grid">
         <div class="prod prod-real glass">
           <a class="prod-link" href="product-honor-x9d.html" aria-label="View HONOR X9d 12GB+256GB details">
             <div class="thumb"><img src="assets/products/honor-x9d/honor-x9d-midnight-black.jpg" alt="HONOR X9d 12GB+256GB" loading="lazy"></div>
@@ -720,351 +458,14 @@
               </div>
             </div>
           </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="honorx9d" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="honorx9d">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="honorx9d" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
         </div>
       </div></div>
       <div class="brand-panel" data-brand="apple"><div class="prod-grid" data-skeleton>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-11.html" aria-label="View iPhone 11 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-11/iphone-11-black.jpg" alt="iPhone 11 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 11 128GB</div>
-              <div class="prod-price">RM869</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#1d1d1f" title="Black"></span>
-                <span class="cswatch" style="background:#4a5d52" title="Green"></span>
-                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
-                <span class="cswatch" style="background:#5c4a6b" title="Purple"></span>
-                <span class="cswatch" style="background:#f2f1ec" title="White"></span>
-                <span class="cswatch" style="background:#f2d675" title="Yellow"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone11" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-11-pro-max.html" aria-label="View iPhone 11 Pro Max 256GB details">
-            <div class="thumb"><img src="assets/products/iphone-11-pro-max/iphone-11-pro-max-space-gray.jpg" alt="iPhone 11 Pro Max 256GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 11 Pro Max 256GB</div>
-              <div class="prod-price">RM1209</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#55585c" title="Space Gray"></span>
-                <span class="cswatch" style="background:#dcc8a0" title="Gold"></span>
-                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
-                <span class="cswatch" style="background:#4a5850" title="Midnight Green"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone11promax" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-12.html" aria-label="View iPhone 12 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-12/iphone-12-black.jpg" alt="iPhone 12 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 12 128GB</div>
-              <div class="prod-price">RM1209</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#1d1d1f" title="Black"></span>
-                <span class="cswatch" style="background:#4a6b8a" title="Blue"></span>
-                <span class="cswatch" style="background:#a9c1a4" title="Green"></span>
-                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
-                <span class="cswatch" style="background:#b7a9cd" title="Purple"></span>
-                <span class="cswatch" style="background:#f2f1ec" title="White"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone12" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-12-pro.html" aria-label="View iPhone 12 Pro 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-12-pro/iphone-12-pro-graphite.jpg" alt="iPhone 12 Pro 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 12 Pro 128GB</div>
-              <div class="prod-price">RM1159</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
-                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
-                <span class="cswatch" style="background:#33556e" title="Pacific Blue"></span>
-                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone12pro" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-12-pro-max.html" aria-label="View iPhone 12 Pro Max 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-12-pro-max/iphone-12-pro-max-graphite.jpg" alt="iPhone 12 Pro Max 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 12 Pro Max 128GB</div>
-              <div class="prod-price">RM1459</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
-                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
-                <span class="cswatch" style="background:#33556e" title="Pacific Blue"></span>
-                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone12promax" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-13.html" aria-label="View iPhone 13 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-13/iphone-13-midnight.jpg" alt="iPhone 13 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 13 128GB</div>
-              <div class="prod-price">RM1219</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#2f3136" title="Midnight"></span>
-                <span class="cswatch" style="background:#f2f0e6" title="Starlight"></span>
-                <span class="cswatch" style="background:#5c7fa6" title="Blue"></span>
-                <span class="cswatch" style="background:#d9a8b3" title="Pink"></span>
-                <span class="cswatch" style="background:#a9c1a4" title="Green"></span>
-                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone13" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-13-pro.html" aria-label="View iPhone 13 Pro 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-13-pro/iphone-13-pro-graphite.jpg" alt="iPhone 13 Pro 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 13 Pro 128GB</div>
-              <div class="prod-price">RM1529</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
-                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
-                <span class="cswatch" style="background:#6f90ab" title="Sierra Blue"></span>
-                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
-                <span class="cswatch" style="background:#5c6b57" title="Alpine Green"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone13pro" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-13-pro-max.html" aria-label="View iPhone 13 Pro Max 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-13-pro-max/iphone-13-pro-max-graphite.jpg" alt="iPhone 13 Pro Max 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 13 Pro Max 128GB</div>
-              <div class="prod-price">RM1719</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
-                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
-                <span class="cswatch" style="background:#6f90ab" title="Sierra Blue"></span>
-                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
-                <span class="cswatch" style="background:#5c6b57" title="Alpine Green"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone13promax" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-14.html" aria-label="View iPhone 14 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-14/iphone-14-midnight.jpg" alt="iPhone 14 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 14 128GB</div>
-              <div class="prod-price">RM1439</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#2f3136" title="Midnight"></span>
-                <span class="cswatch" style="background:#f2f0e6" title="Starlight"></span>
-                <span class="cswatch" style="background:#5c7fa6" title="Blue"></span>
-                <span class="cswatch" style="background:#b7a9cd" title="Purple"></span>
-                <span class="cswatch" style="background:#f2df8a" title="Yellow"></span>
-                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone14" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-14-plus.html" aria-label="View iPhone 14 Plus 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-14-plus/iphone-14-plus-midnight.jpg" alt="iPhone 14 Plus 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 14 Plus 128GB</div>
-              <div class="prod-price">RM1669</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#2f3136" title="Midnight"></span>
-                <span class="cswatch" style="background:#f2f0e6" title="Starlight"></span>
-                <span class="cswatch" style="background:#5c7fa6" title="Blue"></span>
-                <span class="cswatch" style="background:#b7a9cd" title="Purple"></span>
-                <span class="cswatch" style="background:#f2df8a" title="Yellow"></span>
-                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone14plus" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-14-pro-max.html" aria-label="View iPhone 14 Pro Max 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-14-pro-max/iphone-14-pro-max-space-black.jpg" alt="iPhone 14 Pro Max 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 14 Pro Max 128GB</div>
-              <div class="prod-price">RM2269</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#2b2b2d" title="Space Black"></span>
-                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
-                <span class="cswatch" style="background:#5c4a6b" title="Deep Purple"></span>
-                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone14promax" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-15.html" aria-label="View iPhone 15 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-15/iphone-15-black.jpg" alt="iPhone 15 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 15 128GB</div>
-              <div class="prod-price">RM2059</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#2b2b2d" title="Black"></span>
-                <span class="cswatch" style="background:#dce7ef" title="Blue"></span>
-                <span class="cswatch" style="background:#e8d3d8" title="Pink"></span>
-                <span class="cswatch" style="background:#d5e3d1" title="Green"></span>
-                <span class="cswatch" style="background:#f2df8a" title="Yellow"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone15" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-15-pro.html" aria-label="View iPhone 15 Pro 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-15-pro/iphone-15-pro-natural-titanium.jpg" alt="iPhone 15 Pro 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 15 Pro 128GB</div>
-              <div class="prod-price">RM2619</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
-                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
-                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
-                <span class="cswatch" style="background:#4d5b64" title="Blue Titanium"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone15pro" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-15-pro-max.html" aria-label="View iPhone 15 Pro Max 256GB details">
-            <div class="thumb"><img src="assets/products/iphone-15-pro-max/iphone-15-pro-max-natural-titanium.jpg" alt="iPhone 15 Pro Max 256GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 15 Pro Max 256GB</div>
-              <div class="prod-price">RM2899</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
-                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
-                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
-                <span class="cswatch" style="background:#4d5b64" title="Blue Titanium"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone15promax" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-16.html" aria-label="View iPhone 16 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-16/iphone-16-black.jpg" alt="iPhone 16 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 16 128GB</div>
-              <div class="prod-price">RM2429</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#2b2b2d" title="Black"></span>
-                <span class="cswatch" style="background:#f2f1ec" title="White"></span>
-                <span class="cswatch" style="background:#a8c9c4" title="Teal"></span>
-                <span class="cswatch" style="background:#8a9bd6" title="Ultramarine"></span>
-                <span class="cswatch" style="background:#e8a8c8" title="Pink"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone16" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-16-pro.html" aria-label="View iPhone 16 Pro 128GB details">
-            <div class="thumb"><img src="assets/products/iphone-16-pro/iphone-16-pro-natural-titanium.jpg" alt="iPhone 16 Pro 128GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 16 Pro 128GB</div>
-              <div class="prod-price">RM3189</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
-                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
-                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
-                <span class="cswatch" style="background:#a9906f" title="Desert Titanium"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone16pro" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-iphone-16-pro-max.html" aria-label="View iPhone 16 Pro Max 256GB details">
-            <div class="thumb"><img src="assets/products/iphone-16-pro-max/iphone-16-pro-max-natural-titanium.jpg" alt="iPhone 16 Pro Max 256GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">iPhone 16 Pro Max 256GB</div>
-              <div class="prod-price">RM3759</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
-                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
-                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
-                <span class="cswatch" style="background:#a9906f" title="Desert Titanium"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="iphone16promax" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-samsung-a56.html" aria-label="View Samsung Galaxy A56 5G 12GB+256GB details">
-            <div class="thumb"><img src="assets/products/samsung-a56/samsung-a56-awesome-graphite.jpg" alt="Samsung Galaxy A56 5G 12GB+256GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">Samsung Galaxy A56 5G 12GB+256GB</div>
-              <div class="prod-price">RM1789</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#3d3f42" title="Awesome Graphite"></span>
-                <span class="cswatch" style="background:#c4c6c9" title="Awesome Lightgray"></span>
-                <span class="cswatch" style="background:#5a5e42" title="Awesome Olive"></span>
-                <span class="cswatch" style="background:#e0b8c4" title="Awesome Pink"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="samsunga56" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
       </div></div>
       <div class="brand-panel" data-brand="samsung"><div class="prod-grid" data-skeleton>
-        <div class="prod prod-real glass">
-          <a class="prod-link" href="product-samsung-a56.html" aria-label="View Samsung Galaxy A56 5G 12GB+256GB details">
-            <div class="thumb"><img src="assets/products/samsung-a56/samsung-a56-awesome-graphite.jpg" alt="Samsung Galaxy A56 5G 12GB+256GB" loading="lazy"></div>
-            <div class="body">
-              <div class="prod-name">Samsung Galaxy A56 5G 12GB+256GB</div>
-              <div class="prod-price">RM1789</div>
-              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
-              <div class="prod-colors" aria-label="Available colours">
-                <span class="cswatch" style="background:#3d3f42" title="Awesome Graphite"></span>
-                <span class="cswatch" style="background:#c4c6c9" title="Awesome Lightgray"></span>
-                <span class="cswatch" style="background:#5a5e42" title="Awesome Olive"></span>
-                <span class="cswatch" style="background:#e0b8c4" title="Awesome Pink"></span>
-              </div>
-            </div>
-          </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="samsunga56" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
-        </div>
       </div></div>
-      <div class="brand-panel" data-brand="android"><div class="prod-grid" data-skeleton>
+      <div class="brand-panel" data-brand="android"><div class="prod-grid">
         <div class="prod prod-real glass">
           <a class="prod-link" href="product-honor-x9d.html" aria-label="View HONOR X9d 12GB+256GB details">
             <div class="thumb"><img src="assets/products/honor-x9d/honor-x9d-midnight-black.jpg" alt="HONOR X9d 12GB+256GB" loading="lazy"></div>
@@ -1080,7 +481,7 @@
               </div>
             </div>
           </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="honorx9d" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="honorx9d">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="honorx9d" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
         </div>
       </div></div>
     </div>
@@ -1092,14 +493,657 @@
         <button data-brand="samsung" data-i18n="brand_samsung">Samsung</button>
         <button data-brand="android" data-i18n="brand_android">Android</button>
       </div>
-      <div class="brand-panel active" data-brand="all"><div class="prod-grid" data-skeleton></div></div>
-      <div class="brand-panel" data-brand="apple"><div class="prod-grid" data-skeleton></div></div>
-      <div class="brand-panel" data-brand="samsung"><div class="prod-grid" data-skeleton></div></div>
+      <div class="brand-panel active" data-brand="all"><div class="prod-grid">
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-11.html" aria-label="View iPhone 11 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-11/iphone-11-black.jpg" alt="iPhone 11 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 11 128GB</div>
+              <div class="prod-price">RM869</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#1d1d1f" title="Black"></span>
+                <span class="cswatch" style="background:#4a5d52" title="Green"></span>
+                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
+                <span class="cswatch" style="background:#5c4a6b" title="Purple"></span>
+                <span class="cswatch" style="background:#f2f1ec" title="White"></span>
+                <span class="cswatch" style="background:#f2d675" title="Yellow"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone11">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone11" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-11-pro-max.html" aria-label="View iPhone 11 Pro Max 256GB details">
+            <div class="thumb"><img src="assets/products/iphone-11-pro-max/iphone-11-pro-max-space-gray.jpg" alt="iPhone 11 Pro Max 256GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 11 Pro Max 256GB</div>
+              <div class="prod-price">RM1209</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#55585c" title="Space Gray"></span>
+                <span class="cswatch" style="background:#dcc8a0" title="Gold"></span>
+                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
+                <span class="cswatch" style="background:#4a5850" title="Midnight Green"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone11promax">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone11promax" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-12.html" aria-label="View iPhone 12 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-12/iphone-12-black.jpg" alt="iPhone 12 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 12 128GB</div>
+              <div class="prod-price">RM1209</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#1d1d1f" title="Black"></span>
+                <span class="cswatch" style="background:#4a6b8a" title="Blue"></span>
+                <span class="cswatch" style="background:#a9c1a4" title="Green"></span>
+                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
+                <span class="cswatch" style="background:#b7a9cd" title="Purple"></span>
+                <span class="cswatch" style="background:#f2f1ec" title="White"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone12">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone12" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-12-pro.html" aria-label="View iPhone 12 Pro 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-12-pro/iphone-12-pro-graphite.jpg" alt="iPhone 12 Pro 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 12 Pro 128GB</div>
+              <div class="prod-price">RM1159</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
+                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
+                <span class="cswatch" style="background:#33556e" title="Pacific Blue"></span>
+                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone12pro">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone12pro" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-12-pro-max.html" aria-label="View iPhone 12 Pro Max 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-12-pro-max/iphone-12-pro-max-graphite.jpg" alt="iPhone 12 Pro Max 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 12 Pro Max 128GB</div>
+              <div class="prod-price">RM1459</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
+                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
+                <span class="cswatch" style="background:#33556e" title="Pacific Blue"></span>
+                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone12promax">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone12promax" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-13.html" aria-label="View iPhone 13 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-13/iphone-13-midnight.jpg" alt="iPhone 13 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 13 128GB</div>
+              <div class="prod-price">RM1219</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#2f3136" title="Midnight"></span>
+                <span class="cswatch" style="background:#f2f0e6" title="Starlight"></span>
+                <span class="cswatch" style="background:#5c7fa6" title="Blue"></span>
+                <span class="cswatch" style="background:#d9a8b3" title="Pink"></span>
+                <span class="cswatch" style="background:#a9c1a4" title="Green"></span>
+                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone13">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone13" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-13-pro.html" aria-label="View iPhone 13 Pro 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-13-pro/iphone-13-pro-graphite.jpg" alt="iPhone 13 Pro 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 13 Pro 128GB</div>
+              <div class="prod-price">RM1529</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
+                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
+                <span class="cswatch" style="background:#6f90ab" title="Sierra Blue"></span>
+                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
+                <span class="cswatch" style="background:#5c6b57" title="Alpine Green"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone13pro">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone13pro" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-13-pro-max.html" aria-label="View iPhone 13 Pro Max 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-13-pro-max/iphone-13-pro-max-graphite.jpg" alt="iPhone 13 Pro Max 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 13 Pro Max 128GB</div>
+              <div class="prod-price">RM1719</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
+                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
+                <span class="cswatch" style="background:#6f90ab" title="Sierra Blue"></span>
+                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
+                <span class="cswatch" style="background:#5c6b57" title="Alpine Green"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone13promax">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone13promax" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-14.html" aria-label="View iPhone 14 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-14/iphone-14-midnight.jpg" alt="iPhone 14 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 14 128GB</div>
+              <div class="prod-price">RM1439</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#2f3136" title="Midnight"></span>
+                <span class="cswatch" style="background:#f2f0e6" title="Starlight"></span>
+                <span class="cswatch" style="background:#5c7fa6" title="Blue"></span>
+                <span class="cswatch" style="background:#b7a9cd" title="Purple"></span>
+                <span class="cswatch" style="background:#f2df8a" title="Yellow"></span>
+                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone14">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone14" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-14-plus.html" aria-label="View iPhone 14 Plus 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-14-plus/iphone-14-plus-midnight.jpg" alt="iPhone 14 Plus 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 14 Plus 128GB</div>
+              <div class="prod-price">RM1669</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#2f3136" title="Midnight"></span>
+                <span class="cswatch" style="background:#f2f0e6" title="Starlight"></span>
+                <span class="cswatch" style="background:#5c7fa6" title="Blue"></span>
+                <span class="cswatch" style="background:#b7a9cd" title="Purple"></span>
+                <span class="cswatch" style="background:#f2df8a" title="Yellow"></span>
+                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone14plus">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone14plus" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-14-pro-max.html" aria-label="View iPhone 14 Pro Max 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-14-pro-max/iphone-14-pro-max-space-black.jpg" alt="iPhone 14 Pro Max 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 14 Pro Max 128GB</div>
+              <div class="prod-price">RM2269</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#2b2b2d" title="Space Black"></span>
+                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
+                <span class="cswatch" style="background:#5c4a6b" title="Deep Purple"></span>
+                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone14promax">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone14promax" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-15.html" aria-label="View iPhone 15 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-15/iphone-15-black.jpg" alt="iPhone 15 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 15 128GB</div>
+              <div class="prod-price">RM2059</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#2b2b2d" title="Black"></span>
+                <span class="cswatch" style="background:#dce7ef" title="Blue"></span>
+                <span class="cswatch" style="background:#e8d3d8" title="Pink"></span>
+                <span class="cswatch" style="background:#d5e3d1" title="Green"></span>
+                <span class="cswatch" style="background:#f2df8a" title="Yellow"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone15">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone15" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-15-pro.html" aria-label="View iPhone 15 Pro 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-15-pro/iphone-15-pro-natural-titanium.jpg" alt="iPhone 15 Pro 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 15 Pro 128GB</div>
+              <div class="prod-price">RM2619</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
+                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
+                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
+                <span class="cswatch" style="background:#4d5b64" title="Blue Titanium"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone15pro">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone15pro" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-15-pro-max.html" aria-label="View iPhone 15 Pro Max 256GB details">
+            <div class="thumb"><img src="assets/products/iphone-15-pro-max/iphone-15-pro-max-natural-titanium.jpg" alt="iPhone 15 Pro Max 256GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 15 Pro Max 256GB</div>
+              <div class="prod-price">RM2899</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
+                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
+                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
+                <span class="cswatch" style="background:#4d5b64" title="Blue Titanium"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone15promax">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone15promax" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-16.html" aria-label="View iPhone 16 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-16/iphone-16-black.jpg" alt="iPhone 16 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 16 128GB</div>
+              <div class="prod-price">RM2429</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#2b2b2d" title="Black"></span>
+                <span class="cswatch" style="background:#f2f1ec" title="White"></span>
+                <span class="cswatch" style="background:#a8c9c4" title="Teal"></span>
+                <span class="cswatch" style="background:#8a9bd6" title="Ultramarine"></span>
+                <span class="cswatch" style="background:#e8a8c8" title="Pink"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone16">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone16" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-16-pro.html" aria-label="View iPhone 16 Pro 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-16-pro/iphone-16-pro-natural-titanium.jpg" alt="iPhone 16 Pro 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 16 Pro 128GB</div>
+              <div class="prod-price">RM3189</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
+                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
+                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
+                <span class="cswatch" style="background:#a9906f" title="Desert Titanium"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone16pro">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone16pro" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-16-pro-max.html" aria-label="View iPhone 16 Pro Max 256GB details">
+            <div class="thumb"><img src="assets/products/iphone-16-pro-max/iphone-16-pro-max-natural-titanium.jpg" alt="iPhone 16 Pro Max 256GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 16 Pro Max 256GB</div>
+              <div class="prod-price">RM3759</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
+                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
+                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
+                <span class="cswatch" style="background:#a9906f" title="Desert Titanium"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone16promax">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone16promax" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-samsung-a56.html" aria-label="View Samsung Galaxy A56 5G 12GB+256GB details">
+            <div class="thumb"><img src="assets/products/samsung-a56/samsung-a56-awesome-graphite.jpg" alt="Samsung Galaxy A56 5G 12GB+256GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">Samsung Galaxy A56 5G 12GB+256GB</div>
+              <div class="prod-price">RM1789</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#3d3f42" title="Awesome Graphite"></span>
+                <span class="cswatch" style="background:#c4c6c9" title="Awesome Lightgray"></span>
+                <span class="cswatch" style="background:#5a5e42" title="Awesome Olive"></span>
+                <span class="cswatch" style="background:#e0b8c4" title="Awesome Pink"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="samsunga56">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="samsunga56" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+      </div></div>
+      <div class="brand-panel" data-brand="apple"><div class="prod-grid">
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-11.html" aria-label="View iPhone 11 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-11/iphone-11-black.jpg" alt="iPhone 11 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 11 128GB</div>
+              <div class="prod-price">RM869</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#1d1d1f" title="Black"></span>
+                <span class="cswatch" style="background:#4a5d52" title="Green"></span>
+                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
+                <span class="cswatch" style="background:#5c4a6b" title="Purple"></span>
+                <span class="cswatch" style="background:#f2f1ec" title="White"></span>
+                <span class="cswatch" style="background:#f2d675" title="Yellow"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone11">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone11" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-11-pro-max.html" aria-label="View iPhone 11 Pro Max 256GB details">
+            <div class="thumb"><img src="assets/products/iphone-11-pro-max/iphone-11-pro-max-space-gray.jpg" alt="iPhone 11 Pro Max 256GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 11 Pro Max 256GB</div>
+              <div class="prod-price">RM1209</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#55585c" title="Space Gray"></span>
+                <span class="cswatch" style="background:#dcc8a0" title="Gold"></span>
+                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
+                <span class="cswatch" style="background:#4a5850" title="Midnight Green"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone11promax">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone11promax" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-12.html" aria-label="View iPhone 12 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-12/iphone-12-black.jpg" alt="iPhone 12 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 12 128GB</div>
+              <div class="prod-price">RM1209</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#1d1d1f" title="Black"></span>
+                <span class="cswatch" style="background:#4a6b8a" title="Blue"></span>
+                <span class="cswatch" style="background:#a9c1a4" title="Green"></span>
+                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
+                <span class="cswatch" style="background:#b7a9cd" title="Purple"></span>
+                <span class="cswatch" style="background:#f2f1ec" title="White"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone12">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone12" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-12-pro.html" aria-label="View iPhone 12 Pro 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-12-pro/iphone-12-pro-graphite.jpg" alt="iPhone 12 Pro 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 12 Pro 128GB</div>
+              <div class="prod-price">RM1159</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
+                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
+                <span class="cswatch" style="background:#33556e" title="Pacific Blue"></span>
+                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone12pro">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone12pro" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-12-pro-max.html" aria-label="View iPhone 12 Pro Max 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-12-pro-max/iphone-12-pro-max-graphite.jpg" alt="iPhone 12 Pro Max 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 12 Pro Max 128GB</div>
+              <div class="prod-price">RM1459</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
+                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
+                <span class="cswatch" style="background:#33556e" title="Pacific Blue"></span>
+                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone12promax">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone12promax" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-13.html" aria-label="View iPhone 13 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-13/iphone-13-midnight.jpg" alt="iPhone 13 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 13 128GB</div>
+              <div class="prod-price">RM1219</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#2f3136" title="Midnight"></span>
+                <span class="cswatch" style="background:#f2f0e6" title="Starlight"></span>
+                <span class="cswatch" style="background:#5c7fa6" title="Blue"></span>
+                <span class="cswatch" style="background:#d9a8b3" title="Pink"></span>
+                <span class="cswatch" style="background:#a9c1a4" title="Green"></span>
+                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone13">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone13" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-13-pro.html" aria-label="View iPhone 13 Pro 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-13-pro/iphone-13-pro-graphite.jpg" alt="iPhone 13 Pro 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 13 Pro 128GB</div>
+              <div class="prod-price">RM1529</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
+                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
+                <span class="cswatch" style="background:#6f90ab" title="Sierra Blue"></span>
+                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
+                <span class="cswatch" style="background:#5c6b57" title="Alpine Green"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone13pro">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone13pro" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-13-pro-max.html" aria-label="View iPhone 13 Pro Max 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-13-pro-max/iphone-13-pro-max-graphite.jpg" alt="iPhone 13 Pro Max 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 13 Pro Max 128GB</div>
+              <div class="prod-price">RM1719</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#4a4a4d" title="Graphite"></span>
+                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
+                <span class="cswatch" style="background:#6f90ab" title="Sierra Blue"></span>
+                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
+                <span class="cswatch" style="background:#5c6b57" title="Alpine Green"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone13promax">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone13promax" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-14.html" aria-label="View iPhone 14 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-14/iphone-14-midnight.jpg" alt="iPhone 14 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 14 128GB</div>
+              <div class="prod-price">RM1439</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#2f3136" title="Midnight"></span>
+                <span class="cswatch" style="background:#f2f0e6" title="Starlight"></span>
+                <span class="cswatch" style="background:#5c7fa6" title="Blue"></span>
+                <span class="cswatch" style="background:#b7a9cd" title="Purple"></span>
+                <span class="cswatch" style="background:#f2df8a" title="Yellow"></span>
+                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone14">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone14" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-14-plus.html" aria-label="View iPhone 14 Plus 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-14-plus/iphone-14-plus-midnight.jpg" alt="iPhone 14 Plus 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 14 Plus 128GB</div>
+              <div class="prod-price">RM1669</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#2f3136" title="Midnight"></span>
+                <span class="cswatch" style="background:#f2f0e6" title="Starlight"></span>
+                <span class="cswatch" style="background:#5c7fa6" title="Blue"></span>
+                <span class="cswatch" style="background:#b7a9cd" title="Purple"></span>
+                <span class="cswatch" style="background:#f2df8a" title="Yellow"></span>
+                <span class="cswatch" style="background:#b1181f" title="(PRODUCT)RED"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone14plus">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone14plus" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-14-pro-max.html" aria-label="View iPhone 14 Pro Max 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-14-pro-max/iphone-14-pro-max-space-black.jpg" alt="iPhone 14 Pro Max 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 14 Pro Max 128GB</div>
+              <div class="prod-price">RM2269</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#2b2b2d" title="Space Black"></span>
+                <span class="cswatch" style="background:#e5e5e7" title="Silver"></span>
+                <span class="cswatch" style="background:#5c4a6b" title="Deep Purple"></span>
+                <span class="cswatch" style="background:#e5cba7" title="Gold"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone14promax">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone14promax" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-15.html" aria-label="View iPhone 15 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-15/iphone-15-black.jpg" alt="iPhone 15 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 15 128GB</div>
+              <div class="prod-price">RM2059</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#2b2b2d" title="Black"></span>
+                <span class="cswatch" style="background:#dce7ef" title="Blue"></span>
+                <span class="cswatch" style="background:#e8d3d8" title="Pink"></span>
+                <span class="cswatch" style="background:#d5e3d1" title="Green"></span>
+                <span class="cswatch" style="background:#f2df8a" title="Yellow"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone15">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone15" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-15-pro.html" aria-label="View iPhone 15 Pro 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-15-pro/iphone-15-pro-natural-titanium.jpg" alt="iPhone 15 Pro 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 15 Pro 128GB</div>
+              <div class="prod-price">RM2619</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
+                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
+                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
+                <span class="cswatch" style="background:#4d5b64" title="Blue Titanium"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone15pro">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone15pro" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-15-pro-max.html" aria-label="View iPhone 15 Pro Max 256GB details">
+            <div class="thumb"><img src="assets/products/iphone-15-pro-max/iphone-15-pro-max-natural-titanium.jpg" alt="iPhone 15 Pro Max 256GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 15 Pro Max 256GB</div>
+              <div class="prod-price">RM2899</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
+                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
+                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
+                <span class="cswatch" style="background:#4d5b64" title="Blue Titanium"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone15promax">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone15promax" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-16.html" aria-label="View iPhone 16 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-16/iphone-16-black.jpg" alt="iPhone 16 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 16 128GB</div>
+              <div class="prod-price">RM2429</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#2b2b2d" title="Black"></span>
+                <span class="cswatch" style="background:#f2f1ec" title="White"></span>
+                <span class="cswatch" style="background:#a8c9c4" title="Teal"></span>
+                <span class="cswatch" style="background:#8a9bd6" title="Ultramarine"></span>
+                <span class="cswatch" style="background:#e8a8c8" title="Pink"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone16">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone16" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-16-pro.html" aria-label="View iPhone 16 Pro 128GB details">
+            <div class="thumb"><img src="assets/products/iphone-16-pro/iphone-16-pro-natural-titanium.jpg" alt="iPhone 16 Pro 128GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 16 Pro 128GB</div>
+              <div class="prod-price">RM3189</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
+                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
+                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
+                <span class="cswatch" style="background:#a9906f" title="Desert Titanium"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone16pro">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone16pro" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-iphone-16-pro-max.html" aria-label="View iPhone 16 Pro Max 256GB details">
+            <div class="thumb"><img src="assets/products/iphone-16-pro-max/iphone-16-pro-max-natural-titanium.jpg" alt="iPhone 16 Pro Max 256GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">iPhone 16 Pro Max 256GB</div>
+              <div class="prod-price">RM3759</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#8d8578" title="Natural Titanium"></span>
+                <span class="cswatch" style="background:#3d3d3f" title="Black Titanium"></span>
+                <span class="cswatch" style="background:#e8e5dc" title="White Titanium"></span>
+                <span class="cswatch" style="background:#a9906f" title="Desert Titanium"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="iphone16promax">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="iphone16promax" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+      </div></div>
+      <div class="brand-panel" data-brand="samsung"><div class="prod-grid">
+        <div class="prod prod-real glass">
+          <a class="prod-link" href="product-samsung-a56.html" aria-label="View Samsung Galaxy A56 5G 12GB+256GB details">
+            <div class="thumb"><img src="assets/products/samsung-a56/samsung-a56-awesome-graphite.jpg" alt="Samsung Galaxy A56 5G 12GB+256GB" loading="lazy"></div>
+            <div class="body">
+              <div class="prod-name">Samsung Galaxy A56 5G 12GB+256GB</div>
+              <div class="prod-price">RM1789</div>
+              <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span> · <span data-i18n="prod_warranty_3m">Free 3-month warranty</span></div>
+              <div class="prod-colors" aria-label="Available colours">
+                <span class="cswatch" style="background:#3d3f42" title="Awesome Graphite"></span>
+                <span class="cswatch" style="background:#c4c6c9" title="Awesome Lightgray"></span>
+                <span class="cswatch" style="background:#5a5e42" title="Awesome Olive"></span>
+                <span class="cswatch" style="background:#e0b8c4" title="Awesome Pink"></span>
+              </div>
+            </div>
+          </a>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="samsunga56">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="samsunga56" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
+        </div>
+      </div></div>
       <div class="brand-panel" data-brand="android"><div class="prod-grid" data-skeleton></div></div>
     </div>
     <div class="cat-panel" id="cat-acc">
       <div class="cat-intro"><h3 data-i18n="catacc_t">Accessories</h3><p class="muted" data-i18n="catacc_d">Cases, tempered glass, chargers, cables, power banks, wireless earbuds and other everyday essentials.</p></div>
-      <div class="prod-grid" data-skeleton>
+      <div class="prod-grid">
         <div class="prod prod-real glass">
           <div class="thumb"><img src="assets/products/accessories/baseus-powerbank-pd-22.5w-dualcable.jpg" alt="Baseus Power Bank PD 22.5W Dual Cable Digital Display" loading="lazy"></div>
           <div class="body">
@@ -1107,7 +1151,7 @@
             <div class="prod-price">RM68</div>
             <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></div>
           </div>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="acc_powerbank_pd" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="acc_powerbank_pd">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="acc_powerbank_pd" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
         </div>
         <div class="prod prod-real glass">
           <div class="thumb"><img src="assets/products/accessories/baseus-powerbank-10000mah-magnetic.jpg" alt="Baseus Power Bank 10000mAh Mini Magnetic Wireless Fast Charge" loading="lazy"></div>
@@ -1116,7 +1160,7 @@
             <div class="prod-price">RM55</div>
             <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></div>
           </div>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="acc_powerbank_magnetic" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="acc_powerbank_magnetic">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="acc_powerbank_magnetic" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
         </div>
         <div class="prod prod-real glass">
           <div class="thumb"><img src="assets/products/accessories/baseus-tempered-glass-iphone15promax.jpg" alt="Baseus Corning Series Full Coverage HD Tempered Glass - iPhone 15 Pro Max" loading="lazy"></div>
@@ -1125,7 +1169,7 @@
             <div class="prod-price">RM15</div>
             <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></div>
           </div>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="acc_temperedglass" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="acc_temperedglass">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="acc_temperedglass" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
         </div>
         <div class="prod prod-real glass">
           <div class="thumb"><img src="assets/products/accessories/baseus-cable-usb-ip-1.2m.jpg" alt="Baseus Fast Charging Data Cable USB to iP 1.2M" loading="lazy"></div>
@@ -1134,13 +1178,13 @@
             <div class="prod-price">RM10</div>
             <div class="prod-meta"><span class="dot in"></span><span data-i18n="stk_in">In stock</span></div>
           </div>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="acc_cable_usbip" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="acc_cable_usbip">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="acc_cable_usbip" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
         </div>
       </div>
     </div>
     <div class="cat-panel" id="cat-pad">
-      <div class="cat-intro"><h3 data-i18n="catpad_t">Pad/Tab</h3><p class="muted" data-i18n="catpad_d">iPads and Android tablets for work, study and entertainment, all Malaysia set with manufacturer warranty.</p></div>
-      <div class="prod-grid" data-skeleton>
+      <div class="cat-intro"><h3 data-i18n="catpad_t">Tablets</h3><p class="muted" data-i18n="catpad_d">iPads and Android tablets for work, study and entertainment, all Malaysia set with manufacturer warranty.</p></div>
+      <div class="prod-grid">
         <div class="prod prod-real glass">
           <a class="prod-link" href="product-ipad-11.html" aria-label="View iPad 11th Gen 2025 Wi-Fi 128GB details">
             <div class="thumb"><img src="assets/products/ipad-11/ipad-11-blue.jpg" alt="iPad 11th Gen 2025 Wi-Fi 128GB" loading="lazy"></div>
@@ -1156,7 +1200,7 @@
               </div>
             </div>
           </a>
-          <div class="prod-cta-row"><a class="prod-cta-link" data-wa="ipad11" href="#">💬 <span data-i18n="prod_ask_wa">Ask on WhatsApp</span></a></div>
+          <div class="prod-cta-row"><button type="button" class="prod-cta-link" data-addcart="ipad11">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="prod-cta-wa" data-wa="ipad11" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
         </div>
       </div>
     </div>
@@ -1177,7 +1221,7 @@
       <div>
         <img src="assets/logo-white.png" alt="SUN SMART">
         <p data-i18n="foot_tag">Smart Choice, Brighter Connection. New &amp; pre-owned smartphones and accessories in the Klang Valley.</p>
-        <div class="socials"><a href="#">FB</a><a href="#">IG</a><a href="#">TT</a><a data-wa href="#">WA</a></div>
+        <div class="socials"><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 8.5h2.5V5.3c-.4-.1-1.9-.2-3.6-.2-3.6 0-6 2.2-6 6.2v3H4.9v3.6H7.9V22h3.7v-9.6h3.2l.5-3.6h-3.7v-2.6c0-1 .3-1.7 1.8-1.7z"/></svg></a><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.8 2h-3.3v13.6a2.9 2.9 0 1 1-2.1-2.8V9.5a6.2 6.2 0 1 0 5.4 6.2V9.1c1.2.9 2.7 1.4 4.2 1.4V7.2c-2.2 0-4-1.7-4.2-3.7z"/></svg></a><a data-wa href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
       </div>
       <div><h5 data-i18n="foot_explore">Explore</h5>
         <a href="index.html#about" data-i18n="nav_about">About</a><a href="products.html" data-i18n="nav_products">Products</a>
@@ -1204,6 +1248,19 @@
   <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="cart-head">
+    <h3 data-i18n="cart_title">Your Cart</h3>
+    <button class="cart-close" id="cartClose" type="button" aria-label="Close cart">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total-row"><span data-i18n="cart_total">Total</span><span id="cartTotal">RM0</span></div>
+    <a class="btn btn-wa btn-lg" id="cartCheckout" href="#" style="width:100%;justify-content:center" data-i18n="cart_checkout">Checkout via WhatsApp</a>
+    <button class="cart-clear" id="cartClear" type="button" data-i18n="cart_clear">Clear cart</button>
+  </div>
+</aside>
 <a class="wa-float" data-wa href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a>
 
 <!-- ===== AI ASSISTANT WIDGET ===== -->
@@ -1232,7 +1289,7 @@
 
 <script>
 const I18N = {
-  en:{nav_about:"About",nav_products:"Products",nav_payment:"Payment",nav_pickup:"Delivery",nav_contact:"Contact",
+  en:{nav_about:"About",nav_products:"Products",nav_payment:"Payment",nav_pickup:"Delivery",nav_contact:"Contact",prod_addcart:"Add to Cart",cart_title:"Your Cart",cart_total:"Total",cart_checkout:"Checkout via WhatsApp",cart_clear:"Clear cart",
     ai_name:"SUN SMART Assistant",ai_status:"Instant answers",ai_placeholder:"Type your question…",
     hero_badge:"New · Pre-owned · Accessories · Klang Valley",
     hero_tagline:"Smart Choice, Brighter Connection",hero_title:"New & pre-owned smartphones you can trust.",
@@ -1255,11 +1312,11 @@ const I18N = {
     prodfull_eyebrow:"Full Catalogue",prodfull_title:"Browse All Products",
     prodfull_sub:"Explore our full range by category and brand. Message us on WhatsApp for the current price and availability of any model.",
     brand_all:"All Brands",brand_apple:"Apple",brand_samsung:"Samsung",brand_android:"Android",
-    cat_new:"New Phones",cat_used:"Pre-owned Phones",cat_acc:"Accessories",cat_pad:"Pad/Tab",
-    catnew_t:"New Phones",catnew_d:"Mid-range Android from leading brands and popular iPhone models, typically RM500–RM3,000, all Malaysia set with manufacturer warranty.",
+    cat_new:"New Phones",cat_used:"Pre-owned Phones",cat_acc:"Accessories",cat_pad:"Tablets",
+    catnew_t:"New Phones",catnew_d:"Mid-range Android smartphones from leading brands, typically RM500–RM3,000, all Malaysia set with manufacturer warranty.",
     catused_t:"Pre-owned Phones",catused_d:"Quality-checked pre-owned phones, graded by condition, with battery health and functions tested and clearly stated before you buy.",
     catacc_t:"Accessories",catacc_d:"Cases, tempered glass, chargers, cables, power banks, wireless earbuds and other everyday essentials.",
-    catpad_t:"Pad/Tab",catpad_d:"iPads and Android tablets for work, study and entertainment, all Malaysia set with manufacturer warranty.",
+    catpad_t:"Tablets",catpad_d:"iPads and Android tablets for work, study and entertainment, all Malaysia set with manufacturer warranty.",
     stk_in:"In stock",stk_low:"Low stock",stk_order:"Available to order",
     prod_note:"💬 Prices & live stock will appear here once our catalogue is online. Message us on WhatsApp for the current price and availability of any model.",
     prod_cta:"Ask about a model on WhatsApp",
@@ -1306,7 +1363,7 @@ const I18N = {
     sup_tc_t:"Terms & Conditions",sup_faq_t:"Frequently Asked Questions",sup_hitpay_t:"HitPay Checkout Info",
     foot_tag:"Smart Choice, Brighter Connection. New & pre-owned smartphones and accessories in the Klang Valley.",
     foot_explore:"Explore",foot_policies:"Policies",foot_support:"Support",foot_copy:"© 2026 SUN SMART. All rights reserved.",foot_reg:"SUN SMART · Incorporated in Malaysia"},
-  zh:{nav_about:"关于我们",nav_products:"产品",nav_payment:"付款方式",nav_pickup:"配送",nav_contact:"联系我们",
+  zh:{nav_about:"关于我们",nav_products:"产品",nav_payment:"付款方式",nav_pickup:"配送",nav_contact:"联系我们",prod_addcart:"加入购物车",cart_title:"我的购物车",cart_total:"总计",cart_checkout:"WhatsApp 结账",cart_clear:"清空购物车",
     ai_name:"SUN SMART 智能助手",ai_status:"即时解答",ai_placeholder:"请输入你的问题…",
     hero_badge:"新机 · 二手机 · 配件 · 雪隆区",
     hero_tagline:"智慧之选，亮点连接",hero_title:"值得信赖的新机与二手机。",
@@ -1329,7 +1386,7 @@ const I18N = {
     brand_all:"所有品牌",brand_apple:"Apple",brand_samsung:"Samsung",brand_android:"Android",
     prod_sub:"先睹为快——浏览完整产品目录，查看各品牌的完整系列。",
     cat_new:"新手机",cat_used:"二手机",cat_acc:"配件",cat_pad:"平板",
-    catnew_t:"新手机",catnew_d:"主流品牌的中低价 Android 手机及热门 iPhone 型号，价格多在 RM500–RM3,000，均为马来西亚版并附原厂保修。",
+    catnew_t:"新手机",catnew_d:"主流品牌的中低价 Android 手机，价格多在 RM500–RM3,000，均为马来西亚版并附原厂保修。",
     catused_t:"二手机",catused_d:"经过检测的二手机，按外观分级，电池健康度与功能均已测试，购买前清楚说明。",
     catacc_t:"配件",catacc_d:"手机壳、钢化膜、充电器、充电线、移动电源、蓝牙耳机等常用配件。",
     catpad_t:"平板",catpad_d:"iPad 及 Android 平板电脑，适合工作、学习与娱乐，均为马来西亚版并附原厂保修。",
@@ -1379,7 +1436,7 @@ const I18N = {
     sup_tc_t:"条款与细则",sup_faq_t:"常见问题",sup_hitpay_t:"HitPay 付款资讯",
     foot_tag:"智慧之选，亮点连接。雪隆区新机、二手机与手机配件。",
     foot_explore:"浏览",foot_policies:"条款政策",foot_support:"支持",foot_copy:"© 2026 SUN SMART 版权所有。",foot_reg:"SUN SMART · 在马来西亚注册成立"},
-  ms:{nav_about:"Tentang",nav_products:"Produk",nav_payment:"Pembayaran",nav_pickup:"Penghantaran",nav_contact:"Hubungi",
+  ms:{nav_about:"Tentang",nav_products:"Produk",nav_payment:"Pembayaran",nav_pickup:"Penghantaran",nav_contact:"Hubungi",prod_addcart:"Tambah ke Troli",cart_title:"Troli Anda",cart_total:"Jumlah",cart_checkout:"Checkout melalui WhatsApp",cart_clear:"Kosongkan troli",
     ai_name:"Pembantu SUN SMART",ai_status:"Jawapan segera",ai_placeholder:"Taip soalan anda…",
     hero_badge:"Baharu · Terpakai · Aksesori · Lembah Klang",
     hero_tagline:"Pilihan Bijak, Hubungan Lebih Cerah",hero_title:"Telefon pintar baharu & terpakai yang boleh dipercayai.",
@@ -1401,11 +1458,11 @@ const I18N = {
     prodfull_sub:"Terokai julat penuh kami mengikut kategori dan jenama. Hubungi kami di WhatsApp untuk harga dan ketersediaan semasa mana-mana model.",
     brand_all:"Semua Jenama",brand_apple:"Apple",brand_samsung:"Samsung",brand_android:"Android",
     prod_sub:"Sekilas pandang apa yang kami ada — lihat katalog penuh untuk julat lengkap mengikut jenama.",
-    cat_new:"Telefon Baharu",cat_used:"Telefon Terpakai",cat_acc:"Aksesori",cat_pad:"Pad/Tab",
-    catnew_t:"Telefon Baharu",catnew_d:"Android pertengahan daripada jenama terkemuka dan model iPhone popular, biasanya RM500–RM3,000, semuanya set Malaysia dengan waranti pengeluar.",
+    cat_new:"Telefon Baharu",cat_used:"Telefon Terpakai",cat_acc:"Aksesori",cat_pad:"Tablet",
+    catnew_t:"Telefon Baharu",catnew_d:"Android pertengahan daripada jenama terkemuka, biasanya RM500–RM3,000, semuanya set Malaysia dengan waranti pengeluar.",
     catused_t:"Telefon Terpakai",catused_d:"Telefon terpakai yang disemak kualiti, digredkan mengikut keadaan, dengan kesihatan bateri dan fungsi diuji serta dinyatakan dengan jelas sebelum anda membeli.",
     catacc_t:"Aksesori",catacc_d:"Casing, cermin tempered, pengecas, kabel, power bank, fon telinga wayarles dan keperluan harian lain.",
-    catpad_t:"Pad/Tab",catpad_d:"iPad dan tablet Android untuk kerja, belajar dan hiburan, semuanya set Malaysia dengan waranti pengeluar.",
+    catpad_t:"Tablet",catpad_d:"iPad dan tablet Android untuk kerja, belajar dan hiburan, semuanya set Malaysia dengan waranti pengeluar.",
     stk_in:"Ada stok",stk_low:"Stok rendah",stk_order:"Boleh ditempah",
     prod_note:"💬 Harga & stok langsung akan dipaparkan di sini sebaik katalog kami dalam talian. Hubungi kami di WhatsApp untuk harga dan ketersediaan semasa mana-mana model.",
     prod_cta:"Tanya tentang model di WhatsApp",
@@ -1483,6 +1540,98 @@ const WA_MSG={
   acc_cable_usbip:{en:"Hi SUN SMART, I'd like to enquire about the Baseus Fast Charging Data Cable USB to iP 1.2M (RM10).",zh:"你好 SUN SMART，我想咨询 Baseus USB to iP 1.2米快充数据线（RM10）。",ms:"Hai SUN SMART, saya ingin bertanya tentang Baseus Fast Charging Data Cable USB to iP 1.2M (RM10)."},
   ipad11:{en:"Hi SUN SMART, I'd like to enquire about the iPad 11th Gen 2025 Wi-Fi 128GB (RM1229).",zh:"你好 SUN SMART，我想咨询 iPad 11th Gen 2025 Wi-Fi 128GB（RM1229）。",ms:"Hai SUN SMART, saya ingin bertanya tentang iPad 11th Gen 2025 Wi-Fi 128GB (RM1229)."}
 };
+const CART_KEY="ss_cart";
+function cartLang(){ let l="en"; try{ l=localStorage.getItem("ss_lang")||"en"; }catch(e){} return I18N[l]?l:"en"; }
+function getCart(){ try{ return JSON.parse(localStorage.getItem(CART_KEY))||[]; }catch(e){ return []; } }
+function saveCart(c){ try{ localStorage.setItem(CART_KEY, JSON.stringify(c)); }catch(e){} renderCart(); }
+function cartCount(){ return getCart().reduce((n,x)=>n+x.qty,0); }
+function cartTotal(){ return getCart().reduce((n,x)=>n+x.qty*x.price,0); }
+function fmtRM(n){ return "RM"+Math.round(n).toLocaleString("en-MY"); }
+function addToCart(item){
+  const cart=getCart();
+  const existing=cart.find(x=>x.id===item.id);
+  if(existing){ existing.qty+=1; } else { cart.push(Object.assign({},item,{qty:1})); }
+  saveCart(cart);
+  openCart();
+}
+function updateQty(id,delta){
+  const cart=getCart();
+  const it=cart.find(x=>x.id===id);
+  if(!it) return;
+  it.qty+=delta;
+  saveCart(it.qty<=0 ? cart.filter(x=>x.id!==id) : cart);
+}
+function removeFromCart(id){ saveCart(getCart().filter(x=>x.id!==id)); }
+const CART_STR={
+  en:{empty:"Your cart is empty.",greet:"Hi SUN SMART, I'd like to order:",total:"Total: ",remove:"Remove"},
+  zh:{empty:"购物车是空的。",greet:"你好 SUN SMART，我想订购：",total:"总计：",remove:"移除"},
+  ms:{empty:"Troli anda kosong.",greet:"Hai SUN SMART, saya ingin membeli:",total:"Jumlah: ",remove:"Buang"}
+};
+function renderCart(){
+  const wrap=document.getElementById("cartItems");
+  if(!wrap) return;
+  const lang=cartLang(), t=CART_STR[lang]||CART_STR.en;
+  const items=getCart();
+  const badge=document.getElementById("cartBadge");
+  const count=cartCount();
+  if(badge){ badge.textContent=count; badge.hidden=count===0; }
+  if(!items.length){
+    wrap.innerHTML='<div class="cart-empty">'+t.empty+'</div>';
+  } else {
+    wrap.innerHTML=items.map(it=>(
+      '<div class="cart-line" data-id="'+it.id+'">'+
+        '<img src="'+it.img+'" alt="">'+
+        '<div class="cart-line-body">'+
+          '<div class="cart-line-name">'+it.name+'</div>'+
+          '<div class="cart-line-price">'+fmtRM(it.price)+' &times; '+it.qty+'</div>'+
+          '<div class="cart-qty"><button type="button" data-qty="-1">&minus;</button><span>'+it.qty+'</span><button type="button" data-qty="1">+</button></div>'+
+          '<button type="button" class="cart-line-remove" data-remove>'+t.remove+'</button>'+
+        '</div>'+
+        '<div class="cart-line-sub">'+fmtRM(it.price*it.qty)+'</div>'+
+      '</div>'
+    )).join("");
+  }
+  const totalEl=document.getElementById("cartTotal");
+  if(totalEl) totalEl.textContent=fmtRM(cartTotal());
+  const checkoutBtn=document.getElementById("cartCheckout");
+  if(checkoutBtn){
+    const lines=items.map(it=>"- "+it.name+" x"+it.qty+" ("+fmtRM(it.price*it.qty)+")").join("\n");
+    const msg=t.greet+"\n"+lines+"\n"+t.total+fmtRM(cartTotal());
+    checkoutBtn.setAttribute("href", items.length ? "https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(msg) : "#");
+    checkoutBtn.classList.toggle("btn-disabled", !items.length);
+  }
+}
+function openCart(){ const o=document.getElementById("cartOverlay"),d=document.getElementById("cartDrawer"); if(!o||!d) return; o.classList.add("open"); d.classList.add("open"); renderCart(); }
+function closeCart(){ const o=document.getElementById("cartOverlay"),d=document.getElementById("cartDrawer"); if(!o||!d) return; o.classList.remove("open"); d.classList.remove("open"); }
+(function(){
+  const cartBtn=document.getElementById("cartBtn"), cartClose=document.getElementById("cartClose"), cartOverlay=document.getElementById("cartOverlay"), cartClear=document.getElementById("cartClear"), cartItems=document.getElementById("cartItems");
+  if(cartBtn) cartBtn.addEventListener("click", openCart);
+  if(cartClose) cartClose.addEventListener("click", closeCart);
+  if(cartOverlay) cartOverlay.addEventListener("click", closeCart);
+  if(cartClear) cartClear.addEventListener("click", ()=>saveCart([]));
+  if(cartItems) cartItems.addEventListener("click", e=>{
+    const line=e.target.closest(".cart-line");
+    if(!line) return;
+    const id=line.getAttribute("data-id");
+    if(e.target.matches("[data-qty]")) updateQty(id, parseInt(e.target.getAttribute("data-qty"),10));
+    else if(e.target.matches("[data-remove]")) removeFromCart(id);
+  });
+  document.addEventListener("click", e=>{
+    const btn=e.target.closest("[data-addcart]");
+    if(!btn) return;
+    e.preventDefault();
+    const id=btn.getAttribute("data-addcart");
+    const card=btn.closest(".prod") || document.getElementById("product-detail") || document;
+    const nameEl=card.querySelector(".prod-name") || card.querySelector(".pd-info h1");
+    const priceEl=card.querySelector(".prod-price") || card.querySelector(".pd-price");
+    const imgEl=card.querySelector(".thumb img") || document.getElementById("pdMainImg");
+    const name=nameEl ? nameEl.textContent.trim() : id;
+    const price=priceEl ? (parseFloat(priceEl.textContent.replace(/[^0-9.]/g,""))||0) : 0;
+    const img=imgEl ? imgEl.getAttribute("src") : "";
+    addToCart({id:id,name:name,price:price,img:img});
+  });
+  renderCart();
+})();
 function applyLang(lang){
   const d=I18N[lang]||I18N.en;
   document.documentElement.lang=(lang==="zh"?"zh-CN":lang==="ms"?"ms":"en");
@@ -1495,6 +1644,7 @@ function applyLang(lang){
   });
   try{localStorage.setItem("ss_lang",lang);}catch(e){}
   if (typeof aiOnLangChange === "function") aiOnLangChange(lang);
+  if (typeof renderCart === "function") renderCart();
 }
 (function(){document.querySelectorAll("[data-skeleton]").forEach(g=>{for(let i=0;i<4;i++){const e=document.createElement("div");e.className="prod glass";e.innerHTML='<div class="thumb"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 5h2"/></svg><span class="soon">COMING SOON</span></div><div class="body"><div class="nm"></div><div class="pr"></div></div>';g.appendChild(e);}});})();
 document.querySelectorAll(".cat-tabs button").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".cat-tabs button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".cat-panel").forEach(p=>p.classList.remove("active"));document.getElementById("cat-"+b.dataset.cat).classList.add("active");}));
@@ -1577,9 +1727,9 @@ const AI_INTENTS = [
       zh:"我们接受现金、银行转账、DuitNow QR、信用卡/借记卡，以及 PayLater / 分期付款。查看<a href=\"payment.html\">付款页面</a>了解详情。",
       ms:"Kami menerima Tunai, Pindahan Bank, DuitNow QR, Kad Kredit/Debit, dan PayLater / BNPL. Lihat <a href=\"payment.html\">halaman Pembayaran</a> untuk butiran."}[lang]) },
   { id:"newphones", keywords:{en:["new phone","brand new"],zh:["新机","新手机"],ms:["telefon baharu","baharu"]},
-    build:(lang)=> ({en:"We carry mid-range Android from leading brands and popular iPhone models, typically RM500–RM3,000, all with manufacturer warranty. <a href=\"products.html\">Browse New Phones</a>.",
-      zh:"我们提供主流品牌的中低价 Android 手机及热门 iPhone 型号，价格多在 RM500–RM3,000，均附原厂保修。<a href=\"products.html\">浏览新手机</a>。",
-      ms:"Kami membawa Android pertengahan daripada jenama terkemuka dan model iPhone popular, biasanya RM500–RM3,000, semuanya dengan waranti pengeluar. <a href=\"products.html\">Lihat Telefon Baharu</a>."}[lang]) },
+    build:(lang)=> ({en:"We carry mid-range Android smartphones from leading brands, typically RM500–RM3,000, all with manufacturer warranty. <a href=\"products.html\">Browse New Phones</a>.",
+      zh:"我们提供主流品牌的中低价 Android 手机，价格多在 RM500–RM3,000，均附原厂保修。<a href=\"products.html\">浏览新手机</a>。",
+      ms:"Kami membawa Android pertengahan daripada jenama terkemuka, biasanya RM500–RM3,000, semuanya dengan waranti pengeluar. <a href=\"products.html\">Lihat Telefon Baharu</a>."}[lang]) },
   { id:"usedphones", keywords:{en:["used phone","second hand","pre-owned","preowned"],zh:["二手机","二手"],ms:["telefon terpakai","terpakai"]},
     build:(lang)=> ({en:"Every pre-owned phone is quality-checked and graded by condition, with battery health and functions tested and clearly stated. <a href=\"products.html\">Browse Pre-owned Phones</a>.",
       zh:"每台二手机都经过检测并按状况分级，电池健康度与功能均已测试并清楚说明。<a href=\"products.html\">浏览二手机</a>。",
