@@ -85,8 +85,9 @@ readme = [
                 "DEWA deposit or furnishing capex per unit — those sit with the property owner."),
     ("B", "2.", "Unit setup CAPEX is sized for ONE unit only. The scaling table on 'Unit Setup' shows the cost if the "
                 "portfolio is rolled out to 5 / 10 / 25 / 50 / 80 units, but nothing is scaled by default."),
-    ("B", "3.", "The AED 2,000,000 shareholder capital in the Business Profile is NOT used as a target or a cap. "
-                "This CAPEX is built bottom-up from what the business actually needs."),
+    ("B", "3.", "Shareholder capital is AED 200,000 as confirmed (the Business Profile states AED 2,000,000 — these "
+                "must be reconciled). Either way it is NOT used as a target or a cap: this CAPEX is built bottom-up "
+                "from what the business actually needs."),
     ("B", "4.", "Directors draw no salary. See the OPEX workbook."),
     ("", ""),
     ("SEC", "COLOUR LEGEND"),
@@ -629,8 +630,9 @@ for col in range(1, 7):
 r += 1
 
 notes = [
-    "The Business Profile states AED 2,000,000 of shareholder capital. Per HJ this CAPEX is NOT sized to that number — "
-    "it is built bottom-up from what the business needs, and the balance is available as working capital and runway.",
+    "Shareholder capital is AED 200,000 as confirmed. The Business Profile states AED 2,000,000 — reconcile the two "
+    "before submission. This CAPEX is not sized to either figure; it is built bottom-up from what the business needs. "
+    "At AED 200,000, CAPEX alone consumes a significant share of the capital — see 'Funding Summary'.",
     "Because Orizuru operates commission-only, CAPEX is genuinely light: there is no furniture, no unit deposits and no "
     "master-lease prepayment. The heavy spend in this business is OPEX, not CAPEX.",
     "The single largest scaling risk is NOT in this workbook: it is the per-unit setup cost multiplied out. At the Business "

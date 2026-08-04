@@ -558,8 +558,9 @@ for col in range(1, 7):
 r += 1
 
 notes = [
-    "The Business Profile states AED 2,000,000 of shareholder capital. Per HJ this CAPEX is NOT sized to that number — "
-    "it is built bottom-up from what the business needs, and the balance is available as working capital and runway.",
+    "Shareholder capital is AED 200,000 as confirmed. The Business Profile states AED 2,000,000 — reconcile the two "
+    "before submission. This CAPEX is not sized to either figure; it is built bottom-up from what the business needs. "
+    "At AED 200,000, CAPEX alone consumes a significant share of the capital — see 'Funding Summary'.",
     "Because Orizuru operates commission-only, CAPEX is genuinely light: there is no furniture, no unit deposits and no "
     "master-lease prepayment. The heavy spend in this business is OPEX, not CAPEX.",
     "The single largest scaling risk is NOT in this workbook: it is the per-unit setup cost multiplied out. At the Business "
@@ -1665,7 +1666,7 @@ blocks = [
     ("SEC", "WHAT IS IN THIS WORKBOOK"),
     ("T", "Tab", "What it does"),
     ("R", "Funding Summary", "START HERE. Total CAPEX, Year-1 OPEX, and the peak cash the business actually needs "
-                             "to fund — tied against the AED 2,000,000 shareholder capital."),
+                             "to fund — tied against the AED 200,000 shareholder capital."),
     ("R", "Assumptions", "Every OPEX input at Low / Base / High. Set SCENARIO in cell B4 and the whole model re-cuts. "
                          "Set cell B6 to choose which marketing option is adopted from Month 3."),
     ("R", "CAPEX Summary", "One-off setup spend rolled up by category."),
@@ -1700,8 +1701,10 @@ blocks = [
                 "every month for as long as the unit is live — not a one-off signing bonus."),
     ("B", "•", "Figures supplied and used as-is: domain name 3 years AED 387; company stamp AED 137. Both are "
                 "one-off, so they sit in CAPEX."),
-    ("B", "•", "The AED 2,000,000 shareholder capital is NOT used as a target or a cap. Everything here is built "
-                "bottom-up from what the business needs."),
+    ("B", "•", "Shareholder capital is AED 200,000 as confirmed. NOTE: the Business Profile states AED 2,000,000 — "
+                "the two must be reconciled before the pack goes to the bank. This model uses AED 200,000."),
+    ("B", "•", "Nothing here is sized to the capital figure. Everything is built bottom-up from what the business "
+                "needs, then compared against the capital available on 'Funding Summary'."),
     ("", ""),
     ("SEC", "COLOUR LEGEND"),
     ("L", "Blue text", "Hardcoded input — edit freely."),
@@ -1914,10 +1917,11 @@ wsf.row_dimensions[r].height = 20
 r += 1
 
 wsf.cell(r, 1, "Shareholder capital available").font = f_item
-wsf.cell(r, 3, 2000000).font = f_in
+wsf.cell(r, 3, 200000).font = f_in
 wsf.cell(r, 3).number_format = CUR
 wsf.cell(r, 3).fill = fill_key
-wsf.cell(r, 5, "Per the Business Profile — AED 2,000,000, funded by shareholders.").font = f_note
+wsf.cell(r, 5, "AED 200,000 as confirmed. The Business Profile states AED 2,000,000 — reconcile before "
+                "submission.").font = f_note
 for col in range(1, 6):
     wsf.cell(r, col).border = b_bottom
 F_CAP = r
@@ -1926,8 +1930,8 @@ r += 1
 wsf.cell(r, 1, "Headroom / (shortfall)").font = f_tot
 wsf.cell(r, 3, f"=C{F_CAP}-C{F_FUND}").font = f_tot
 wsf.cell(r, 3).number_format = CUR
-wsf.cell(r, 5, "Positive means the shareholder capital covers Year 1 with room to spare — that surplus is what funds "
-                "portfolio expansion and Year-2 runway.").font = f_note
+wsf.cell(r, 5, "Negative means the ramp above cannot be funded from AED 200,000. Fix it by slowing the unit ramp, "
+                "taking the Low CAPEX case, or re-charging unit-level OPEX to owners — see note 6 below.").font = f_note
 wsf.cell(r, 5).alignment = Alignment(wrap_text=True, vertical="top")
 wsf.row_dimensions[r].height = 30
 for col in range(1, 6):
@@ -1954,6 +1958,16 @@ for d in [
     "MOST UNIT-LEVEL OPEX IS RE-CHARGEABLE. Housekeeping, DET permit renewals and consumables are commonly billed to "
     "the owner or the guest. Set those assumptions to 0 if your management contracts pass them through — it changes "
     "the OPEX total substantially.",
+    "AT AED 200,000 THE BASE CASE DOES NOT FUND ITSELF. Base CAPEX (121,158) plus the peak operating cash deficit "
+    "(76,726) plus a 20% buffer comes to 237,461 against 200,000 available — a shortfall of about 37,000. Two levers "
+    "close it: (a) take the Low CAPEX case, deferring the full website build and brand spend until cash turns "
+    "positive, which alone gets you to roughly 20,000 of headroom; (b) re-charge unit-level OPEX (housekeeping, DET "
+    "permit renewals, consumables) to owners and guests, which is standard Dubai practice. Doing both leaves about "
+    "38,000 of headroom and is the recommended path.",
+    "DO NOT TRY TO FIX IT BY SLOWING THE RAMP. This is counter-intuitive but the model is unambiguous: cutting the "
+    "ramp from 80 units to 46 by Month 12 makes the peak cash deficit WORSE, not better (119,632 vs 76,726). Fixed "
+    "OPEX — office, licence, staff, technology — runs regardless, so a slower ramp simply means paying it for longer "
+    "before revenue catches up. If capital is tight, cut CAPEX and re-charge OPEX; do not cut growth.",
 ]:
     wsf.merge_cells(start_row=r, start_column=1, end_row=r, end_column=5)
     c = wsf.cell(r, 1, "•  " + d)
