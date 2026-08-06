@@ -183,7 +183,7 @@ for col in range(1, 9):
     wsu.cell(r, col).fill = fill_sec
 r += 1
 wsu.merge_cells(start_row=r, start_column=1, end_row=r, end_column=8)
-c = wsu.cell(r, 1, "Per HJ, the CAPEX total is built for ONE unit. This table shows what the same unit-setup cost becomes "
+c = wsu.cell(r, 1, "Per management, the CAPEX total is built for ONE unit. This table shows what the same unit-setup cost becomes "
                    "at portfolio scale, against the Business Profile's 70–80 unit Year-1 target.")
 c.font = f_note
 c.alignment = Alignment(wrap_text=True, vertical="top")
@@ -255,7 +255,7 @@ capex = [
     ("A9", "VAT registration & Corporate Tax registration", 1, 0, 1000, 2500, "Incurred",
      "TRN 105507385000001 already issued per the Business Profile. Cost shown for completeness.", False),
     ("A10", "Company stamp", 1, 137, 137, 137, "Incurred",
-     "Actual figure supplied by HJ — AED 137.", True),
+     "Actual figure supplied by management — AED 137.", True),
     ("A11", "Employment visa — operations & service staff (1 person)", 1, 4500, 6000, 8000, "Month 1",
      "Entry permit, status change, medical, Emirates ID, 2-year residence visa.", False),
     ("A12", "Refundable labour guarantee / bank guarantee (1 employee)", 1, 0, 3000, 3000, "Month 1",
@@ -263,7 +263,7 @@ capex = [
 
     ("B. TECHNOLOGY, PLATFORM & DIGITAL SETUP", None),
     ("B1", "Domain name registration — 3 years", 1, 387, 387, 387, "Incurred",
-     "Actual figure supplied by HJ — AED 387 for 3 years.", True),
+     "Actual figure supplied by management — AED 387 for 3 years.", True),
     ("B2", "Website build + direct booking engine", 1, 7000, 12000, 22000, "Month 1–2",
      "The Business Profile commits to a direct booking portal. Direct bookings avoid the 15–18% OTA commission, "
      "so this pays back fastest of any line here.", False),
@@ -276,7 +276,7 @@ capex = [
     ("B6", "Accounting system setup & chart of accounts (Zoho Books / Xero)", 1, 800, 1500, 3000, "Month 1",
      "VAT-compliant chart of accounts. Doing this properly now avoids a costly first-audit clean-up.", False),
     ("B7", "AI workspace setup — prompt library, SOP automation, guest-messaging templates", 1, 0, 1500, 4000, "Month 1–2",
-     "One-off build of the AI operating layer. The recurring subscription cost sits in OPEX per HJ item 5.", False),
+     "One-off build of the AI operating layer. The recurring subscription cost sits in OPEX per management item 5.", False),
 
     ("C. BRAND & MARKETING SETUP", None),
     ("C1", "Brand identity — logo, typography, Japanese-inspired visual system", 1, 2500, 4500, 9000, "Month 1",
@@ -397,7 +397,7 @@ wsd.cell(r, 2, "Unit setup CAPEX — 1 unit").font = f_tot
 for col, letter in ((7, "D"), (8, "E"), (9, "F")):
     wsd.cell(r, col, f"='Unit Setup (1 Unit)'!{letter}{U_TOTAL_ROW}").font = f_link
     wsd.cell(r, col).number_format = CUR
-wsd.cell(r, 11, "Links to 'Unit Setup (1 Unit)'. Per HJ, sized for one unit only.").font = f_note
+wsd.cell(r, 11, "Links to 'Unit Setup (1 Unit)'. Per management, sized for one unit only.").font = f_note
 r += 1
 
 cont_row = r
@@ -512,7 +512,7 @@ wss.cell(r, 1, "Unit setup — 1 unit").font = f_item
 for col, letter in ((2, "G"), (3, "H"), (4, "I")):
     wss.cell(r, col, f"='CAPEX Detail'!{letter}{UNIT_LINK_ROW}").font = f_link
     wss.cell(r, col).number_format = CUR
-wss.cell(r, 6, "Per HJ: one unit only. Multiply on the 'Unit Setup' tab for portfolio scale.").font = f_note
+wss.cell(r, 6, "Per management: one unit only. Multiply on the 'Unit Setup' tab for portfolio scale.").font = f_note
 wss.cell(r, 6).alignment = Alignment(wrap_text=True, vertical="top")
 for col in range(1, 7):
     wss.cell(r, col).border = b_bottom
@@ -588,7 +588,7 @@ wss.sheet_view.showGridLines = False
 # ================================================== AI SUBSCRIPTIONS TAB ====
 wsa = wb.create_sheet("AI Subscriptions")
 banner(wsa, "AI SUBSCRIPTIONS — DETAIL",
-       "HJ item 5. Feeds the 'AI subscriptions' line in the OPEX model. USD converted at the pegged AED rate.", 7)
+       "Specified by management. Feeds the 'AI subscriptions' line in the OPEX model. USD converted at the pegged AED rate.", 7)
 
 wsa.cell(4, 1, "USD/AED peg").font = f_item
 c = wsa.cell(4, 2, 3.6725)
@@ -680,7 +680,7 @@ wsa.sheet_view.showGridLines = False
 # ======================================================== ASSUMPTIONS TAB ===
 wsx = wb.create_sheet("Assumptions", 0)
 banner(wsx, "OPEX ASSUMPTIONS — ORIZURU HOLIDAY HOMES LLC",
-       "All figures AED unless stated. Blue = editable input. Yellow = figure supplied by HJ or a key lever.", 7)
+       "All figures AED unless stated. Blue = editable input. Yellow = figure supplied by management or a key lever.", 7)
 
 wsx.cell(4, 1, "SCENARIO").font = Font(name=FONT, size=11, bold=True)
 c = wsx.cell(4, 2, "Base")
@@ -707,7 +707,7 @@ c.alignment = Alignment(horizontal="center")
 dv2 = DataValidation(type="list", formula1='"Option 1,Option 2,Both"', allow_blank=False)
 wsx.add_data_validation(dv2)
 dv2.add(c)
-wsx.cell(6, 3, "Both options run in Months 1–2 per HJ. From Month 3 the model keeps whichever you select here. "
+wsx.cell(6, 3, "Both options run in Months 1–2 per management. From Month 3 the model keeps whichever you select here. "
                "Select 'Both' to keep running them in parallel all year.").font = f_note
 
 wsx.cell(7, 1, "Parallel-run months").font = f_item
@@ -715,7 +715,7 @@ c = wsx.cell(7, 2, 2)
 c.font = f_in
 c.fill = fill_key
 c.alignment = Alignment(horizontal="center")
-wsx.cell(7, 3, "Per HJ: run both marketing options together for the first 2 months to see which works.").font = f_note
+wsx.cell(7, 3, "Per management: run both marketing options together for the first 2 months to see which works.").font = f_note
 
 SCEN_IDX = "Assumptions!$B$5"
 ADOPTED = "Assumptions!$B$6"
@@ -796,12 +796,12 @@ wsx.cell(rr, 7, "Calculated. Compare against the Business Profile's AED 2.5–4.
 
 sec_row("2.  STAFF  —  Dubai payroll")
 a("dir_sal", "Directors' salary", "AED/month", 0, 0, 0,
-  "Per HJ: directors will NOT draw a salary. Note for the bank — this understates the true cost of running the "
+  "Per management: directors will NOT draw a salary. Note for the bank — this understates the true cost of running the "
   "business, since two directors are working unpaid.", hj=True)
 a("ops_hc", "Operations & service staff — headcount", "persons", 1, 1, 1,
-  "Per HJ: 1 person.", fmt='0', hj=True)
+  "Per management: 1 person.", fmt='0', hj=True)
 a("ops_sal", "Operations & service staff — salary", "AED/month", 3000, 3000, 3000,
-  "Per HJ: AED 3,000/month.", hj=True)
+  "Per management: AED 3,000/month.", hj=True)
 a("visa_amort", "Staff visa, medical insurance & EID — monthly accrual per UAE employee", "AED/month", 250, 380, 550,
   "2-year residence visa and mandatory Dubai health insurance spread monthly. Real cash cost even though it is billed "
   "in lumps.")
@@ -813,9 +813,9 @@ a("wps", "WPS / payroll processing fee", "AED/employee/mo", 8, 15, 25,
 
 sec_row("3.  MARKETING OPTION 1  —  FULLY ONLINE  (4 hrs/day)")
 a("o1_hc", "Team size", "persons", 2, 3, 4,
-  "Per HJ: 2–4 persons.", fmt='0', hj=True)
+  "Per management: 2–4 persons.", fmt='0', hj=True)
 a("o1_rate", "Cost per person", "AED/month", 500, 600, 700,
-  "Per HJ: AED 500–700 per person.", hj=True)
+  "Per management: AED 500–700 per person.", hj=True)
 a("o1_ads", "Digital ads & owner lead generation", "AED/month", 800, 1500, 2800,
   "A fully-online team without a paid lead flow will stall. This is the cost of feeding them owner leads.")
 a("o1_tools", "Outreach tooling, CRM & lead database", "AED/month", 150, 280, 450,
@@ -825,24 +825,24 @@ a("o1_mgmt", "Team coordination & QA time", "AED/month", 0, 300, 600,
 
 sec_row("4.  MARKETING OPTION 2  —  REMOTE OFFICE OUTSIDE UAE  (4 hrs/day)")
 a("o2_hc", "Team size", "persons", 4, 5, 6,
-  "Per HJ: 4–6 persons.", fmt='0', hj=True)
+  "Per management: 4–6 persons.", fmt='0', hj=True)
 a("o2_rate", "Cost per person", "AED/month", 180, 240, 300,
-  "Per HJ: AED 180–300 per person.", hj=True)
+  "Per management: AED 180–300 per person.", hj=True)
 a("o2_rent", "Coworking area rent", "AED/month", 1350, 1425, 1500,
-  "Per HJ: AED 1,350–1,500.", hj=True)
+  "Per management: AED 1,350–1,500.", hj=True)
 a("o2_util", "Local internet, utilities & equipment", "AED/month", 200, 350, 550,
-  "Not in HJ's original list but unavoidable — a physical room needs connectivity and machines.")
+  "Not in the original brief but unavoidable — a physical room needs connectivity and machines.")
 a("o2_lead", "On-site supervisor / team lead", "AED/month", 0, 500, 900,
-  "Not in HJ's original list. 4–6 people in a physical room with no supervisor will drift. Recommend keeping this.")
+  "Not in the original brief. 4–6 people in a physical room with no supervisor will drift. Recommend keeping this.")
 a("o2_ads", "Digital ads & lead generation", "AED/month", 400, 900, 1600,
   "Lower than Option 1 — a larger team does more manual prospecting, so less paid volume is needed.")
 a("o2_setup", "Local compliance / entity or contractor arrangement", "AED/month", 0, 400, 900,
-  "Not in HJ's original list. Engaging staff outside the UAE needs a compliant contracting route. Flagging it rather "
+  "Not in the original brief. Engaging staff outside the UAE needs a compliant contracting route. Flagging it rather "
   "than pretending it is free.")
 
-sec_row("5.  UNIT-ACQUISITION COMMISSION  —  the 2% per HJ")
+sec_row("5.  UNIT-ACQUISITION COMMISSION  —  the 2% per management")
 a("comm_pct", "Trailing commission on each signed unit", "% ", 0.02, 0.02, 0.02,
-  "Per HJ: 2% for each unit signed, ONGOING on that unit's monthly revenue.", fmt=PCT2, hj=True)
+  "Per management: 2% for each unit signed, ONGOING on that unit's monthly revenue.", fmt=PCT2, hj=True)
 a("comm_base", "Commission base", "—", 1, 1, 1,
   "1 = 2% of the unit's GROSS booking revenue (i.e. c.10% of Orizuru's management fee on that unit).  "
   "2 = 2% of Orizuru's management fee only (far cheaper, far weaker incentive). Change the number to switch base.",
@@ -856,7 +856,7 @@ a("pricing_unit", "Dynamic pricing tool", "AED/unit/mo", 20, 32, 45,
 a("lock_unit", "Smart-lock / access platform", "AED/unit/mo", 10, 18, 28,
   "Recurring licence on the hardware installed at CAPEX.")
 a("ai_subs", "AI subscriptions", "AED/month", 800, "='AI Subscriptions'!E{}".format(AI_TOTAL_ROW), 3200,
-  "Per HJ item 5. Base links live to the 'AI Subscriptions' tab. Low = trimmed stack; High = full stack plus extra "
+  "Per management (marketing/technology brief, item 5). Base links live to the 'AI Subscriptions' tab. Low = trimmed stack; High = full stack plus extra "
   "seats as the marketing team scales.", hj=True)
 a("workspace", "Google Workspace / business email", "AED/month", 90, 150, 260,
   "Per-seat, scales with headcount.")
@@ -1028,10 +1028,10 @@ drow("gross", "Gross booking revenue (portfolio)", "Live units x gross rev/unit"
 drow("rev", "Orizuru management fee revenue", "Gross x management fee %",
      lambda i: f"={MC[i]}{MR['gross']}*{A('mgmt_fee')}")
 
-drow("o1on", "Option 1 active (1/0)", "Both run M1–M2 per HJ",
+drow("o1on", "Option 1 active (1/0)", "Both run M1–M2 per management",
      lambda i: f'=IF(OR({MC[i]}{MR["mnum"]}<={PARALLEL},{ADOPTED}="Option 1",{ADOPTED}="Both"),1,0)',
      fmt='0', total=False, font=Font(name=FONT, size=9, color="808080"))
-drow("o2on", "Option 2 active (1/0)", "Both run M1–M2 per HJ",
+drow("o2on", "Option 2 active (1/0)", "Both run M1–M2 per management",
      lambda i: f'=IF(OR({MC[i]}{MR["mnum"]}<={PARALLEL},{ADOPTED}="Option 2",{ADOPTED}="Both"),1,0)',
      fmt='0', total=False, font=Font(name=FONT, size=9, color="808080"))
 
@@ -1073,9 +1073,9 @@ CAT_TOTALS = {}
 
 # ---- A. STAFF
 start_cat("A.  STAFF COSTS  —  DUBAI")
-drow("dir", "Directors' salary", "Per HJ — nil",
+drow("dir", "Directors' salary", "Per management — nil",
      lambda i: f"={A('dir_sal')}")
-drow("ops", "Operations & service staff", "Per HJ — 1 x AED 3,000",
+drow("ops", "Operations & service staff", "Per management — 1 x AED 3,000",
      lambda i: f"={A('ops_hc')}*{A('ops_sal')}")
 drow("visa", "Staff visa, medical insurance & EID (accrual)", "Per UAE employee",
      lambda i: f"={A('ops_hc')}*{A('visa_amort')}")
@@ -1102,24 +1102,24 @@ end_cat("B.  MARKETING  —  OPTION 1: FULLY ONLINE  (switches off after M2 unle
 start_cat("C.  MARKETING  —  OPTION 2: REMOTE OFFICE OUTSIDE UAE  (switches off after M2 unless adopted)")
 drow("o2p", "Option 2 — team cost", "Headcount x rate",
      lambda i: f"={MC[i]}{MR['o2on']}*{A('o2_hc')}*{A('o2_rate')}", fill=fill_o2)
-drow("o2r", "Option 2 — coworking area rent", "Per HJ",
+drow("o2r", "Option 2 — coworking area rent", "Per management",
      lambda i: f"={MC[i]}{MR['o2on']}*{A('o2_rent')}", fill=fill_o2)
-drow("o2u", "Option 2 — local internet, utilities & equipment", "Added by Claude",
+drow("o2u", "Option 2 — local internet, utilities & equipment", "Not in original brief",
      lambda i: f"={MC[i]}{MR['o2on']}*{A('o2_util')}", fill=fill_o2)
-drow("o2l", "Option 2 — on-site supervisor / team lead", "Added by Claude",
+drow("o2l", "Option 2 — on-site supervisor / team lead", "Not in original brief",
      lambda i: f"={MC[i]}{MR['o2on']}*{A('o2_lead')}", fill=fill_o2)
 drow("o2a", "Option 2 — digital ads & lead generation", "",
      lambda i: f"={MC[i]}{MR['o2on']}*{A('o2_ads')}", fill=fill_o2)
-drow("o2s", "Option 2 — offshore contracting / compliance", "Added by Claude",
+drow("o2s", "Option 2 — offshore contracting / compliance", "Not in original brief",
      lambda i: f"={MC[i]}{MR['o2on']}*{A('o2_setup')}", fill=fill_o2)
 end_cat("C.  MARKETING  —  OPTION 2: REMOTE OFFICE OUTSIDE UAE  (switches off after M2 unless adopted)",
         "TOTAL — MARKETING OPTION 2")
 
 # ---- D. COMMISSION
-start_cat("D.  UNIT-ACQUISITION COMMISSION  —  the 2% per HJ, ongoing")
+start_cat("D.  UNIT-ACQUISITION COMMISSION  —  the 2% per management, ongoing")
 drow("comm", "Trailing commission on signed units (2%)", "2% of live units' revenue, every month",
      lambda i: f"=IF({A('comm_base')}=1,{MC[i]}{MR['gross']},{MC[i]}{MR['rev']})*{A('comm_pct')}")
-end_cat("D.  UNIT-ACQUISITION COMMISSION  —  the 2% per HJ, ongoing", "TOTAL COMMISSION")
+end_cat("D.  UNIT-ACQUISITION COMMISSION  —  the 2% per management, ongoing", "TOTAL COMMISSION")
 
 # ---- E. TECHNOLOGY & AI
 start_cat("E.  TECHNOLOGY, PLATFORM & AI")
@@ -1129,7 +1129,7 @@ drow("pricing", "Dynamic pricing tool", "Per live unit",
      lambda i: f"={MC[i]}{MR['live']}*{A('pricing_unit')}")
 drow("lock", "Smart-lock / access platform", "Per live unit",
      lambda i: f"={MC[i]}{MR['live']}*{A('lock_unit')}")
-drow("ai", "AI subscriptions", "Per HJ — see 'AI Subscriptions' tab",
+drow("ai", "AI subscriptions", "Per management — see 'AI Subscriptions' tab",
      lambda i: f"={A('ai_subs')}", fill=fill_key)
 drow("gws", "Google Workspace & business email", "",
      lambda i: f"={A('workspace')}")
@@ -1294,7 +1294,7 @@ CAT_ROWS = dict(CAT_TOTALS)
 # ================================================ MARKETING COMPARISON ======
 wsc = wb.create_sheet("Marketing Comparison", 2)
 banner(wsc, "MARKETING OPTION 1 vs OPTION 2 — THE MONTH-3 DECISION",
-       "Both options run in parallel for Months 1–2 per HJ. This tab is what you use to pick one.", 7)
+       "Both options run in parallel for Months 1–2 per management. This tab is what you use to pick one.", 7)
 
 r = 4
 section(wsc, r, "HEAD-TO-HEAD, STEADY-STATE MONTHLY COST", 7)
@@ -1360,7 +1360,7 @@ wsc.cell(r, 3, f"={A('o2_hc')}").font = f_calc
 wsc.cell(r, 4, f"=B{r}-C{r}").font = f_calc
 for col in (2, 3, 4):
     wsc.cell(r, col).number_format = '0'
-wsc.cell(r, 7, "Both at 4 hours per day per HJ.").font = f_note
+wsc.cell(r, 7, "Both at 4 hours per day per management.").font = f_note
 HC_ROW = r
 r += 1
 
@@ -1402,7 +1402,7 @@ r += 1
 wsc.cell(r, 1, "Both options, Months 1–2 combined").font = f_item
 wsc.cell(r, 2, f"=(B{MKT_TOT}+C{MKT_TOT})*{PARALLEL}").font = f_calc
 wsc.cell(r, 2).number_format = CUR
-wsc.cell(r, 7, "The total price of the experiment HJ described.").font = f_note
+wsc.cell(r, 7, "The total price of the experiment specified by management.").font = f_note
 r += 1
 wsc.cell(r, 1, "Incremental cost vs running the cheaper option alone").font = f_item
 wsc.cell(r, 2, f"=(MAX(B{MKT_TOT},C{MKT_TOT}))*{PARALLEL}").font = f_calc
@@ -1484,15 +1484,15 @@ r += 1
 
 cat_comments = {
     "A.  STAFF COSTS  —  DUBAI":
-        "Understated by design: directors work unpaid per HJ. One ops person for a 70–80 unit portfolio is thin — see the notes below.",
+        "Understated by design: directors work unpaid per management. One ops person for a 70–80 unit portfolio is thin — see the notes below.",
     "B.  MARKETING  —  OPTION 1: FULLY ONLINE  (switches off after M2 unless adopted)":
         "Runs M1–M2 only unless adopted from M3 on the Assumptions tab.",
     "C.  MARKETING  —  OPTION 2: REMOTE OFFICE OUTSIDE UAE  (switches off after M2 unless adopted)":
         "Runs M1–M2 only unless adopted from M3 on the Assumptions tab.",
-    "D.  UNIT-ACQUISITION COMMISSION  —  the 2% per HJ, ongoing":
+    "D.  UNIT-ACQUISITION COMMISSION  —  the 2% per management, ongoing":
         "Grows every month as the portfolio grows — this is the line that scales fastest of anything here.",
     "E.  TECHNOLOGY, PLATFORM & AI":
-        "Part fixed (AI, Workspace, website), part per-unit (PMS, pricing, locks). Includes HJ item 5.",
+        "Part fixed (AI, Workspace, website), part per-unit (PMS, pricing, locks). Includes the AI subscriptions specified by management.",
     "F.  UNIT OPERATIONS  —  variable with portfolio size":
         "Fully variable. Much of it is re-chargeable to owners or guests — set the relevant assumptions to 0 if you recharge.",
     "G.  OFFICE & ADMINISTRATION  —  DUBAI":
@@ -1708,7 +1708,7 @@ blocks = [
     ("", ""),
     ("SEC", "COLOUR LEGEND"),
     ("L", "Blue text", "Hardcoded input — edit freely."),
-    ("L", "Yellow fill", "Key lever, or a figure you supplied."),
+    ("L", "Yellow fill", "Key lever, or a figure supplied by management."),
     ("L", "Black text", "Formula. Do not overwrite."),
     ("L", "Green text", "Link to another tab in this workbook."),
     ("", ""),

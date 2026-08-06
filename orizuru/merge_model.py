@@ -70,7 +70,7 @@ blocks = [
     ("", ""),
     ("SEC", "COLOUR LEGEND"),
     ("L", "Blue text", "Hardcoded input — edit freely."),
-    ("L", "Yellow fill", "Key lever, or a figure you supplied."),
+    ("L", "Yellow fill", "Key lever, or a figure supplied by management."),
     ("L", "Black text", "Formula. Do not overwrite."),
     ("L", "Green text", "Link to another tab in this workbook."),
     ("", ""),

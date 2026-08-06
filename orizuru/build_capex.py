@@ -1,6 +1,6 @@
 """Build Orizuru Holiday Homes LLC — CAPEX workbook (AED).
 
-Model basis (confirmed by HJ):
+Model basis (confirmed by management):
   - Pure management / commission-only. Orizuru does NOT master-lease units.
   - Unit setup CAPEX is sized for ONE unit; a scaling table is provided separately.
   - Directors draw no salary (relevant to OPEX, noted here for completeness).
@@ -80,7 +80,7 @@ readme = [
     ("R", "Unit Setup (1 Unit)", "Cost to bring ONE holiday-home unit live, plus a scaling table (x1 to x80)."),
     ("R", "CAPEX Summary", "Category roll-up and funding view. Reads from the two sheets above."),
     ("", ""),
-    ("SEC", "MODEL BASIS — CONFIRMED WITH HJ"),
+    ("SEC", "MODEL BASIS — CONFIRMED WITH MANAGEMENT"),
     ("B", "1.", "Pure management / commission-only model. Orizuru does NOT master-lease units, so there is NO unit rent, "
                 "DEWA deposit or furnishing capex per unit — those sit with the property owner."),
     ("B", "2.", "Unit setup CAPEX is sized for ONE unit only. The scaling table on 'Unit Setup' shows the cost if the "
@@ -96,7 +96,7 @@ readme = [
     ("L", "Black text", "Formula. Do not overwrite."),
     ("L", "Green text", "Link to another sheet in this workbook."),
     ("", ""),
-    ("SEC", "FIGURES SUPPLIED BY HJ (used as-is, not estimated)"),
+    ("SEC", "FIGURES SUPPLIED BY MANAGEMENT (used as-is, not estimated)"),
     ("B", "•", "Domain name, 3 years — AED 387"),
     ("B", "•", "Company stamp — AED 137"),
     ("", ""),
@@ -255,7 +255,7 @@ for col in range(1, 9):
     wsu.cell(r, col).fill = fill_sec
 r += 1
 wsu.merge_cells(start_row=r, start_column=1, end_row=r, end_column=8)
-c = wsu.cell(r, 1, "Per HJ, the CAPEX total is built for ONE unit. This table shows what the same unit-setup cost becomes "
+c = wsu.cell(r, 1, "Per management, the CAPEX total is built for ONE unit. This table shows what the same unit-setup cost becomes "
                    "at portfolio scale, against the Business Profile's 70–80 unit Year-1 target.")
 c.font = f_note
 c.alignment = Alignment(wrap_text=True, vertical="top")
@@ -327,7 +327,7 @@ capex = [
     ("A9", "VAT registration & Corporate Tax registration", 1, 0, 1000, 2500, "Incurred",
      "TRN 105507385000001 already issued per the Business Profile. Cost shown for completeness.", False),
     ("A10", "Company stamp", 1, 137, 137, 137, "Incurred",
-     "Actual figure supplied by HJ — AED 137.", True),
+     "Actual figure supplied by management — AED 137.", True),
     ("A11", "Employment visa — operations & service staff (1 person)", 1, 4500, 6000, 8000, "Month 1",
      "Entry permit, status change, medical, Emirates ID, 2-year residence visa.", False),
     ("A12", "Refundable labour guarantee / bank guarantee (1 employee)", 1, 0, 3000, 3000, "Month 1",
@@ -335,7 +335,7 @@ capex = [
 
     ("B. TECHNOLOGY, PLATFORM & DIGITAL SETUP", None),
     ("B1", "Domain name registration — 3 years", 1, 387, 387, 387, "Incurred",
-     "Actual figure supplied by HJ — AED 387 for 3 years.", True),
+     "Actual figure supplied by management — AED 387 for 3 years.", True),
     ("B2", "Website build + direct booking engine", 1, 7000, 12000, 22000, "Month 1–2",
      "The Business Profile commits to a direct booking portal. Direct bookings avoid the 15–18% OTA commission, "
      "so this pays back fastest of any line here.", False),
@@ -348,7 +348,7 @@ capex = [
     ("B6", "Accounting system setup & chart of accounts (Zoho Books / Xero)", 1, 800, 1500, 3000, "Month 1",
      "VAT-compliant chart of accounts. Doing this properly now avoids a costly first-audit clean-up.", False),
     ("B7", "AI workspace setup — prompt library, SOP automation, guest-messaging templates", 1, 0, 1500, 4000, "Month 1–2",
-     "One-off build of the AI operating layer. The recurring subscription cost sits in OPEX per HJ item 5.", False),
+     "One-off build of the AI operating layer. The recurring subscription cost sits in OPEX per management item 5.", False),
 
     ("C. BRAND & MARKETING SETUP", None),
     ("C1", "Brand identity — logo, typography, Japanese-inspired visual system", 1, 2500, 4500, 9000, "Month 1",
@@ -469,7 +469,7 @@ wsd.cell(r, 2, "Unit setup CAPEX — 1 unit").font = f_tot
 for col, letter in ((7, "D"), (8, "E"), (9, "F")):
     wsd.cell(r, col, f"='Unit Setup (1 Unit)'!{letter}{U_TOTAL_ROW}").font = f_link
     wsd.cell(r, col).number_format = CUR
-wsd.cell(r, 11, "Links to 'Unit Setup (1 Unit)'. Per HJ, sized for one unit only.").font = f_note
+wsd.cell(r, 11, "Links to 'Unit Setup (1 Unit)'. Per management, sized for one unit only.").font = f_note
 r += 1
 
 cont_row = r
@@ -584,7 +584,7 @@ wss.cell(r, 1, "Unit setup — 1 unit").font = f_item
 for col, letter in ((2, "G"), (3, "H"), (4, "I")):
     wss.cell(r, col, f"='CAPEX Detail'!{letter}{UNIT_LINK_ROW}").font = f_link
     wss.cell(r, col).number_format = CUR
-wss.cell(r, 6, "Per HJ: one unit only. Multiply on the 'Unit Setup' tab for portfolio scale.").font = f_note
+wss.cell(r, 6, "Per management: one unit only. Multiply on the 'Unit Setup' tab for portfolio scale.").font = f_note
 wss.cell(r, 6).alignment = Alignment(wrap_text=True, vertical="top")
 for col in range(1, 7):
     wss.cell(r, col).border = b_bottom
