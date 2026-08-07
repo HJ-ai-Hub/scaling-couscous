@@ -297,8 +297,14 @@ sec_row("2.  STAFF  —  Dubai payroll")
 a("dir_sal", "Directors' salary", "AED/month", 0, 0, 0,
   "Per management: directors will NOT draw a salary. Note for the bank — this understates the true cost of running the "
   "business, since two directors are working unpaid.", hj=True)
-a("ops_hc", "Operations & service staff — headcount", "persons", 1, 1, 1,
-  "Per management: 1 person.", fmt='0', hj=True)
+a("ops_hc", "Operations & service staff — minimum headcount", "persons", 1, 1, 1,
+  "Per management: the business starts with 1 person. Actual headcount rises with the portfolio — see the ratio "
+  "below.", fmt='0', hj=True)
+a("units_per_staff", "Live units per operations staff member", "units/person", 45, 35, 25,
+  "The staffing ratio. One person cannot run 80 units alone: check-ins, guest support, housekeeping coordination, "
+  "maintenance and owner reporting across a portfolio spread over Dubai. 35 units per person is realistic with "
+  "housekeeping outsourced. A LOWER number means MORE staff and higher cost — which is why the High-cost scenario "
+  "uses 25.", fmt='0')
 a("ops_sal", "Operations & service staff — salary", "AED/month", 3000, 3000, 3000,
   "Per management: AED 3,000/month.", hj=True)
 a("visa_amort", "Staff visa, medical insurance & EID — monthly accrual per UAE employee", "AED/month", 250, 380, 550,
@@ -522,6 +528,13 @@ wsm.cell(MR["live"], 15, f"=N{MR['live']}").font = f_tot
 wsm.cell(MR["live"], 15).number_format = '0'
 wsm.cell(MR["live"], 15).fill = fill_tot
 
+drow("hcreq", "Operations headcount required", "Max(minimum, live units / ratio)",
+     lambda i: f"=MAX({A('ops_hc')},ROUNDUP({MC[i]}{MR['live']}/{A('units_per_staff')},0))",
+     fmt='0', total=False)
+wsm.cell(MR["hcreq"], 15, f"=AVERAGE(C{MR['hcreq']}:N{MR['hcreq']})").font = f_tot
+wsm.cell(MR["hcreq"], 15).number_format = NUM
+wsm.cell(MR["hcreq"], 15).fill = fill_tot
+
 drow("gross", "Gross booking revenue (portfolio)", "Live units x gross rev/unit",
      lambda i: f"={MC[i]}{MR['live']}*{A('gross_unit')}")
 drow("rev", "Orizuru management fee revenue", "Gross x management fee %",
@@ -574,14 +587,14 @@ CAT_TOTALS = {}
 start_cat("A.  STAFF COSTS  —  DUBAI")
 drow("dir", "Directors' salary", "Per management — nil",
      lambda i: f"={A('dir_sal')}")
-drow("ops", "Operations & service staff", "Per management — 1 x AED 3,000",
-     lambda i: f"={A('ops_hc')}*{A('ops_sal')}")
+drow("ops", "Operations & service staff", "Headcount x AED 3,000, scaling with units",
+     lambda i: f"={MC[i]}{MR['hcreq']}*{A('ops_sal')}")
 drow("visa", "Staff visa, medical insurance & EID (accrual)", "Per UAE employee",
-     lambda i: f"={A('ops_hc')}*{A('visa_amort')}")
+     lambda i: f"={MC[i]}{MR['hcreq']}*{A('visa_amort')}")
 drow("grat", "End-of-service gratuity accrual", "5.8% of salary",
      lambda i: f"={MC[i]}{MR['ops']}*{A('gratuity')}")
 drow("wps_r", "WPS / payroll processing", "Per employee",
-     lambda i: f"={A('ops_hc')}*{A('wps')}")
+     lambda i: f"={MC[i]}{MR['hcreq']}*{A('wps')}")
 end_cat("A.  STAFF COSTS  —  DUBAI", "TOTAL STAFF COSTS")
 
 # ---- B. MARKETING OPTION 1
@@ -983,7 +996,7 @@ r += 1
 
 cat_comments = {
     "A.  STAFF COSTS  —  DUBAI":
-        "Understated by design: directors work unpaid per management. One ops person for a 70–80 unit portfolio is thin — see the notes below.",
+        "Headcount now scales with the portfolio (see the staffing ratio on Assumptions). Still understated: directors work unpaid.",
     "B.  MARKETING  —  OPTION 1: FULLY ONLINE  (switches off after M2 unless adopted)":
         "Runs M1–M2 only unless adopted from M3 on the Assumptions tab.",
     "C.  MARKETING  —  OPTION 2: REMOTE OFFICE OUTSIDE UAE  (switches off after M2 unless adopted)":
@@ -1127,10 +1140,10 @@ r += 1
 section(wsu2, r, "THREE THINGS TO LOOK AT BEFORE YOU CIRCULATE THIS", 6)
 r += 1
 for d in [
-    "ONE OPERATIONS PERSON FOR 70–80 UNITS IS NOT ENOUGH. At AED 3,000/month you have one person handling check-ins, "
-    "guest support, housekeeping coordination, maintenance and owner reporting across a portfolio spread over Dubai. "
-    "Either headcount rises through the year, or check-in and housekeeping get outsourced per unit. The model runs "
-    "with your figure as instructed — but budget for a second and third hire around Months 4 and 8.",
+    "STAFFING NOW SCALES WITH THE PORTFOLIO. Headcount is driven by the 'live units per operations staff member' "
+    "ratio on the Assumptions tab (35 in the Base case), with a floor of one person. The team grows through Year 1 "
+    "as units come live rather than staying at one person for 80 units, which was never realistic. Tighten or loosen "
+    "the ratio there — it is the single input that decides staff cost.",
     "REVENUE RECOGNITION vs THE BUSINESS PROFILE. The profile projects AED 2.5–4.5M Year-1 turnover. Under a pure "
     "commission-only model at 70–80 units, Orizuru's own revenue is materially lower — the AED 2.5–4.5M is closer to "
     "gross booking value passing through. Agree with your accountant and the bank which figure you are presenting "
