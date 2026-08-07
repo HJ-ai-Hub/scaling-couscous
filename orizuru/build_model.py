@@ -1667,6 +1667,9 @@ blocks = [
     ("T", "Tab", "What it does"),
     ("R", "Funding Summary", "START HERE. Total CAPEX, Year-1 OPEX, and the peak cash the business actually needs "
                              "to fund — tied against the AED 200,000 shareholder capital."),
+    ("R", "Financial Summary", "5-year P&L, cash flow and returns: EBITDA, net profit, free cash flow, IRR, NPV, "
+                               "MOIC, payback, break-even portfolio size and IRR sensitivities. Year 1 links live to "
+                               "the monthly model; Years 2–5 are driven by the editable inputs in its section 1."),
     ("R", "Assumptions", "Every OPEX input at Low / Base / High. Set SCENARIO in cell B4 and the whole model re-cuts. "
                          "Set cell B6 to choose which marketing option is adopted from Month 3."),
     ("R", "CAPEX Summary", "One-off setup spend rolled up by category."),
@@ -1688,6 +1691,8 @@ blocks = [
                 "single-unit view."),
     ("B", "4.", "Assumptions column F — the active value of any single line. Override any input in its Low/Base/High "
                 "cells."),
+    ("B", "5.", "Financial Summary sections 1 and 1b — unit counts for Years 2–5, inflation, headcount, exit "
+                "multiple, discount rate and the fixed-cost step-up. These drive every return metric."),
     ("", ""),
     ("SEC", "MODEL BASIS — AS CONFIRMED"),
     ("B", "•", "PURE MANAGEMENT / COMMISSION-ONLY. Orizuru does not master-lease. There is NO unit rent, no unit "
@@ -1983,8 +1988,523 @@ wsf.column_dimensions["D"].width = 16
 wsf.column_dimensions["E"].width = 58
 wsf.sheet_view.showGridLines = False
 
+
+# ================================================ FINANCIAL SUMMARY =========
+wsn = wb.create_sheet("Financial Summary")
+banner(wsn, "FINANCIAL SUMMARY — 5-YEAR P&L, CASH FLOW & RETURNS",
+       "All figures AED. Year 1 links live to the monthly model; Years 2–5 are driven by the inputs in section 1.", 7)
+
+YC = ["B", "C", "D", "E", "F"]
+FR = {}
+r = 4
+
+
+def fsec(text):
+    global r
+    section(wsn, r, text, 7)
+    r += 1
+
+
+def fhdr():
+    global r
+    wsn.cell(r, 1, "").fill = fill_hdr
+    for i, h in enumerate(["Year 1", "Year 2", "Year 3", "Year 4", "Year 5"], 2):
+        c = wsn.cell(r, i, h)
+        c.font = f_hdr
+        c.fill = fill_hdr
+        c.alignment = Alignment(horizontal="center")
+    wsn.cell(r, 1, "Line item").font = f_hdr
+    wsn.cell(r, 1).alignment = Alignment(indent=1)
+    wsn.cell(r, 7, "Basis / note").font = f_hdr
+    wsn.cell(r, 7).fill = fill_hdr
+    wsn.cell(r, 1).fill = fill_hdr
+    r += 1
+
+
+def frow(key, label, cells, fmt=CUR, note="", bold=False, band=False,
+         indent=1, size=10, rule=False):
+    """cells: list of 5 formula strings / values for Y1..Y5."""
+    global r
+    fnt = Font(name=FONT, size=size, bold=bold)
+    wsn.cell(r, 1, label).font = fnt
+    wsn.cell(r, 1).alignment = Alignment(indent=indent, wrap_text=True, vertical="center")
+    for i, v in enumerate(cells):
+        c = wsn.cell(r, 2 + i, v)
+        if isinstance(v, str) and v.startswith("="):
+            c.font = Font(name=FONT, size=size, bold=bold,
+                          color="008000" if "'" in v and "!" in v else "000000")
+        else:
+            c.font = Font(name=FONT, size=size, bold=bold, color="0000FF")
+            c.fill = fill_key
+        c.number_format = fmt
+    n = wsn.cell(r, 7, note)
+    n.font = f_note
+    n.alignment = Alignment(wrap_text=True, vertical="top")
+    for col in range(1, 8):
+        if band:
+            wsn.cell(r, col).fill = fill_tot
+        wsn.cell(r, col).border = b_top if rule else b_bottom
+    wsn.row_dimensions[r].height = max(20, 11 * (1 + len(note) // 62))
+    FR[key] = r
+    r += 1
+    return r - 1
+
+
+def Y(key):
+    return FR[key]
+
+
+def SY():
+    """Row number this frow() call is about to write - for self-referencing rows."""
+    return r
+
+
+def single(key, label, value, fmt=CUR, note="", bold=False, isinput=False):
+    global r
+    wsn.cell(r, 1, label).font = Font(name=FONT, size=10, bold=bold)
+    wsn.cell(r, 1).alignment = Alignment(indent=1, wrap_text=True, vertical="center")
+    c = wsn.cell(r, 2, value)
+    if isinput:
+        c.font = Font(name=FONT, size=10, bold=bold, color="0000FF")
+        c.fill = fill_key
+    else:
+        c.font = Font(name=FONT, size=10, bold=bold,
+                      color="008000" if isinstance(value, str) and "'" in value else "000000")
+    c.number_format = fmt
+    n = wsn.cell(r, 7, note)
+    n.font = f_note
+    n.alignment = Alignment(wrap_text=True, vertical="top")
+    for col in range(1, 8):
+        wsn.cell(r, col).border = b_bottom
+    wsn.row_dimensions[r].height = max(20, 11 * (1 + len(note) // 62))
+    FR[key] = r
+    r += 1
+
+
+
+
+# ------------------------------------------------------------- 1. DRIVERS ---
+fsec("1.  DRIVERS  —  edit the blue cells to re-cut every number below")
+fhdr()
+
+frow("eoy", "Units under management at year end",
+     ["='OPEX Monthly'!N" + str(MONTH_ROWS['cum']), 130, 180, 220, 250], fmt='0',
+     note="Year 1 links to the monthly model. Years 2–5 are your growth plan — the single biggest lever here.")
+
+frow("avg", "Average live units during the year",
+     ["=AVERAGE('OPEX Monthly'!C{0}:N{0})".format(MONTH_ROWS['live'])] +
+     [f"=({YC[i-1]}{Y('eoy')}+{YC[i]}{Y('eoy')})/2" for i in range(1, 5)],
+     fmt=NUM,
+     note="Revenue is earned by units that are LIVE, not units signed. Year 1 averages the actual monthly ramp.")
+
+frow("um", "Live unit-months in the year",
+     ["=SUM('OPEX Monthly'!C{0}:N{0})".format(MONTH_ROWS['live'])] +
+     [f"={YC[i]}{Y('avg')}*12" for i in range(1, 5)], fmt=NUM,
+     note="Drives every per-unit variable cost.")
+
+frow("infl_p", "Price inflation (ADR)", ["=0", 0.03, 0.03, 0.03, 0.03], fmt=PCT,
+     note="Applied to ADR from Year 2. Dubai STR rates have run ahead of this; 3% is deliberately conservative.")
+frow("infl_c", "Cost inflation", ["=0", 0.04, 0.04, 0.04, 0.04], fmt=PCT,
+     note="Applied to all fixed and per-unit costs from Year 2.")
+
+frow("adr", "Average Daily Rate",
+     [f"={A('adr')}"] + [f"={YC[i-1]}{SY()}*(1+{YC[i]}{Y('infl_p')})" for i in range(1, 5)],
+     note="Year 1 from the Assumptions tab.")
+
+frow("gpu", "Gross booking revenue per unit per month",
+     [f"={YC[i]}{Y('adr')}*{A('occ')}*{A('nights')}" for i in range(5)],
+     note="What the guest pays. NOT Orizuru revenue.")
+
+frow("hc", "Operations & service headcount",
+     [f"={A('ops_hc')}", 3, 4, 5, 6], fmt='0',
+     note="Year 1 is the single person specified by management. Years 2–5 assume roughly one operations person per "
+          "40–45 units, which is the thinnest a Dubai holiday-home operator can realistically run.")
+
+frow("sal", "Average salary per operations head (monthly)",
+     [f"={A('ops_sal')}"] + [f"={YC[i-1]}{SY()}*(1+{YC[i]}{Y('infl_c')})" for i in range(1, 5)],
+     note="Year 1 as specified by management.")
+
+fsec("1b.  FINANCIAL INPUTS  —  used by the cash flow and returns sections below")
+wsn.cell(r, 1, "Input").font = f_hdr
+wsn.cell(r, 2, "Value").font = f_hdr
+wsn.cell(r, 7, "Basis / note").font = f_hdr
+for col in range(1, 8):
+    wsn.cell(r, col).fill = fill_hdr
+    wsn.cell(r, col).alignment = Alignment(horizontal="center")
+wsn.cell(r, 1).alignment = Alignment(indent=1)
+r += 1
+
+single("stepup", "Fixed-cost step-up with portfolio growth", 0.40, fmt=PCT, isinput=True,
+       note="Share of portfolio growth that flows into 'other fixed costs'. A business running 235 units does not "
+            "carry the same office, marketing and admin base as one running 30. At 40%, a doubling of the portfolio "
+            "raises fixed costs by 40%. Set to 0% to assume pure operating leverage — optimistic, and the reason "
+            "unadjusted models show implausible margins.")
+single("onboard", "Share of unit-onboarding cost borne by Orizuru", 0.0, fmt=PCT, isinput=True,
+       note="SET TO 0% per the instruction that only ONE unit's setup sits in CAPEX — i.e. onboarding is re-charged "
+            "to the owner. Raise it to see what self-funding the rollout costs. Sensitivity below.")
+single("wcpct", "Working capital as % of revenue", 0.05, fmt=PCT, isinput=True,
+       note="Cash tied up in guest and OTA settlement timing.")
+single("disc", "Discount rate (cost of equity)", 0.20, fmt=PCT, isinput=True,
+       note="20% is a reasonable hurdle for an unlisted, pre-trading UAE SME. Lower it and NPV rises.")
+single("mult", "Exit EBITDA multiple", 4.0, fmt='0.0"x"', isinput=True,
+       note="Assumes a trade sale at the end of Year 5. 4x final-year EBITDA is typical for an asset-light "
+            "property-management book of this size.")
+single("equity", "Shareholder capital invested (Year 0)", f"='Funding Summary'!C{F_CAP}",
+       note="Links to the Funding Summary.")
+
+
+# --------------------------------------------------------- 2. P&L ----------
+fsec("2.  INCOME STATEMENT (P&L)")
+fhdr()
+
+frow("gbv", "Gross booking value handled (memo)",
+     [f"='OPEX Monthly'!O{MONTH_ROWS['gross']}"] +
+     [f"={YC[i]}{Y('avg')}*{YC[i]}{Y('gpu')}*12" for i in range(1, 5)],
+     note="MEMO ONLY — this is guest money flowing through the account, not revenue. Never present this as turnover.",
+     size=9)
+
+frow("rev", "REVENUE — management fees retained",
+     [f"='OPEX Monthly'!O{MONTH_ROWS['rev']}"] +
+     [f"={YC[i]}{Y('gbv')}*{A('mgmt_fee')}" for i in range(1, 5)],
+     bold=True, band=True,
+     note="Orizuru's actual top line under the commission-only model.")
+
+wsn.cell(r, 1, "Variable costs").font = Font(name=FONT, size=9, bold=True, italic=True)
+r += 1
+
+frow("vunit", "Unit operations (permits, cleaning, consumables, maintenance, linen)",
+     [f"='OPEX Monthly'!O{CAT_ROWS['F.  UNIT OPERATIONS  —  variable with portfolio size']}"] +
+     [f"={YC[i]}{Y('um')}*({A('permit_unit')}/12+{A('clean_unit')}+{A('consum_unit')}+{A('maint_unit')}"
+      f"+{A('linen_unit')})*(1+{YC[i]}{Y('infl_c')})^({i})" for i in range(1, 5)],
+     note="Scales directly with the portfolio. Much of it is re-chargeable to owners — see the note at the foot of "
+          "this tab.")
+
+frow("vtech", "Unit technology (PMS, dynamic pricing, smart locks)",
+     [f"='OPEX Monthly'!C{MONTH_ROWS['live']}*0+SUM('OPEX Monthly'!C{MONTH_ROWS['live']}:N{MONTH_ROWS['live']})"
+      f"*({A('pms_unit')}+{A('pricing_unit')}+{A('lock_unit')})"] +
+     [f"={YC[i]}{Y('um')}*({A('pms_unit')}+{A('pricing_unit')}+{A('lock_unit')})*(1+{YC[i]}{Y('infl_c')})^({i})"
+      for i in range(1, 5)],
+     note="Priced per property, so it scales one-for-one with units.")
+
+frow("vcomm", "Unit-acquisition commission (2%, ongoing)",
+     [f"='OPEX Monthly'!O{CAT_ROWS['D.  UNIT-ACQUISITION COMMISSION  —  the 2% per management, ongoing']}"] +
+     [f"={YC[i]}{Y('gbv')}*{A('comm_pct')}" for i in range(1, 5)],
+     note="Charged on every live unit every month, indefinitely. Grows in line with the portfolio and never stops.")
+
+frow("vtot", "Total variable costs",
+     [f"={c}{Y('vunit')}+{c}{Y('vtech')}+{c}{Y('vcomm')}" for c in YC], bold=True)
+
+frow("gp", "GROSS PROFIT",
+     [f"={c}{Y('rev')}-{c}{Y('vtot')}" for c in YC], bold=True, band=True, rule=True)
+frow("gpm", "Gross margin", [f"=IF({c}{Y('rev')}=0,0,{c}{Y('gp')}/{c}{Y('rev')})" for c in YC],
+     fmt=PCT, size=9,
+     note="Contribution left over after the costs that grow with the portfolio.")
+
+wsn.cell(r, 1, "Fixed operating costs").font = Font(name=FONT, size=9, bold=True, italic=True)
+r += 1
+
+frow("fstaff", "Staff (salaries, visas, insurance, gratuity, WPS)",
+     [f"='OPEX Monthly'!O{CAT_ROWS['A.  STAFF COSTS  —  DUBAI']}"] +
+     [f"={YC[i]}{Y('hc')}*{YC[i]}{Y('sal')}*12*($B${SY()}/MAX(1,$B${Y('hc')}*$B${Y('sal')}*12))"
+      for i in range(1, 5)],
+     note="Years 2–5 apply the same employment loading as Year 1 (visas, mandatory insurance, gratuity, WPS) — "
+          "roughly 19% on top of gross salary. Directors remain unpaid throughout.")
+
+frow("ffix", "All other fixed costs (marketing, technology, office, compliance, contingency)",
+     [f"='OPEX Summary'!B{S_TOT}-B{Y('vunit')}-B{Y('vtech')}-B{Y('vcomm')}-B{Y('fstaff')}"] +
+     [f"={YC[i-1]}{SY()}*(1+{YC[i]}{Y('infl_c')})*(1+$B${FR['stepup']}"
+      f"*IF({YC[i-1]}{Y('avg')}=0,0,{YC[i]}{Y('avg')}/{YC[i-1]}{Y('avg')}-1))" for i in range(1, 5)],
+     note="Year 1 is derived so that this tab ties EXACTLY to total Year-1 OPEX on the monthly model. Years 2–5 "
+          "grow with cost inflation PLUS a step-up for portfolio growth (driver in section 1b) — a bigger book needs "
+          "a bigger office, more marketing and more admin.")
+
+frow("ftot", "Total fixed costs", [f"={c}{Y('fstaff')}+{c}{Y('ffix')}" for c in YC], bold=True)
+
+frow("ebitda", "EBITDA", [f"={c}{Y('gp')}-{c}{Y('ftot')}" for c in YC],
+     bold=True, band=True, rule=True,
+     note="Earnings before interest, tax, depreciation and amortisation. The headline operating profit measure.")
+frow("ebitdam", "EBITDA margin",
+     [f"=IF({c}{Y('rev')}=0,0,{c}{Y('ebitda')}/{c}{Y('rev')})" for c in YC], fmt=PCT, bold=True, size=9,
+     note="Asset-light property management typically runs 20–35% at scale.")
+
+frow("capex", "Capital expenditure in year",
+     [f"='Funding Summary'!C{F_CAPEX}"] +
+     [f"=({YC[i]}{Y('eoy')}-{YC[i-1]}{Y('eoy')})*'Unit Setup (1 Unit)'!E{U_TOTAL_ROW}*$B${Y('onboard')}"
+      for i in range(1, 5)],
+     note="Year 1 is the full CAPEX from the Funding Summary. Years 2–5 are unit-onboarding cost on NEW units only, "
+          "scaled by the share Orizuru bears (driver in section 4).", size=9)
+
+frow("da", "Depreciation & amortisation",
+     [f"=B{Y('capex')}/3",
+      f"=SUM($B{Y('capex')}:C{Y('capex')})/3",
+      f"=SUM($B{Y('capex')}:D{Y('capex')})/3",
+      f"=SUM(C{Y('capex')}:E{Y('capex')})/3",
+      f"=SUM(D{Y('capex')}:F{Y('capex')})/3"],
+     note="Straight line over 3 years. Non-cash — added back in the cash flow below.")
+
+frow("ebit", "EBIT (operating profit)", [f"={c}{Y('ebitda')}-{c}{Y('da')}" for c in YC], bold=True)
+frow("pbt", "Profit before tax", [f"={c}{Y('ebit')}" for c in YC],
+     note="No debt assumed, so no interest charge. Add a finance cost line here if the company borrows.")
+frow("tax", "UAE Corporate Tax", [f"=-MAX(0,({c}{Y('pbt')}-375000)*0.09)" for c in YC],
+     note="9% on taxable profit above the AED 375,000 threshold. Nil below it.")
+frow("np", "NET PROFIT", [f"={c}{Y('pbt')}+{c}{Y('tax')}" for c in YC],
+     bold=True, band=True, rule=True)
+frow("npm", "Net margin", [f"=IF({c}{Y('rev')}=0,0,{c}{Y('np')}/{c}{Y('rev')})" for c in YC],
+     fmt=PCT, size=9)
+
+# ------------------------------------------------------- 3. CASH FLOW ------
+fsec("3.  CASH FLOW")
+fhdr()
+
+frow("cf_ebitda", "EBITDA", [f"={c}{Y('ebitda')}" for c in YC])
+frow("cf_tax", "Corporate tax paid", [f"={c}{Y('tax')}" for c in YC])
+frow("cf_capex", "Capital expenditure", [f"=-{c}{Y('capex')}" for c in YC])
+frow("cf_wc", "Movement in working capital",
+     [f"=-{YC[0]}{Y('rev')}*$B${Y('wcpct')}"] +
+     [f"=-({YC[i]}{Y('rev')}-{YC[i-1]}{Y('rev')})*$B${Y('wcpct')}" for i in range(1, 5)],
+     note="Guest and OTA settlement timing. Cash tied up grows as revenue grows.")
+frow("fcf", "FREE CASH FLOW",
+     [f"={c}{Y('cf_ebitda')}+{c}{Y('cf_tax')}+{c}{Y('cf_capex')}+{c}{Y('cf_wc')}" for c in YC],
+     bold=True, band=True, rule=True)
+frow("cumfcf", "Cumulative free cash flow",
+     [f"=B{Y('fcf')}"] + [f"={YC[i-1]}{SY()}+{YC[i]}{Y('fcf')}" for i in range(1, 5)], bold=True)
+frow("cash", "Closing cash balance (capital + cumulative FCF)",
+     [f"='Funding Summary'!C{F_CAP}+B{Y('cumfcf')}"] +
+     [f"='Funding Summary'!C{F_CAP}+{YC[i]}{Y('cumfcf')}" for i in range(1, 5)], bold=True,
+     note="If this goes negative in any year the plan is not fundable from AED 200,000 as it stands.")
+
+# --------------------------------------------- 4. RETURNS & VALUATION ------
+fsec("4.  RETURNS & VALUATION")
+wsn.cell(r, 1, "Measure").font = f_hdr
+wsn.cell(r, 2, "Value").font = f_hdr
+wsn.cell(r, 7, "Basis / note").font = f_hdr
+for col in range(1, 8):
+    wsn.cell(r, col).fill = fill_hdr
+    wsn.cell(r, col).alignment = Alignment(horizontal="center")
+wsn.cell(r, 1).alignment = Alignment(indent=1)
+r += 1
+
+
+single("exit", "Exit / terminal value at end of Year 5", f"=F{Y('ebitda')}*B{FR['mult']}", bold=True,
+       note="Year-5 EBITDA multiplied by the exit multiple above.")
+
+# investor cash flow row
+wsn.cell(r, 1, "Investor cash flow").font = Font(name=FONT, size=9, bold=True, italic=True)
+r += 1
+wsn.cell(r, 1, "Year").font = f_hdr
+for i, h in enumerate(["Year 0", "Year 1", "Year 2", "Year 3", "Year 4", "Year 5"], 2):
+    c = wsn.cell(r, i, h)
+    c.font = f_hdr
+    c.fill = fill_hdr
+    c.alignment = Alignment(horizontal="center")
+wsn.cell(r, 1).fill = fill_hdr
+wsn.cell(r, 1).alignment = Alignment(indent=1)
+r += 1
+
+ICF = r
+wsn.cell(r, 1, "Net cash flow to shareholders").font = f_tot
+wsn.cell(r, 1).alignment = Alignment(indent=1)
+cf_cells = [f"=-B{FR['equity']}"] + [f"={c}{Y('fcf')}" for c in YC[:4]] + \
+           [f"=F{Y('fcf')}+B{FR['exit']}"]
+for i, v in enumerate(cf_cells):
+    c = wsn.cell(r, 2 + i, v)
+    c.font = f_tot
+    c.number_format = CUR
+for col in range(1, 9):
+    wsn.cell(r, col).fill = fill_tot
+    wsn.cell(r, col).border = b_top
+wsn.cell(r, 9, "Year 0 is the capital injection. Year 5 includes the exit proceeds.").font = f_note
+r += 2
+
+single("irr", "IRR — internal rate of return", f"=IRR(B{ICF}:G{ICF})", fmt=PCT, bold=True,
+       note="The annualised return to shareholders across the 5 years including the exit. Compare against the "
+            "discount rate above — anything meaningfully higher creates value.")
+single("npv", "NPV at the discount rate", f"=NPV(B{FR['disc']},C{ICF}:G{ICF})+B{ICF}", bold=True,
+       note="Positive NPV means the plan beats the hurdle rate.")
+single("moic", "MOIC — money multiple",
+       f"=IF(B{FR['equity']}=0,0,SUM(C{ICF}:G{ICF})/B{FR['equity']})", fmt='0.00"x"', bold=True,
+       note="Total cash back divided by cash in.")
+single("payback", "Payback — first year cumulative cash flow turns positive",
+       f'=IF(F{Y("cumfcf")}<0,"Beyond Year 5","Year "&(COUNTIF(B{Y("cumfcf")}:F{Y("cumfcf")},"<0")+1))',
+       fmt='General',
+       note="How long before the business has returned the cash it consumed.")
+single("revcagr", "Revenue CAGR, Year 1 to Year 5",
+       f"=IF(B{Y('rev')}<=0,0,(F{Y('rev')}/B{Y('rev')})^(1/4)-1)", fmt=PCT,
+       note="Compound annual growth in management-fee revenue. Flattered by Year 1 being a part-year ramp from zero "
+            "— the Year 2 to Year 5 rate below is the fairer measure.")
+single("revcagr2", "Revenue CAGR, Year 2 to Year 5",
+       f"=IF(C{Y('rev')}<=0,0,(F{Y('rev')}/C{Y('rev')})^(1/3)-1)", fmt=PCT,
+       note="Growth once the business is trading normally. This is the number to defend.")
+single("ebitdacagr", "EBITDA CAGR, Year 2 to Year 5",
+       f"=IF(C{Y('ebitda')}<=0,0,(F{Y('ebitda')}/C{Y('ebitda')})^(1/3)-1)", fmt=PCT,
+       note="Profit growth, stripping out the Year-1 ramp distortion.")
+single("roe", "Return on equity (Year 5)",
+       f"=IF((B{FR['equity']}+SUM(B{Y('np')}:E{Y('np')}))=0,0,"
+       f"F{Y('np')}/(B{FR['equity']}+SUM(B{Y('np')}:E{Y('np')})))", fmt=PCT,
+       note="Year-5 net profit against closing shareholders' equity (capital plus retained earnings). More "
+            "meaningful than measuring against the original AED 200,000 alone.")
+
+# ------------------------------------------------ 5. HEALTH INDICATORS -----
+fsec("5.  FINANCIAL HEALTH INDICATORS")
+fhdr()
+
+frow("rpu", "Revenue per live unit (annual)",
+     [f"=IF({c}{Y('avg')}=0,0,{c}{Y('rev')}/{c}{Y('avg')})" for c in YC],
+     note="Should be broadly stable. A fall means discounting or weakening occupancy.")
+frow("cpu", "Total cost per live unit (annual)",
+     [f"=IF({c}{Y('avg')}=0,0,({c}{Y('vtot')}+{c}{Y('ftot')})/{c}{Y('avg')})" for c in YC],
+     note="Should FALL every year as fixed costs spread over more units. This is the whole scaling thesis.")
+frow("epu", "EBITDA per live unit (annual)",
+     [f"=IF({c}{Y('avg')}=0,0,{c}{Y('ebitda')}/{c}{Y('avg')})" for c in YC])
+frow("contrib", "Contribution per unit (revenue less variable cost)",
+     [f"=IF({c}{Y('avg')}=0,0,{c}{Y('gp')}/{c}{Y('avg')})" for c in YC],
+     note="What each additional unit contributes towards fixed costs and profit.")
+frow("beunits", "Break-even portfolio size (units)",
+     [f"=IF({c}{Y('contrib')}<=0,0,{c}{Y('ftot')}/{c}{Y('contrib')})" for c in YC], fmt=NUM,
+     bold=True,
+     note="Units needed just to cover fixed costs. Compare against the average live units in row above — the gap is "
+          "your margin of safety.")
+frow("safety", "Margin of safety (live units above break-even)",
+     [f"={c}{Y('avg')}-{c}{Y('beunits')}" for c in YC], fmt=NUM, bold=True)
+frow("fixcov", "Fixed-cost coverage (gross profit / fixed costs)",
+     [f"=IF({c}{Y('ftot')}=0,0,{c}{Y('gp')}/{c}{Y('ftot')})" for c in YC], fmt='0.00"x"',
+     note="Below 1.0x the business is loss-making at EBITDA level.")
+frow("runway", "Cash runway at year-end (months of fixed cost)",
+     [f"=IF({c}{Y('ftot')}=0,0,{c}{Y('cash')}/({c}{Y('ftot')}/12))" for c in YC], fmt=NUM,
+     note="How many months the closing cash balance would cover fixed costs with no revenue at all.")
+
+# -------------------------------------------------- 6. SENSITIVITY --------
+fsec("6.  SENSITIVITY  —  what actually moves the IRR")
+r += 0
+wsn.cell(r, 1, "Case").font = f_hdr
+wsn.cell(r, 2, "IRR").font = f_hdr
+wsn.cell(r, 3, "NPV").font = f_hdr
+wsn.cell(r, 7, "Comment").font = f_hdr
+for col in range(1, 8):
+    wsn.cell(r, col).fill = fill_hdr
+    wsn.cell(r, col).alignment = Alignment(horizontal="center")
+wsn.cell(r, 1).alignment = Alignment(indent=1)
+r += 1
+
+SENS = []
+sens_defs = [
+    ("Exit at 3.0x EBITDA", 3.0, None,
+     "A weaker exit market. Note how much of the return depends on the sale, not the trading."),
+    ("Exit at 4.0x EBITDA — base case", 4.0, None, ""),
+    ("Exit at 5.0x EBITDA", 5.0, None, "A strong strategic buyer."),
+    ("No exit — operating cash only", 0.0, None,
+     "The honest floor: what shareholders earn if the business is never sold."),
+]
+for label, mult, _, note in sens_defs:
+    hidden = r
+    wsn.cell(r, 1, label).font = f_item
+    wsn.cell(r, 1).alignment = Alignment(indent=1, wrap_text=True)
+    # helper cash flows in columns I..N (off to the side)
+    for i in range(6):
+        col = 9 + i
+        if i < 5:
+            v = f"={get_column_letter(2+i)}{ICF}"
+        else:
+            v = f"=F{Y('fcf')}+F{Y('ebitda')}*{mult}"
+        c = wsn.cell(r, col, v)
+        c.font = Font(name=FONT, size=8, color="BFBFBF")
+        c.number_format = CUR
+    wsn.cell(r, 2, f"=IRR(I{r}:N{r})").font = f_tot
+    wsn.cell(r, 2).number_format = PCT
+    wsn.cell(r, 3, f"=NPV(B{FR['disc']},J{r}:N{r})+I{r}").font = f_calc
+    wsn.cell(r, 3).number_format = CUR
+    n = wsn.cell(r, 7, note)
+    n.font = f_note
+    n.alignment = Alignment(wrap_text=True, vertical="top")
+    for col in range(1, 8):
+        wsn.cell(r, col).border = b_bottom
+        if abs(mult - 4.0) < 0.01:
+            wsn.cell(r, col).fill = fill_tot
+    wsn.row_dimensions[r].height = max(20, 11 * (1 + len(note) // 62))
+    r += 1
+
+for label, share, note in [
+    ("Orizuru funds 0% of unit onboarding — base case", 0.0,
+     "As instructed: onboarding re-charged to the owner."),
+    ("Orizuru funds 50% of unit onboarding", 0.5,
+     "A common commercial compromise where the operator shares setup cost to win the mandate."),
+    ("Orizuru funds 100% of unit onboarding", 1.0,
+     "Self-funding the whole rollout. This is the scenario that breaks the AED 200,000 capital — check the closing "
+     "cash balance if you go this way."),
+]:
+    wsn.cell(r, 1, label).font = f_item
+    wsn.cell(r, 1).alignment = Alignment(indent=1, wrap_text=True)
+    for i in range(6):
+        col = 9 + i
+        if i == 0:
+            v = f"=B{ICF}"
+        elif i < 5:
+            yr = i  # 1..4
+            v = (f"={get_column_letter(2+i)}{ICF}-({YC[yr]}{Y('eoy')}-{YC[yr-1]}{Y('eoy')})"
+                 f"*'Unit Setup (1 Unit)'!E{U_TOTAL_ROW}*({share}-$B${FR['onboard']})") if yr >= 1 else f"={get_column_letter(2+i)}{ICF}"
+        else:
+            v = (f"=G{ICF}-(F{Y('eoy')}-E{Y('eoy')})"
+                 f"*'Unit Setup (1 Unit)'!E{U_TOTAL_ROW}*({share}-$B${FR['onboard']})")
+        c = wsn.cell(r, col, v)
+        c.font = Font(name=FONT, size=8, color="BFBFBF")
+        c.number_format = CUR
+    wsn.cell(r, 2, f"=IRR(I{r}:N{r})").font = f_tot
+    wsn.cell(r, 2).number_format = PCT
+    wsn.cell(r, 3, f"=NPV(B{FR['disc']},J{r}:N{r})+I{r}").font = f_calc
+    wsn.cell(r, 3).number_format = CUR
+    n = wsn.cell(r, 7, note)
+    n.font = f_note
+    n.alignment = Alignment(wrap_text=True, vertical="top")
+    for col in range(1, 8):
+        wsn.cell(r, col).border = b_bottom
+        if share == 0.0:
+            wsn.cell(r, col).fill = fill_tot
+    wsn.row_dimensions[r].height = max(20, 11 * (1 + len(note) // 62))
+    r += 1
+
+r += 1
+# ------------------------------------------------------- 7. READ-ACROSS ----
+fsec("7.  HOW TO READ THIS")
+r += 0
+for d in [
+    "YEAR 1 TIES EXACTLY TO THE MONTHLY MODEL. Revenue, staff, unit operations and commission all link straight to "
+    "'OPEX Monthly', and the residual fixed-cost line is derived so total Year-1 cost equals the monthly model to the "
+    "dirham. Change anything on 'Assumptions' and Year 1 here moves with it.",
+    "YEARS 2–5 ARE A PLAN, NOT A FORECAST. They rest on the unit counts, inflation rates and headcount in section 1. "
+    "Those are the numbers to argue about — everything below them is arithmetic.",
+    "THE IRR IS FLATTERED BY A SMALL CAPITAL BASE. Returns are measured against AED 200,000 of equity. A business "
+    "that needs little capital and generates modest absolute profit will always show a high percentage return. Look "
+    "at absolute EBITDA and the money multiple alongside the IRR, not the IRR alone.",
+    "MUCH OF THE RETURN SITS IN THE EXIT. Compare the base case against the 'no exit' row in section 6. If the gap "
+    "is large, the plan depends on selling the business, not on operating it — which a lender will read very "
+    "differently from an equity investor.",
+    "UNIT ONBOARDING IS THE HIDDEN CAPITAL RISK. This tab assumes owners fund unit setup, per instruction. If "
+    "Orizuru ends up funding it to win mandates, the cash requirement rises sharply — section 6 quantifies it. "
+    "Settle this in the management agreement before signing owners.",
+    "RE-CHARGEABLE COSTS ARE THE BIGGEST SINGLE LEVER. Housekeeping, DET permit renewals and consumables are all "
+    "commonly billed to owners or guests. They sit in variable costs here. Re-charging them materially lifts EBITDA "
+    "at no commercial cost — it is standard Dubai practice.",
+    "CORPORATE TAX BITES FROM THE YEAR PROFIT EXCEEDS AED 375,000. Below that the 9% rate does not apply. Watch the "
+    "year the tax line first appears — that is when net profit starts diverging from EBITDA.",
+]:
+    wsn.merge_cells(start_row=r, start_column=1, end_row=r, end_column=7)
+    c = wsn.cell(r, 1, "•  " + d)
+    c.font = Font(name=FONT, size=9)
+    c.alignment = Alignment(wrap_text=True, vertical="top")
+    wsn.row_dimensions[r].height = 13 * (1 + len(d) // 145) + 8
+    r += 1
+
+wsn.column_dimensions["A"].width = 52
+for col in YC:
+    wsn.column_dimensions[col].width = 15
+wsn.column_dimensions["G"].width = 62
+for col in "HIJKLMN":
+    wsn.column_dimensions[col].width = 9
+wsn.sheet_view.showGridLines = False
+wsn.freeze_panes = "B5"
+
 # ===================================================== ORDER & SAVE =========
-ORDER = ["README", "Funding Summary", "Assumptions",
+ORDER = ["README", "Funding Summary", "Financial Summary", "Assumptions",
          "CAPEX Summary", "CAPEX Detail", "Unit Setup (1 Unit)",
          "OPEX Summary", "OPEX Monthly", "Marketing Comparison", "AI Subscriptions"]
 wb._sheets = [wb[n] for n in ORDER]
