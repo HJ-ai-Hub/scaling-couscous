@@ -77,19 +77,23 @@ def run(scenario, adopted="Option 2", parallel=2):
             tot[i] += vals[i]
 
     gross = [live[i] * gross_unit for i in range(12)]
-    rev = [g * a["Management fee retained by Orizuru"] for g in gross]
+    mgmt = [g * a["Management fee retained by Orizuru"] for g in gross]
+    onb = [signed[i] * a["Onboarding fee charged to the owner per unit"] for i in range(12)]
+    rev = [mgmt[i] + onb[i] for i in range(12)]
 
     o1 = [1 if (i + 1) <= parallel or adopted in ("Option 1", "Both") else 0 for i in range(12)]
     o2 = [1 if (i + 1) <= parallel or adopted in ("Option 2", "Both") else 0 for i in range(12)]
 
     # A. staff
-    ops = a["Operations & service staff — headcount"] * a["Operations & service staff — salary"]
+    import math
+    hc = [max(a["Operations & service staff — minimum headcount"],
+              math.ceil(live[i] / a["Live units per operations staff member"])) for i in range(12)]
     add("A. Staff", lambda i: (
         a["Directors' salary"]
-        + ops
-        + a["Operations & service staff — headcount"] * a["Staff visa, medical insurance & EID — monthly accrual per UAE employee"]
-        + ops * a["End-of-service gratuity accrual"]
-        + a["Operations & service staff — headcount"] * a["WPS / payroll processing fee"]))
+        + hc[i] * a["Operations & service staff — salary"]
+        + hc[i] * a["Staff visa, medical insurance & EID — monthly accrual per UAE employee"]
+        + hc[i] * a["Operations & service staff — salary"] * a["End-of-service gratuity accrual"]
+        + hc[i] * a["WPS / payroll processing fee"]))
 
     # B / C. marketing — the two option blocks share label text, so read by row position
     def by_row(label, occurrence):
@@ -200,7 +204,7 @@ for s in ("Low", "Base", "High"):
     unit = cx["unit_" + s]
     cont = company * 0.10
     print(f"  {s:<5}  company setup {money(company):>10}   +10% conting {money(cont):>9}"
-          f"   + 1 unit {money(unit):>8}   =  TOTAL {money(company + cont + unit):>10}")
+          f"   + unit setup {money(0):>6} (owner-funded)  =  TOTAL {money(company + cont):>10}")
 
 print()
 print("=" * 84)
@@ -250,7 +254,7 @@ print()
 print("=" * 84)
 print("FUNDING REQUIREMENT  —  Base, 20% buffer")
 print("=" * 84)
-capex_total = cx["Base"] * 1.10 + cx["unit_Base"]
+capex_total = cx["Base"] * 1.10   # unit setup is owner-funded, excluded
 peak = abs(min(0, min(base["cumcash"])))
 buf = (peak + capex_total) * 0.20
 print(f"  CAPEX                    : {money(capex_total)}")

@@ -345,7 +345,19 @@ a("o2_setup", "Local compliance / entity or contractor arrangement", "AED/month"
   "Not in the original brief. Engaging staff outside the UAE needs a compliant contracting route. Flagging it rather "
   "than pretending it is free.")
 
-sec_row("5.  UNIT-ACQUISITION COMMISSION  —  the 2% per management")
+sec_row("5.  UNIT ONBOARDING  —  who pays to bring a unit live, and what Orizuru charges for it")
+a("onboard_share", "Share of unit SETUP COST borne by Orizuru", "%", 0, 0, 0,
+  "0% = the property owner funds unit setup (DET permit, smart lock, linen par stock, photography, safety kit). "
+  "Confirmed as the commercial position, so NO unit setup cost appears anywhere in this CAPEX or OPEX. This single "
+  "input governs both Year 1 and Years 2-5. Raise it to model bearing the cost to win mandates — at 100% the "
+  "AED 200,000 capital does not cover it.", fmt=PCT, hj=True)
+a("onboard_fee", "Onboarding fee charged to the owner per unit", "AED/unit, one-off", 0, 1500, 3000,
+  "A one-off service fee for handling the DET permit application, listing build, photography coordination and "
+  "inventory report. Charged when the unit is signed. While the share above is 0% this is pure margin, because the "
+  "hard costs are paid directly by the owner; if you raise that share, the fee becomes cost recovery instead.",
+  fmt=CUR)
+
+sec_row("6.  UNIT-ACQUISITION COMMISSION  —  the 2% per management")
 a("comm_pct", "Trailing commission on each signed unit", "% ", 0.02, 0.02, 0.02,
   "Per management: 2% for each unit signed, ONGOING on that unit's monthly revenue.", fmt=PCT2, hj=True)
 a("comm_base", "Commission base", "—", 1, 1, 1,
@@ -353,7 +365,7 @@ a("comm_base", "Commission base", "—", 1, 1, 1,
   "2 = 2% of Orizuru's management fee only (far cheaper, far weaker incentive). Change the number to switch base.",
   fmt='0', hj=True)
 
-sec_row("6.  TECHNOLOGY, PLATFORM & AI")
+sec_row("7.  TECHNOLOGY, PLATFORM & AI")
 a("pms_unit", "PMS / channel manager licence", "AED/unit/mo", 55, 75, 95,
   "Hostaway / Guesty style per-property pricing. Scales directly with the portfolio.")
 a("pricing_unit", "Dynamic pricing tool", "AED/unit/mo", 20, 32, 45,
@@ -372,7 +384,7 @@ a("web_host", "Website hosting & direct booking engine", "AED/month", 100, 190, 
 a("voip", "VoIP, WhatsApp Business API & guest support line", "AED/month", 120, 230, 400,
   "Required to deliver the 24/7 guest support promised in the Business Profile.")
 
-sec_row("7.  UNIT OPERATIONS  —  variable, per LIVE unit per month")
+sec_row("8.  UNIT OPERATIONS  —  variable, per LIVE unit per month")
 a("permit_unit", "DET holiday-home permit renewal", "AED/unit/yr", 1200, 1520, 1800,
   "Accrued monthly at 1/12. Re-chargeable to the owner in most contracts — if you re-charge, set this to 0.")
 a("clean_unit", "Housekeeping & laundry — net of guest recharge", "AED/unit/mo", 0, 180, 420,
@@ -386,7 +398,7 @@ a("maint_unit", "Maintenance coordination & petty repairs", "AED/unit/mo", 40, 9
 a("linen_unit", "Linen & towel replacement", "AED/unit/mo", 20, 40, 70,
   "Replacement cycle on the par stock bought at CAPEX. Real and routinely forgotten.")
 
-sec_row("8.  OFFICE & ADMINISTRATION  —  Dubai")
+sec_row("9.  OFFICE & ADMINISTRATION  —  Dubai")
 a("office_rent", "Office rent / registered address", "AED/month", 1500, 2500, 4200,
   "Fronds Building – Office 02. Required to hold the trade licence.")
 a("office_util", "Office DEWA, internet & chiller", "AED/month", 300, 520, 900,
@@ -404,7 +416,7 @@ a("gateway", "Payment gateway / OTA payout fees", "% of gross collections", 0.01
   "Applied to gross booking revenue passing through Orizuru's account. Excluded if the OTA pays the owner directly — "
   "set to 0 in that case.", fmt=PCT2)
 
-sec_row("9.  PROFESSIONAL, COMPLIANCE & INSURANCE")
+sec_row("10.  PROFESSIONAL, COMPLIANCE & INSURANCE")
 a("bookkeep", "Bookkeeping & management accounts", "AED/month", 500, 900, 1600,
   "Outsourced. Cheaper and more reliable than an in-house hire at this scale.")
 a("vat_q", "VAT return preparation & filing", "AED/quarter", 400, 700, 1200,
@@ -423,7 +435,7 @@ a("ins_pa", "Public liability & professional indemnity insurance", "AED/year", 3
 a("legal_pa", "Legal, contract templates & disputes", "AED/year", 1500, 3000, 6000,
   "Management agreements, owner disputes, guest damage claims.")
 
-sec_row("10.  CONTINGENCY")
+sec_row("11.  CONTINGENCY")
 a("conting", "Contingency", "% of total OPEX", 0.03, 0.05, 0.08,
   "First-year UAE service company. 5% is the prudent base.", fmt=PCT)
 
@@ -539,6 +551,11 @@ drow("gross", "Gross booking revenue (portfolio)", "Live units x gross rev/unit"
      lambda i: f"={MC[i]}{MR['live']}*{A('gross_unit')}")
 drow("rev", "Orizuru management fee revenue", "Gross x management fee %",
      lambda i: f"={MC[i]}{MR['gross']}*{A('mgmt_fee')}")
+
+drow("onbfee", "Onboarding fee revenue", "New units signed x fee",
+     lambda i: f"={MC[i]}{MR['signed']}*{A('onboard_fee')}")
+drow("totrev", "TOTAL ORIZURU REVENUE", "Management fees + onboarding fees",
+     lambda i: f"={MC[i]}{MR['rev']}+{MC[i]}{MR['onbfee']}", font=f_tot)
 
 drow("o1on", "Option 1 active (1/0)", "Both run M1–M2 per management",
      lambda i: f'=IF(OR({MC[i]}{MR["mnum"]}<={PARALLEL},{ADOPTED}="Option 1",{ADOPTED}="Both"),1,0)',
@@ -755,8 +772,8 @@ r += 2
 section(wsm, r, "SANITY CHECK  —  does the business cover its own costs?", W)
 r += 1
 
-drow("revchk", "Orizuru revenue (management fees)", "From drivers",
-     lambda i: f"={MC[i]}{MR['rev']}", font=f_calc)
+drow("revchk", "Orizuru revenue (management + onboarding fees)", "From drivers",
+     lambda i: f"={MC[i]}{MR['totrev']}", font=f_calc)
 drow("opexchk", "Total OPEX", "",
      lambda i: f"={MC[i]}{TOT_R}", font=f_calc)
 drow("ebitda", "Operating surplus / (deficit) before tax & depreciation", "Revenue less OPEX",
@@ -1073,8 +1090,8 @@ metrics = [
      "Against the Business Profile's 70–80 unit Year-1 target."),
     ("Gross booking revenue (portfolio, guest spend)", f"='OPEX Monthly'!O{MONTH_ROWS['gross']}", CUR,
      "This is what guests pay across the portfolio — NOT Orizuru's revenue."),
-    ("Orizuru revenue (management fees)", f"='OPEX Monthly'!O{MONTH_ROWS['rev']}", CUR,
-     "Orizuru's actual top line under the commission-only model."),
+    ("Orizuru revenue (management + onboarding fees)", f"='OPEX Monthly'!O{MONTH_ROWS['totrev']}", CUR,
+     "Orizuru's actual top line: recurring management fees plus one-off unit onboarding fees."),
     ("Total OPEX", f"=B{S_TOT}", CUR, ""),
     ("Operating surplus / (deficit)", f"='OPEX Monthly'!O{MONTH_ROWS['ebitda']}", CUR,
      "Before corporate tax and before any director remuneration."),

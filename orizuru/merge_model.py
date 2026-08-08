@@ -18,6 +18,19 @@ opex_header = opex[:opex.index(M_AI)]
 opex_body = opex[opex.index(M_AI):opex.index(M_OPEX_README)]
 
 TAIL = r'''
+# ============================ RE-WIRE CAPEX TO THE ONBOARDING-SHARE DRIVER ==
+# 'CAPEX Detail' is built before 'Assumptions' exists, so its unit-setup line is
+# wired up here: Year-1 units signed x cost per unit x the share Orizuru bears.
+# With that share at 0% (owner funds setup) the line is nil and no unit setup
+# cost enters CAPEX anywhere in the workbook.
+for _col, _letter in ((7, "D"), (8, "E"), (9, "F")):
+    _c = wsd.cell(UNIT_LINK_ROW, _col,
+                  f"='OPEX Monthly'!$N${MONTH_ROWS['cum']}"
+                  f"*'Unit Setup (1 Unit)'!{_letter}{U_TOTAL_ROW}*{A('onboard_share')}")
+    _c.font = f_link
+    _c.number_format = CUR
+
+
 # ================================================== COMBINED README =========
 wsr = wb.create_sheet("README")
 banner(wsr, "ORIZURU HOLIDAY HOMES LLC — CAPEX & OPEX FINANCIAL MODEL",
@@ -37,7 +50,8 @@ blocks = [
     ("R", "CAPEX Summary", "One-off setup spend rolled up by category."),
     ("R", "CAPEX Detail", "Every CAPEX line at Low / Base / High: formation & licensing, technology, brand, "
                           "equipment, deposits."),
-    ("R", "Unit Setup (1 Unit)", "Cost to bring ONE unit live, plus a x1 to x80 portfolio scaling reference."),
+    ("R", "Unit Setup (1 Unit)", "What onboarding a unit involves and what it costs. Owner-funded, so excluded from "
+                                 "the CAPEX total — this tab prices the risk if that ever changes."),
     ("R", "OPEX Summary", "Year-1 OPEX by category, key metrics, and the notes you should read before circulating."),
     ("R", "OPEX Monthly", "The engine. 12 months across, every cost line down. Edit the yellow unit-ramp row to "
                           "change the growth path."),
@@ -59,8 +73,11 @@ blocks = [
     ("SEC", "MODEL BASIS — AS CONFIRMED"),
     ("B", "•", "PURE MANAGEMENT / COMMISSION-ONLY. Orizuru does not master-lease. There is NO unit rent, no unit "
                 "DEWA and no unit internet anywhere in this model — those sit with the property owner."),
-    ("B", "•", "Unit setup CAPEX is sized for ONE unit. The scaling table on 'Unit Setup (1 Unit)' shows portfolio "
-                "cost but is not added to the CAPEX total."),
+    ("B", "•", "UNIT SETUP IS FUNDED BY THE PROPERTY OWNER. No unit setup cost appears in CAPEX or OPEX anywhere in "
+                "this workbook. The 'Unit Setup (1 Unit)' tab documents what onboarding involves and prices the risk "
+                "if Orizuru ever bears it, governed by one input on the Assumptions tab (currently 0%)."),
+    ("B", "•", "Orizuru charges the owner a one-off ONBOARDING FEE per unit signed (AED 1,500 in the Base case). "
+                "While the owner funds the hard setup costs, that fee is margin, not cost recovery."),
     ("B", "•", "Directors draw NO salary."),
     ("B", "•", "Operations & service staff: AED 3,000/month per person, starting with 1 person and scaling with the "
                 "portfolio via the 'live units per operations staff member' ratio on the Assumptions tab."),
@@ -88,7 +105,7 @@ blocks = [
     ("B", "•", "Corporate Tax itself (9% above AED 375,000 taxable profit) — a tax on profit, not OPEX. The "
                 "compliance and filing cost IS included."),
     ("B", "•", "Depreciation on the CAPEX. Non-cash; belongs in the P&L, not an OPEX cash budget."),
-    ("B", "•", "Unit furnishing. Owner-funded under this model. The operating layer Orizuru does fund is in CAPEX."),
+    ("B", "•", "Unit furnishing AND unit setup. Both are funded by the property owner under this model."),
     ("B", "•", "Bank minimum balance. A blocked asset, not a cost — shown as a memo on 'CAPEX Detail'."),
 ]
 for row in blocks:
@@ -148,11 +165,11 @@ for col in range(1, 6):
     wsf.cell(r, col).border = b_bottom
 r += 1
 
-wsf.cell(r, 1, "Unit setup — 1 unit").font = f_item
-for col, letter in ((2, "D"), (3, "E"), (4, "F")):
-    wsf.cell(r, col, f"='Unit Setup (1 Unit)'!{letter}{U_TOTAL_ROW}").font = f_link
+wsf.cell(r, 1, "Unit setup borne by Orizuru").font = f_item
+for col, letter in ((2, "G"), (3, "H"), (4, "I")):
+    wsf.cell(r, col, f"='CAPEX Detail'!{letter}{UNIT_LINK_ROW}").font = f_link
     wsf.cell(r, col).number_format = CUR
-wsf.cell(r, 5, "One unit only, as instructed. Multiply on the 'Unit Setup' tab for portfolio scale.").font = f_note
+wsf.cell(r, 5, "NIL — the property owner funds unit setup. Governed by one input on the Assumptions tab.").font = f_note
 for col in range(1, 6):
     wsf.cell(r, col).border = b_bottom
 r += 1
@@ -211,7 +228,7 @@ trade = [
     ("Gross booking revenue (guest spend across the portfolio)", f"='OPEX Monthly'!O{MONTH_ROWS['gross']}", CUR,
      "NOT Orizuru's revenue. This is the money flowing through the account — likely what the Business Profile's "
      "AED 2.5–4.5M turnover figure refers to."),
-    ("Orizuru revenue (management fees retained)", f"='OPEX Monthly'!O{MONTH_ROWS['rev']}", CUR,
+    ("Orizuru revenue (management + onboarding fees)", f"='OPEX Monthly'!O{MONTH_ROWS['totrev']}", CUR,
      "Orizuru's actual top line under the commission-only model. Agree with your accountant which of these two "
      "figures goes to the bank — they are very different numbers."),
     ("Total OPEX — Year 1", f"=C{F_OPEX}", CUR, ""),
@@ -327,12 +344,12 @@ for d in [
     "MOST UNIT-LEVEL OPEX IS RE-CHARGEABLE. Housekeeping, DET permit renewals and consumables are commonly billed to "
     "the owner or the guest. Set those assumptions to 0 if your management contracts pass them through — it changes "
     "the OPEX total substantially.",
-    "AT AED 200,000 THE BASE CASE DOES NOT FUND ITSELF. Base CAPEX (121,158) plus the peak operating cash deficit "
-    "(76,726) plus a 20% buffer comes to 237,461 against 200,000 available — a shortfall of about 37,000. Two levers "
-    "close it: (a) take the Low CAPEX case, deferring the full website build and brand spend until cash turns "
-    "positive, which alone gets you to roughly 20,000 of headroom; (b) re-charge unit-level OPEX (housekeeping, DET "
-    "permit renewals, consumables) to owners and guests, which is standard Dubai practice. Doing both leaves about "
-    "38,000 of headroom and is the recommended path.",
+    "THE BASE CASE NOW FUNDS ITSELF, BUT ONLY JUST. CAPEX plus the peak operating cash deficit plus a 20% buffer "
+    "comes to roughly 188,000 against 200,000 available — about 12,000 of headroom, or six percent. That is thin. "
+    "Two things closed the earlier gap: unit setup moved to the property owner, and the onboarding fee added cash in "
+    "the months the business is burning. Both are commercial positions, not modelling choices — if either changes in "
+    "negotiation, the gap returns. If you want more room: take the Low CAPEX case, or re-charge unit-level OPEX "
+    "(housekeeping, DET permit renewals, consumables) to owners and guests, which is standard Dubai practice.",
     "DO NOT TRY TO FIX IT BY SLOWING THE RAMP. This is counter-intuitive but the model is unambiguous: cutting the "
     "ramp from 80 units to 46 by Month 12 makes the peak cash deficit WORSE, not better (119,632 vs 76,726). Fixed "
     "OPEX — office, licence, staff, technology — runs regardless, so a slower ramp simply means paying it for longer "
@@ -506,9 +523,12 @@ single("stepup", "Fixed-cost step-up with portfolio growth", 0.40, fmt=PCT, isin
             "carry the same office, marketing and admin base as one running 30. At 40%, a doubling of the portfolio "
             "raises fixed costs by 40%. Set to 0% to assume pure operating leverage — optimistic, and the reason "
             "unadjusted models show implausible margins.")
-single("onboard", "Share of unit-onboarding cost borne by Orizuru", 0.0, fmt=PCT, isinput=True,
-       note="SET TO 0% per the instruction that only ONE unit's setup sits in CAPEX — i.e. onboarding is re-charged "
-            "to the owner. Raise it to see what self-funding the rollout costs. Sensitivity below.")
+single("onboard", "Share of unit SETUP COST borne by Orizuru", f"={A('onboard_share')}", fmt=PCT,
+       note="Links to the Assumptions tab — the single place this is set, governing Year 1 and Years 2–5 alike. "
+            "At 0% the property owner funds unit setup, so it appears nowhere in CAPEX or OPEX. Sensitivity in "
+            "section 6.")
+single("onbfee_in", "Onboarding fee charged to the owner per unit", f"={A('onboard_fee')}",
+       note="Links to the Assumptions tab. One-off, charged when a unit is signed.")
 single("wcpct", "Working capital as % of revenue", 0.05, fmt=PCT, isinput=True,
        note="Cash tied up in guest and OTA settlement timing.")
 single("disc", "Discount rate (cost of equity)", 0.20, fmt=PCT, isinput=True,
@@ -530,11 +550,26 @@ frow("gbv", "Gross booking value handled (memo)",
      note="MEMO ONLY — this is guest money flowing through the account, not revenue. Never present this as turnover.",
      size=9)
 
-frow("rev", "REVENUE — management fees retained",
+frow("newunits", "New units signed in the year",
+     [f"='OPEX Monthly'!N{MONTH_ROWS['cum']}"] +
+     [f"={YC[i]}{Y('eoy')}-{YC[i-1]}{Y('eoy')}" for i in range(1, 5)], fmt='0',
+     note="Drives the one-off onboarding fee below.", size=9)
+
+frow("revmgmt", "Revenue — management fees retained",
      [f"='OPEX Monthly'!O{MONTH_ROWS['rev']}"] +
      [f"={YC[i]}{Y('gbv')}*{A('mgmt_fee')}" for i in range(1, 5)],
+     note="Recurring. The core of the business.")
+
+frow("revonb", "Revenue — unit onboarding fees",
+     [f"='OPEX Monthly'!O{MONTH_ROWS['onbfee']}"] +
+     [f"={YC[i]}{Y('newunits')}*{A('onboard_fee')}*(1+{YC[i]}{Y('infl_p')})^({i})" for i in range(1, 5)],
+     note="One-off, charged to the owner when a unit is signed. Falls away if unit growth stops — do not build a "
+          "valuation on it.")
+
+frow("rev", "TOTAL REVENUE",
+     [f"={c}{Y('revmgmt')}+{c}{Y('revonb')}" for c in YC],
      bold=True, band=True,
-     note="Orizuru's actual top line under the commission-only model.")
+     note="Orizuru's actual top line.")
 
 wsn.cell(r, 1, "Variable costs").font = Font(name=FONT, size=9, bold=True, italic=True)
 r += 1

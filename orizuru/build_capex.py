@@ -2,7 +2,7 @@
 
 Model basis (confirmed by management):
   - Pure management / commission-only. Orizuru does NOT master-lease units.
-  - Unit setup CAPEX is sized for ONE unit; a scaling table is provided separately.
+  - Unit setup is funded by the property owner and is therefore excluded from CAPEX.
   - Directors draw no salary (relevant to OPEX, noted here for completeness).
 """
 
@@ -77,14 +77,15 @@ readme = [
     ("SEC", "HOW TO USE THIS WORKBOOK"),
     ("T", "Tab", "What it contains"),
     ("R", "CAPEX Detail", "Every one-off setup cost, line by line, at Low / Base / High. This is the main sheet."),
-    ("R", "Unit Setup (1 Unit)", "Cost to bring ONE holiday-home unit live, plus a scaling table (x1 to x80)."),
+    ("R", "Unit Setup (1 Unit)", "What onboarding a unit involves and what it costs. Owner-funded, so excluded from the CAPEX total."),
     ("R", "CAPEX Summary", "Category roll-up and funding view. Reads from the two sheets above."),
     ("", ""),
     ("SEC", "MODEL BASIS — CONFIRMED WITH MANAGEMENT"),
     ("B", "1.", "Pure management / commission-only model. Orizuru does NOT master-lease units, so there is NO unit rent, "
                 "DEWA deposit or furnishing capex per unit — those sit with the property owner."),
-    ("B", "2.", "Unit setup CAPEX is sized for ONE unit only. The scaling table on 'Unit Setup' shows the cost if the "
-                "portfolio is rolled out to 5 / 10 / 25 / 50 / 80 units, but nothing is scaled by default."),
+    ("B", "2.", "UNIT SETUP IS FUNDED BY THE PROPERTY OWNER, so it does NOT appear in this CAPEX. The 'Unit Setup' "
+                "tab documents what onboarding a unit involves and what it would cost if Orizuru bore it — governed "
+                "by the 'Share of unit setup cost borne by Orizuru' input on the Assumptions tab, currently 0%."),
     ("B", "3.", "Shareholder capital is AED 200,000 as confirmed (the Business Profile states AED 2,000,000 — these "
                 "must be reconciled). Either way it is NOT used as a target or a cap: this CAPEX is built bottom-up "
                 "from what the business actually needs."),
@@ -248,15 +249,16 @@ r += 3
 
 # scaling table
 wsu.merge_cells(start_row=r, start_column=1, end_row=r, end_column=8)
-c = wsu.cell(r, 1, "PORTFOLIO SCALING REFERENCE — FOR INFORMATION ONLY, NOT INCLUDED IN THE CAPEX TOTAL")
+c = wsu.cell(r, 1, "PORTFOLIO SCALING REFERENCE — OWNER-FUNDED, NOT INCLUDED IN THE CAPEX TOTAL")
 c.font = f_sec
 c.alignment = Alignment(vertical="center", indent=1)
 for col in range(1, 9):
     wsu.cell(r, col).fill = fill_sec
 r += 1
 wsu.merge_cells(start_row=r, start_column=1, end_row=r, end_column=8)
-c = wsu.cell(r, 1, "Per management, the CAPEX total is built for ONE unit. This table shows what the same unit-setup cost becomes "
-                   "at portfolio scale, against the Business Profile's 70–80 unit Year-1 target.")
+c = wsu.cell(r, 1, "The property owner funds unit setup, so NONE of this sits in Orizuru's CAPEX. This tab documents what "
+                   "onboarding involves and prices the risk if Orizuru ever has to bear it — see the share input on "
+                   "the Assumptions tab and the sensitivity block on 'Financial Summary'.")
 c.font = f_note
 c.alignment = Alignment(wrap_text=True, vertical="top")
 wsu.row_dimensions[r].height = 26
@@ -465,11 +467,14 @@ for col in range(1, 12):
 r += 1
 
 unit_row = r
-wsd.cell(r, 2, "Unit setup CAPEX — 1 unit").font = f_tot
+wsd.cell(r, 2, "Unit setup CAPEX borne by Orizuru").font = f_tot
 for col, letter in ((7, "D"), (8, "E"), (9, "F")):
     wsd.cell(r, col, f"='Unit Setup (1 Unit)'!{letter}{U_TOTAL_ROW}").font = f_link
     wsd.cell(r, col).number_format = CUR
-wsd.cell(r, 11, "Links to 'Unit Setup (1 Unit)'. Per management, sized for one unit only.").font = f_note
+wsd.cell(r, 11, "Year-1 units signed x cost per unit x the share Orizuru bears (Assumptions tab). That share is "
+                "0% — the owner funds unit setup — so this line is NIL and no unit setup cost enters CAPEX.").font = f_note
+wsd.cell(r, 11).alignment = Alignment(wrap_text=True, vertical="top")
+wsd.row_dimensions[r].height = 26
 r += 1
 
 cont_row = r
@@ -580,11 +585,11 @@ for name in sec_total_rows:
     wss.row_dimensions[r].height = 26
     r += 1
 
-wss.cell(r, 1, "Unit setup — 1 unit").font = f_item
+wss.cell(r, 1, "Unit setup borne by Orizuru").font = f_item
 for col, letter in ((2, "G"), (3, "H"), (4, "I")):
     wss.cell(r, col, f"='CAPEX Detail'!{letter}{UNIT_LINK_ROW}").font = f_link
     wss.cell(r, col).number_format = CUR
-wss.cell(r, 6, "Per management: one unit only. Multiply on the 'Unit Setup' tab for portfolio scale.").font = f_note
+wss.cell(r, 6, "Nil — the owner funds unit setup. See the 'Unit Setup' tab for what it would cost otherwise.").font = f_note
 wss.cell(r, 6).alignment = Alignment(wrap_text=True, vertical="top")
 for col in range(1, 7):
     wss.cell(r, col).border = b_bottom
@@ -635,8 +640,9 @@ notes = [
     "At AED 200,000, CAPEX alone consumes a significant share of the capital — see 'Funding Summary'.",
     "Because Orizuru operates commission-only, CAPEX is genuinely light: there is no furniture, no unit deposits and no "
     "master-lease prepayment. The heavy spend in this business is OPEX, not CAPEX.",
-    "The single largest scaling risk is NOT in this workbook: it is the per-unit setup cost multiplied out. At the Business "
-    "Profile's 70–80 unit target the unit-setup line alone becomes material — see the scaling table on the 'Unit Setup' tab.",
+    "The single largest scaling risk sits OUTSIDE this CAPEX: unit setup cost, which the property owner funds. At 80 "
+    "units it would be roughly AED 732,000 — more than three times the shareholder capital. If competitive pressure "
+    "ever forces Orizuru to fund onboarding, raise the share input on Assumptions and re-read the Funding Summary.",
     "Refundable items (office deposit, DEWA deposit, labour guarantee) are inside the total. Strip them out if presenting a "
     "'true sunk cost' figure.",
 ]
