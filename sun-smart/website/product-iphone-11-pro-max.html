@@ -387,6 +387,7 @@
   .cart-total-row{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:800;margin-bottom:14px}
   .cart-clear{display:block;text-align:center;font-size:12.5px;color:var(--muted);text-decoration:underline;cursor:pointer;margin-top:10px;background:none;border:0;width:100%}
   .cart-clear:hover{color:var(--red)}
+  .btn-disabled{opacity:.45;pointer-events:none;filter:grayscale(.3)}
 </style>
 </head>
 <body>
@@ -528,6 +529,7 @@
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-foot">
     <div class="cart-total-row"><span data-i18n="cart_total">Total</span><span id="cartTotal">RM0</span></div>
+    <button type="button" id="cartPayOnline" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;margin-bottom:10px" data-i18n="cart_payonline">💳 Pay Online</button>
     <a class="btn btn-wa btn-lg" id="cartCheckout" href="#" style="width:100%;justify-content:center" data-i18n="cart_checkout">Checkout via WhatsApp</a>
     <button class="cart-clear" id="cartClear" type="button" data-i18n="cart_clear">Clear cart</button>
   </div>
@@ -560,7 +562,7 @@
 
 <script>
 const I18N = {
-  en:{nav_about:"About",nav_products:"Products",nav_payment:"Payment",nav_pickup:"Delivery",nav_contact:"Contact",prod_addcart:"Add to Cart",cart_title:"Your Cart",cart_total:"Total",cart_checkout:"Checkout via WhatsApp",cart_clear:"Clear cart",
+  en:{nav_about:"About",nav_products:"Products",nav_payment:"Payment",nav_pickup:"Delivery",nav_contact:"Contact",prod_addcart:"Add to Cart",cart_title:"Your Cart",cart_total:"Total",cart_checkout:"Checkout via WhatsApp",cart_clear:"Clear cart",cart_payonline:"💳 Pay Online",cart_payonline_processing:"Processing…",cart_payonline_error:"Something went wrong. Please try WhatsApp checkout instead.",
     ai_name:"SUN SMART Assistant",ai_status:"Instant answers",ai_placeholder:"Type your question…",
     hero_badge:"New · Pre-owned · Accessories · Klang Valley",
     hero_tagline:"Smart Choice, Brighter Connection",hero_title:"New & pre-owned smartphones you can trust.",
@@ -643,7 +645,7 @@ const I18N = {
     sup_tc_t:"Terms & Conditions",sup_faq_t:"Frequently Asked Questions",sup_hitpay_t:"HitPay Checkout Info",
     foot_tag:"Smart Choice, Brighter Connection. New & pre-owned smartphones and accessories in the Klang Valley.",
     foot_explore:"Explore",foot_policies:"Policies",foot_support:"Support",foot_copy:"© 2026 SUN SMART. All rights reserved.",foot_reg:"SUN SMART · Incorporated in Malaysia"},
-  zh:{nav_about:"关于我们",nav_products:"产品",nav_payment:"付款方式",nav_pickup:"配送",nav_contact:"联系我们",prod_addcart:"加入购物车",cart_title:"我的购物车",cart_total:"总计",cart_checkout:"WhatsApp 结账",cart_clear:"清空购物车",
+  zh:{nav_about:"关于我们",nav_products:"产品",nav_payment:"付款方式",nav_pickup:"配送",nav_contact:"联系我们",prod_addcart:"加入购物车",cart_title:"我的购物车",cart_total:"总计",cart_checkout:"WhatsApp 结账",cart_clear:"清空购物车",cart_payonline:"💳 在线付款",cart_payonline_processing:"处理中…",cart_payonline_error:"出现问题，请改用 WhatsApp 结账。",
     ai_name:"SUN SMART 智能助手",ai_status:"即时解答",ai_placeholder:"请输入你的问题…",
     hero_badge:"新机 · 二手机 · 配件 · 雪隆区",
     hero_tagline:"智慧之选，亮点连接",hero_title:"值得信赖的新机与二手机。",
@@ -725,7 +727,7 @@ const I18N = {
     sup_tc_t:"条款与细则",sup_faq_t:"常见问题",sup_hitpay_t:"HitPay 付款资讯",
     foot_tag:"智慧之选，亮点连接。雪隆区新机、二手机与手机配件。",
     foot_explore:"浏览",foot_policies:"条款政策",foot_support:"支持",foot_copy:"© 2026 SUN SMART 版权所有。",foot_reg:"SUN SMART · 在马来西亚注册成立"},
-  ms:{nav_about:"Tentang",nav_products:"Produk",nav_payment:"Pembayaran",nav_pickup:"Penghantaran",nav_contact:"Hubungi",prod_addcart:"Tambah ke Troli",cart_title:"Troli Anda",cart_total:"Jumlah",cart_checkout:"Checkout melalui WhatsApp",cart_clear:"Kosongkan troli",
+  ms:{nav_about:"Tentang",nav_products:"Produk",nav_payment:"Pembayaran",nav_pickup:"Penghantaran",nav_contact:"Hubungi",prod_addcart:"Tambah ke Troli",cart_title:"Troli Anda",cart_total:"Jumlah",cart_checkout:"Checkout melalui WhatsApp",cart_clear:"Kosongkan troli",cart_payonline:"💳 Bayar Dalam Talian",cart_payonline_processing:"Memproses…",cart_payonline_error:"Sesuatu tidak kena. Sila cuba checkout melalui WhatsApp.",
     ai_name:"Pembantu SUN SMART",ai_status:"Jawapan segera",ai_placeholder:"Taip soalan anda…",
     hero_badge:"Baharu · Terpakai · Aksesori · Lembah Klang",
     hero_tagline:"Pilihan Bijak, Hubungan Lebih Cerah",hero_title:"Telefon pintar baharu & terpakai yang boleh dipercayai.",
@@ -876,15 +878,44 @@ function renderCart(){
     checkoutBtn.setAttribute("href", items.length ? "https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(msg) : "#");
     checkoutBtn.classList.toggle("btn-disabled", !items.length);
   }
+  const payOnlineBtn=document.getElementById("cartPayOnline");
+  if(payOnlineBtn){
+    payOnlineBtn.disabled=!items.length;
+    payOnlineBtn.classList.toggle("btn-disabled", !items.length);
+  }
 }
 function openCart(){ const o=document.getElementById("cartOverlay"),d=document.getElementById("cartDrawer"); if(!o||!d) return; o.classList.add("open"); d.classList.add("open"); renderCart(); }
 function closeCart(){ const o=document.getElementById("cartOverlay"),d=document.getElementById("cartDrawer"); if(!o||!d) return; o.classList.remove("open"); d.classList.remove("open"); }
+async function payOnline(){
+  const btn=document.getElementById("cartPayOnline");
+  const items=getCart();
+  if(!btn || !items.length) return;
+  const lang=cartLang(), d=I18N[lang]||I18N.en;
+  const original=btn.textContent;
+  btn.disabled=true; btn.textContent=d.cart_payonline_processing||"Processing…";
+  try{
+    const summary=items.map(it=>it.name+" x"+it.qty).join(", ").slice(0,190);
+    const res=await fetch("/.netlify/functions/create-payment",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({amount:cartTotal(), summary:summary})
+    });
+    const data=await res.json();
+    if(!res.ok || !data.url) throw new Error((data && data.error) || "payment error");
+    window.location.href=data.url;
+  }catch(e){
+    alert(d.cart_payonline_error||"Something went wrong. Please try WhatsApp checkout instead.");
+    btn.disabled=false; btn.textContent=original;
+  }
+}
 (function(){
   const cartBtn=document.getElementById("cartBtn"), cartClose=document.getElementById("cartClose"), cartOverlay=document.getElementById("cartOverlay"), cartClear=document.getElementById("cartClear"), cartItems=document.getElementById("cartItems");
   if(cartBtn) cartBtn.addEventListener("click", openCart);
   if(cartClose) cartClose.addEventListener("click", closeCart);
   if(cartOverlay) cartOverlay.addEventListener("click", closeCart);
   if(cartClear) cartClear.addEventListener("click", ()=>saveCart([]));
+  const cartPayOnline=document.getElementById("cartPayOnline");
+  if(cartPayOnline) cartPayOnline.addEventListener("click", payOnline);
   if(cartItems) cartItems.addEventListener("click", e=>{
     const line=e.target.closest(".cart-line");
     if(!line) return;
