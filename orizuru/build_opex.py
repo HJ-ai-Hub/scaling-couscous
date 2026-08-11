@@ -384,19 +384,24 @@ a("web_host", "Website hosting & direct booking engine", "AED/month", 100, 190, 
 a("voip", "VoIP, WhatsApp Business API & guest support line", "AED/month", 120, 230, 400,
   "Required to deliver the 24/7 guest support promised in the Business Profile.")
 
-sec_row("8.  UNIT OPERATIONS  —  variable, per LIVE unit per month")
+sec_row("8.  UNIT OPERATIONS  —  recurring per-unit costs, RE-CHARGED TO THE OWNER")
+a("unitop_share", "Share of recurring unit costs borne by Orizuru", "%", 0, 0, 0.25,
+  "CONFIRMED: all five costs below are borne by the property owner, so at 0% none of them reach Orizuru's P&L. The "
+  "rates are retained as documentation of what the pass-through is worth and to price the risk of recovery failing. "
+  "The High scenario carries 25% as a stress case — leakage on unsold nights, owner stays, damage disputes and "
+  "slow-paying owners. Set High to 0 as well if you want the scenario range to assume perfect recovery.",
+  fmt=PCT, hj=True)
 a("permit_unit", "DET holiday-home permit renewal", "AED/unit/yr", 1200, 1520, 1800,
-  "Accrued monthly at 1/12. Re-chargeable to the owner in most contracts — if you re-charge, set this to 0.")
-a("clean_unit", "Housekeeping & laundry — net of guest recharge", "AED/unit/mo", 0, 180, 420,
-  "Cleaning fees are normally charged to the guest and pass straight through. This line is the RESIDUAL Orizuru "
-  "absorbs on unsold nights, owner stays and disputes. Genuinely 0 if you recharge everything.")
+  "Owner-borne. A licence attached to the owner's property; they fund the first issue, so they fund renewals.")
+a("clean_unit", "Housekeeping & laundry", "AED/unit/mo", 150, 180, 420,
+  "Owner-borne. Recovered through the cleaning fee charged to the guest on every booking.")
 a("consum_unit", "Guest consumables & amenities", "AED/unit/mo", 55, 100, 170,
-  "Toiletries, coffee, water, welcome items. The Japanese-hospitality positioning makes this a brand cost, not a "
-  "cost to strip out.")
-a("maint_unit", "Maintenance coordination & petty repairs", "AED/unit/mo", 40, 90, 160,
-  "Orizuru's coordination cost. Major repairs are billed to the owner.")
+  "Owner-borne. Toiletries, coffee, water, welcome items — normally bundled into the cleaning fee.")
+a("maint_unit", "Maintenance & petty repairs", "AED/unit/mo", 40, 90, 160,
+  "Owner-borne. Repairs to the owner's asset are billed to the owner. Orizuru's coordination TIME is already "
+  "carried in staff costs, so nothing is lost by excluding this.")
 a("linen_unit", "Linen & towel replacement", "AED/unit/mo", 20, 40, 70,
-  "Replacement cycle on the par stock bought at CAPEX. Real and routinely forgotten.")
+  "Owner-borne. Replacement of the owner's own par stock.")
 
 sec_row("9.  OFFICE & ADMINISTRATION  —  Dubai")
 a("office_rent", "Office rent / registered address", "AED/month", 1500, 2500, 4200,
@@ -671,18 +676,18 @@ drow("voip_r", "VoIP, WhatsApp Business API & guest line", "24/7 support promise
 end_cat("E.  TECHNOLOGY, PLATFORM & AI", "TOTAL TECHNOLOGY & AI")
 
 # ---- F. UNIT OPERATIONS
-start_cat("F.  UNIT OPERATIONS  —  variable with portfolio size")
-drow("permit", "DET holiday-home permit renewals (accrual)", "Per live unit, 1/12 of annual",
-     lambda i: f"={MC[i]}{MR['live']}*{A('permit_unit')}/12")
-drow("clean", "Housekeeping & laundry — net of guest recharge", "Per live unit",
-     lambda i: f"={MC[i]}{MR['live']}*{A('clean_unit')}")
-drow("consum", "Guest consumables & amenities", "Per live unit",
-     lambda i: f"={MC[i]}{MR['live']}*{A('consum_unit')}")
-drow("maint", "Maintenance coordination & petty repairs", "Per live unit",
-     lambda i: f"={MC[i]}{MR['live']}*{A('maint_unit')}")
-drow("linen", "Linen & towel replacement", "Per live unit",
-     lambda i: f"={MC[i]}{MR['live']}*{A('linen_unit')}")
-end_cat("F.  UNIT OPERATIONS  —  variable with portfolio size", "TOTAL UNIT OPERATIONS")
+start_cat("F.  UNIT OPERATIONS  —  re-charged to the owner, nil to Orizuru")
+drow("permit", "DET holiday-home permit renewals (accrual)", "Owner-borne x share",
+     lambda i: f"={MC[i]}{MR['live']}*{A('permit_unit')}/12*{A('unitop_share')}")
+drow("clean", "Housekeeping & laundry", "Owner-borne x share",
+     lambda i: f"={MC[i]}{MR['live']}*{A('clean_unit')}*{A('unitop_share')}")
+drow("consum", "Guest consumables & amenities", "Owner-borne x share",
+     lambda i: f"={MC[i]}{MR['live']}*{A('consum_unit')}*{A('unitop_share')}")
+drow("maint", "Maintenance & petty repairs", "Owner-borne x share",
+     lambda i: f"={MC[i]}{MR['live']}*{A('maint_unit')}*{A('unitop_share')}")
+drow("linen", "Linen & towel replacement", "Owner-borne x share",
+     lambda i: f"={MC[i]}{MR['live']}*{A('linen_unit')}*{A('unitop_share')}")
+end_cat("F.  UNIT OPERATIONS  —  re-charged to the owner, nil to Orizuru", "TOTAL UNIT OPERATIONS")
 
 # ---- G. OFFICE & ADMIN
 start_cat("G.  OFFICE & ADMINISTRATION  —  DUBAI")
@@ -1022,8 +1027,8 @@ cat_comments = {
         "Grows every month as the portfolio grows — this is the line that scales fastest of anything here.",
     "E.  TECHNOLOGY, PLATFORM & AI":
         "Part fixed (AI, Workspace, website), part per-unit (PMS, pricing, locks). Includes the AI subscriptions specified by management.",
-    "F.  UNIT OPERATIONS  —  variable with portfolio size":
-        "Fully variable. Much of it is re-chargeable to owners or guests — set the relevant assumptions to 0 if you recharge.",
+    "F.  UNIT OPERATIONS  —  re-charged to the owner, nil to Orizuru":
+        "NIL in the Base case: permit renewals, housekeeping, consumables, maintenance and linen are all re-charged to the owner. Rates retained on Assumptions to price recovery risk.",
     "G.  OFFICE & ADMINISTRATION  —  DUBAI":
         "Mostly fixed. Transport is the one line that climbs with unit count.",
     "H.  PROFESSIONAL, COMPLIANCE & INSURANCE":

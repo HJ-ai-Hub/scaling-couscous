@@ -890,19 +890,24 @@ a("web_host", "Website hosting & direct booking engine", "AED/month", 100, 190, 
 a("voip", "VoIP, WhatsApp Business API & guest support line", "AED/month", 120, 230, 400,
   "Required to deliver the 24/7 guest support promised in the Business Profile.")
 
-sec_row("8.  UNIT OPERATIONS  —  variable, per LIVE unit per month")
+sec_row("8.  UNIT OPERATIONS  —  recurring per-unit costs, RE-CHARGED TO THE OWNER")
+a("unitop_share", "Share of recurring unit costs borne by Orizuru", "%", 0, 0, 0.25,
+  "CONFIRMED: all five costs below are borne by the property owner, so at 0% none of them reach Orizuru's P&L. The "
+  "rates are retained as documentation of what the pass-through is worth and to price the risk of recovery failing. "
+  "The High scenario carries 25% as a stress case — leakage on unsold nights, owner stays, damage disputes and "
+  "slow-paying owners. Set High to 0 as well if you want the scenario range to assume perfect recovery.",
+  fmt=PCT, hj=True)
 a("permit_unit", "DET holiday-home permit renewal", "AED/unit/yr", 1200, 1520, 1800,
-  "Accrued monthly at 1/12. Re-chargeable to the owner in most contracts — if you re-charge, set this to 0.")
-a("clean_unit", "Housekeeping & laundry — net of guest recharge", "AED/unit/mo", 0, 180, 420,
-  "Cleaning fees are normally charged to the guest and pass straight through. This line is the RESIDUAL Orizuru "
-  "absorbs on unsold nights, owner stays and disputes. Genuinely 0 if you recharge everything.")
+  "Owner-borne. A licence attached to the owner's property; they fund the first issue, so they fund renewals.")
+a("clean_unit", "Housekeeping & laundry", "AED/unit/mo", 150, 180, 420,
+  "Owner-borne. Recovered through the cleaning fee charged to the guest on every booking.")
 a("consum_unit", "Guest consumables & amenities", "AED/unit/mo", 55, 100, 170,
-  "Toiletries, coffee, water, welcome items. The Japanese-hospitality positioning makes this a brand cost, not a "
-  "cost to strip out.")
-a("maint_unit", "Maintenance coordination & petty repairs", "AED/unit/mo", 40, 90, 160,
-  "Orizuru's coordination cost. Major repairs are billed to the owner.")
+  "Owner-borne. Toiletries, coffee, water, welcome items — normally bundled into the cleaning fee.")
+a("maint_unit", "Maintenance & petty repairs", "AED/unit/mo", 40, 90, 160,
+  "Owner-borne. Repairs to the owner's asset are billed to the owner. Orizuru's coordination TIME is already "
+  "carried in staff costs, so nothing is lost by excluding this.")
 a("linen_unit", "Linen & towel replacement", "AED/unit/mo", 20, 40, 70,
-  "Replacement cycle on the par stock bought at CAPEX. Real and routinely forgotten.")
+  "Owner-borne. Replacement of the owner's own par stock.")
 
 sec_row("9.  OFFICE & ADMINISTRATION  —  Dubai")
 a("office_rent", "Office rent / registered address", "AED/month", 1500, 2500, 4200,
@@ -1177,18 +1182,18 @@ drow("voip_r", "VoIP, WhatsApp Business API & guest line", "24/7 support promise
 end_cat("E.  TECHNOLOGY, PLATFORM & AI", "TOTAL TECHNOLOGY & AI")
 
 # ---- F. UNIT OPERATIONS
-start_cat("F.  UNIT OPERATIONS  —  variable with portfolio size")
-drow("permit", "DET holiday-home permit renewals (accrual)", "Per live unit, 1/12 of annual",
-     lambda i: f"={MC[i]}{MR['live']}*{A('permit_unit')}/12")
-drow("clean", "Housekeeping & laundry — net of guest recharge", "Per live unit",
-     lambda i: f"={MC[i]}{MR['live']}*{A('clean_unit')}")
-drow("consum", "Guest consumables & amenities", "Per live unit",
-     lambda i: f"={MC[i]}{MR['live']}*{A('consum_unit')}")
-drow("maint", "Maintenance coordination & petty repairs", "Per live unit",
-     lambda i: f"={MC[i]}{MR['live']}*{A('maint_unit')}")
-drow("linen", "Linen & towel replacement", "Per live unit",
-     lambda i: f"={MC[i]}{MR['live']}*{A('linen_unit')}")
-end_cat("F.  UNIT OPERATIONS  —  variable with portfolio size", "TOTAL UNIT OPERATIONS")
+start_cat("F.  UNIT OPERATIONS  —  re-charged to the owner, nil to Orizuru")
+drow("permit", "DET holiday-home permit renewals (accrual)", "Owner-borne x share",
+     lambda i: f"={MC[i]}{MR['live']}*{A('permit_unit')}/12*{A('unitop_share')}")
+drow("clean", "Housekeeping & laundry", "Owner-borne x share",
+     lambda i: f"={MC[i]}{MR['live']}*{A('clean_unit')}*{A('unitop_share')}")
+drow("consum", "Guest consumables & amenities", "Owner-borne x share",
+     lambda i: f"={MC[i]}{MR['live']}*{A('consum_unit')}*{A('unitop_share')}")
+drow("maint", "Maintenance & petty repairs", "Owner-borne x share",
+     lambda i: f"={MC[i]}{MR['live']}*{A('maint_unit')}*{A('unitop_share')}")
+drow("linen", "Linen & towel replacement", "Owner-borne x share",
+     lambda i: f"={MC[i]}{MR['live']}*{A('linen_unit')}*{A('unitop_share')}")
+end_cat("F.  UNIT OPERATIONS  —  re-charged to the owner, nil to Orizuru", "TOTAL UNIT OPERATIONS")
 
 # ---- G. OFFICE & ADMIN
 start_cat("G.  OFFICE & ADMINISTRATION  —  DUBAI")
@@ -1528,8 +1533,8 @@ cat_comments = {
         "Grows every month as the portfolio grows — this is the line that scales fastest of anything here.",
     "E.  TECHNOLOGY, PLATFORM & AI":
         "Part fixed (AI, Workspace, website), part per-unit (PMS, pricing, locks). Includes the AI subscriptions specified by management.",
-    "F.  UNIT OPERATIONS  —  variable with portfolio size":
-        "Fully variable. Much of it is re-chargeable to owners or guests — set the relevant assumptions to 0 if you recharge.",
+    "F.  UNIT OPERATIONS  —  re-charged to the owner, nil to Orizuru":
+        "NIL in the Base case: permit renewals, housekeeping, consumables, maintenance and linen are all re-charged to the owner. Rates retained on Assumptions to price recovery risk.",
     "G.  OFFICE & ADMINISTRATION  —  DUBAI":
         "Mostly fixed. Transport is the one line that climbs with unit count.",
     "H.  PROFESSIONAL, COMPLIANCE & INSURANCE":
@@ -1778,7 +1783,8 @@ blocks = [
     ("B", "•", "Corporate Tax itself (9% above AED 375,000 taxable profit) — a tax on profit, not OPEX. The "
                 "compliance and filing cost IS included."),
     ("B", "•", "Depreciation on the CAPEX. Non-cash; belongs in the P&L, not an OPEX cash budget."),
-    ("B", "•", "Unit furnishing AND unit setup. Both are funded by the property owner under this model."),
+    ("B", "•", "Unit furnishing, unit setup, AND all recurring unit costs — permit renewals, housekeeping, "
+                "consumables, maintenance and linen. All are borne by the property owner under this model."),
     ("B", "•", "Bank minimum balance. A blocked asset, not a cost — shown as a memo on 'CAPEX Detail'."),
 ]
 for row in blocks:
@@ -2014,9 +2020,10 @@ for d in [
     "CAPEX IS SIZED FOR ONE UNIT, OPEX RAMPS TO 80. This is deliberate and as instructed, but the two tabs are not "
     "on the same basis. If you take the portfolio to 80 units, the unit-setup CAPEX scales with it — see the scaling "
     "table on 'Unit Setup (1 Unit)' and add it to the funding requirement above.",
-    "MOST UNIT-LEVEL OPEX IS RE-CHARGEABLE. Housekeeping, DET permit renewals and consumables are commonly billed to "
-    "the owner or the guest. Set those assumptions to 0 if your management contracts pass them through — it changes "
-    "the OPEX total substantially.",
+    "ALL RECURRING UNIT COSTS ARE RE-CHARGED TO THE OWNER. Permit renewals, housekeeping, consumables, maintenance "
+    "and linen are nil in Orizuru's P&L. That is worth roughly AED 196,000 in Year 1 and far more later, so it MUST "
+    "be written into the management agreement before owners are signed. The Assumptions tab retains the rates so you "
+    "can price recovery failure; the High scenario stresses 25% leakage.",
     "THE BASE CASE NOW FUNDS ITSELF, BUT ONLY JUST. CAPEX plus the peak operating cash deficit plus a 20% buffer "
     "comes to roughly 188,000 against 200,000 available — about 12,000 of headroom, or six percent. That is thin. "
     "Two things closed the earlier gap: unit setup moved to the property owner, and the onboarding fee added cash in "
@@ -2048,6 +2055,7 @@ wsn = wb.create_sheet("Financial Summary")
 banner(wsn, "FINANCIAL SUMMARY — 5-YEAR P&L, CASH FLOW & RETURNS",
        "All figures AED. Year 1 links live to the monthly model; Years 2–5 are driven by the inputs in section 1.", 7)
 
+UNITOP_CAT = "F.  UNIT OPERATIONS  —  re-charged to the owner, nil to Orizuru"
 YC = ["B", "C", "D", "E", "F"]
 FR = {}
 r = 4
@@ -2248,11 +2256,11 @@ wsn.cell(r, 1, "Variable costs").font = Font(name=FONT, size=9, bold=True, itali
 r += 1
 
 frow("vunit", "Unit operations (permits, cleaning, consumables, maintenance, linen)",
-     [f"='OPEX Monthly'!O{CAT_ROWS['F.  UNIT OPERATIONS  —  variable with portfolio size']}"] +
+     [f"='OPEX Monthly'!O{CAT_ROWS[UNITOP_CAT]}"] +
      [f"={YC[i]}{Y('um')}*({A('permit_unit')}/12+{A('clean_unit')}+{A('consum_unit')}+{A('maint_unit')}"
-      f"+{A('linen_unit')})*(1+{YC[i]}{Y('infl_c')})^({i})" for i in range(1, 5)],
-     note="Scales directly with the portfolio. Much of it is re-chargeable to owners — see the note at the foot of "
-          "this tab.")
+      f"+{A('linen_unit')})*{A('unitop_share')}*(1+{YC[i]}{Y('infl_c')})^({i})" for i in range(1, 5)],
+     note="NIL — re-charged to the property owner. Governed by the 'share of recurring unit costs borne by Orizuru' "
+          "input on the Assumptions tab, currently 0%.")
 
 frow("vtech", "Unit technology (PMS, dynamic pricing, smart locks)",
      [f"='OPEX Monthly'!C{MONTH_ROWS['live']}*0+SUM('OPEX Monthly'!C{MONTH_ROWS['live']}:N{MONTH_ROWS['live']})"
@@ -2556,9 +2564,9 @@ for d in [
     "UNIT ONBOARDING IS THE HIDDEN CAPITAL RISK. This tab assumes owners fund unit setup, per instruction. If "
     "Orizuru ends up funding it to win mandates, the cash requirement rises sharply — section 6 quantifies it. "
     "Settle this in the management agreement before signing owners.",
-    "RE-CHARGEABLE COSTS ARE THE BIGGEST SINGLE LEVER. Housekeeping, DET permit renewals and consumables are all "
-    "commonly billed to owners or guests. They sit in variable costs here. Re-charging them materially lifts EBITDA "
-    "at no commercial cost — it is standard Dubai practice.",
+    "THE OWNER BEARS EVERY RECURRING UNIT COST. Permit renewals, housekeeping, consumables, maintenance and linen "
+    "are all re-charged, so Orizuru's variable cost is limited to per-unit software and the 2% commission. That "
+    "produces a very high gross margin — expect a lender to test it. Have the management agreement ready to show.",
     "CORPORATE TAX BITES FROM THE YEAR PROFIT EXCEEDS AED 375,000. Below that the 9% rate does not apply. Watch the "
     "year the tax line first appears — that is when net profit starts diverging from EBITDA.",
 ]:

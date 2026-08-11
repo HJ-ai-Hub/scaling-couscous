@@ -127,10 +127,11 @@ def run(scenario, adopted="Option 2", parallel=2):
 
     rows["F. Unit operations"] = [
         live[i] * (a["DET holiday-home permit renewal"] / 12
-                   + a["Housekeeping & laundry — net of guest recharge"]
+                   + a["Housekeeping & laundry"]
                    + a["Guest consumables & amenities"]
-                   + a["Maintenance coordination & petty repairs"]
+                   + a["Maintenance & petty repairs"]
                    + a["Linen & towel replacement"])
+        * a["Share of recurring unit costs borne by Orizuru"]
         for i in range(12)]
 
     rows["G. Office & admin"] = [
