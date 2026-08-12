@@ -267,39 +267,15 @@
   .totop-float svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2.5}
   @media(max-width:520px){.totop-float{left:18px;bottom:18px;width:46px;height:46px}}
 
-  /* ---------- AI assistant widget ---------- */
-  .ai-float{position:fixed;right:24px;bottom:96px;z-index:70;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue-3));box-shadow:0 12px 32px rgba(17,30,108,.45);display:flex;align-items:center;justify-content:center;border:0;cursor:pointer;transition:transform .16s;padding:0}
-  .ai-float:hover{transform:scale(1.08)}
-  .ai-float svg{width:28px;height:28px;fill:#fff}
-  .ai-float .dot{position:absolute;top:4px;right:4px;width:11px;height:11px;border-radius:50%;background:var(--red);border:2px solid #fff}
-  .ai-panel{position:fixed;right:24px;bottom:166px;z-index:71;width:min(380px,92vw);max-height:min(600px,72vh);display:none;flex-direction:column;border-radius:20px;overflow:hidden;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);border:1px solid rgba(255,255,255,.7);box-shadow:0 30px 70px rgba(17,30,108,.3)}
-  .ai-panel.open{display:flex}
-  .ai-head{display:flex;align-items:center;gap:10px;padding:14px 14px;background:linear-gradient(135deg,var(--blue),var(--blue-3));color:#fff;flex:0 0 auto}
-  .ai-avatar{width:34px;height:34px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;padding:5px;flex:0 0 auto}
-  .ai-avatar img{width:100%;height:100%;object-fit:contain}
-  .ai-head-txt{flex:1;min-width:0}
-  .ai-head-txt b{display:block;font-size:13.5px}
-  .ai-head-txt span{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.82);margin-top:1px}
-  .ai-head-txt span::before{content:"";width:7px;height:7px;border-radius:50%;background:#7fe7a8;box-shadow:0 0 6px #7fe7a8}
-  .ai-close{background:rgba(255,255,255,.18);border:0;color:#fff;width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:17px;line-height:1;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-  .ai-messages{flex:1;overflow-y:auto;padding:14px 14px 8px;display:flex;flex-direction:column;gap:10px;background:rgba(255,255,255,.5)}
-  .msg{max-width:86%;padding:10px 13px;border-radius:14px;font-size:13.5px;line-height:1.55}
-  .msg.bot{align-self:flex-start;background:#fff;border:1px solid var(--line);color:var(--ink);border-bottom-left-radius:4px}
-  .msg.user{align-self:flex-end;background:linear-gradient(135deg,var(--blue),var(--blue-3));color:#fff;border-bottom-right-radius:4px}
-  .msg a{color:var(--blue);font-weight:700;text-decoration:underline}
-  .msg .wa-inline{display:inline-flex;align-items:center;gap:6px;margin-top:9px;font-size:12.5px;padding:8px 14px;text-decoration:none}
-  .ai-chips{display:flex;flex-wrap:wrap;gap:7px;padding:2px 14px 12px;background:rgba(255,255,255,.5)}
-  .ai-chips button{border:1px solid var(--line);background:#fff;color:var(--blue);font:inherit;font-size:12px;font-weight:600;padding:7px 12px;border-radius:999px;cursor:pointer;transition:.15s}
-  .ai-chips button:hover{border-color:var(--blue);background:var(--accent-wash)}
-  .ai-inputrow{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:#fff;flex:0 0 auto}
-  .ai-input{flex:1;border:1px solid var(--line);border-radius:999px;padding:10px 15px;font:inherit;font-size:13.5px;outline:none;min-width:0}
-  .ai-input:focus{border-color:var(--blue)}
-  .ai-send{width:40px;height:40px;border-radius:50%;border:0;background:linear-gradient(135deg,var(--blue),var(--blue-3));color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-  .ai-send svg{width:17px;height:17px;fill:#fff}
+  /* ---------- floating cart ---------- */
+  .cart-float{position:fixed;right:24px;bottom:96px;z-index:70;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue-3));color:#fff;box-shadow:0 12px 32px rgba(17,30,108,.45);display:flex;align-items:center;justify-content:center;border:0;cursor:pointer;transition:transform .16s;padding:0}
+  .cart-float:hover{transform:scale(1.08)}
+  .cart-float svg{width:26px;height:26px}
+  .cart-float .cart-badge{top:-3px;right:-3px;border:2px solid #fff}
+
   @media(max-width:520px){
-    .ai-panel{right:10px;left:10px;width:auto;bottom:158px;max-height:60vh}
-    .ai-float{right:18px;bottom:90px;width:54px;height:54px}
     .wa-float{right:18px;bottom:18px;width:58px;height:58px}
+    .cart-float{right:20px;bottom:88px;width:54px;height:54px}
   }
 
   @media(max-width:940px){
@@ -535,34 +511,15 @@
 </aside>
 <a class="wa-float" data-wa href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a>
 
-<!-- ===== AI ASSISTANT WIDGET ===== -->
-<button class="ai-float" id="aiToggle" aria-label="SUN SMART Assistant" aria-expanded="false">
-  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-10 10c0 1.8.46 3.5 1.28 5L2 22l5.2-1.24A10 10 0 1 0 12 2z"/><circle cx="8.3" cy="12" r="1.15" fill="#fff"/><circle cx="12" cy="12" r="1.15" fill="#fff"/><circle cx="15.7" cy="12" r="1.15" fill="#fff"/></svg>
-  <span class="dot" id="aiDot"></span>
+<!-- ===== FLOATING CART ===== -->
+<button class="cart-float" id="cartFloat" type="button" aria-label="Open cart">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+  <span class="cart-badge" hidden>0</span>
 </button>
-
-<div class="ai-panel" id="aiPanel" role="dialog" aria-label="SUN SMART Assistant">
-  <div class="ai-head">
-    <div class="ai-avatar"><img src="assets/logo-icon.png" alt=""></div>
-    <div class="ai-head-txt">
-      <b data-i18n="ai_name">SUN SMART Assistant</b>
-      <span data-i18n="ai_status">Instant answers</span>
-    </div>
-    <button class="ai-close" id="aiClose" aria-label="Close">&times;</button>
-  </div>
-  <div class="ai-messages" id="aiMessages"></div>
-  <div class="ai-chips" id="aiChips"></div>
-  <form class="ai-inputrow" id="aiForm">
-    <input class="ai-input" id="aiInput" type="text" data-i18n-ph="ai_placeholder" placeholder="Type your question…" autocomplete="off">
-    <button class="ai-send" type="submit" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg></button>
-  </form>
-</div>
-
 
 <script>
 const I18N = {
   en:{nav_about:"About",nav_products:"Products",nav_payment:"Payment",nav_pickup:"Delivery",nav_contact:"Contact",prod_addcart:"Add to Cart",cart_title:"Your Cart",cart_total:"Total",cart_checkout:"Checkout via WhatsApp",cart_clear:"Clear cart",cart_payonline:"💳 Pay Online",cart_payonline_processing:"Processing…",cart_payonline_error:"Something went wrong. Please try WhatsApp checkout instead.",
-    ai_name:"SUN SMART Assistant",ai_status:"Instant answers",ai_placeholder:"Type your question…",
     hero_badge:"New · Pre-owned · Accessories · Klang Valley",
     hero_tagline:"Smart Choice, Brighter Connection",hero_title:"New & pre-owned smartphones you can trust.",
     hero_lead:"New phones, quality-checked pre-owned phones and accessories at honest prices — with flexible payment and easy in-store pickup in the Klang Valley.",
@@ -645,7 +602,6 @@ const I18N = {
     foot_tag:"Smart Choice, Brighter Connection. New & pre-owned smartphones and accessories in the Klang Valley.",
     foot_explore:"Explore",foot_policies:"Policies",foot_support:"Support",foot_copy:"© 2026 SUN SMART. All rights reserved.",foot_reg:"SUN SMART · Incorporated in Malaysia"},
   zh:{nav_about:"关于我们",nav_products:"产品",nav_payment:"付款方式",nav_pickup:"配送",nav_contact:"联系我们",prod_addcart:"加入购物车",cart_title:"我的购物车",cart_total:"总计",cart_checkout:"WhatsApp 结账",cart_clear:"清空购物车",cart_payonline:"💳 在线付款",cart_payonline_processing:"处理中…",cart_payonline_error:"出现问题，请改用 WhatsApp 结账。",
-    ai_name:"SUN SMART 智能助手",ai_status:"即时解答",ai_placeholder:"请输入你的问题…",
     hero_badge:"新机 · 二手机 · 配件 · 雪隆区",
     hero_tagline:"智慧之选，亮点连接",hero_title:"值得信赖的新机与二手机。",
     hero_lead:"新手机、经过检测的二手机与手机配件，价格实在，付款灵活，雪隆区到店取货，方便安心。",
@@ -727,7 +683,6 @@ const I18N = {
     foot_tag:"智慧之选，亮点连接。雪隆区新机、二手机与手机配件。",
     foot_explore:"浏览",foot_policies:"条款政策",foot_support:"支持",foot_copy:"© 2026 SUN SMART 版权所有。",foot_reg:"SUN SMART · 在马来西亚注册成立"},
   ms:{nav_about:"Tentang",nav_products:"Produk",nav_payment:"Pembayaran",nav_pickup:"Penghantaran",nav_contact:"Hubungi",prod_addcart:"Tambah ke Troli",cart_title:"Troli Anda",cart_total:"Jumlah",cart_checkout:"Checkout melalui WhatsApp",cart_clear:"Kosongkan troli",cart_payonline:"💳 Bayar Dalam Talian",cart_payonline_processing:"Memproses…",cart_payonline_error:"Sesuatu tidak kena. Sila cuba checkout melalui WhatsApp.",
-    ai_name:"Pembantu SUN SMART",ai_status:"Jawapan segera",ai_placeholder:"Taip soalan anda…",
     hero_badge:"Baharu · Terpakai · Aksesori · Lembah Klang",
     hero_tagline:"Pilihan Bijak, Hubungan Lebih Cerah",hero_title:"Telefon pintar baharu & terpakai yang boleh dipercayai.",
     hero_lead:"Telefon baharu, telefon terpakai yang disemak kualiti, dan aksesori pada harga jujur — dengan pembayaran fleksibel dan ambilan mudah di kedai sekitar Lembah Klang.",
@@ -848,9 +803,8 @@ function renderCart(){
   if(!wrap) return;
   const lang=cartLang(), t=CART_STR[lang]||CART_STR.en;
   const items=getCart();
-  const badge=document.getElementById("cartBadge");
   const count=cartCount();
-  if(badge){ badge.textContent=count; badge.hidden=count===0; }
+  document.querySelectorAll(".cart-badge").forEach(b=>{ b.textContent=count; b.hidden=count===0; });
   if(!items.length){
     wrap.innerHTML='<div class="cart-empty">'+t.empty+'</div>';
   } else {
@@ -909,6 +863,8 @@ async function payOnline(){
 (function(){
   const cartBtn=document.getElementById("cartBtn"), cartClose=document.getElementById("cartClose"), cartOverlay=document.getElementById("cartOverlay"), cartClear=document.getElementById("cartClear"), cartItems=document.getElementById("cartItems");
   if(cartBtn) cartBtn.addEventListener("click", openCart);
+  const cartFloat=document.getElementById("cartFloat");
+  if(cartFloat) cartFloat.addEventListener("click", openCart);
   if(cartClose) cartClose.addEventListener("click", closeCart);
   if(cartOverlay) cartOverlay.addEventListener("click", closeCart);
   if(cartClear) cartClear.addEventListener("click", ()=>saveCart([]));
@@ -948,7 +904,6 @@ function applyLang(lang){
     a.setAttribute("href","https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(set[lang]||set.en));
   });
   try{localStorage.setItem("ss_lang",lang);}catch(e){}
-  if (typeof aiOnLangChange === "function") aiOnLangChange(lang);
   if (typeof renderCart === "function") renderCart();
 }
 (function(){document.querySelectorAll("[data-skeleton]").forEach(g=>{for(let i=0;i<4;i++){const e=document.createElement("div");e.className="prod glass";e.innerHTML='<div class="thumb"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 5h2"/></svg><span class="soon">COMING SOON</span></div><div class="body"><div class="nm"></div><div class="pr"></div></div>';g.appendChild(e);}});})();
@@ -990,200 +945,6 @@ if (toTopBtn) {
     toTopIO.observe(footerEl);
   }
 }
-/* ================= AI ASSISTANT (rule-based, on-site knowledge only) ================= */
-/* Reads its answers live from the page's own translated content (via data-i18n text),
-   so it always matches whatever is actually published -- update the site copy once,
-   the assistant stays in sync automatically. No external API, no cost, no key to leak. */
-const AI_STR = {
-  en:{greet:"Hi! I'm the SUN SMART assistant. I can answer common questions instantly, or connect you to our team on WhatsApp. What would you like to know?",
-    chip_hours:"Opening hours",chip_address:"Store address",chip_payment:"Payment methods",chip_repair:"Book a repair",chip_pickup:"Pickup process",chip_human:"Talk to our team",
-    fallback:"I'm not totally sure about that one -- let me connect you to our team on WhatsApp so they can help directly.",
-    waBtn:"Continue on WhatsApp",waPrefix:"Hi SUN SMART, I was chatting with your website assistant. My question: ",
-    thanksKw:["thank","thanks","tq"],thanksReply:"You're welcome! Anything else I can help with?"},
-  zh:{greet:"你好！我是 SUN SMART 智能助手，可以即时回答常见问题，或帮你转接 WhatsApp 联系我们的团队。请问需要了解什么？",
-    chip_hours:"营业时间",chip_address:"店铺地址",chip_payment:"付款方式",chip_repair:"预约维修",chip_pickup:"取货流程",chip_human:"联系真人客服",
-    fallback:"这个问题我不太确定，让我帮你转接 WhatsApp，由我们的团队直接为你解答。",
-    waBtn:"前往 WhatsApp 继续",waPrefix:"你好 SUN SMART，我刚才在网站上和智能助手聊天，我的问题是：",
-    thanksKw:["谢谢","感谢"],thanksReply:"不客气！还有其他想了解的吗？"},
-  ms:{greet:"Hai! Saya pembantu SUN SMART. Saya boleh jawab soalan lazim serta-merta, atau sambungkan anda ke pasukan kami di WhatsApp. Apa yang anda ingin tahu?",
-    chip_hours:"Waktu operasi",chip_address:"Alamat kedai",chip_payment:"Kaedah pembayaran",chip_repair:"Tempah pembaikan",chip_pickup:"Proses ambil di kedai",chip_human:"Bercakap dengan pasukan kami",
-    fallback:"Saya kurang pasti tentang soalan itu -- biar saya sambungkan anda ke pasukan kami di WhatsApp untuk bantuan terus.",
-    waBtn:"Teruskan di WhatsApp",waPrefix:"Hai SUN SMART, saya baru sembang dengan pembantu di laman web anda. Soalan saya: ",
-    thanksKw:["terima kasih","tq"],thanksReply:"Sama-sama! Ada lagi yang boleh saya bantu?"}
-};
-function aiLang(){ let l="en"; try{ l=localStorage.getItem("ss_lang")||"en"; }catch(e){} return AI_STR[l]?l:"en"; }
-function aiTxt(key){ const el=document.querySelector('[data-i18n="'+key+'"]'); return el ? el.textContent.trim() : ""; }
-function aiEscape(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
-function aiWaLink(text){ return "https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(text); }
-function aiWaButton(lang, extra){
-  const s = AI_STR[lang];
-  return '<a class="btn btn-wa wa-inline" target="_blank" rel="noopener" href="'+aiWaLink(s.waPrefix+(extra||""))+'">'+s.waBtn+'</a>';
-}
-
-const AI_INTENTS = [
-  { id:"hours", keywords:{en:["hour","open","close","time"],zh:["营业","几点","开门","关门","时间"],ms:["waktu","bila","buka","tutup","beroperasi"]},
-    build:()=> "<b>"+aiTxt("con_hours_t")+":</b> "+aiTxt("con_hours_v") },
-  { id:"address", keywords:{en:["address","location","where","shop is","store is","directions"],zh:["地址","在哪","位置","怎么走"],ms:["alamat","lokasi","kedai","mana"]},
-    build:()=> "<b>"+aiTxt("con_addr_t")+":</b> "+aiTxt("con_addr_v") },
-  { id:"contact", keywords:{en:["phone number","call you","contact number","email"],zh:["电话","联系方式","号码","电邮"],ms:["telefon","hubungi","nombor","emel"]},
-    build:()=> aiTxt("con_phone_t")+": "+aiTxt("con_phone_v")+"<br>"+aiTxt("con_email_t")+": "+aiTxt("con_email_v") },
-  { id:"payment", keywords:{en:["pay","payment","duitnow","credit card","cash","paylater","bnpl","installment"],zh:["付款","现金","信用卡","分期","duitnow"],ms:["bayar","pembayaran","tunai","kad","ansuran"]},
-    build:(lang)=> ({en:"We accept Cash, Bank Transfer, DuitNow QR, Credit/Debit Card, and PayLater / BNPL. <a href=\"payment.html\">See the Payment page</a> for details.",
-      zh:"我们接受现金、银行转账、DuitNow QR、信用卡/借记卡，以及 PayLater / 分期付款。查看<a href=\"payment.html\">付款页面</a>了解详情。",
-      ms:"Kami menerima Tunai, Pindahan Bank, DuitNow QR, Kad Kredit/Debit, dan PayLater / BNPL. Lihat <a href=\"payment.html\">halaman Pembayaran</a> untuk butiran."}[lang]) },
-  { id:"newphones", keywords:{en:["new phone","brand new"],zh:["新机","新手机"],ms:["telefon baharu","baharu"]},
-    build:(lang)=> ({en:"We carry mid-range Android smartphones from leading brands, typically RM500–RM3,000, all with manufacturer warranty. <a href=\"products.html\">Browse New Phones</a>.",
-      zh:"我们提供主流品牌的中低价 Android 手机，价格多在 RM500–RM3,000，均附原厂保修。<a href=\"products.html\">浏览新手机</a>。",
-      ms:"Kami membawa Android pertengahan daripada jenama terkemuka, biasanya RM500–RM3,000, semuanya dengan waranti pengeluar. <a href=\"products.html\">Lihat Telefon Baharu</a>."}[lang]) },
-  { id:"usedphones", keywords:{en:["used phone","second hand","pre-owned","preowned"],zh:["二手机","二手"],ms:["telefon terpakai","terpakai"]},
-    build:(lang)=> ({en:"Every pre-owned phone is quality-checked and graded by condition, with battery health and functions tested and clearly stated. <a href=\"products.html\">Browse Pre-owned Phones</a>.",
-      zh:"每台二手机都经过检测并按状况分级，电池健康度与功能均已测试并清楚说明。<a href=\"products.html\">浏览二手机</a>。",
-      ms:"Setiap telefon terpakai disemak kualiti dan digredkan mengikut keadaan, dengan kesihatan bateri dan fungsi diuji serta dinyatakan dengan jelas. <a href=\"products.html\">Lihat Telefon Terpakai</a>."}[lang]) },
-  { id:"accessories", keywords:{en:["accessory","accessories","case","charger","cable","powerbank","earbud"],zh:["配件","手机壳","充电","耳机"],ms:["aksesori","casing","pengecas","kabel"]},
-    build:(lang)=> ({en:"Cases, tempered glass, chargers, cables, power banks, wireless earbuds and other everyday essentials. <a href=\"products.html\">Browse Accessories</a>.",
-      zh:"手机壳、钢化膜、充电器、充电线、移动电源、蓝牙耳机等常用配件。<a href=\"products.html\">浏览配件</a>。",
-      ms:"Casing, cermin tempered, pengecas, kabel, power bank, fon telinga wayarles dan keperluan harian lain. <a href=\"products.html\">Lihat Aksesori</a>."}[lang]) },
-  { id:"repair", keywords:{en:["repair","fix","broken","crack","screen","battery issue","technician"],zh:["维修","修","坏了","爆屏","换电池"],ms:["baiki","pembaikan","rosak","skrin"]},
-    build:(lang)=> ({en:"Professional repair on a booking basis — message us on WhatsApp to book, drop off your device for a full diagnostic, and we only proceed after you approve the quote. <a href=\"repair.html\">See the Repair page</a> for full details.",
-      zh:"专业手机维修，采用预约制——WhatsApp 预约后送修，我们会全面检测，报价经你确认后才开始维修。查看<a href=\"repair.html\">维修页面</a>了解详情。",
-      ms:"Pembaikan profesional secara temujanji — hubungi kami di WhatsApp untuk menempah, hantar peranti untuk diagnosis penuh, dan kami hanya meneruskan selepas anda meluluskan sebut harga. Lihat <a href=\"repair.html\">halaman Pembaikan</a> untuk butiran penuh."}[lang]), wa:true },
-  { id:"tradein", keywords:{en:["trade-in","trade in","sell my phone","upgrade","exchange my"],zh:["换购","以旧换新","换新机"],ms:["tukar ganti","jual telefon"]},
-    build:(lang)=> ({en:"Send us your phone's model, condition and storage on WhatsApp for an estimated value, then bring it in for inspection. Final value depends on model, condition and inspection results. <a href=\"tradein.html\">See the Trade-In page</a> for full details.",
-      zh:"在 WhatsApp 提供手机型号、状况与容量以获取预估价值，再到店检测。最终价值将根据型号、状况及检测结果而定。查看<a href=\"tradein.html\">以旧换新页面</a>了解详情。",
-      ms:"Hantar model, keadaan dan storan telefon anda di WhatsApp untuk anggaran nilai, kemudian bawa untuk pemeriksaan. Nilai akhir bergantung pada model, keadaan dan keputusan pemeriksaan. Lihat <a href=\"tradein.html\">halaman Tukar Ganti</a> untuk butiran penuh."}[lang]), wa:true },
-  { id:"pickup", keywords:{en:["pickup","pick up","collect","delivery","ship","courier"],zh:["取货","自取","配送","邮寄","快递"],ms:["ambil","penghantaran","pos"]},
-    build:(lang)=> ({en:"Order online, then choose in-store pickup or nationwide courier delivery (West Malaysia 1–3 business days, East Malaysia 3–7 business days). <a href=\"delivery.html\">See the Delivery page</a> for full details.",
-      zh:"线上下单后，可选择到店取货或全国快递配送（西马1–3个工作天，东马3–7个工作天）。查看<a href=\"delivery.html\">配送页面</a>了解详情。",
-      ms:"Pesan dalam talian, kemudian pilih ambil di kedai atau penghantaran kurier ke seluruh negara (Semenanjung 1–3 hari bekerja, Sabah & Sarawak 3–7 hari bekerja). Lihat <a href=\"delivery.html\">halaman Penghantaran</a> untuk butiran penuh."}[lang]) },
-  { id:"warranty", keywords:{en:["warranty","guarantee"],zh:["保修","保固"],ms:["waranti","jaminan"]},
-    build:(lang)=> ({en:"Brand new devices carry the manufacturer's warranty; pre-owned devices carry a limited store warranty stated at purchase. Full terms are in our Warranty Policy under Policies.",
-      zh:"全新设备享有原厂保修；二手设备享有购买时说明的店铺保修。完整条款请见「政策」中的保修政策。",
-      ms:"Peranti baharu disertakan waranti pengeluar; peranti terpakai disertakan waranti kedai terhad seperti dinyatakan semasa pembelian. Terma penuh ada di Dasar Waranti dalam bahagian Dasar."}[lang]) },
-  { id:"returns", keywords:{en:["return","refund","exchange"],zh:["退货","退换","退款"],ms:["pemulangan","tukar","bayaran balik"]},
-    build:(lang)=> ({en:"If a product is dead-on-arrival or defective, let us know within 7 days and we'll arrange repair, replacement or refund after inspection. Full terms are in our Refund & Return Policy under Policies.",
-      zh:"若产品到货即坏或有缺陷，请在7天内通知我们，经检查后我们会安排维修、更换或退款。完整条款请见「政策」中的退款与退货政策。",
-      ms:"Jika produk rosak semasa tiba atau cacat, maklumkan kami dalam masa 7 hari dan kami akan uruskan pembaikan, pertukaran atau bayaran balik selepas pemeriksaan. Terma penuh ada di Dasar Bayaran Balik & Pemulangan dalam bahagian Dasar."}[lang]) },
-  { id:"privacy", keywords:{en:["privacy","personal data","pdpa"],zh:["隐私","个人资料"],ms:["privasi","data peribadi"]},
-    build:(lang)=> ({en:"We protect your personal data in line with Malaysia's PDPA and only use it to serve your order, support and warranty needs. Full details are in our Privacy Policy under Policies.",
-      zh:"我们依据马来西亚《个人资料保护法》(PDPA) 保护你的个人资料，仅用于处理订单、客服与保修需求。详情请见「政策」中的隐私政策。",
-      ms:"Kami melindungi data peribadi anda selaras dengan PDPA Malaysia dan hanya menggunakannya untuk pesanan, sokongan dan keperluan waranti anda. Butiran penuh ada di Dasar Privasi dalam bahagian Dasar."}[lang]) },
-  { id:"stock", keywords:{en:["price","cost","how much","stock","available","have iphone","have samsung","model"],zh:["价格","多少钱","价钱","库存","有没有","型号"],ms:["harga","berapa","stok","ada","model"]},
-    build:(lang)=> ({en:"Prices & live stock will appear here once our catalogue is online. <a href=\"products.html\">Browse products by brand</a> or message us on WhatsApp for the current price and availability of any model.",
-      zh:"产品目录上线后，价格与实时库存将显示于此。<a href=\"products.html\">按品牌浏览产品</a>，或 WhatsApp 咨询任何型号的最新价格与库存。",
-      ms:"Harga & stok langsung akan dipaparkan di sini sebaik katalog kami dalam talian. <a href=\"products.html\">Lihat produk mengikut jenama</a> atau hubungi kami di WhatsApp untuk harga dan ketersediaan semasa mana-mana model."}[lang]), wa:true }
-];
-
-function aiMatch(input, lang){
-  const q = input.toLowerCase();
-  let best=null, bestScore=0;
-  AI_INTENTS.forEach(intent=>{
-    const kws = intent.keywords[lang] || intent.keywords.en;
-    let score=0;
-    kws.forEach(kw=>{ if(q.includes(kw.toLowerCase())) score++; });
-    if(score>bestScore){ bestScore=score; best=intent; }
-  });
-  return best;
-}
-
-let aiOpened=false;
-function aiAddMsg(role, html){
-  const box=document.getElementById("aiMessages");
-  const el=document.createElement("div");
-  el.className="msg "+role;
-  el.innerHTML=html;
-  box.appendChild(el);
-  box.scrollTop=box.scrollHeight;
-}
-function aiRenderChips(){
-  const lang=aiLang(), s=AI_STR[lang];
-  const chipDefs=[["hours",s.chip_hours],["address",s.chip_address],["payment",s.chip_payment],["repair",s.chip_repair],["pickup",s.chip_pickup]];
-  const box=document.getElementById("aiChips");
-  box.innerHTML="";
-  chipDefs.forEach(([id,label])=>{
-    const b=document.createElement("button");
-    b.type="button"; b.textContent=label;
-    b.addEventListener("click",()=>aiAsk(label, id));
-    box.appendChild(b);
-  });
-  const human=document.createElement("button");
-  human.type="button"; human.textContent=s.chip_human;
-  human.addEventListener("click",()=>{
-    aiAddMsg("user", aiEscape(s.chip_human));
-    aiAddMsg("bot", aiWaButton(lang));
-  });
-  box.appendChild(human);
-}
-function aiAsk(text, forceIntentId){
-  const lang=aiLang(), s=AI_STR[lang];
-  aiAddMsg("user", aiEscape(text));
-  const intent = forceIntentId ? AI_INTENTS.find(i=>i.id===forceIntentId) : aiMatch(text, lang);
-  if (s.thanksKw.some(k=>text.toLowerCase().includes(k))) { aiAddMsg("bot", s.thanksReply); return; }
-  if (intent) {
-    let html = intent.build(lang);
-    if (intent.wa) html += aiWaButton(lang, text);
-    aiAddMsg("bot", html);
-  } else {
-    aiAddMsg("bot", s.fallback + aiWaButton(lang, text));
-  }
-}
-function aiOpen(){
-  const panel=document.getElementById("aiPanel");
-  panel.classList.add("open");
-  document.getElementById("aiToggle").setAttribute("aria-expanded","true");
-  document.getElementById("aiDot").style.display="none";
-  if (!aiOpened) { aiOpened=true; aiAddMsg("bot", AI_STR[aiLang()].greet); aiRenderChips(); }
-  document.getElementById("aiInput").focus();
-}
-function aiClose(){
-  document.getElementById("aiPanel").classList.remove("open");
-  document.getElementById("aiToggle").setAttribute("aria-expanded","false");
-}
-function aiOnLangChange(){
-  if (aiOpened) aiRenderChips(); // refresh chip labels; message history stays as-is
-}
-document.getElementById("aiToggle").addEventListener("click",()=>{
-  document.getElementById("aiPanel").classList.contains("open") ? aiClose() : aiOpen();
-});
-document.getElementById("aiClose").addEventListener("click", aiClose);
-document.getElementById("aiForm").addEventListener("submit",(e)=>{
-  e.preventDefault();
-  const input=document.getElementById("aiInput");
-  const val=input.value.trim();
-  if(!val) return;
-  input.value="";
-  aiAsk(val);
-});
-
-/* ---- product gallery: colour swatches + swipe ---- */
-(function(){
-  const main=document.getElementById("pdMain");
-  if(!main) return;
-  const mainImg=document.getElementById("pdMainImg");
-  const colorName=document.getElementById("pdColorName");
-  const thumbs=[...document.querySelectorAll("#pdThumbs .pd-thumb")];
-  let idx=0;
-  function show(i){
-    idx=(i+thumbs.length)%thumbs.length;
-    const t=thumbs[idx];
-    mainImg.src=t.dataset.img;
-    mainImg.alt="iPhone 11 128GB - "+t.dataset.color;
-    colorName.textContent=t.dataset.color;
-    thumbs.forEach(x=>x.classList.remove("active"));
-    t.classList.add("active");
-  }
-  thumbs.forEach((t,i)=>t.addEventListener("click",()=>show(i)));
-  document.getElementById("pdPrev").addEventListener("click",()=>show(idx-1));
-  document.getElementById("pdNext").addEventListener("click",()=>show(idx+1));
-  let startX=null;
-  main.addEventListener("touchstart",e=>{startX=e.touches[0].clientX;},{passive:true});
-  main.addEventListener("touchend",e=>{
-    if(startX===null) return;
-    const dx=e.changedTouches[0].clientX-startX;
-    if(Math.abs(dx)>40) show(dx<0?idx+1:idx-1);
-    startX=null;
-  },{passive:true});
-})();
-
 let saved="en";try{saved=localStorage.getItem("ss_lang")||"en";}catch(e){}
 applyLang(saved);
 </script>
