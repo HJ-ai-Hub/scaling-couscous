@@ -314,6 +314,33 @@
   .cart-clear{display:block;text-align:center;font-size:12.5px;color:var(--muted);text-decoration:underline;cursor:pointer;margin-top:10px;background:none;border:0;width:100%}
   .cart-clear:hover{color:var(--red)}
   .btn-disabled{opacity:.45;pointer-events:none;filter:grayscale(.3)}
+
+  /* ---------- repair services & pricing ---------- */
+  .rs-cat{display:flex;align-items:center;gap:13px;margin:40px 0 16px;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+  .rs-cat::after{content:"";flex:1;height:1px;background:var(--line)}
+  .rs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+  .rs-card{border-radius:var(--radius-sm);padding:20px;display:flex;flex-direction:column;gap:13px}
+  .rs-top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 12px}
+  .rs-top h4{font-size:15.5px;font-weight:700;margin:0;line-height:1.35;flex:1 1 170px;min-width:0}
+  .rs-tat{flex:0 0 auto;font-size:11.5px;font-weight:700;color:var(--muted);background:var(--soft);border-radius:999px;padding:4px 11px;white-space:nowrap}
+  .rs-prices{display:flex;flex-wrap:wrap;gap:9px}
+  .rs-chip{flex:1 1 130px;min-width:0;background:rgba(35,64,200,.07);border-radius:10px;padding:10px 13px}
+  .rs-chip span{display:block;font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-3);margin-bottom:3px}
+  .rs-chip b{display:block;font-size:15px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
+  .rs-note{font-size:13px;line-height:1.55;color:var(--muted);margin:0;padding-top:12px;border-top:1px dashed var(--line)}
+  .rs-note.warn{color:var(--red);border-top-color:rgba(208,33,31,.24)}
+  .rs-cta{display:inline-flex;align-items:center;justify-content:center;gap:7px;margin-top:auto;background:#25D366;color:#fff;font-weight:700;font-size:13px;padding:10px 14px;border-radius:999px;transition:transform .14s,box-shadow .2s}
+  .rs-cta:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(37,211,102,.34)}
+  .rs-cta:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+  .rs-terms{margin-top:46px;border-radius:var(--radius);padding:30px 28px}
+  .rs-terms h3{font-size:17px;margin:0 0 20px}
+  .rs-terms ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:18px 26px}
+  .rs-terms li{display:flex;gap:12px;align-items:flex-start}
+  .rs-terms li svg{width:19px;height:19px;flex:0 0 auto;margin-top:2px;stroke:var(--blue-3);fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+  .rs-terms b{display:block;font-size:14px;margin-bottom:3px;color:var(--ink)}
+  .rs-terms p{margin:0;font-size:13.2px;color:var(--muted);line-height:1.55}
+  .rs-disclaimer{margin-top:26px}
+  @media(max-width:560px){.rs-grid{grid-template-columns:1fr}.rs-terms{padding:24px 20px}}
 </style>
 </head>
 <body>
@@ -362,6 +389,111 @@
     </div>
     <p class="note glass" data-i18n="rep_note">No repair is carried out until you have approved the quotation. The turnaround time (TAT) is confirmed when you drop off your device.</p>
     <div class="center" style="margin-top:28px"><a class="btn btn-wa" data-wa="repair" href="#" data-i18n="rep_cta">Book a repair on WhatsApp</a></div>
+  </div>
+</section>
+
+<!-- ===== REPAIR SERVICES & PRICING ===== -->
+<section id="repair-pricing">
+  <div class="blob r" style="width:300px;height:300px;bottom:-80px;left:-90px"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow" data-i18n="rs_eyebrow">Services &amp; pricing</div>
+      <h2 data-i18n="rs_title">Repair Services &amp; Indicative Pricing</h2>
+      <p data-i18n="rs_sub">Typical market ranges to help you plan. Your final price depends on your exact model and the diagnostic result — message us on WhatsApp for a firm quote.</p>
+    </div>
+    <h3 class="rs-cat"><span data-i18n="rs_cat1">Screen &amp; display</span></h3>
+    <div class="rs-grid">
+      <article class="rs-card glass reveal">
+        <div class="rs-top"><h4 data-i18n="rs_n_screen">Screen / digitiser replacement</h4><span class="rs-tat" data-i18n="rs_tat1">From 1 day</span></div>
+        <div class="rs-prices"><div class="rs-chip"><span data-i18n="rs_l_android">Android</span><b>RM 90–800</b></div><div class="rs-chip"><span data-i18n="rs_l_iphone">iPhone</span><b>RM 180–1,300</b></div></div>
+        <p class="rs-note" data-i18n="rs_d_screen">Price depends on your exact model and panel type — OLED and Pro Max panels sit at the top of the range.</p>
+        <a class="rs-cta" data-wa="rep_screen" href="#">💬 <span data-i18n="rs_enquire">Enquire final price</span></a>
+      </article>
+      <article class="rs-card glass reveal">
+        <div class="rs-top"><h4 data-i18n="rs_n_backglass">Back glass / rear housing</h4><span class="rs-tat" data-i18n="rs_tat12">1–2 days</span></div>
+        <div class="rs-prices"><div class="rs-chip"><span data-i18n="rs_l_android">Android</span><b>RM 100–250</b></div><div class="rs-chip"><span data-i18n="rs_l_iphone">iPhone</span><b>RM 150–450</b></div></div>
+        <p class="rs-note" data-i18n="rs_d_backglass">iPhone Pro titanium frames need specialised tooling and sit at the top of the range.</p>
+        <a class="rs-cta" data-wa="rep_backglass" href="#">💬 <span data-i18n="rs_enquire">Enquire final price</span></a>
+      </article>
+    </div>
+    <h3 class="rs-cat"><span data-i18n="rs_cat2">Power &amp; charging</span></h3>
+    <div class="rs-grid">
+      <article class="rs-card glass reveal">
+        <div class="rs-top"><h4 data-i18n="rs_n_battery">Battery replacement</h4><span class="rs-tat" data-i18n="rs_tat1">From 1 day</span></div>
+        <div class="rs-prices"><div class="rs-chip"><span data-i18n="rs_l_android">Android</span><b>RM 80–180</b></div><div class="rs-chip"><span data-i18n="rs_l_iphone">iPhone</span><b>RM 150–320</b></div></div>
+        <p class="rs-note" data-i18n="rs_d_battery">Includes a battery health check before and after the replacement.</p>
+        <a class="rs-cta" data-wa="rep_battery" href="#">💬 <span data-i18n="rs_enquire">Enquire final price</span></a>
+      </article>
+      <article class="rs-card glass reveal">
+        <div class="rs-top"><h4 data-i18n="rs_n_port">Charging port repair</h4><span class="rs-tat" data-i18n="rs_tat1">From 1 day</span></div>
+        <div class="rs-prices"><div class="rs-chip"><span data-i18n="rs_l_android">Android</span><b>RM 80–150</b></div><div class="rs-chip"><span data-i18n="rs_l_iphone">iPhone</span><b>RM 120–220</b></div></div>
+        <p class="rs-note" data-i18n="rs_d_port">Often only cleaning is needed rather than a part swap — we confirm after the diagnostic.</p>
+        <a class="rs-cta" data-wa="rep_port" href="#">💬 <span data-i18n="rs_enquire">Enquire final price</span></a>
+      </article>
+    </div>
+    <h3 class="rs-cat"><span data-i18n="rs_cat3">Camera, audio &amp; sensors</span></h3>
+    <div class="rs-grid">
+      <article class="rs-card glass reveal">
+        <div class="rs-top"><h4 data-i18n="rs_n_camera">Camera module repair</h4><span class="rs-tat" data-i18n="rs_tat1">From 1 day</span></div>
+        <div class="rs-prices"><div class="rs-chip"><span data-i18n="rs_l_android">Android</span><b>RM 100–250</b></div><div class="rs-chip"><span data-i18n="rs_l_iphone">iPhone</span><b>RM 180–450</b></div></div>
+        <p class="rs-note" data-i18n="rs_d_camera">On multi-lens models the price depends on which lens is affected.</p>
+        <a class="rs-cta" data-wa="rep_camera" href="#">💬 <span data-i18n="rs_enquire">Enquire final price</span></a>
+      </article>
+      <article class="rs-card glass reveal">
+        <div class="rs-top"><h4 data-i18n="rs_n_audio">Speaker / earpiece / microphone</h4><span class="rs-tat" data-i18n="rs_tat1">From 1 day</span></div>
+        <div class="rs-prices"><div class="rs-chip"><span data-i18n="rs_l_both">Android &amp; iPhone</span><b>RM 60–150</b></div></div>
+        <p class="rs-note" data-i18n="rs_d_audio">Fairly consistent across brands and models.</p>
+        <a class="rs-cta" data-wa="rep_audio" href="#">💬 <span data-i18n="rs_enquire">Enquire final price</span></a>
+      </article>
+      <article class="rs-card glass reveal">
+        <div class="rs-top"><h4 data-i18n="rs_n_faceid">Face ID / fingerprint sensor</h4><span class="rs-tat" data-i18n="rs_tat12">1–2 days</span></div>
+        <div class="rs-prices"><div class="rs-chip"><span data-i18n="rs_l_fp">Fingerprint · Android</span><b>RM 80–180</b></div><div class="rs-chip"><span data-i18n="rs_l_faceid">Face ID · iPhone</span><b>RM 200–400</b></div></div>
+        <p class="rs-note warn" data-i18n="rs_d_faceid">⚠ Apple's part-pairing means Face ID may not fully restore after a repair on some iPhone models. We will always confirm this with you before any work begins.</p>
+        <a class="rs-cta" data-wa="rep_faceid" href="#">💬 <span data-i18n="rs_enquire">Enquire final price</span></a>
+      </article>
+    </div>
+    <h3 class="rs-cat"><span data-i18n="rs_cat4">Diagnostics &amp; complex repairs</span></h3>
+    <div class="rs-grid">
+      <article class="rs-card glass reveal">
+        <div class="rs-top"><h4 data-i18n="rs_n_water">Water / liquid damage treatment</h4><span class="rs-tat" data-i18n="rs_tat13">1–3 days</span></div>
+        <div class="rs-prices"><div class="rs-chip"><span data-i18n="rs_l_treat">Treatment</span><b>RM 80–200</b></div><div class="rs-chip"><span data-i18n="rs_l_diag">Diagnostic fee</span><b>RM 30–60</b></div></div>
+        <p class="rs-note" data-i18n="rs_d_water">Success can never be guaranteed. If we cannot complete the repair, the diagnostic fee is waived and you pay nothing.</p>
+        <a class="rs-cta" data-wa="rep_water" href="#">💬 <span data-i18n="rs_enquire">Enquire final price</span></a>
+      </article>
+      <article class="rs-card glass reveal">
+        <div class="rs-top"><h4 data-i18n="rs_n_board">Board-level / micro-soldering</h4><span class="rs-tat" data-i18n="rs_tat25">2–5 days</span></div>
+        <div class="rs-prices"><div class="rs-chip"><span data-i18n="rs_l_both">Android &amp; iPhone</span><b>From RM 150</b></div></div>
+        <p class="rs-note" data-i18n="rs_d_board">Highly variable — the firm quote follows the diagnostic. No fix, no fee applies.</p>
+        <a class="rs-cta" data-wa="rep_board" href="#">💬 <span data-i18n="rs_enquire">Enquire final price</span></a>
+      </article>
+      <article class="rs-card glass reveal">
+        <div class="rs-top"><h4 data-i18n="rs_n_software">Software — OS reinstall, boot loop, unlock, malware</h4><span class="rs-tat" data-i18n="rs_tat1">From 1 day</span></div>
+        <div class="rs-prices"><div class="rs-chip"><span data-i18n="rs_l_both">Android &amp; iPhone</span><b>RM 50–150</b></div></div>
+        <p class="rs-note" data-i18n="rs_d_software">No parts involved — this is labour only.</p>
+        <a class="rs-cta" data-wa="rep_software" href="#">💬 <span data-i18n="rs_enquire">Enquire final price</span></a>
+      </article>
+      <article class="rs-card glass reveal">
+        <div class="rs-top"><h4 data-i18n="rs_n_diag">General diagnostic</h4><span class="rs-tat" data-i18n="rs_tat1">From 1 day</span></div>
+        <div class="rs-prices"><div class="rs-chip"><span data-i18n="rs_l_both">Android &amp; iPhone</span><b>RM 0–30</b></div></div>
+        <p class="rs-note" data-i18n="rs_d_diag">A full 360° check of your device. The exact fee is confirmed when you drop it off.</p>
+        <a class="rs-cta" data-wa="rep_diag" href="#">💬 <span data-i18n="rs_enquire">Enquire final price</span></a>
+      </article>
+    </div>
+
+    <div class="rs-terms glass reveal">
+      <h3 data-i18n="rs_terms_t">What every repair includes</h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div><b data-i18n="rs_t1_t">OEM &amp; original parts</b><p data-i18n="rs_t1_d">We fit OEM and original parts on every repair — no copy or compatible-grade parts.</p></div></li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg><div><b data-i18n="rs_t2_t">30-day warranty</b><p data-i18n="rs_t2_d">Every repair carries a 30-day warranty covering both parts and labour.</p></div></li>
+        <li><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg><div><b data-i18n="rs_t3_t">No fix, no fee</b><p data-i18n="rs_t3_d">For water damage and board-level work: if we cannot complete the repair, the diagnostic fee is waived and you pay nothing.</p></div></li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><div><b data-i18n="rs_t4_t">Face ID notice</b><p data-i18n="rs_t4_d">Apple's part-pairing can prevent Face ID from fully restoring after certain iPhone repairs. We confirm this with you before starting.</p></div></li>
+        <li><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div><b data-i18n="rs_t5_t">Payment on approval</b><p data-i18n="rs_t5_d">Full payment is due once you approve the quotation after consultation. Repairs are settled in store — online payment is not available for repair services.</p></div></li>
+        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b data-i18n="rs_t6_t">Turnaround</b><p data-i18n="rs_t6_d">All repairs take a minimum of 1 working day. Your exact turnaround time is confirmed when you drop the device off.</p></div></li>
+      </ul>
+    </div>
+
+    <p class="note glass rs-disclaimer" data-i18n="rs_disclaimer">💬 Prices above are indicative ranges for guidance only and are not a quotation. Send us your phone model on WhatsApp and we will confirm the final price.</p>
+    <div class="center" style="margin-top:26px"><a class="btn btn-wa" data-wa="repair" href="#" data-i18n="rep_cta">Book a repair on WhatsApp</a></div>
   </div>
 </section>
 
@@ -461,6 +593,61 @@ const I18N = {
     rep4_t:"4. Approve, repair & collect",rep4_d:"Repair proceeds only after you approve the quote; then collect and check your device.",
     rep_note:"No repair is carried out until you have approved the quotation. The turnaround time (TAT) is confirmed when you drop off your device.",
     rep_cta:"Book a repair on WhatsApp",
+    rs_eyebrow:"Services &amp; pricing",
+    rs_title:"Repair Services &amp; Indicative Pricing",
+    rs_sub:"Typical market ranges to help you plan. Your final price depends on your exact model and the diagnostic result — message us on WhatsApp for a firm quote.",
+    rs_cat1:"Screen &amp; display",
+    rs_cat2:"Power &amp; charging",
+    rs_cat3:"Camera, audio &amp; sensors",
+    rs_cat4:"Diagnostics &amp; complex repairs",
+    rs_l_android:"Android",
+    rs_l_iphone:"iPhone",
+    rs_l_both:"Android &amp; iPhone",
+    rs_l_treat:"Treatment",
+    rs_l_diag:"Diagnostic fee",
+    rs_l_fp:"Fingerprint · Android",
+    rs_l_faceid:"Face ID · iPhone",
+    rs_tat1:"From 1 day",
+    rs_tat12:"1–2 days",
+    rs_tat13:"1–3 days",
+    rs_tat25:"2–5 days",
+    rs_enquire:"Enquire final price",
+    rs_terms_t:"What every repair includes",
+    rs_t1_t:"OEM &amp; original parts",
+    rs_t1_d:"We fit OEM and original parts on every repair — no copy or compatible-grade parts.",
+    rs_t2_t:"30-day warranty",
+    rs_t2_d:"Every repair carries a 30-day warranty covering both parts and labour.",
+    rs_t3_t:"No fix, no fee",
+    rs_t3_d:"For water damage and board-level work: if we cannot complete the repair, the diagnostic fee is waived and you pay nothing.",
+    rs_t4_t:"Face ID notice",
+    rs_t4_d:"Apple's part-pairing can prevent Face ID from fully restoring after certain iPhone repairs. We confirm this with you before starting.",
+    rs_t5_t:"Payment on approval",
+    rs_t5_d:"Full payment is due once you approve the quotation after consultation. Repairs are settled in store — online payment is not available for repair services.",
+    rs_t6_t:"Turnaround",
+    rs_t6_d:"All repairs take a minimum of 1 working day. Your exact turnaround time is confirmed when you drop the device off.",
+    rs_disclaimer:"💬 Prices above are indicative ranges for guidance only and are not a quotation. Send us your phone model on WhatsApp and we will confirm the final price.",
+    rs_n_screen:"Screen / digitiser replacement",
+    rs_d_screen:"Price depends on your exact model and panel type — OLED and Pro Max panels sit at the top of the range.",
+    rs_n_backglass:"Back glass / rear housing",
+    rs_d_backglass:"iPhone Pro titanium frames need specialised tooling and sit at the top of the range.",
+    rs_n_battery:"Battery replacement",
+    rs_d_battery:"Includes a battery health check before and after the replacement.",
+    rs_n_port:"Charging port repair",
+    rs_d_port:"Often only cleaning is needed rather than a part swap — we confirm after the diagnostic.",
+    rs_n_camera:"Camera module repair",
+    rs_d_camera:"On multi-lens models the price depends on which lens is affected.",
+    rs_n_audio:"Speaker / earpiece / microphone",
+    rs_d_audio:"Fairly consistent across brands and models.",
+    rs_n_faceid:"Face ID / fingerprint sensor",
+    rs_d_faceid:"⚠ Apple's part-pairing means Face ID may not fully restore after a repair on some iPhone models. We will always confirm this with you before any work begins.",
+    rs_n_water:"Water / liquid damage treatment",
+    rs_d_water:"Success can never be guaranteed. If we cannot complete the repair, the diagnostic fee is waived and you pay nothing.",
+    rs_n_board:"Board-level / micro-soldering",
+    rs_d_board:"Highly variable — the firm quote follows the diagnostic. No fix, no fee applies.",
+    rs_n_software:"Software — OS reinstall, boot loop, unlock, malware",
+    rs_d_software:"No parts involved — this is labour only.",
+    rs_n_diag:"General diagnostic",
+    rs_d_diag:"A full 360° check of your device. The exact fee is confirmed when you drop it off.",
     tin_eyebrow:"Trade-In",tin_title:"Trade In Your Old Phone",
     tin_sub:"Trade in your old smartphone for a competitive value and upgrade with confidence.",
     tin1_t:"1. Send device details",tin1_d:"Message us your phone's model, condition and storage on WhatsApp for an estimated value.",
@@ -531,6 +718,61 @@ const I18N = {
     rep4_t:"4. 确认、维修与取件",rep4_d:"报价经你确认后才开始维修；完成后到店取件并检查。",
     rep_note:"未经你确认报价前，绝不进行任何维修。预计维修时间（TAT）会在送修时告知。",
     rep_cta:"WhatsApp 预约维修",
+    rs_eyebrow:"服务与价格",
+    rs_title:"维修服务与参考价格",
+    rs_sub:"以下为市场行情参考价，方便你预算。最终价格取决于具体型号与检测结果——请通过 WhatsApp 咨询确切报价。",
+    rs_cat1:"屏幕与显示",
+    rs_cat2:"电池与充电",
+    rs_cat3:"摄像头、音频与传感器",
+    rs_cat4:"检测与复杂维修",
+    rs_l_android:"安卓",
+    rs_l_iphone:"iPhone",
+    rs_l_both:"安卓与 iPhone",
+    rs_l_treat:"处理费",
+    rs_l_diag:"检测费",
+    rs_l_fp:"指纹 · 安卓",
+    rs_l_faceid:"Face ID · iPhone",
+    rs_tat1:"1 个工作天起",
+    rs_tat12:"1–2 个工作天",
+    rs_tat13:"1–3 个工作天",
+    rs_tat25:"2–5 个工作天",
+    rs_enquire:"咨询最终价格",
+    rs_terms_t:"每次维修均包含",
+    rs_t1_t:"OEM 与原厂零件",
+    rs_t1_d:"所有维修均采用 OEM 与原厂零件，不使用副厂或仿制零件。",
+    rs_t2_t:"30 天保修",
+    rs_t2_d:"每项维修均享 30 天保修，涵盖零件与工艺。",
+    rs_t3_t:"修不好不收费",
+    rs_t3_d:"进水与主板级维修：若最终无法完成维修，检测费全免，你无需支付任何费用。",
+    rs_t4_t:"Face ID 说明",
+    rs_t4_d:"由于 Apple 的零件配对机制，部分 iPhone 维修后 Face ID 可能无法完全恢复。动工前我们会先与你确认。",
+    rs_t5_t:"确认报价后付款",
+    rs_t5_d:"经咨询并确认报价后需付全额费用。维修费用于店内结算——维修服务不支持线上付款。",
+    rs_t6_t:"维修时间",
+    rs_t6_d:"所有维修至少需 1 个工作天。确切维修时间将于送修时告知。",
+    rs_disclaimer:"💬 以上价格仅为参考区间，并非正式报价。请通过 WhatsApp 告知你的手机型号，我们将确认最终价格。",
+    rs_n_screen:"屏幕 / 触控屏更换",
+    rs_d_screen:"价格取决于具体型号与屏幕类型，OLED 及 Pro Max 屏幕属价格上限。",
+    rs_n_backglass:"后盖玻璃 / 机身外壳",
+    rs_d_backglass:"iPhone Pro 钛金属边框需专用工具，属价格上限。",
+    rs_n_battery:"电池更换",
+    rs_d_battery:"更换前后均会进行电池健康度检测。",
+    rs_n_port:"充电口维修",
+    rs_d_port:"很多情况只需清洁而非更换零件，检测后我们会告知。",
+    rs_n_camera:"摄像头模组维修",
+    rs_d_camera:"多镜头机型的价格取决于哪一颗镜头出现问题。",
+    rs_n_audio:"扬声器 / 听筒 / 麦克风",
+    rs_d_audio:"各品牌与型号的价格相近。",
+    rs_n_faceid:"Face ID / 指纹识别",
+    rs_d_faceid:"⚠ 由于 Apple 的零件配对机制，部分 iPhone 机型在维修后 Face ID 可能无法完全恢复。动工前我们必定先与你确认。",
+    rs_n_water:"进水 / 液体损坏处理",
+    rs_d_water:"无法保证一定修复成功。若最终无法完成维修，检测费全免，你无需支付任何费用。",
+    rs_n_board:"主板级 / 微焊接维修",
+    rs_d_board:"价格差异较大，确切报价以检测结果为准。适用「修不好不收费」。",
+    rs_n_software:"软件 — 系统重装 / 开机循环 / 解锁 / 恶意软件",
+    rs_d_software:"不涉及零件，仅收取工时费用。",
+    rs_n_diag:"综合检测",
+    rs_d_diag:"对手机进行完整的 360° 检测。确切费用于送修时告知。",
     tin_eyebrow:"以旧换新",tin_title:"旧机换新机",
     tin_sub:"以旧机换取合理价值，安心升级新手机。",
     tin1_t:"1. 告知手机详情",tin1_d:"在 WhatsApp 提供手机型号、状况与容量，获取预估价值。",
@@ -601,6 +843,61 @@ const I18N = {
     rep4_t:"4. Sahkan, baiki & ambil",rep4_d:"Pembaikan hanya diteruskan selepas anda meluluskan sebut harga; kemudian ambil dan periksa peranti anda.",
     rep_note:"Tiada pembaikan dilakukan sehingga anda meluluskan sebut harga. Masa siap (TAT) disahkan semasa anda menghantar peranti.",
     rep_cta:"Tempah pembaikan di WhatsApp",
+    rs_eyebrow:"Perkhidmatan &amp; harga",
+    rs_title:"Perkhidmatan Pembaikan &amp; Harga Indikatif",
+    rs_sub:"Julat pasaran biasa sebagai panduan. Harga akhir bergantung pada model anda dan keputusan diagnosis — hubungi kami di WhatsApp untuk sebut harga muktamad.",
+    rs_cat1:"Skrin &amp; paparan",
+    rs_cat2:"Kuasa &amp; pengecasan",
+    rs_cat3:"Kamera, audio &amp; sensor",
+    rs_cat4:"Diagnostik &amp; pembaikan kompleks",
+    rs_l_android:"Android",
+    rs_l_iphone:"iPhone",
+    rs_l_both:"Android &amp; iPhone",
+    rs_l_treat:"Rawatan",
+    rs_l_diag:"Yuran diagnostik",
+    rs_l_fp:"Cap jari · Android",
+    rs_l_faceid:"Face ID · iPhone",
+    rs_tat1:"Dari 1 hari",
+    rs_tat12:"1–2 hari",
+    rs_tat13:"1–3 hari",
+    rs_tat25:"2–5 hari",
+    rs_enquire:"Tanya harga akhir",
+    rs_terms_t:"Setiap pembaikan termasuk",
+    rs_t1_t:"Alat ganti OEM &amp; original",
+    rs_t1_d:"Kami menggunakan alat ganti OEM dan original untuk setiap pembaikan — bukan alat ganti tiruan.",
+    rs_t2_t:"Waranti 30 hari",
+    rs_t2_d:"Setiap pembaikan disertai waranti 30 hari meliputi alat ganti dan kerja.",
+    rs_t3_t:"Tiada baiki, tiada bayaran",
+    rs_t3_d:"Untuk kerosakan air dan kerja board-level: jika kami tidak dapat menyiapkan pembaikan, yuran diagnostik dikecualikan dan anda tidak membayar apa-apa.",
+    rs_t4_t:"Notis Face ID",
+    rs_t4_d:"Part-pairing Apple boleh menghalang Face ID daripada pulih sepenuhnya selepas pembaikan iPhone tertentu. Kami sahkan dengan anda sebelum mula.",
+    rs_t5_t:"Bayaran selepas kelulusan",
+    rs_t5_d:"Bayaran penuh dikenakan sebaik anda meluluskan sebut harga selepas konsultasi. Pembaikan dijelaskan di kedai — pembayaran dalam talian tidak tersedia untuk perkhidmatan pembaikan.",
+    rs_t6_t:"Masa siap",
+    rs_t6_d:"Semua pembaikan mengambil masa minimum 1 hari bekerja. Masa siap tepat disahkan semasa anda menghantar peranti.",
+    rs_disclaimer:"💬 Harga di atas ialah julat indikatif sebagai panduan sahaja dan bukan sebut harga. Hantar model telefon anda di WhatsApp dan kami akan sahkan harga akhir.",
+    rs_n_screen:"Penggantian skrin / digitiser",
+    rs_d_screen:"Harga bergantung pada model dan jenis panel — panel OLED dan Pro Max berada di hujung atas julat.",
+    rs_n_backglass:"Kaca belakang / perumah badan",
+    rs_d_backglass:"Bingkai titanium iPhone Pro memerlukan peralatan khas dan berada di hujung atas julat.",
+    rs_n_battery:"Penggantian bateri",
+    rs_d_battery:"Termasuk pemeriksaan kesihatan bateri sebelum dan selepas penggantian.",
+    rs_n_port:"Pembaikan port pengecas",
+    rs_d_port:"Selalunya hanya pembersihan diperlukan, bukan penggantian — kami sahkan selepas diagnosis.",
+    rs_n_camera:"Pembaikan modul kamera",
+    rs_d_camera:"Pada model berbilang lensa, harga bergantung pada lensa yang terjejas.",
+    rs_n_audio:"Pembesar suara / earpiece / mikrofon",
+    rs_d_audio:"Agak konsisten merentas jenama dan model.",
+    rs_n_faceid:"Face ID / sensor cap jari",
+    rs_d_faceid:"⚠ Disebabkan part-pairing Apple, Face ID mungkin tidak pulih sepenuhnya selepas pembaikan pada sesetengah model iPhone. Kami akan sentiasa mengesahkan perkara ini dengan anda sebelum kerja bermula.",
+    rs_n_water:"Rawatan kerosakan air / cecair",
+    rs_d_water:"Kejayaan tidak dapat dijamin. Jika kami tidak dapat menyiapkan pembaikan, yuran diagnostik dikecualikan dan anda tidak membayar apa-apa.",
+    rs_n_board:"Board-level / pematerian mikro",
+    rs_d_board:"Sangat berbeza-beza — sebut harga muktamad selepas diagnosis. Tiada baiki, tiada bayaran.",
+    rs_n_software:"Perisian — pasang semula OS, boot loop, buka kunci, malware",
+    rs_d_software:"Tiada alat ganti terlibat — kos tenaga kerja sahaja.",
+    rs_n_diag:"Diagnostik umum",
+    rs_d_diag:"Pemeriksaan 360° penuh. Yuran tepat disahkan semasa anda menghantar peranti.",
     tin_eyebrow:"Tukar Ganti",tin_title:"Tukar Telefon Lama Anda",
     tin_sub:"Tukar ganti telefon pintar lama anda dengan nilai berpatutan dan naik taraf dengan yakin.",
     tin1_t:"1. Hantar butiran peranti",tin1_d:"Hantar model, keadaan dan storan telefon anda di WhatsApp untuk anggaran nilai.",
@@ -639,6 +936,17 @@ const WA_NUMBER="601162283119";
 const WA_MSG={
   enquire:{en:"Hi SUN SMART, I'd like to enquire about a phone.",zh:"你好 SUN SMART，我想咨询手机。",ms:"Hai SUN SMART, saya ingin bertanya tentang telefon."},
   repair:{en:"Hi SUN SMART, I'd like to book a phone repair.",zh:"你好 SUN SMART，我想预约手机维修。",ms:"Hai SUN SMART, saya ingin menempah pembaikan telefon."},
+  rep_screen:{en:"Hi SUN SMART, I'd like to enquire about a screen replacement. My phone model is: ",zh:"你好 SUN SMART，我想咨询屏幕更换。我的手机型号是：",ms:"Hai SUN SMART, saya ingin bertanya tentang penggantian skrin. Model telefon saya ialah: "},
+  rep_backglass:{en:"Hi SUN SMART, I'd like to enquire about a back glass / housing repair. My phone model is: ",zh:"你好 SUN SMART，我想咨询后盖玻璃／外壳维修。我的手机型号是：",ms:"Hai SUN SMART, saya ingin bertanya tentang pembaikan kaca belakang / perumah. Model telefon saya ialah: "},
+  rep_battery:{en:"Hi SUN SMART, I'd like to enquire about a battery replacement. My phone model is: ",zh:"你好 SUN SMART，我想咨询电池更换。我的手机型号是：",ms:"Hai SUN SMART, saya ingin bertanya tentang penggantian bateri. Model telefon saya ialah: "},
+  rep_port:{en:"Hi SUN SMART, I'd like to enquire about a charging port repair. My phone model is: ",zh:"你好 SUN SMART，我想咨询充电口维修。我的手机型号是：",ms:"Hai SUN SMART, saya ingin bertanya tentang pembaikan port pengecas. Model telefon saya ialah: "},
+  rep_camera:{en:"Hi SUN SMART, I'd like to enquire about a camera repair. My phone model is: ",zh:"你好 SUN SMART，我想咨询摄像头维修。我的手机型号是：",ms:"Hai SUN SMART, saya ingin bertanya tentang pembaikan kamera. Model telefon saya ialah: "},
+  rep_audio:{en:"Hi SUN SMART, I'd like to enquire about a speaker / earpiece / microphone repair. My phone model is: ",zh:"你好 SUN SMART，我想咨询扬声器／听筒／麦克风维修。我的手机型号是：",ms:"Hai SUN SMART, saya ingin bertanya tentang pembaikan pembesar suara / earpiece / mikrofon. Model telefon saya ialah: "},
+  rep_faceid:{en:"Hi SUN SMART, I'd like to enquire about a Face ID / fingerprint sensor repair. My phone model is: ",zh:"你好 SUN SMART，我想咨询Face ID／指纹识别维修。我的手机型号是：",ms:"Hai SUN SMART, saya ingin bertanya tentang pembaikan Face ID / sensor cap jari. Model telefon saya ialah: "},
+  rep_water:{en:"Hi SUN SMART, I'd like to enquire about water damage treatment. My phone model is: ",zh:"你好 SUN SMART，我想咨询进水损坏处理。我的手机型号是：",ms:"Hai SUN SMART, saya ingin bertanya tentang rawatan kerosakan air. Model telefon saya ialah: "},
+  rep_board:{en:"Hi SUN SMART, I'd like to enquire about a board-level repair. My phone model is: ",zh:"你好 SUN SMART，我想咨询主板级维修。我的手机型号是：",ms:"Hai SUN SMART, saya ingin bertanya tentang pembaikan board-level. Model telefon saya ialah: "},
+  rep_software:{en:"Hi SUN SMART, I'd like to enquire about a software repair. My phone model is: ",zh:"你好 SUN SMART，我想咨询软件维修。我的手机型号是：",ms:"Hai SUN SMART, saya ingin bertanya tentang pembaikan perisian. Model telefon saya ialah: "},
+  rep_diag:{en:"Hi SUN SMART, I'd like to enquire about a general diagnostic. My phone model is: ",zh:"你好 SUN SMART，我想咨询综合检测。我的手机型号是：",ms:"Hai SUN SMART, saya ingin bertanya tentang diagnostik umum. Model telefon saya ialah: "},
   tradein:{en:"Hi SUN SMART, I'd like to get a trade-in quote for my phone.",zh:"你好 SUN SMART，我想咨询手机换购价值。",ms:"Hai SUN SMART, saya ingin mendapatkan sebut harga tukar ganti telefon saya."}
 };
 const CART_KEY="ss_cart";
