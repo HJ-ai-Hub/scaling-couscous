@@ -386,6 +386,11 @@
   .pd-protect-body b{display:block;font-size:14px;color:var(--blue);margin-bottom:3px}
   .pd-protect-body span{display:block;font-size:12.8px;color:var(--muted);line-height:1.5}
   .pd-protect-price{flex:0 0 auto;font-size:15px;font-weight:800;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .ca-learn{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:700;color:var(--blue-3);text-decoration:underline;text-underline-offset:3px}
+  .ca-learn:hover{color:var(--blue)}
+  .pd-protect{margin-bottom:7px}
+  .pd-protect-learn{display:inline-block;margin:0 0 18px 2px;font-size:12.5px;font-weight:700;color:var(--blue-3);text-decoration:underline;text-underline-offset:3px}
+  .pd-protect-learn:hover{color:var(--blue)}
 </style>
 </head>
 <body>
@@ -445,9 +450,10 @@
         <div class="pd-cta-row"><button type="button" class="btn btn-primary btn-lg" data-addcart="iphone14">🛒 <span data-i18n="prod_addcart">Add to Cart</span></button><a class="btn-wa-icon" data-wa="iphone14" href="#" aria-label="Ask on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div>
         <label class="pd-protect">
           <input type="checkbox" id="protectOpt">
-          <span class="pd-protect-body"><b data-i18n="protect_name">SUN SMART Protect 12M</b><span data-i18n="protect_desc">12 months of extended warranty plus accidental damage cover, including cracked screens.</span></span>
+          <span class="pd-protect-body"><b data-i18n="protect_name">SUN SMART Protect 12M</b><span data-i18n="protect_desc">12 months of extended warranty plus one accidental damage claim, including cracked screens. Loss and theft are not covered.</span></span>
           <span class="pd-protect-price" id="protectPrice">&mdash;</span>
         </label>
+        <a class="pd-protect-learn" href="index.html#protect-terms" data-i18n="protect_learn">Learn more</a>
         <div class="pd-box-note glass"><span data-i18n="pd_box_label">📦 What's in the box:</span> <span data-i18n="pd_box_val">Device, Charging cable</span></div>
       </div>
     </div>
@@ -508,7 +514,8 @@
         <a href="index.html#shipping" data-i18n="leg_ship_t">Shipping Policy</a>
         <a href="index.html#returns" data-i18n="leg_ret_t">Refund &amp; Return Policy</a>
         <a href="index.html#aftersales" data-i18n="leg_after_t">Warranty Policy</a>
-        <a href="index.html#privacy" data-i18n="leg_priv_t">Privacy Policy</a></div>
+        <a href="index.html#privacy" data-i18n="leg_priv_t">Privacy Policy</a>
+        <a href="index.html#protect-terms" data-i18n="protect_terms_t">Protection Plan Terms</a></div>
       <div><h5 data-i18n="foot_support">Support</h5>
         <a href="index.html#terms" data-i18n="sup_tc_t">Terms &amp; Conditions</a>
         <a href="index.html#faq" data-i18n="sup_faq_t">Frequently Asked Questions</a>
@@ -549,7 +556,7 @@
 
 <script>
 const I18N = {
-  en:{nav_about:"About",nav_products:"Products",nav_payment:"Payment",nav_pickup:"Delivery",nav_contact:"Contact",prod_addcart:"Add to Cart",cart_title:"Your Cart",cart_total:"Total",cart_checkout:"Checkout via WhatsApp",cart_clear:"Clear cart",cart_payonline:"💳 Pay Online",cart_payonline_processing:"Processing…",cart_payonline_error:"Something went wrong. Please try WhatsApp checkout instead.",protect_addons_t:"Additional services",protect_name:"SUN SMART Protect 12M",protect_desc:"12 months of extended warranty plus accidental damage cover, including cracked screens.",protect_add:"Add",
+  en:{nav_about:"About",nav_products:"Products",nav_payment:"Payment",nav_pickup:"Delivery",nav_contact:"Contact",prod_addcart:"Add to Cart",cart_title:"Your Cart",cart_total:"Total",cart_checkout:"Checkout via WhatsApp",cart_clear:"Clear cart",cart_payonline:"💳 Pay Online",cart_payonline_processing:"Processing…",cart_payonline_error:"Something went wrong. Please try WhatsApp checkout instead.",protect_addons_t:"Additional services",protect_name:"SUN SMART Protect 12M",protect_desc:"12 months of extended warranty plus one accidental damage claim, including cracked screens. Loss and theft are not covered.",protect_add:"Add",protect_learn:"Learn more",protect_terms_t:"Protection Plan Terms",
     hero_badge:"New · Pre-owned · Accessories · Klang Valley",
     hero_tagline:"Smart Choice, Brighter Connection",hero_title:"New & pre-owned smartphones you can trust.",
     hero_lead:"New phones, quality-checked pre-owned phones and accessories at honest prices — with flexible payment and easy in-store pickup in the Klang Valley.",
@@ -631,7 +638,7 @@ const I18N = {
     sup_tc_t:"Terms & Conditions",sup_faq_t:"Frequently Asked Questions",sup_hitpay_t:"HitPay Checkout Info",
     foot_tag:"Smart Choice, Brighter Connection. New & pre-owned smartphones and accessories in the Klang Valley.",
     foot_explore:"Explore",foot_policies:"Policies",foot_support:"Support",foot_copy:"© 2026 SUN SMART. All rights reserved.",foot_reg:"SUN SMART · Incorporated in Malaysia"},
-  zh:{nav_about:"关于我们",nav_products:"产品",nav_payment:"付款方式",nav_pickup:"配送",nav_contact:"联系我们",prod_addcart:"加入购物车",cart_title:"我的购物车",cart_total:"总计",cart_checkout:"WhatsApp 结账",cart_clear:"清空购物车",cart_payonline:"💳 在线付款",cart_payonline_processing:"处理中…",cart_payonline_error:"出现问题，请改用 WhatsApp 结账。",protect_addons_t:"附加服务",protect_name:"SUN SMART Protect 12M",protect_desc:"12 个月延长保修，并涵盖意外损坏（包括屏幕破裂）。",protect_add:"添加",
+  zh:{nav_about:"关于我们",nav_products:"产品",nav_payment:"付款方式",nav_pickup:"配送",nav_contact:"联系我们",prod_addcart:"加入购物车",cart_title:"我的购物车",cart_total:"总计",cart_checkout:"WhatsApp 结账",cart_clear:"清空购物车",cart_payonline:"💳 在线付款",cart_payonline_processing:"处理中…",cart_payonline_error:"出现问题，请改用 WhatsApp 结账。",protect_addons_t:"附加服务",protect_name:"SUN SMART Protect 12M",protect_desc:"12 个月延长保修，另含 1 次意外损坏索赔（包括屏幕破裂）。不涵盖遗失与失窃。",protect_add:"添加",protect_learn:"了解详情",protect_terms_t:"保障计划条款",
     hero_badge:"新机 · 二手机 · 配件 · 雪隆区",
     hero_tagline:"智慧之选，亮点连接",hero_title:"值得信赖的新机与二手机。",
     hero_lead:"新手机、经过检测的二手机与手机配件，价格实在，付款灵活，雪隆区到店取货，方便安心。",
@@ -712,7 +719,7 @@ const I18N = {
     sup_tc_t:"条款与细则",sup_faq_t:"常见问题",sup_hitpay_t:"HitPay 付款资讯",
     foot_tag:"智慧之选，亮点连接。雪隆区新机、二手机与手机配件。",
     foot_explore:"浏览",foot_policies:"条款政策",foot_support:"支持",foot_copy:"© 2026 SUN SMART 版权所有。",foot_reg:"SUN SMART · 在马来西亚注册成立"},
-  ms:{nav_about:"Tentang",nav_products:"Produk",nav_payment:"Pembayaran",nav_pickup:"Penghantaran",nav_contact:"Hubungi",prod_addcart:"Tambah ke Troli",cart_title:"Troli Anda",cart_total:"Jumlah",cart_checkout:"Checkout melalui WhatsApp",cart_clear:"Kosongkan troli",cart_payonline:"💳 Bayar Dalam Talian",cart_payonline_processing:"Memproses…",cart_payonline_error:"Sesuatu tidak kena. Sila cuba checkout melalui WhatsApp.",protect_addons_t:"Perkhidmatan tambahan",protect_name:"SUN SMART Protect 12M",protect_desc:"Waranti lanjutan 12 bulan serta perlindungan kerosakan tidak sengaja, termasuk skrin retak.",protect_add:"Tambah",
+  ms:{nav_about:"Tentang",nav_products:"Produk",nav_payment:"Pembayaran",nav_pickup:"Penghantaran",nav_contact:"Hubungi",prod_addcart:"Tambah ke Troli",cart_title:"Troli Anda",cart_total:"Jumlah",cart_checkout:"Checkout melalui WhatsApp",cart_clear:"Kosongkan troli",cart_payonline:"💳 Bayar Dalam Talian",cart_payonline_processing:"Memproses…",cart_payonline_error:"Sesuatu tidak kena. Sila cuba checkout melalui WhatsApp.",protect_addons_t:"Perkhidmatan tambahan",protect_name:"SUN SMART Protect 12M",protect_desc:"Waranti lanjutan 12 bulan serta satu tuntutan kerosakan tidak sengaja, termasuk skrin retak. Kehilangan dan kecurian tidak dilindungi.",protect_add:"Tambah",protect_learn:"Ketahui lagi",protect_terms_t:"Terma Pelan Perlindungan",
     hero_badge:"Baharu · Terpakai · Aksesori · Lembah Klang",
     hero_tagline:"Pilihan Bijak, Hubungan Lebih Cerah",hero_title:"Telefon pintar baharu & terpakai yang boleh dipercayai.",
     hero_lead:"Telefon baharu, telefon terpakai yang disemak kualiti, dan aksesori pada harga jujur — dengan pembayaran fleksibel dan ambilan mudah di kedai sekitar Lembah Klang.",
@@ -835,7 +842,8 @@ function addonsHtml(){
     open.map(it=>'<div class="ca-row">'+
       '<div class="ca-body"><b>'+(d.protect_name||PROTECT_LABEL)+'</b>'+
       '<span class="ca-for">'+esc(it.name)+'</span>'+
-      '<span class="ca-desc">'+(d.protect_desc||"")+'</span></div>'+
+      '<span class="ca-desc">'+(d.protect_desc||"")+'</span>'+
+      '<a class="ca-learn" href="index.html#protect-terms">'+(d.protect_learn||"Learn more")+' &rsaquo;</a></div>'+
       '<div class="ca-side"><span class="ca-price">'+fmtRM(protectPriceFor(it.price))+'</span>'+
       '<button type="button" class="ca-add" data-protect="'+esc(it.id)+'">'+(d.protect_add||"Add")+'</button></div>'+
     '</div>').join("")+'</div>';

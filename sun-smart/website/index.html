@@ -394,6 +394,11 @@
   .pd-protect-body b{display:block;font-size:14px;color:var(--blue);margin-bottom:3px}
   .pd-protect-body span{display:block;font-size:12.8px;color:var(--muted);line-height:1.5}
   .pd-protect-price{flex:0 0 auto;font-size:15px;font-weight:800;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .ca-learn{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:700;color:var(--blue-3);text-decoration:underline;text-underline-offset:3px}
+  .ca-learn:hover{color:var(--blue)}
+  .pd-protect{margin-bottom:7px}
+  .pd-protect-learn{display:inline-block;margin:0 0 18px 2px;font-size:12.5px;font-weight:700;color:var(--blue-3);text-decoration:underline;text-underline-offset:3px}
+  .pd-protect-learn:hover{color:var(--blue)}
 </style>
 </head>
 <body>
@@ -759,6 +764,17 @@
         <p><b>Turnaround Time</b><br>Repair and assessment times vary depending on parts availability, manufacturer requirements and service centre workload.</p>
         <p><b>Consumer Rights</b><br>This warranty operates in addition to any rights available under applicable Malaysian consumer protection laws and does not limit those rights.</p>
         <p class="muted">Last updated: July 2026</p></div></details>
+      <details class="legal glass reveal" id="protect-terms"><summary><span data-i18n="protect_terms_t">Protection Plan Terms</span></summary><div class="lc">
+        <p><b>What SUN SMART Protect Covers</b><br>SUN SMART Protect is an optional 12-month plan that can be added when you buy a device from us. It extends cover against manufacturing defects and hardware failure beyond the standard warranty period, and adds cover for accidental damage such as a cracked screen.</p>
+        <p><b>Plan Term</b><br>Cover begins on the date of purchase and runs for 12 months. The plan applies only to the specific device it was purchased with, as recorded on your invoice.</p>
+        <p><b>Accidental Damage Claims</b><br>The plan covers one accidental damage claim per 12-month term. Once that claim has been used, the accidental damage portion of the plan is exhausted, although cover against manufacturing defects continues to the end of the term.</p>
+        <p><b>How to Claim</b><br>Bring the device to our store together with the original invoice. All repairs under this plan are carried out by SUN SMART. The device must be assessed before a claim is approved, and we will confirm the outcome with you before any work begins.</p>
+        <p><b>What Is Not Covered</b><br>The plan does not cover: loss or theft of the device; normal wear and tear, or cosmetic damage that does not affect how the device works; deliberate, reckless or abusive damage; damage caused by fire, flood, earthquake or other external causes; devices that have been opened, modified or repaired by anyone other than SUN SMART; faults that already existed before the plan was purchased; devices with an altered, defaced or removed serial number or IMEI; damage caused by third-party parts or accessories; preventative maintenance; and the loss of any data, apps or settings.</p>
+        <p><b>Data</b><br>Please back up your device before any repair. SUN SMART is not responsible for the loss of data, apps or settings, and this plan does not cover data recovery or the reinstallation of software.</p>
+        <p><b>Where the Plan Applies</b><br>Cover is valid in Malaysia, and claims must be made in person at our store.</p>
+        <p><b>Transfer &amp; Eligibility</b><br>The plan is tied to the device and the original purchaser, and cannot be transferred or resold. Devices bought for commercial resale are not eligible.</p>
+        <p><b>Relationship to Manufacturer Warranty</b><br>SUN SMART Protect is a store plan provided by SUN SMART. It is not a manufacturer warranty and is not affiliated with, endorsed by, or provided by Apple, Samsung, HONOR or any other brand. Your statutory consumer rights under Malaysian law are not affected.</p>
+      </div></details>
       <details class="legal glass reveal" id="privacy"><summary><span data-i18n="leg_priv_t">Privacy Policy</span></summary><div class="lc">
         <p><b>Introduction</b><br>Sun Smart respects your privacy and is committed to protecting your personal data in accordance with the Personal Data Protection Act 2010 (PDPA) of Malaysia.</p>
         <p><b>Information We Collect</b><br>We may collect your name, contact details, delivery address, email address, payment information, device information, IP address and any information you voluntarily provide.</p>
@@ -841,7 +857,8 @@
         <a href="index.html#shipping" data-i18n="leg_ship_t">Shipping Policy</a>
         <a href="index.html#returns" data-i18n="leg_ret_t">Refund &amp; Return Policy</a>
         <a href="index.html#aftersales" data-i18n="leg_after_t">Warranty Policy</a>
-        <a href="index.html#privacy" data-i18n="leg_priv_t">Privacy Policy</a></div>
+        <a href="index.html#privacy" data-i18n="leg_priv_t">Privacy Policy</a>
+        <a href="index.html#protect-terms" data-i18n="protect_terms_t">Protection Plan Terms</a></div>
       <div><h5 data-i18n="foot_support">Support</h5>
         <a href="index.html#terms" data-i18n="sup_tc_t">Terms &amp; Conditions</a>
         <a href="index.html#faq" data-i18n="sup_faq_t">Frequently Asked Questions</a>
@@ -882,7 +899,7 @@
 
 <script>
 const I18N = {
-  en:{nav_about:"About",nav_products:"Products",nav_payment:"Payment",nav_pickup:"Delivery",nav_contact:"Contact",prod_addcart:"Add to Cart",cart_title:"Your Cart",cart_total:"Total",cart_checkout:"Checkout via WhatsApp",cart_clear:"Clear cart",cart_payonline:"💳 Pay Online",cart_payonline_processing:"Processing…",cart_payonline_error:"Something went wrong. Please try WhatsApp checkout instead.",protect_addons_t:"Additional services",protect_name:"SUN SMART Protect 12M",protect_desc:"12 months of extended warranty plus accidental damage cover, including cracked screens.",protect_add:"Add",
+  en:{nav_about:"About",nav_products:"Products",nav_payment:"Payment",nav_pickup:"Delivery",nav_contact:"Contact",prod_addcart:"Add to Cart",cart_title:"Your Cart",cart_total:"Total",cart_checkout:"Checkout via WhatsApp",cart_clear:"Clear cart",cart_payonline:"💳 Pay Online",cart_payonline_processing:"Processing…",cart_payonline_error:"Something went wrong. Please try WhatsApp checkout instead.",protect_addons_t:"Additional services",protect_name:"SUN SMART Protect 12M",protect_desc:"12 months of extended warranty plus one accidental damage claim, including cracked screens. Loss and theft are not covered.",protect_add:"Add",protect_learn:"Learn more",protect_terms_t:"Protection Plan Terms",
     hero_badge:"New · Pre-owned · Accessories · Klang Valley",
     hero_trustbadge:"Trusted by Malaysian Customers",brandstrip_label:"Brands our customers trust",
     hero_tagline:"Smart Choice, Brighter Connection",hero_title:"New & pre-owned smartphones you can trust.",
@@ -955,7 +972,7 @@ const I18N = {
     sup_tc_t:"Terms & Conditions",sup_faq_t:"Frequently Asked Questions",sup_hitpay_t:"HitPay Checkout Info",
     foot_tag:"Smart Choice, Brighter Connection. New & pre-owned smartphones and accessories in the Klang Valley.",
     foot_explore:"Explore",foot_policies:"Policies",foot_support:"Support",foot_copy:"© 2026 SUN SMART. All rights reserved.",foot_reg:"SUN SMART · Incorporated in Malaysia"},
-  zh:{nav_about:"关于我们",nav_products:"产品",nav_payment:"付款方式",nav_pickup:"配送",nav_contact:"联系我们",prod_addcart:"加入购物车",cart_title:"我的购物车",cart_total:"总计",cart_checkout:"WhatsApp 结账",cart_clear:"清空购物车",cart_payonline:"💳 在线付款",cart_payonline_processing:"处理中…",cart_payonline_error:"出现问题，请改用 WhatsApp 结账。",protect_addons_t:"附加服务",protect_name:"SUN SMART Protect 12M",protect_desc:"12 个月延长保修，并涵盖意外损坏（包括屏幕破裂）。",protect_add:"添加",
+  zh:{nav_about:"关于我们",nav_products:"产品",nav_payment:"付款方式",nav_pickup:"配送",nav_contact:"联系我们",prod_addcart:"加入购物车",cart_title:"我的购物车",cart_total:"总计",cart_checkout:"WhatsApp 结账",cart_clear:"清空购物车",cart_payonline:"💳 在线付款",cart_payonline_processing:"处理中…",cart_payonline_error:"出现问题，请改用 WhatsApp 结账。",protect_addons_t:"附加服务",protect_name:"SUN SMART Protect 12M",protect_desc:"12 个月延长保修，另含 1 次意外损坏索赔（包括屏幕破裂）。不涵盖遗失与失窃。",protect_add:"添加",protect_learn:"了解详情",protect_terms_t:"保障计划条款",
     hero_badge:"新机 · 二手机 · 配件 · 雪隆区",
     hero_trustbadge:"深受马来西亚顾客信赖",brandstrip_label:"顾客信赖的品牌",
     hero_tagline:"智慧之选，亮点连接",hero_title:"值得信赖的新机与二手机。",
@@ -1027,7 +1044,7 @@ const I18N = {
     sup_tc_t:"条款与细则",sup_faq_t:"常见问题",sup_hitpay_t:"HitPay 付款资讯",
     foot_tag:"智慧之选，亮点连接。雪隆区新机、二手机与手机配件。",
     foot_explore:"浏览",foot_policies:"条款政策",foot_support:"支持",foot_copy:"© 2026 SUN SMART 版权所有。",foot_reg:"SUN SMART · 在马来西亚注册成立"},
-  ms:{nav_about:"Tentang",nav_products:"Produk",nav_payment:"Pembayaran",nav_pickup:"Penghantaran",nav_contact:"Hubungi",prod_addcart:"Tambah ke Troli",cart_title:"Troli Anda",cart_total:"Jumlah",cart_checkout:"Checkout melalui WhatsApp",cart_clear:"Kosongkan troli",cart_payonline:"💳 Bayar Dalam Talian",cart_payonline_processing:"Memproses…",cart_payonline_error:"Sesuatu tidak kena. Sila cuba checkout melalui WhatsApp.",protect_addons_t:"Perkhidmatan tambahan",protect_name:"SUN SMART Protect 12M",protect_desc:"Waranti lanjutan 12 bulan serta perlindungan kerosakan tidak sengaja, termasuk skrin retak.",protect_add:"Tambah",
+  ms:{nav_about:"Tentang",nav_products:"Produk",nav_payment:"Pembayaran",nav_pickup:"Penghantaran",nav_contact:"Hubungi",prod_addcart:"Tambah ke Troli",cart_title:"Troli Anda",cart_total:"Jumlah",cart_checkout:"Checkout melalui WhatsApp",cart_clear:"Kosongkan troli",cart_payonline:"💳 Bayar Dalam Talian",cart_payonline_processing:"Memproses…",cart_payonline_error:"Sesuatu tidak kena. Sila cuba checkout melalui WhatsApp.",protect_addons_t:"Perkhidmatan tambahan",protect_name:"SUN SMART Protect 12M",protect_desc:"Waranti lanjutan 12 bulan serta satu tuntutan kerosakan tidak sengaja, termasuk skrin retak. Kehilangan dan kecurian tidak dilindungi.",protect_add:"Tambah",protect_learn:"Ketahui lagi",protect_terms_t:"Terma Pelan Perlindungan",
     hero_badge:"Baharu · Terpakai · Aksesori · Lembah Klang",
     hero_trustbadge:"Dipercayai oleh Pelanggan Malaysia",brandstrip_label:"Jenama yang dipercayai pelanggan kami",
     hero_tagline:"Pilihan Bijak, Hubungan Lebih Cerah",hero_title:"Telefon pintar baharu & terpakai yang boleh dipercayai.",
@@ -1139,7 +1156,8 @@ function addonsHtml(){
     open.map(it=>'<div class="ca-row">'+
       '<div class="ca-body"><b>'+(d.protect_name||PROTECT_LABEL)+'</b>'+
       '<span class="ca-for">'+esc(it.name)+'</span>'+
-      '<span class="ca-desc">'+(d.protect_desc||"")+'</span></div>'+
+      '<span class="ca-desc">'+(d.protect_desc||"")+'</span>'+
+      '<a class="ca-learn" href="index.html#protect-terms">'+(d.protect_learn||"Learn more")+' &rsaquo;</a></div>'+
       '<div class="ca-side"><span class="ca-price">'+fmtRM(protectPriceFor(it.price))+'</span>'+
       '<button type="button" class="ca-add" data-protect="'+esc(it.id)+'">'+(d.protect_add||"Add")+'</button></div>'+
     '</div>').join("")+'</div>';
