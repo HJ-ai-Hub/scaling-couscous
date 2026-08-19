@@ -280,6 +280,8 @@
   .socials a svg{width:20px;height:20px}
   .map{border-radius:var(--radius);overflow:hidden;min-height:340px;display:flex;align-items:center;justify-content:center;text-align:center;padding:26px;background:linear-gradient(150deg,#e3e9fb,#d6e0f7)}
   .map .mapinner b{color:var(--blue);font-size:17px}
+  .map{padding:0}
+  .map iframe{width:100%;height:100%;min-height:340px;border:0;display:block}
 
   /* legal */
   .legal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
@@ -713,7 +715,7 @@
         <div style="margin-top:24px"><a class="btn btn-wa" data-wa href="#" data-i18n="con_cta">Chat with us on WhatsApp</a></div>
       </div>
       <div class="map reveal">
-        <div class="mapinner"><b data-i18n="map_t">📍 Google Maps</b><p class="muted" style="margin:8px 0 0;font-size:13.5px" data-i18n="map_d">The map will appear here once the store location is confirmed. (Embed your Google Maps location in place of this box.)</p></div>
+        <iframe src="https://maps.google.com/maps?q=Summit%20USJ%20Mall%2C%20Persiaran%20Kewajipan%20USJ%201%2C%2047600%20UEP%20Subang%20Jaya%2C%20Selangor&amp;hl=en&amp;z=17&amp;output=embed" title="SUN SMART store location on Google Maps" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
