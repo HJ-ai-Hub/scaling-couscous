@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>SUN SMART · Daily Operations System</title>
+<title>EZ4U Mobile · Daily Operations System</title>
 <style>
   :root {
     --surface-1: #fcfcfb;
@@ -195,7 +195,7 @@
 
 <header class="topbar">
   <div class="brand">
-    <b id="shopNameLabel">SUN SMART</b>
+    <b id="shopNameLabel">EZ4U Mobile</b>
     <span>Daily Operations System · Data stored only in this browser</span>
   </div>
   <div class="today tabular" id="todayLabel"></div>
@@ -269,9 +269,10 @@
         </div>
         <div class="row">
           <div class="field wide">
-            <label>IMEI / SKU (auto-fills cost &amp; stock reference)</label>
+            <label>IMEI / SKU (optional &mdash; auto-fills cost &amp; stock reference)</label>
             <input name="identifier" list="inventoryList" id="saleIdentifier" placeholder="Phone: enter IMEI. Accessory: enter SKU/name">
             <datalist id="inventoryList"></datalist>
+            <p class="hint">Leave blank for accessories or bulk items &mdash; stock is then tracked by Category + Brand + Model, so fill those in instead.</p>
           </div>
         </div>
         <div class="row">
@@ -335,7 +336,8 @@
         <div class="row">
           <div class="field"><label>Brand</label><input name="brand"></div>
           <div class="field"><label>Model</label><input name="model"></div>
-          <div class="field wide"><label>IMEI / SKU</label><input name="identifier" placeholder="Phone: enter IMEI. Accessory: enter SKU/name"></div>
+          <div class="field wide"><label>IMEI / SKU (optional)</label><input name="identifier" placeholder="Phone: enter IMEI. Accessory: enter SKU/name">
+            <p class="hint">Leave blank for accessories or bulk items &mdash; stock is then tracked by Category + Brand + Model.</p></div>
         </div>
         <div class="row">
           <div class="field"><label>Qty</label><input name="qty" type="number" min="1" step="1" value="1" required></div>
@@ -458,7 +460,7 @@
       <h2>Shop Settings</h2>
       <form id="settingsForm">
         <div class="row">
-          <div class="field"><label>Shop Name</label><input name="shopName"></div>
+          <div class="field"><label>Shop Name</label><input name="shopName" placeholder="EZ4U Mobile"></div>
           <div class="field"><label>Default Daily Float (RM)</label><input name="defaultFloat" type="number" min="0" step="0.01"></div>
           <div class="field"><label>Accessories Low-Stock Threshold (units)</label><input name="lowStockThreshold" type="number" min="0" step="1"></div>
         </div>
@@ -549,8 +551,13 @@ function toast(msg){
 }
 
 /* ---------- settings ---------- */
+const SHOP_NAME = 'EZ4U Mobile';
+const LEGACY_SHOP_NAMES = ['SUN SMART', 'SUNSMART', 'Sun Smart', 'SunSmart'];
 function getSettings(){
-  return loadObj('sse_settings', { shopName: 'SUN SMART', defaultFloat: 200, lowStockThreshold: 5 });
+  const s = loadObj('sse_settings', { shopName: SHOP_NAME, defaultFloat: 200, lowStockThreshold: 5 });
+  /* carry browsers that already stored the old shop name over to the new one */
+  if (LEGACY_SHOP_NAMES.includes((s.shopName || '').trim())) s.shopName = SHOP_NAME;
+  return s;
 }
 
 /* ---------- tabs ---------- */
@@ -666,7 +673,7 @@ function renderDashboard(){
   ]);
 
   document.getElementById('dashLowStock').innerHTML = renderTable(lowStock.concat(outOfStock), [
-    ['Category','category'], ['Brand/Model', r => `${r.brand||''} ${r.model||''}`], ['IMEI/SKU','identifier'],
+    ['Category','category'], ['Brand/Model', r => `${r.brand||''} ${r.model||''}`], ['IMEI/SKU', r => r.identifier || '-'],
     ['Qty in Stock', r => r.qty, true], ['Status', r => r.qty<=0 ? 'Out of Stock' : 'Low Stock']
   ]);
 }
@@ -709,23 +716,34 @@ document.getElementById('salesForm').addEventListener('submit', (e) => {
   toast('Sale record saved');
   renderAll();
 });
-document.getElementById('saleIdentifier').addEventListener('input', (e) => {
+function syncSaleFromInventory(byIdentifier){
+  const f = document.getElementById('salesForm');
   const inv = computeInventory();
-  const match = inv.find(i => (i.identifier||'').trim() === e.target.value.trim());
-  if (match) {
-    const f = document.getElementById('salesForm');
+  const id = f.identifier.value.trim();
+  const match = id
+    ? inv.find(i => (i.identifier||'').trim().toUpperCase() === id.toUpperCase())
+    : inv.find(i => i.key === inventoryKey({ category: f.category.value, brand: f.brand.value.trim(), model: f.model.value.trim() }));
+  if (!match) return;
+  if (byIdentifier) {
     f.category.value = match.category || f.category.value;
     f.brand.value = match.brand || '';
     f.model.value = match.model || '';
     f.unitCost.value = match.avgCost.toFixed(2);
+  } else if (!f.unitCost.value) {
+    /* IMEI left blank: match on category + brand + model, and never overwrite a cost already typed */
+    f.unitCost.value = match.avgCost.toFixed(2);
   }
-});
+}
+document.getElementById('saleIdentifier').addEventListener('input', () => syncSaleFromInventory(true));
+document.getElementById('salesForm').brand.addEventListener('input', () => syncSaleFromInventory(false));
+document.getElementById('salesForm').model.addEventListener('input', () => syncSaleFromInventory(false));
+document.getElementById('salesForm').category.addEventListener('change', () => syncSaleFromInventory(false));
 function renderSalesTab(){
-  document.getElementById('inventoryList').innerHTML = computeInventory().filter(i => i.qty > 0)
+  document.getElementById('inventoryList').innerHTML = computeInventory().filter(i => i.qty > 0 && (i.identifier || '').trim())
     .map(i => `<option value="${escapeHtml(i.identifier || '')}">${escapeHtml(i.brand)} ${escapeHtml(i.model)} · in stock ${i.qty}</option>`).join('');
   const rows = filterRecords(SalesStore.all(), 'salesFilterFrom', 'salesFilterTo', 'salesFilterCategory');
   document.getElementById('salesTable').innerHTML = renderTable(rows, [
-    ['Date','date'], ['Category','category'], ['Brand/Model', r => `${r.brand||''} ${r.model||''}`], ['IMEI/SKU','identifier'],
+    ['Date','date'], ['Category','category'], ['Brand/Model', r => `${r.brand||''} ${r.model||''}`], ['IMEI/SKU', r => r.identifier || '-'],
     ['Qty','qty',true], ['Cost', r=>money(r.unitCost),true], ['Price', r=>money(r.unitPrice),true],
     ['Margin', r=>money((r.unitPrice-r.unitCost)*r.qty),true], ['Payment Method','paymentMethod'], ['Customer','customerName'],
     ['Actions', r => `<button class="btn subtle small no-print" onclick="deleteRecord('sales','${r.id}')">Delete</button>`]
@@ -751,7 +769,7 @@ function renderPurchasesTab(){
   const rows = filterRecords(PurchasesStore.all(), 'purchasesFilterFrom', 'purchasesFilterTo', 'purchasesFilterCategory');
   document.getElementById('purchasesTable').innerHTML = renderTable(rows, [
     ['Date','date'], ['Category','category'], ['Supplier','supplier'], ['Brand/Model', r => `${r.brand||''} ${r.model||''}`],
-    ['IMEI/SKU','identifier'], ['Qty','qty',true], ['Unit Price', r=>money(r.unitCost),true],
+    ['IMEI/SKU', r => r.identifier || '-'], ['Qty','qty',true], ['Unit Price', r=>money(r.unitCost),true],
     ['Subtotal', r=>money(r.unitCost*r.qty),true], ['Payment Terms','paymentStatus'],
     ['Actions', r => `<button class="btn subtle small no-print" onclick="deleteRecord('purchases','${r.id}')">Delete</button>`]
   ], 'No purchase records yet.');
@@ -766,7 +784,7 @@ function renderInventoryTab(){
   let rows = computeInventory();
   if (cat) rows = rows.filter(r => r.category === cat);
   if (hideZero) rows = rows.filter(r => r.qty > 0);
-  if (search) rows = rows.filter(r => (r.brand+r.model+r.identifier).toLowerCase().includes(search));
+  if (search) rows = rows.filter(r => ((r.brand||'')+(r.model||'')+(r.identifier||'')).toLowerCase().includes(search));
 
   if (!rows.length) { document.getElementById('inventoryTable').innerHTML = '<p class="hint">No inventory records match the current filters.</p>'; return; }
 
@@ -779,7 +797,7 @@ function renderInventoryTab(){
     return `<tr class="${trCls}">
       <td>${escapeHtml(r.category)}</td>
       <td>${escapeHtml(r.brand)} ${escapeHtml(r.model)}</td>
-      <td>${escapeHtml(r.identifier)}</td>
+      <td>${escapeHtml(r.identifier || '-')}</td>
       <td class="num">${r.qty}</td>
       <td class="num">${money(r.avgCost)}</td>
       <td>${escapeHtml(r.lastPurchaseDate||'-')}</td>
@@ -955,7 +973,7 @@ document.getElementById('settingsForm').addEventListener('submit', (e) => {
   e.preventDefault();
   const f = e.target;
   saveObj('sse_settings', {
-    shopName: f.shopName.value.trim() || 'SUN SMART',
+    shopName: f.shopName.value.trim() || SHOP_NAME,
     defaultFloat: Number(f.defaultFloat.value)||0,
     lowStockThreshold: Number(f.lowStockThreshold.value)||0
   });
