@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>SUN SMART · 每日营运系统</title>
+<title>EZ4U Mobile · 每日营运系统</title>
 <style>
   :root {
     --surface-1: #fcfcfb;
@@ -195,7 +195,7 @@
 
 <header class="topbar">
   <div class="brand">
-    <b id="shopNameLabel">SUN SMART</b>
+    <b id="shopNameLabel">EZ4U Mobile</b>
     <span>每日营运系统 · 数据仅存于本机浏览器</span>
   </div>
   <div class="today tabular" id="todayLabel"></div>
@@ -269,9 +269,10 @@
         </div>
         <div class="row">
           <div class="field wide">
-            <label>IMEI / SKU（输入后自动带出在库成本与售价参考）</label>
+            <label>IMEI / SKU（选填，输入后自动带出在库成本与售价参考）</label>
             <input name="identifier" list="inventoryList" id="saleIdentifier" placeholder="手机填IMEI，配件填货号/名称">
             <datalist id="inventoryList"></datalist>
+            <p class="hint">配件或批量货品可留空 &mdash; 系统会改用「类别 + 品牌 + 型号」统计库存，请务必填好这三项。</p>
           </div>
         </div>
         <div class="row">
@@ -335,7 +336,8 @@
         <div class="row">
           <div class="field"><label>品牌</label><input name="brand"></div>
           <div class="field"><label>型号</label><input name="model"></div>
-          <div class="field wide"><label>IMEI / SKU</label><input name="identifier" placeholder="手机填IMEI，配件填货号/名称"></div>
+          <div class="field wide"><label>IMEI / SKU（选填）</label><input name="identifier" placeholder="手机填IMEI，配件填货号/名称">
+            <p class="hint">配件或批量货品可留空 &mdash; 系统会改用「类别 + 品牌 + 型号」统计库存。</p></div>
         </div>
         <div class="row">
           <div class="field"><label>数量</label><input name="qty" type="number" min="1" step="1" value="1" required></div>
@@ -458,7 +460,7 @@
       <h2>店铺设置</h2>
       <form id="settingsForm">
         <div class="row">
-          <div class="field"><label>店铺名称</label><input name="shopName"></div>
+          <div class="field"><label>店铺名称</label><input name="shopName" placeholder="EZ4U Mobile"></div>
           <div class="field"><label>默认每日备用金 (RM)</label><input name="defaultFloat" type="number" min="0" step="0.01"></div>
           <div class="field"><label>配件低库存阈值（件）</label><input name="lowStockThreshold" type="number" min="0" step="1"></div>
         </div>
@@ -546,8 +548,13 @@ function toast(msg){
 }
 
 /* ---------- settings ---------- */
+const SHOP_NAME = 'EZ4U Mobile';
+const LEGACY_SHOP_NAMES = ['SUN SMART', 'SUNSMART', 'Sun Smart', 'SunSmart'];
 function getSettings(){
-  return loadObj('ss_settings', { shopName: 'SUN SMART', defaultFloat: 200, lowStockThreshold: 5 });
+  const s = loadObj('ss_settings', { shopName: SHOP_NAME, defaultFloat: 200, lowStockThreshold: 5 });
+  /* carry browsers that already stored the old shop name over to the new one */
+  if (LEGACY_SHOP_NAMES.includes((s.shopName || '').trim())) s.shopName = SHOP_NAME;
+  return s;
 }
 
 /* ---------- tabs ---------- */
@@ -663,7 +670,7 @@ function renderDashboard(){
   ]);
 
   document.getElementById('dashLowStock').innerHTML = renderTable(lowStock.concat(outOfStock), [
-    ['类别','category'], ['品牌/型号', r => `${r.brand||''} ${r.model||''}`], ['IMEI/SKU','identifier'],
+    ['类别','category'], ['品牌/型号', r => `${r.brand||''} ${r.model||''}`], ['IMEI/SKU', r => r.identifier || '-'],
     ['在库数量', r => r.qty, true], ['状态', r => r.qty<=0 ? '缺货' : '低库存']
   ]);
 }
@@ -706,23 +713,34 @@ document.getElementById('salesForm').addEventListener('submit', (e) => {
   toast('销售记录已保存');
   renderAll();
 });
-document.getElementById('saleIdentifier').addEventListener('input', (e) => {
+function syncSaleFromInventory(byIdentifier){
+  const f = document.getElementById('salesForm');
   const inv = computeInventory();
-  const match = inv.find(i => (i.identifier||'').trim() === e.target.value.trim());
-  if (match) {
-    const f = document.getElementById('salesForm');
+  const id = f.identifier.value.trim();
+  const match = id
+    ? inv.find(i => (i.identifier||'').trim().toUpperCase() === id.toUpperCase())
+    : inv.find(i => i.key === inventoryKey({ category: f.category.value, brand: f.brand.value.trim(), model: f.model.value.trim() }));
+  if (!match) return;
+  if (byIdentifier) {
     f.category.value = match.category || f.category.value;
     f.brand.value = match.brand || '';
     f.model.value = match.model || '';
     f.unitCost.value = match.avgCost.toFixed(2);
+  } else if (!f.unitCost.value) {
+    /* IMEI left blank: match on category + brand + model, and never overwrite a cost already typed */
+    f.unitCost.value = match.avgCost.toFixed(2);
   }
-});
+}
+document.getElementById('saleIdentifier').addEventListener('input', () => syncSaleFromInventory(true));
+document.getElementById('salesForm').brand.addEventListener('input', () => syncSaleFromInventory(false));
+document.getElementById('salesForm').model.addEventListener('input', () => syncSaleFromInventory(false));
+document.getElementById('salesForm').category.addEventListener('change', () => syncSaleFromInventory(false));
 function renderSalesTab(){
-  document.getElementById('inventoryList').innerHTML = computeInventory().filter(i => i.qty > 0)
+  document.getElementById('inventoryList').innerHTML = computeInventory().filter(i => i.qty > 0 && (i.identifier || '').trim())
     .map(i => `<option value="${escapeHtml(i.identifier || '')}">${escapeHtml(i.brand)} ${escapeHtml(i.model)} · 在库 ${i.qty}</option>`).join('');
   const rows = filterRecords(SalesStore.all(), 'salesFilterFrom', 'salesFilterTo', 'salesFilterCategory');
   document.getElementById('salesTable').innerHTML = renderTable(rows, [
-    ['日期','date'], ['类别','category'], ['品牌/型号', r => `${r.brand||''} ${r.model||''}`], ['IMEI/SKU','identifier'],
+    ['日期','date'], ['类别','category'], ['品牌/型号', r => `${r.brand||''} ${r.model||''}`], ['IMEI/SKU', r => r.identifier || '-'],
     ['数量','qty',true], ['成本', r=>money(r.unitCost),true], ['售价', r=>money(r.unitPrice),true],
     ['毛利', r=>money((r.unitPrice-r.unitCost)*r.qty),true], ['付款方式','paymentMethod'], ['顾客','customerName'],
     ['操作', r => `<button class="btn subtle small no-print" onclick="deleteRecord('sales','${r.id}')">删除</button>`]
@@ -748,7 +766,7 @@ function renderPurchasesTab(){
   const rows = filterRecords(PurchasesStore.all(), 'purchasesFilterFrom', 'purchasesFilterTo', 'purchasesFilterCategory');
   document.getElementById('purchasesTable').innerHTML = renderTable(rows, [
     ['日期','date'], ['类别','category'], ['供应商','supplier'], ['品牌/型号', r => `${r.brand||''} ${r.model||''}`],
-    ['IMEI/SKU','identifier'], ['数量','qty',true], ['单价', r=>money(r.unitCost),true],
+    ['IMEI/SKU', r => r.identifier || '-'], ['数量','qty',true], ['单价', r=>money(r.unitCost),true],
     ['小计', r=>money(r.unitCost*r.qty),true], ['付款方式','paymentStatus'],
     ['操作', r => `<button class="btn subtle small no-print" onclick="deleteRecord('purchases','${r.id}')">删除</button>`]
   ], '暂无采购记录。');
@@ -763,7 +781,7 @@ function renderInventoryTab(){
   let rows = computeInventory();
   if (cat) rows = rows.filter(r => r.category === cat);
   if (hideZero) rows = rows.filter(r => r.qty > 0);
-  if (search) rows = rows.filter(r => (r.brand+r.model+r.identifier).toLowerCase().includes(search));
+  if (search) rows = rows.filter(r => ((r.brand||'')+(r.model||'')+(r.identifier||'')).toLowerCase().includes(search));
 
   if (!rows.length) { document.getElementById('inventoryTable').innerHTML = '<p class="hint">没有符合条件的库存记录。</p>'; return; }
 
@@ -776,7 +794,7 @@ function renderInventoryTab(){
     return `<tr class="${trCls}">
       <td>${escapeHtml(r.category)}</td>
       <td>${escapeHtml(r.brand)} ${escapeHtml(r.model)}</td>
-      <td>${escapeHtml(r.identifier)}</td>
+      <td>${escapeHtml(r.identifier || '-')}</td>
       <td class="num">${r.qty}</td>
       <td class="num">${money(r.avgCost)}</td>
       <td>${escapeHtml(r.lastPurchaseDate||'-')}</td>
@@ -952,7 +970,7 @@ document.getElementById('settingsForm').addEventListener('submit', (e) => {
   e.preventDefault();
   const f = e.target;
   saveObj('ss_settings', {
-    shopName: f.shopName.value.trim() || 'SUN SMART',
+    shopName: f.shopName.value.trim() || SHOP_NAME,
     defaultFloat: Number(f.defaultFloat.value)||0,
     lowStockThreshold: Number(f.lowStockThreshold.value)||0
   });

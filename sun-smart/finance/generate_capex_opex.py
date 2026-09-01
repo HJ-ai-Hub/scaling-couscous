@@ -199,6 +199,7 @@ r = add_assumption_block(r, "人员假设 (文件 2.14)", [
     ("员工基本工资", 2000, RM0, ""),
     ("雇主EPF SOCSO EIS比例", 0.13, PCT, "约13%"),
     ("销售佣金占毛利比例", 0.03, PCT, "假设值，需与员工另行约定"),
+    ("董事袍金（每月）", 6000, RM0, "每月董事酬劳。在此处修改可测试不同金额；建议初期取较低值，待每月毛利稳定超过固定成本后再调高"),
 ])
 
 ws.sheet_view.showGridLines = False
@@ -239,7 +240,7 @@ def capex_section(start_row, title, items):
         n.alignment = Alignment(wrap_text=True)
         r += 1
     last_data_row = r - 1
-    ws.cell(row=r, column=2, value=f"小计：{title}").font = total_font
+    ws.cell(row=r, column=2, value="小计").font = total_font
     ws.cell(row=r, column=2).fill = total_fill
     for col in (3, 4):
         ws.cell(row=r, column=col).fill = total_fill
@@ -269,7 +270,7 @@ def capex_formula_section(start_row, title, rows):
         n.alignment = Alignment(wrap_text=True)
         rr += 1
     last = rr - 1
-    ws.cell(row=rr, column=2, value=f"小计：{title}").font = total_font
+    ws.cell(row=rr, column=2, value="小计").font = total_font
     ws.cell(row=rr, column=2).fill = total_fill
     ws.cell(row=rr, column=3).fill = total_fill
     ws.cell(row=rr, column=4).fill = total_fill
@@ -348,7 +349,7 @@ subtotal_cells.append(("现金流保护储备", t))
 gt_row = r + 1
 style_section(ws, gt_row, 2, 5, "CAPEX 总计")
 gt_row += 1
-ws.cell(row=gt_row, column=2, value="CAPEX 总计（含现金储备）").font = Font(bold=True, size=12)
+ws.cell(row=gt_row, column=2, value="CAPEX 总计").font = Font(bold=True, size=12)
 formula_parts = "+".join(coord for _, coord in subtotal_cells)
 grand = ws.cell(row=gt_row, column=5, value=f"={formula_parts}")
 grand.number_format = RM
@@ -402,7 +403,7 @@ def opex_section(start_row, title, items):
         n.alignment = Alignment(wrap_text=True)
         r += 1
     last = r - 1
-    ws.cell(row=r, column=2, value=f"小计：{title}").font = total_font
+    ws.cell(row=r, column=2, value="小计").font = total_font
     ws.cell(row=r, column=2).fill = total_fill
     ws.cell(row=r, column=3).fill = total_fill
     tot = ws.cell(row=r, column=3, value=f"=SUM(C{first}:C{last})")
@@ -424,9 +425,10 @@ r, t = opex_section(r, "1. 场地相关 (文件 3.4)", [
 opex_subtotals.append(("场地相关", t))
 
 r, t = opex_section(r, "2. 人员成本 (文件 2.16 / 自动引用关键假设)", [
+    ("董事袍金/董事酬劳", f"={A('董事袍金（每月）')}", "引用关键假设表·董事袍金，在那里修改金额即可", True),
     ("员工基本工资", f"={A('员工基本工资')}", "引用关键假设表·员工基本工资", True),
     ("EPF/SOCSO/EIS 雇主部分", f"={A('员工基本工资')}*{A('雇主EPF SOCSO EIS比例')}", "计算式：工资 × 雇主负担比例", True),
-    ("销售佣金（估算，实际见现金流预测表按毛利联动）", 300, "初期估算值，待首月实际毛利数据校正", False),
+    ("销售佣金（此处保留0，避免与「12个月现金流预测」表按毛利动态计算的佣金重复扣除）", 0, "佣金已在「12个月现金流预测」表按当月毛利×佣金比例自动计算，此处若填数字会被重复扣除两次", False),
 ])
 opex_subtotals.append(("人员成本", t))
 
@@ -466,7 +468,7 @@ opex_subtotals.append(("其他行政", t))
 gt_row = r + 1
 style_section(ws, gt_row, 2, 3, "OPEX 总计")
 gt_row += 1
-ws.cell(row=gt_row, column=2, value="每月固定营运支出总计").font = Font(bold=True, size=12)
+ws.cell(row=gt_row, column=2, value="OPEX 总计").font = Font(bold=True, size=12)
 formula_parts = "+".join(coord for _, coord in opex_subtotals)
 opex_grand = ws.cell(row=gt_row, column=3, value=f"={formula_parts}")
 opex_grand.number_format = RM
@@ -566,6 +568,16 @@ for i in range(12):
 total_rev_row = row
 
 row += 1
+# 显式列出销货成本，让整张表读起来是一个清晰的瀑布图：营收 − 销货成本 = 毛利。
+# 销货成本 = 营收 − 毛利，毛利行就在下一行（向下引用没问题）。
+cogs_row = row
+gross_margin_row_next = row + 1
+ws.cell(row=row, column=1, value="销货成本/进货成本 (RM) = 营收 − 毛利")
+for i in range(12):
+    col = col_letter_for_month(i)
+    ws.cell(row=row, column=2 + i, value=f"={col}{total_rev_row}-{col}{gross_margin_row_next}").number_format = RM
+
+row += 1
 ws.cell(row=row, column=1, value="估算毛利 (RM)  新机/二手机/配件加权")
 new_share = A('新机收入占比')
 used_share = A('二手机收入占比')
@@ -631,7 +643,7 @@ cum_row = row
 
 # totals column (N)
 n_col = 14
-for r_ in [qty_row, phone_rev_row, acc_qty_row, acc_rev_row, total_rev_row, gross_margin_row, fee_row, opex_row, commission_row, net_profit_row]:
+for r_ in [qty_row, phone_rev_row, acc_qty_row, acc_rev_row, total_rev_row, cogs_row, gross_margin_row, fee_row, opex_row, commission_row, net_profit_row]:
     c = ws.cell(row=r_, column=n_col, value=f"=SUM(B{r_}:M{r_})")
     c.number_format = "0.0" if r_ in (qty_row, acc_qty_row) else RM
     c.font = total_font
@@ -729,8 +741,16 @@ ws.row_dimensions[r].height = 30
 
 ws.sheet_view.showGridLines = False
 
-wb.save("SUN_SMART_CAPEX_OPEX.xlsx")
-print("Saved SUN_SMART_CAPEX_OPEX.xlsx")
+# Open on the "总览" (Summary) tab by default so the CAPEX/OPEX totals are the
+# first thing visible, instead of the text-only "使用说明" instructions tab.
+wb.active = wb.sheetnames.index("总览")
+
+OUTPUT_PATH = "SUN_SMART_CAPEX_OPEX.xlsx"
+wb.save(OUTPUT_PATH)
+
+from bake_cache import bake
+baked = bake(OUTPUT_PATH)
+print(f"Saved {OUTPUT_PATH} (baked {baked} cached formula value(s) for non-recalculating viewers)")
 print("Assumption cell map:")
 for k, v in AC.items():
     print(f"  {k}: {v}")
