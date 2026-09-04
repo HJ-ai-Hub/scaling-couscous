@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>EZ4U Mobile · Daily Operations System</title>
+<style>
+  :root {
+    --surface-1: #fcfcfb;
+    --page-plane: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --muted: #898781;
+    --gridline: #e1e0d9;
+    --border: rgba(11,11,11,0.10);
+    --accent: #2a78d6;
+    --accent-wash: #eaf2fc;
+    --good: #0ca30c;
+    --good-wash: #e7f7e7;
+    --warning: #b3760f;
+    --warning-wash: #fdf2dc;
+    --critical: #d03b3b;
+    --critical-wash: #fbe9e9;
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface-1: #1a1a19;
+      --page-plane: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --muted: #898781;
+      --gridline: #2c2c2a;
+      --border: rgba(255,255,255,0.10);
+      --accent: #3987e5;
+      --accent-wash: #16283d;
+      --good: #0ca30c;
+      --good-wash: #123312;
+      --warning: #fab219;
+      --warning-wash: #3a2c0c;
+      --critical: #e66767;
+      --critical-wash: #3a1414;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--page-plane);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body { padding-bottom: 72px; }
+  .tabular { font-variant-numeric: tabular-nums; }
+  header.topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--surface-1);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 14px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px;
+  }
+  header.topbar .brand { display: flex; flex-direction: column; }
+  header.topbar .brand b { font-size: 15px; }
+  header.topbar .brand span { font-size: 11px; color: var(--muted); }
+  header.topbar .today { font-size: 12px; color: var(--text-secondary); text-align:right; }
+
+  nav.tabs {
+    position: sticky; top: 45px; z-index: 19;
+    display: flex; overflow-x: auto;
+    background: var(--surface-1);
+    border-bottom: 1px solid var(--border);
+    -webkit-overflow-scrolling: touch;
+  }
+  nav.tabs button {
+    flex: 0 0 auto;
+    border: none; background: transparent;
+    color: var(--text-secondary);
+    padding: 10px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+  nav.tabs button.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+  }
+
+  main { padding: 14px; max-width: 980px; margin: 0 auto; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .card {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+  .card h2 { font-size: 15px; margin: 0 0 10px; }
+  .card h3 { font-size: 13px; margin: 14px 0 8px; color: var(--text-secondary); }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px; margin-bottom: 14px;
+  }
+  .stat-tile {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px;
+  }
+  .stat-tile .label { font-size: 12px; color: var(--text-secondary); }
+  .stat-tile .value { font-size: 22px; font-weight: 700; margin-top: 4px; }
+  .stat-tile .sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; font-weight: 600;
+    padding: 2px 8px; border-radius: 999px;
+  }
+  .badge.good { background: var(--good-wash); color: var(--good); }
+  .badge.warning { background: var(--warning-wash); color: var(--warning); }
+  .badge.critical { background: var(--critical-wash); color: var(--critical); }
+  .badge.neutral { background: var(--accent-wash); color: var(--accent); }
+
+  form .row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+  form .field { flex: 1 1 160px; display: flex; flex-direction: column; gap: 4px; }
+  form .field.wide { flex-basis: 100%; }
+  label { font-size: 12px; color: var(--text-secondary); }
+  input, select, textarea {
+    font: inherit;
+    padding: 9px 10px;
+    border: 1px solid var(--gridline);
+    border-radius: 8px;
+    background: var(--page-plane);
+    color: var(--text-primary);
+    width: 100%;
+  }
+  textarea { min-height: 56px; resize: vertical; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  button.btn {
+    font: inherit; font-weight: 600; font-size: 13px;
+    padding: 9px 16px; border-radius: 8px; border: 1px solid transparent;
+    cursor: pointer;
+  }
+  button.btn.primary { background: var(--accent); color: #fff; }
+  button.btn.ghost { background: transparent; color: var(--accent); border-color: var(--accent); }
+  button.btn.danger { background: var(--critical); color: #fff; }
+  button.btn.subtle { background: var(--page-plane); color: var(--text-secondary); border-color: var(--gridline); }
+  button.btn.small { padding: 5px 10px; font-size: 12px; }
+  button.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table th, table td {
+    text-align: left; padding: 8px 6px;
+    border-bottom: 1px solid var(--gridline);
+    white-space: nowrap;
+  }
+  table th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .02em; }
+  .table-wrap { overflow-x: auto; }
+  table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.low-stock td { background: var(--warning-wash); }
+  tr.out-of-stock td { color: var(--muted); }
+
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+  .toolbar input, .toolbar select { width: auto; }
+  .spacer { flex: 1; }
+
+  .toast {
+    position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+    background: var(--text-primary); color: var(--surface-1);
+    padding: 10px 18px; border-radius: 999px; font-size: 13px;
+    z-index: 50; box-shadow: 0 4px 20px rgba(0,0,0,.2);
+    opacity: 0; pointer-events: none; transition: opacity .2s ease;
+  }
+  .toast.show { opacity: 1; }
+
+  .checklist { display: flex; flex-direction: column; gap: 8px; }
+  .checklist label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-primary); }
+  .checklist input[type=checkbox] { width: auto; }
+
+  @media print {
+    header.topbar, nav.tabs, .no-print { display: none !important; }
+    body { padding: 0; }
+    .panel { display: none !important; }
+    .panel.print-target { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <b id="shopNameLabel">EZ4U Mobile</b>
+    <span>Daily Operations System · Data stored only in this browser</span>
+  </div>
+  <div class="today tabular" id="todayLabel"></div>
+</header>
+
+<nav class="tabs no-print" id="tabNav">
+  <button data-tab="dashboard" class="active">Dashboard</button>
+  <button data-tab="closing">Daily Closing</button>
+  <button data-tab="sales">Sales Records</button>
+  <button data-tab="purchases">Purchase Records</button>
+  <button data-tab="inventory">Inventory</button>
+  <button data-tab="expenses">Expenses</button>
+  <button data-tab="settings">Settings / Backup</button>
+</nav>
+
+<main>
+
+  <!-- DASHBOARD -->
+  <section class="panel active" id="panel-dashboard">
+    <div class="stat-grid" id="dashStats"></div>
+    <div class="card">
+      <h2>Today's Alerts</h2>
+      <div id="dashAlerts"></div>
+    </div>
+    <div class="card">
+      <h2>Recent Sales</h2>
+      <div class="table-wrap" id="dashRecentSales"></div>
+    </div>
+    <div class="card">
+      <h2>Inventory Alerts (Low Stock / Out of Stock)</h2>
+      <div class="table-wrap" id="dashLowStock"></div>
+    </div>
+  </section>
+
+  <!-- DAILY CLOSING -->
+  <section class="panel" id="panel-closing">
+    <div class="card no-print">
+      <div class="row">
+        <div class="field">
+          <label>Closing Date</label>
+          <input type="date" id="closingDate">
+        </div>
+        <div class="field" style="flex:0 0 auto; align-self:flex-end;">
+          <button class="btn subtle" id="btnLoadClosing">Load Data for This Date</button>
+        </div>
+        <div class="field" style="flex:0 0 auto; align-self:flex-end;">
+          <button class="btn ghost" onclick="window.print()">Print Today's Closing Sheet</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="closingBody"></div>
+  </section>
+
+  <!-- SALES -->
+  <section class="panel" id="panel-sales">
+    <div class="card no-print">
+      <h2>Add Sale Record</h2>
+      <form id="salesForm">
+        <div class="row">
+          <div class="field"><label>Date</label><input type="date" name="date" required></div>
+          <div class="field"><label>Category</label>
+            <select name="category" required>
+              <option value="New Phone">New Phone</option>
+              <option value="Used Phone">Used Phone</option>
+              <option value="Accessories">Accessories</option>
+            </select>
+          </div>
+          <div class="field"><label>Brand</label><input name="brand" placeholder="e.g. Samsung / Apple"></div>
+          <div class="field"><label>Model</label><input name="model" placeholder="e.g. Galaxy A15"></div>
+        </div>
+        <div class="row">
+          <div class="field wide">
+            <label>IMEI / SKU (optional &mdash; auto-fills cost &amp; stock reference)</label>
+            <input name="identifier" list="inventoryList" id="saleIdentifier" placeholder="Phone: enter IMEI. Accessory: enter SKU/name">
+            <datalist id="inventoryList"></datalist>
+            <p class="hint">Leave blank for accessories or bulk items &mdash; stock is then tracked by Category + Brand + Model, so fill those in instead.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Qty</label><input name="qty" type="number" min="1" step="1" value="1" required></div>
+          <div class="field"><label>Unit Cost (RM)</label><input name="unitCost" type="number" min="0" step="0.01" required></div>
+          <div class="field"><label>Selling Price (RM)</label><input name="unitPrice" type="number" min="0" step="0.01" required></div>
+          <div class="field"><label>Payment Method</label>
+            <select name="paymentMethod" required>
+              <option>Cash</option>
+              <option>Bank Transfer</option>
+              <option>DuitNow QR</option>
+              <option>Credit Card</option>
+              <option>PayLater/BNPL</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Customer Name (optional)</label><input name="customerName"></div>
+          <div class="field"><label>Customer Phone/WhatsApp (optional)</label><input name="customerPhone"></div>
+        </div>
+        <div class="row">
+          <div class="field wide"><label>Note</label><textarea name="note"></textarea></div>
+        </div>
+        <button class="btn primary" type="submit">Save Sale Record</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Sales Records</h2>
+      <div class="toolbar no-print">
+        <input type="date" id="salesFilterFrom">
+        <span>to</span>
+        <input type="date" id="salesFilterTo">
+        <select id="salesFilterCategory">
+          <option value="">All Categories</option>
+          <option>New Phone</option><option>Used Phone</option><option>Accessories</option>
+        </select>
+        <div class="spacer"></div>
+        <button class="btn subtle small" onclick="exportCsv('sales')">Export CSV</button>
+      </div>
+      <div class="table-wrap" id="salesTable"></div>
+    </div>
+  </section>
+
+  <!-- PURCHASES -->
+  <section class="panel" id="panel-purchases">
+    <div class="card no-print">
+      <h2>Add Purchase Record</h2>
+      <form id="purchasesForm">
+        <div class="row">
+          <div class="field"><label>Date</label><input type="date" name="date" required></div>
+          <div class="field"><label>Category</label>
+            <select name="category" required>
+              <option value="New Phone">New Phone</option>
+              <option value="Used Phone">Used Phone</option>
+              <option value="Accessories">Accessories</option>
+            </select>
+          </div>
+          <div class="field"><label>Supplier</label><input name="supplier" placeholder="e.g. DirectD / KTS Cellular"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Brand</label><input name="brand"></div>
+          <div class="field"><label>Model</label><input name="model"></div>
+          <div class="field wide"><label>IMEI / SKU (optional)</label><input name="identifier" placeholder="Phone: enter IMEI. Accessory: enter SKU/name">
+            <p class="hint">Leave blank for accessories or bulk items &mdash; stock is then tracked by Category + Brand + Model.</p></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Qty</label><input name="qty" type="number" min="1" step="1" value="1" required></div>
+          <div class="field"><label>Unit Cost (RM)</label><input name="unitCost" type="number" min="0" step="0.01" required></div>
+          <div class="field"><label>Payment Terms</label>
+            <select name="paymentStatus" required>
+              <option>COD</option>
+              <option>Credit Term</option>
+            </select>
+          </div>
+          <div class="field"><label>Invoice No. (optional)</label><input name="invoiceNo"></div>
+        </div>
+        <div class="row">
+          <div class="field wide"><label>Note (warranty terms / inspection results, etc.)</label><textarea name="note"></textarea></div>
+        </div>
+        <button class="btn primary" type="submit">Save Purchase Record</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Purchase Records</h2>
+      <div class="toolbar no-print">
+        <input type="date" id="purchasesFilterFrom">
+        <span>to</span>
+        <input type="date" id="purchasesFilterTo">
+        <select id="purchasesFilterCategory">
+          <option value="">All Categories</option>
+          <option>New Phone</option><option>Used Phone</option><option>Accessories</option>
+        </select>
+        <div class="spacer"></div>
+        <button class="btn subtle small" onclick="exportCsv('purchases')">Export CSV</button>
+      </div>
+      <div class="table-wrap" id="purchasesTable"></div>
+    </div>
+  </section>
+
+  <!-- INVENTORY -->
+  <section class="panel" id="panel-inventory">
+    <div class="card">
+      <h2>Inventory (auto-calculated: Purchases &minus; Sales)</h2>
+      <p class="hint">Cost is a weighted average (not item-by-item FIFO), for reference only. Rows at or below the low-stock threshold are highlighted yellow; out-of-stock items (qty 0) are greyed out.</p>
+      <div class="toolbar no-print">
+        <input type="text" id="invSearch" placeholder="Search brand / model / IMEI-SKU">
+        <select id="invFilterCategory">
+          <option value="">All Categories</option>
+          <option>New Phone</option><option>Used Phone</option><option>Accessories</option>
+        </select>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;">
+          <input type="checkbox" id="invHideZero" style="width:auto;" checked> Hide out-of-stock items
+        </label>
+        <div class="spacer"></div>
+        <button class="btn subtle small" onclick="exportCsv('inventory')">Export CSV</button>
+      </div>
+      <div class="table-wrap" id="inventoryTable"></div>
+    </div>
+  </section>
+
+  <!-- EXPENSES -->
+  <section class="panel" id="panel-expenses">
+    <div class="card no-print">
+      <h2>Add Expense Record</h2>
+      <form id="expensesForm">
+        <div class="row">
+          <div class="field"><label>Date</label><input type="date" name="date" required></div>
+          <div class="field"><label>Category</label>
+            <select name="category" required>
+              <option>Rent</option>
+              <option>Utilities &amp; Internet</option>
+              <option>Salary/Commission</option>
+              <option>Marketing &amp; Ads</option>
+              <option>Payment Processing Fees</option>
+              <option>Shipping/Packaging</option>
+              <option>Office Supplies</option>
+              <option>Repair/Maintenance</option>
+              <option>Miscellaneous</option>
+            </select>
+          </div>
+          <div class="field"><label>Payment Method</label>
+            <select name="paymentMethod" required>
+              <option>Cash</option>
+              <option>Bank Transfer</option>
+              <option>DuitNow QR</option>
+              <option>Credit Card</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field wide"><label>Description</label><input name="description" placeholder="e.g. July mall rent"></div>
+          <div class="field"><label>Amount (RM)</label><input name="amount" type="number" min="0" step="0.01" required></div>
+        </div>
+        <div class="row">
+          <div class="field wide"><label>Note</label><textarea name="note"></textarea></div>
+        </div>
+        <button class="btn primary" type="submit">Save Expense Record</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Expenses</h2>
+      <div class="toolbar no-print">
+        <input type="date" id="expensesFilterFrom">
+        <span>to</span>
+        <input type="date" id="expensesFilterTo">
+        <select id="expensesFilterCategory">
+          <option value="">All Categories</option>
+          <option>Rent</option><option>Utilities &amp; Internet</option><option>Salary/Commission</option>
+          <option>Marketing &amp; Ads</option><option>Payment Processing Fees</option><option>Shipping/Packaging</option>
+          <option>Office Supplies</option><option>Repair/Maintenance</option><option>Miscellaneous</option>
+        </select>
+        <div class="spacer"></div>
+        <button class="btn subtle small" onclick="exportCsv('expenses')">Export CSV</button>
+      </div>
+      <div class="table-wrap" id="expensesTable"></div>
+    </div>
+  </section>
+
+  <!-- SETTINGS -->
+  <section class="panel" id="panel-settings">
+    <div class="card">
+      <h2>Shop Settings</h2>
+      <form id="settingsForm">
+        <div class="row">
+          <div class="field"><label>Shop Name</label><input name="shopName" placeholder="EZ4U Mobile"></div>
+          <div class="field"><label>Default Daily Float (RM)</label><input name="defaultFloat" type="number" min="0" step="0.01"></div>
+          <div class="field"><label>Accessories Low-Stock Threshold (units)</label><input name="lowStockThreshold" type="number" min="0" step="1"></div>
+        </div>
+        <button class="btn primary" type="submit">Save Settings</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Data Backup / Restore</h2>
+      <p class="hint">All data is stored only in this browser (localStorage). Switching computers or browsers, or clearing browser data, will erase it. <b>Export a full backup every day after closing</b>, and also save it to cloud storage or send it to the founder.</p>
+      <div class="toolbar">
+        <button class="btn primary" onclick="exportFullBackup()">Export Full Backup (JSON)</button>
+        <label class="btn subtle" style="cursor:pointer;">
+          Import Backup (JSON)
+          <input type="file" accept="application/json" style="display:none;" id="importFile">
+        </label>
+      </div>
+      <p class="hint" id="lastBackupHint"></p>
+    </div>
+
+    <div class="card">
+      <h2 style="color:var(--critical);">Danger Zone</h2>
+      <p class="hint">This cannot be undone unless you have a previously exported backup file.</p>
+      <button class="btn danger" onclick="dangerWipe()">Wipe All Data</button>
+    </div>
+  </section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- constants ---------- */
+const PRODUCT_CATEGORIES = ['New Phone','Used Phone','Accessories'];
+const PAYMENT_METHODS = ['Cash','Bank Transfer','DuitNow QR','Credit Card','PayLater/BNPL'];
+
+/* ---------- tiny storage helpers ---------- */
+/* Note: this English build uses its own "sse_" localStorage prefix, separate
+   from the Chinese build's "ss_" prefix, so the two language versions never
+   mix data even if opened in the same browser. */
+function loadArr(key){ try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch(e){ return []; } }
+function saveArr(key, arr){ localStorage.setItem(key, JSON.stringify(arr)); }
+function loadObj(key, fallback){ try { return Object.assign({}, fallback, JSON.parse(localStorage.getItem(key) || '{}')); } catch(e){ return fallback; } }
+function saveObj(key, obj){ localStorage.setItem(key, JSON.stringify(obj)); }
+
+function makeStore(key){
+  return {
+    all(){ return loadArr(key); },
+    save(arr){ saveArr(key, arr); },
+    add(record){
+      const arr = this.all();
+      record.id = uid();
+      record.createdAt = new Date().toISOString();
+      arr.push(record);
+      this.save(arr);
+      return record;
+    },
+    remove(id){
+      this.save(this.all().filter(r => r.id !== id));
+    }
+  };
+}
+const SalesStore = makeStore('sse_sales');
+const PurchasesStore = makeStore('sse_purchases');
+const ExpensesStore = makeStore('sse_expenses');
+const ClosingsStore = makeStore('sse_closings'); // one record per date, id = date
+
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+
+/* ---------- formatting helpers ---------- */
+function todayStr(){
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+function money(n){
+  n = Number(n) || 0;
+  return 'RM ' + n.toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+function escapeHtml(s){
+  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toast._h);
+  toast._h = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ---------- settings ---------- */
+const SHOP_NAME = 'EZ4U Mobile';
+const LEGACY_SHOP_NAMES = ['SUN SMART', 'SUNSMART', 'Sun Smart', 'SunSmart'];
+function getSettings(){
+  const s = loadObj('sse_settings', { shopName: SHOP_NAME, defaultFloat: 200, lowStockThreshold: 5 });
+  /* carry browsers that already stored the old shop name over to the new one */
+  if (LEGACY_SHOP_NAMES.includes((s.shopName || '').trim())) s.shopName = SHOP_NAME;
+  return s;
+}
+
+/* ---------- tabs ---------- */
+document.getElementById('tabNav').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-tab]');
+  if (!btn) return;
+  switchTab(btn.dataset.tab);
+});
+function switchTab(name){
+  document.querySelectorAll('nav.tabs button').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('main .panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + name));
+  document.querySelectorAll('main .panel').forEach(p => p.classList.toggle('print-target', p.id === 'panel-' + name));
+  renderAll();
+}
+
+/* ---------- inventory computation (purchases - sales, grouped by identifier) ---------- */
+function inventoryKey(rec){
+  const id = (rec.identifier || '').trim();
+  if (id) return id.toUpperCase();
+  return [rec.category, rec.brand, rec.model].join('|').toUpperCase();
+}
+function computeInventory(){
+  const map = new Map();
+  PurchasesStore.all().forEach(p => {
+    const key = inventoryKey(p);
+    const qty = Number(p.qty) || 0;
+    const cost = Number(p.unitCost) || 0;
+    if (!map.has(key)) {
+      map.set(key, { key, category: p.category, brand: p.brand, model: p.model, identifier: p.identifier,
+        qtyIn: 0, costSum: 0, qtyOut: 0, lastPurchaseDate: null, lastSaleDate: null, lastSalePrice: null });
+    }
+    const item = map.get(key);
+    item.qtyIn += qty;
+    item.costSum += qty * cost;
+    if (!item.lastPurchaseDate || p.date > item.lastPurchaseDate) item.lastPurchaseDate = p.date;
+  });
+  SalesStore.all().forEach(s => {
+    const key = inventoryKey(s);
+    const qty = Number(s.qty) || 0;
+    if (!map.has(key)) {
+      map.set(key, { key, category: s.category, brand: s.brand, model: s.model, identifier: s.identifier,
+        qtyIn: 0, costSum: 0, qtyOut: 0, lastPurchaseDate: null, lastSaleDate: null, lastSalePrice: null });
+    }
+    const item = map.get(key);
+    item.qtyOut += qty;
+    if (!item.lastSaleDate || s.date > item.lastSaleDate) { item.lastSaleDate = s.date; item.lastSalePrice = s.unitPrice; }
+  });
+  return Array.from(map.values()).map(item => ({
+    ...item,
+    qty: item.qtyIn - item.qtyOut,
+    avgCost: item.qtyIn > 0 ? item.costSum / item.qtyIn : 0
+  })).sort((a,b) => (a.category+a.brand+a.model).localeCompare(b.category+b.brand+b.model));
+}
+
+/* ---------- generic date-range + category filter ---------- */
+function filterRecords(records, fromId, toId, catId){
+  const from = fromId ? document.getElementById(fromId).value : '';
+  const to = toId ? document.getElementById(toId).value : '';
+  const cat = catId ? document.getElementById(catId).value : '';
+  return records.filter(r => {
+    if (from && r.date < from) return false;
+    if (to && r.date > to) return false;
+    if (cat && r.category !== cat) return false;
+    return true;
+  }).sort((a,b) => b.date.localeCompare(a.date) || (b.createdAt||'').localeCompare(a.createdAt||''));
+}
+
+/* ================= DASHBOARD ================= */
+function renderDashboard(){
+  const today = todayStr();
+  const sales = SalesStore.all();
+  const expenses = ExpensesStore.all();
+  const todaySales = sales.filter(s => s.date === today);
+  const todayExpenses = expenses.filter(e => e.date === today);
+  const salesTotal = todaySales.reduce((a,s) => a + Number(s.unitPrice)*Number(s.qty), 0);
+  const cashSalesTotal = todaySales.filter(s => s.paymentMethod === 'Cash').reduce((a,s) => a + Number(s.unitPrice)*Number(s.qty), 0);
+  const expensesTotal = todayExpenses.reduce((a,e) => a + Number(e.amount), 0);
+  const marginTotal = todaySales.reduce((a,s) => a + (Number(s.unitPrice)-Number(s.unitCost))*Number(s.qty), 0);
+  const closing = ClosingsStore.all().find(c => c.date === today);
+  const inv = computeInventory();
+  const settings = getSettings();
+  const lowStock = inv.filter(i => i.category === 'Accessories' ? (i.qty > 0 && i.qty <= settings.lowStockThreshold) : false);
+  const outOfStock = inv.filter(i => i.qty <= 0 && (i.qtyIn > 0));
+
+  const tiles = [
+    { label: "Today's Sales (All Channels)", value: money(salesTotal), sub: todaySales.length + ' transaction(s)' },
+    { label: "Today's Cash Sales", value: money(cashSalesTotal), sub: '' },
+    { label: "Today's Gross Margin (est.)", value: money(marginTotal), sub: '' },
+    { label: "Today's Expenses", value: money(expensesTotal), sub: '' },
+    { label: "Today's Closing Status", value: closing ? 'Completed' : 'Not completed', sub: closing ? ('Variance ' + money(closing.variance)) : 'Complete it on the "Daily Closing" tab', badgeClass: closing ? (Math.abs(closing.variance) < 0.01 ? 'good' : 'warning') : 'critical' },
+    { label: 'Inventory Alerts', value: (lowStock.length + outOfStock.length) + ' item(s)', sub: lowStock.length + ' low stock / ' + outOfStock.length + ' out of stock', badgeClass: (lowStock.length+outOfStock.length) > 0 ? 'warning' : 'good' },
+  ];
+  document.getElementById('dashStats').innerHTML = tiles.map(t => `
+    <div class="stat-tile">
+      <div class="label">${t.label}</div>
+      <div class="value tabular">${t.value}</div>
+      <div class="sub">${t.badgeClass ? `<span class="badge ${t.badgeClass}">&nbsp;</span> ` : ''}${escapeHtml(t.sub)}</div>
+    </div>
+  `).join('');
+
+  const alerts = [];
+  if (!closing) alerts.push('Today\'s closing hasn\'t been completed yet. Finish the cash count on the "Daily Closing" tab before you close up.');
+  if (outOfStock.length) alerts.push(outOfStock.length + ' item(s) that previously had stock are now out of stock. Restock popular models if needed.');
+  if (lowStock.length) alerts.push(lowStock.length + ' accessory item(s) are below the low-stock threshold (' + settings.lowStockThreshold + ' units). Restocking is recommended.');
+  document.getElementById('dashAlerts').innerHTML = alerts.length
+    ? '<ul style="margin:0;padding-left:18px;">' + alerts.map(a => `<li style="margin-bottom:6px;">${escapeHtml(a)}</li>`).join('') + '</ul>'
+    : '<p class="hint">No alerts right now.</p>';
+
+  const recent = sales.slice().sort((a,b)=> (b.createdAt||'').localeCompare(a.createdAt||'')).slice(0,5);
+  document.getElementById('dashRecentSales').innerHTML = renderTable(recent, [
+    ['Date','date'], ['Category','category'], ['Brand/Model', r => `${r.brand||''} ${r.model||''}`],
+    ['Qty','qty'], ['Price', r => money(r.unitPrice), true], ['Payment Method','paymentMethod']
+  ]);
+
+  document.getElementById('dashLowStock').innerHTML = renderTable(lowStock.concat(outOfStock), [
+    ['Category','category'], ['Brand/Model', r => `${r.brand||''} ${r.model||''}`], ['IMEI/SKU', r => r.identifier || '-'],
+    ['Qty in Stock', r => r.qty, true], ['Status', r => r.qty<=0 ? 'Out of Stock' : 'Low Stock']
+  ]);
+}
+
+/* generic table renderer: columns = [label, keyOrFn, isNumeric] */
+function renderTable(rows, columns, emptyMsg){
+  if (!rows.length) return `<p class="hint">${emptyMsg || 'No data yet.'}</p>`;
+  const head = columns.map(c => `<th>${escapeHtml(c[0])}</th>`).join('');
+  const body = rows.map(r => {
+    const cells = columns.map(c => {
+      const val = typeof c[1] === 'function' ? c[1](r) : r[c[1]];
+      const cls = c[2] ? ' class="num"' : '';
+      return `<td${cls}>${escapeHtml(val ?? '')}</td>`;
+    }).join('');
+    return `<tr>${cells}</tr>`;
+  }).join('');
+  return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+}
+
+/* ================= SALES ================= */
+document.getElementById('salesForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const f = e.target;
+  const rec = {
+    date: f.date.value, category: f.category.value, brand: f.brand.value.trim(),
+    model: f.model.value.trim(), identifier: f.identifier.value.trim(),
+    qty: Number(f.qty.value), unitCost: Number(f.unitCost.value), unitPrice: Number(f.unitPrice.value),
+    paymentMethod: f.paymentMethod.value, customerName: f.customerName.value.trim(),
+    customerPhone: f.customerPhone.value.trim(), note: f.note.value.trim()
+  };
+  const inv = computeInventory();
+  const match = inv.find(i => i.key === inventoryKey(rec));
+  if (!match || match.qty < rec.qty) {
+    const proceed = confirm('Insufficient stock or no matching inventory record found for this item. Save this sale anyway?');
+    if (!proceed) return;
+  }
+  SalesStore.add(rec);
+  f.reset();
+  f.date.value = todayStr();
+  toast('Sale record saved');
+  renderAll();
+});
+function syncSaleFromInventory(byIdentifier){
+  const f = document.getElementById('salesForm');
+  const inv = computeInventory();
+  const id = f.identifier.value.trim();
+  const match = id
+    ? inv.find(i => (i.identifier||'').trim().toUpperCase() === id.toUpperCase())
+    : inv.find(i => i.key === inventoryKey({ category: f.category.value, brand: f.brand.value.trim(), model: f.model.value.trim() }));
+  if (!match) return;
+  if (byIdentifier) {
+    f.category.value = match.category || f.category.value;
+    f.brand.value = match.brand || '';
+    f.model.value = match.model || '';
+    f.unitCost.value = match.avgCost.toFixed(2);
+  } else if (!f.unitCost.value) {
+    /* IMEI left blank: match on category + brand + model, and never overwrite a cost already typed */
+    f.unitCost.value = match.avgCost.toFixed(2);
+  }
+}
+document.getElementById('saleIdentifier').addEventListener('input', () => syncSaleFromInventory(true));
+document.getElementById('salesForm').brand.addEventListener('input', () => syncSaleFromInventory(false));
+document.getElementById('salesForm').model.addEventListener('input', () => syncSaleFromInventory(false));
+document.getElementById('salesForm').category.addEventListener('change', () => syncSaleFromInventory(false));
+function renderSalesTab(){
+  document.getElementById('inventoryList').innerHTML = computeInventory().filter(i => i.qty > 0 && (i.identifier || '').trim())
+    .map(i => `<option value="${escapeHtml(i.identifier || '')}">${escapeHtml(i.brand)} ${escapeHtml(i.model)} · in stock ${i.qty}</option>`).join('');
+  const rows = filterRecords(SalesStore.all(), 'salesFilterFrom', 'salesFilterTo', 'salesFilterCategory');
+  document.getElementById('salesTable').innerHTML = renderTable(rows, [
+    ['Date','date'], ['Category','category'], ['Brand/Model', r => `${r.brand||''} ${r.model||''}`], ['IMEI/SKU', r => r.identifier || '-'],
+    ['Qty','qty',true], ['Cost', r=>money(r.unitCost),true], ['Price', r=>money(r.unitPrice),true],
+    ['Margin', r=>money((r.unitPrice-r.unitCost)*r.qty),true], ['Payment Method','paymentMethod'], ['Customer','customerName'],
+    ['Actions', r => `<button class="btn subtle small no-print" onclick="deleteRecord('sales','${r.id}')">Delete</button>`]
+  ], 'No sales records yet.');
+}
+
+/* ================= PURCHASES ================= */
+document.getElementById('purchasesForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const f = e.target;
+  PurchasesStore.add({
+    date: f.date.value, category: f.category.value, supplier: f.supplier.value.trim(),
+    brand: f.brand.value.trim(), model: f.model.value.trim(), identifier: f.identifier.value.trim(),
+    qty: Number(f.qty.value), unitCost: Number(f.unitCost.value), paymentStatus: f.paymentStatus.value,
+    invoiceNo: f.invoiceNo.value.trim(), note: f.note.value.trim()
+  });
+  f.reset();
+  f.date.value = todayStr();
+  toast('Purchase record saved, inventory updated automatically');
+  renderAll();
+});
+function renderPurchasesTab(){
+  const rows = filterRecords(PurchasesStore.all(), 'purchasesFilterFrom', 'purchasesFilterTo', 'purchasesFilterCategory');
+  document.getElementById('purchasesTable').innerHTML = renderTable(rows, [
+    ['Date','date'], ['Category','category'], ['Supplier','supplier'], ['Brand/Model', r => `${r.brand||''} ${r.model||''}`],
+    ['IMEI/SKU', r => r.identifier || '-'], ['Qty','qty',true], ['Unit Price', r=>money(r.unitCost),true],
+    ['Subtotal', r=>money(r.unitCost*r.qty),true], ['Payment Terms','paymentStatus'],
+    ['Actions', r => `<button class="btn subtle small no-print" onclick="deleteRecord('purchases','${r.id}')">Delete</button>`]
+  ], 'No purchase records yet.');
+}
+
+/* ================= INVENTORY ================= */
+function renderInventoryTab(){
+  const settings = getSettings();
+  const search = (document.getElementById('invSearch').value || '').trim().toLowerCase();
+  const cat = document.getElementById('invFilterCategory').value;
+  const hideZero = document.getElementById('invHideZero').checked;
+  let rows = computeInventory();
+  if (cat) rows = rows.filter(r => r.category === cat);
+  if (hideZero) rows = rows.filter(r => r.qty > 0);
+  if (search) rows = rows.filter(r => ((r.brand||'')+(r.model||'')+(r.identifier||'')).toLowerCase().includes(search));
+
+  if (!rows.length) { document.getElementById('inventoryTable').innerHTML = '<p class="hint">No inventory records match the current filters.</p>'; return; }
+
+  const head = ['Category','Brand/Model','IMEI/SKU','Qty in Stock','Weighted Avg Cost','Last Purchase Date','Last Sale Date','Status'];
+  const body = rows.map(r => {
+    let statusBadge = '<span class="badge good">OK</span>';
+    let trCls = '';
+    if (r.qty <= 0) { statusBadge = '<span class="badge critical">Out of Stock</span>'; trCls = 'out-of-stock'; }
+    else if (r.category === 'Accessories' && r.qty <= settings.lowStockThreshold) { statusBadge = '<span class="badge warning">Low Stock</span>'; trCls = 'low-stock'; }
+    return `<tr class="${trCls}">
+      <td>${escapeHtml(r.category)}</td>
+      <td>${escapeHtml(r.brand)} ${escapeHtml(r.model)}</td>
+      <td>${escapeHtml(r.identifier || '-')}</td>
+      <td class="num">${r.qty}</td>
+      <td class="num">${money(r.avgCost)}</td>
+      <td>${escapeHtml(r.lastPurchaseDate||'-')}</td>
+      <td>${escapeHtml(r.lastSaleDate||'-')}</td>
+      <td>${statusBadge}</td>
+    </tr>`;
+  }).join('');
+  document.getElementById('inventoryTable').innerHTML = `<table><thead><tr>${head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${body}</tbody></table>`;
+}
+
+/* ================= EXPENSES ================= */
+document.getElementById('expensesForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const f = e.target;
+  ExpensesStore.add({
+    date: f.date.value, category: f.category.value, description: f.description.value.trim(),
+    amount: Number(f.amount.value), paymentMethod: f.paymentMethod.value, note: f.note.value.trim()
+  });
+  f.reset();
+  f.date.value = todayStr();
+  toast('Expense record saved');
+  renderAll();
+});
+function renderExpensesTab(){
+  const rows = filterRecords(ExpensesStore.all(), 'expensesFilterFrom', 'expensesFilterTo', 'expensesFilterCategory');
+  document.getElementById('expensesTable').innerHTML = renderTable(rows, [
+    ['Date','date'], ['Category','category'], ['Description','description'], ['Amount', r=>money(r.amount),true],
+    ['Payment Method','paymentMethod'],
+    ['Actions', r => `<button class="btn subtle small no-print" onclick="deleteRecord('expenses','${r.id}')">Delete</button>`]
+  ], 'No expense records yet.');
+}
+
+/* ================= DAILY CLOSING ================= */
+function renderClosingTab(){
+  const dateInput = document.getElementById('closingDate');
+  if (!dateInput.value) dateInput.value = todayStr();
+  buildClosingBody(dateInput.value);
+}
+document.getElementById('btnLoadClosing').addEventListener('click', () => {
+  buildClosingBody(document.getElementById('closingDate').value);
+});
+
+function buildClosingBody(date){
+  const settings = getSettings();
+  const sales = SalesStore.all().filter(s => s.date === date);
+  const expenses = ExpensesStore.all().filter(e => e.date === date);
+  const purchases = PurchasesStore.all().filter(p => p.date === date);
+  const existing = ClosingsStore.all().find(c => c.date === date);
+
+  const byMethod = {};
+  PAYMENT_METHODS.forEach(m => byMethod[m] = { count: 0, amount: 0 });
+  sales.forEach(s => { const amt = Number(s.unitPrice)*Number(s.qty); byMethod[s.paymentMethod].count++; byMethod[s.paymentMethod].amount += amt; });
+  const salesTotal = Object.values(byMethod).reduce((a,m) => a + m.amount, 0);
+
+  const cashSalesAuto = byMethod['Cash'].amount;
+  const cashExpensesAuto = expenses.filter(e => e.paymentMethod === 'Cash').reduce((a,e) => a + Number(e.amount), 0);
+  const openingFloat = existing ? existing.openingFloat : settings.defaultFloat;
+  const otherIn = existing ? existing.cashOtherIn : 0;
+  const otherOut = existing ? existing.cashOtherOut : 0;
+  const actual = existing ? existing.actualCash : '';
+
+  const channelRows = PAYMENT_METHODS.map(m => `<tr><td>${m}</td><td class="num">${byMethod[m].count}</td><td class="num">${money(byMethod[m].amount)}</td></tr>`).join('');
+
+  const html = `
+    <div class="card">
+      <h2>All-Channel Sales Summary · ${escapeHtml(date)}</h2>
+      <table><thead><tr><th>Payment Method</th><th>Count</th><th>Amount</th></tr></thead>
+        <tbody>${channelRows}<tr><td><b>Total</b></td><td class="num">${sales.length}</td><td class="num tabular"><b>${money(salesTotal)}</b></td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Cash Count</h2>
+      <form id="cashForm">
+        <div class="row">
+          <div class="field"><label>Opening Float (RM)</label><input name="openingFloat" type="number" step="0.01" value="${openingFloat}"></div>
+          <div class="field"><label>Cash Sales (auto, from today's sales)</label><input value="${cashSalesAuto.toFixed(2)}" disabled></div>
+          <div class="field"><label>Other Cash In (RM)</label><input name="cashOtherIn" type="number" step="0.01" value="${otherIn}"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Cash Expenses (auto, from today's expenses)</label><input value="${cashExpensesAuto.toFixed(2)}" disabled></div>
+          <div class="field"><label>Other Cash Out (RM)</label><input name="cashOtherOut" type="number" step="0.01" value="${otherOut}"></div>
+          <div class="field"><label>Actual Cash Counted (RM)</label><input name="actualCash" type="number" step="0.01" value="${actual}" required></div>
+        </div>
+        <div class="row">
+          <div class="field wide" id="varianceBox"></div>
+        </div>
+        <div class="row">
+          <div class="field wide"><label>Variance Note (required if there is a variance)</label><textarea name="varianceNote">${escapeHtml(existing?existing.varianceNote:'')}</textarea></div>
+        </div>
+        <h3>Non-Cash Channel Reconciliation</h3>
+        <div class="checklist">
+          <label><input type="checkbox" name="confirmTransfer" ${existing?.channelConfirm?.transfer?'checked':''}> Bank transfer receipts reconciled</label>
+          <label><input type="checkbox" name="confirmDuitnow" ${existing?.channelConfirm?.duitnow?'checked':''}> DuitNow QR payment notifications confirmed</label>
+          <label><input type="checkbox" name="confirmCard" ${existing?.channelConfirm?.card?'checked':''}> Credit card settlement batch reconciled</label>
+          <label><input type="checkbox" name="confirmPaylater" ${existing?.channelConfirm?.paylater?'checked':''}> PayLater/BNPL settlement reconciled</label>
+        </div>
+        <h3>Today's Operations Summary</h3>
+        <p class="hint">Purchases: ${purchases.length} (${money(purchases.reduce((a,p)=>a+p.unitCost*p.qty,0))}) ·
+        Sales: ${sales.length} (${money(salesTotal)}) · Expenses: ${expenses.length} (${money(expenses.reduce((a,e)=>a+Number(e.amount),0))})</p>
+        <div class="row">
+          <div class="field"><label>Closed By</label><input name="closedBy" value="${escapeHtml(existing?existing.closedBy:'')}" placeholder="Founder / staff name"></div>
+        </div>
+        <div class="row">
+          <div class="field wide"><label>Note</label><textarea name="note">${escapeHtml(existing?existing.note:'')}</textarea></div>
+        </div>
+        <button class="btn primary no-print" type="submit">${existing ? "Update Today's Closing" : "Complete Today's Closing"}</button>
+        ${existing ? `<span class="hint" style="margin-left:8px;">Last saved: ${escapeHtml(existing.closedAt||'')}</span>` : ''}
+      </form>
+    </div>
+  `;
+  document.getElementById('closingBody').innerHTML = html;
+
+  const form = document.getElementById('cashForm');
+  const recompute = () => {
+    const of = Number(form.openingFloat.value)||0;
+    const oi = Number(form.cashOtherIn.value)||0;
+    const oo = Number(form.cashOtherOut.value)||0;
+    const ac = Number(form.actualCash.value)||0;
+    const expected = of + cashSalesAuto + oi - cashExpensesAuto - oo;
+    const variance = ac - expected;
+    const cls = Math.abs(variance) < 0.01 ? 'good' : (Math.abs(variance) <= 5 ? 'warning' : 'critical');
+    document.getElementById('varianceBox').innerHTML = `
+      <div class="stat-tile" style="max-width:320px;">
+        <div class="label">Expected Cash ${money(expected)}</div>
+        <div class="value tabular">Variance ${money(variance)} <span class="badge ${cls}">${variance===0?'Balanced':(variance>0?'Cash Over':'Cash Short')}</span></div>
+      </div>`;
+  };
+  ['openingFloat','cashOtherIn','cashOtherOut','actualCash'].forEach(n => form[n].addEventListener('input', recompute));
+  recompute();
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const of = Number(form.openingFloat.value)||0;
+    const oi = Number(form.cashOtherIn.value)||0;
+    const oo = Number(form.cashOtherOut.value)||0;
+    const ac = Number(form.actualCash.value)||0;
+    const expected = of + cashSalesAuto + oi - cashExpensesAuto - oo;
+    const variance = ac - expected;
+    if (Math.abs(variance) > 0.01 && !form.varianceNote.value.trim()) {
+      alert('There is a cash variance. Please add a note explaining it before saving.');
+      return;
+    }
+    const record = {
+      date, openingFloat: of, cashSalesAuto, cashOtherIn: oi, cashExpensesAuto, cashOtherOut: oo,
+      expectedCash: expected, actualCash: ac, variance,
+      varianceNote: form.varianceNote.value.trim(),
+      channelConfirm: {
+        transfer: form.confirmTransfer.checked, duitnow: form.confirmDuitnow.checked,
+        card: form.confirmCard.checked, paylater: form.confirmPaylater.checked
+      },
+      closedBy: form.closedBy.value.trim(), note: form.note.value.trim(),
+      closedAt: new Date().toLocaleString('en-GB')
+    };
+    const all = ClosingsStore.all().filter(c => c.date !== date);
+    all.push(record);
+    ClosingsStore.save(all);
+    toast("Today's closing saved");
+    buildClosingBody(date);
+    renderDashboard();
+  });
+}
+
+/* ================= SETTINGS ================= */
+function renderSettingsTab(){
+  const s = getSettings();
+  const f = document.getElementById('settingsForm');
+  f.shopName.value = s.shopName;
+  f.defaultFloat.value = s.defaultFloat;
+  f.lowStockThreshold.value = s.lowStockThreshold;
+}
+document.getElementById('settingsForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const f = e.target;
+  saveObj('sse_settings', {
+    shopName: f.shopName.value.trim() || SHOP_NAME,
+    defaultFloat: Number(f.defaultFloat.value)||0,
+    lowStockThreshold: Number(f.lowStockThreshold.value)||0
+  });
+  document.getElementById('shopNameLabel').textContent = getSettings().shopName;
+  toast('Settings saved');
+});
+
+/* ---------- delete ---------- */
+function deleteRecord(type, id){
+  if (!confirm('Delete this record? This cannot be undone.')) return;
+  const map = { sales: SalesStore, purchases: PurchasesStore, expenses: ExpensesStore };
+  map[type].remove(id);
+  toast('Deleted');
+  renderAll();
+}
+
+/* ---------- CSV export ---------- */
+function toCsv(rows, columns){
+  const head = columns.map(c => c[0]);
+  const lines = [head.join(',')];
+  rows.forEach(r => {
+    const vals = columns.map(c => {
+      const v = typeof c[1] === 'function' ? c[1](r) : r[c[1]];
+      const s = String(v ?? '').replace(/"/g, '""');
+      return /[",\n]/.test(s) ? `"${s}"` : s;
+    });
+    lines.push(vals.join(','));
+  });
+  return lines.join('\n');
+}
+function downloadText(filename, text, mime){
+  const blob = new Blob([text], { type: mime || 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function exportCsv(which){
+  const stamp = todayStr();
+  let csv, filename;
+  if (which === 'sales') {
+    csv = toCsv(SalesStore.all(), [['Date','date'],['Category','category'],['Brand','brand'],['Model','model'],['IMEI/SKU','identifier'],['Qty','qty'],['Unit Cost','unitCost'],['Selling Price','unitPrice'],['Payment Method','paymentMethod'],['Customer Name','customerName'],['Customer Phone','customerPhone'],['Note','note']]);
+    filename = `sun-smart-en-sales-${stamp}.csv`;
+  } else if (which === 'purchases') {
+    csv = toCsv(PurchasesStore.all(), [['Date','date'],['Category','category'],['Supplier','supplier'],['Brand','brand'],['Model','model'],['IMEI/SKU','identifier'],['Qty','qty'],['Unit Cost','unitCost'],['Payment Terms','paymentStatus'],['Invoice No.','invoiceNo'],['Note','note']]);
+    filename = `sun-smart-en-purchases-${stamp}.csv`;
+  } else if (which === 'expenses') {
+    csv = toCsv(ExpensesStore.all(), [['Date','date'],['Category','category'],['Description','description'],['Amount','amount'],['Payment Method','paymentMethod'],['Note','note']]);
+    filename = `sun-smart-en-expenses-${stamp}.csv`;
+  } else if (which === 'inventory') {
+    csv = toCsv(computeInventory(), [['Category','category'],['Brand','brand'],['Model','model'],['IMEI/SKU','identifier'],['Qty in Stock','qty'],['Weighted Avg Cost','avgCost'],['Last Purchase Date','lastPurchaseDate'],['Last Sale Date','lastSaleDate']]);
+    filename = `sun-smart-en-inventory-${stamp}.csv`;
+  }
+  downloadText(filename, '﻿' + csv, 'text/csv;charset=utf-8');
+  toast('CSV exported');
+}
+
+/* ---------- full JSON backup / restore ---------- */
+function exportFullBackup(){
+  const data = {
+    exportedAt: new Date().toISOString(),
+    settings: getSettings(),
+    sales: SalesStore.all(),
+    purchases: PurchasesStore.all(),
+    expenses: ExpensesStore.all(),
+    closings: ClosingsStore.all()
+  };
+  downloadText(`sun-smart-en-backup-${todayStr()}.json`, JSON.stringify(data, null, 2), 'application/json');
+  saveObj('sse_meta', { lastBackupAt: new Date().toLocaleString('en-GB') });
+  updateBackupHint();
+  toast('Full backup exported');
+}
+document.getElementById('importFile').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const data = JSON.parse(reader.result);
+      if (!confirm('Importing will overwrite all data currently on this device. Continue? We recommend exporting a backup first.')) return;
+      if (data.settings) saveObj('sse_settings', data.settings);
+      saveArr('sse_sales', data.sales || []);
+      saveArr('sse_purchases', data.purchases || []);
+      saveArr('sse_expenses', data.expenses || []);
+      saveArr('sse_closings', data.closings || []);
+      toast('Backup imported');
+      renderAll();
+      renderSettingsTab();
+    } catch(err) {
+      alert('Invalid file format, could not import.');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+function updateBackupHint(){
+  const meta = loadObj('sse_meta', {});
+  document.getElementById('lastBackupHint').textContent = meta.lastBackupAt ? ('Last backup exported: ' + meta.lastBackupAt) : 'No backup exported yet — export one now.';
+}
+
+function dangerWipe(){
+  const input = prompt('This will wipe all sales/purchase/inventory/expense/closing data and cannot be undone.\nType DELETE to confirm:');
+  if (input !== 'DELETE') { toast('Cancelled'); return; }
+  ['sse_sales','sse_purchases','sse_expenses','sse_closings'].forEach(k => localStorage.removeItem(k));
+  toast('All data wiped');
+  renderAll();
+}
+
+/* ---------- init ---------- */
+function renderAll(){
+  renderDashboard();
+  renderSalesTab();
+  renderPurchasesTab();
+  renderInventoryTab();
+  renderExpensesTab();
+  renderClosingTab();
+  renderSettingsTab();
+  updateBackupHint();
+}
+
+['salesFilterFrom','salesFilterTo','salesFilterCategory'].forEach(id => document.getElementById(id).addEventListener('change', renderSalesTab));
+['purchasesFilterFrom','purchasesFilterTo','purchasesFilterCategory'].forEach(id => document.getElementById(id).addEventListener('change', renderPurchasesTab));
+['expensesFilterFrom','expensesFilterTo','expensesFilterCategory'].forEach(id => document.getElementById(id).addEventListener('change', renderExpensesTab));
+['invSearch','invFilterCategory','invHideZero'].forEach(id => document.getElementById(id).addEventListener('input', renderInventoryTab));
+
+document.getElementById('todayLabel').textContent = new Date().toLocaleDateString('en-GB', { year:'numeric', month:'long', day:'numeric', weekday:'short' });
+document.getElementById('shopNameLabel').textContent = getSettings().shopName;
+['salesForm','purchasesForm','expensesForm'].forEach(id => document.querySelector(`#${id} [name=date]`).value = todayStr());
+
+renderAll();
+</script>
+</body>
+</html>

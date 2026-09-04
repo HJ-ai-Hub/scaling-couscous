@@ -202,6 +202,7 @@ r = add_assumption_block(r, "Staffing Assumptions (Doc §2.14)", [
     ("Staff base salary", 2000, RM0, ""),
     ("Employer EPF SOCSO EIS rate", 0.13, PCT, "Approx. 13%"),
     ("Sales commission pct of gross margin", 0.03, PCT, "Assumed value, to be agreed with staff separately"),
+    ("Director fees (monthly)", 6000, RM0, "Monthly directors' remuneration. Edit here to test different draws; consider starting low and stepping up once monthly gross margin exceeds fixed costs"),
 ])
 
 ws.sheet_view.showGridLines = False
@@ -242,7 +243,7 @@ def capex_section(start_row, title, items):
         n.alignment = Alignment(wrap_text=True)
         r += 1
     last_data_row = r - 1
-    ws.cell(row=r, column=2, value=f"Subtotal: {title}").font = total_font
+    ws.cell(row=r, column=2, value="Subtotal").font = total_font
     ws.cell(row=r, column=2).fill = total_fill
     for col in (3, 4):
         ws.cell(row=r, column=col).fill = total_fill
@@ -272,7 +273,7 @@ def capex_formula_section(start_row, title, rows):
         n.alignment = Alignment(wrap_text=True)
         rr += 1
     last = rr - 1
-    ws.cell(row=rr, column=2, value=f"Subtotal: {title}").font = total_font
+    ws.cell(row=rr, column=2, value="Subtotal").font = total_font
     ws.cell(row=rr, column=2).fill = total_fill
     ws.cell(row=rr, column=3).fill = total_fill
     ws.cell(row=rr, column=4).fill = total_fill
@@ -351,7 +352,7 @@ subtotal_cells.append(("Cash flow reserve", t))
 gt_row = r + 1
 style_section(ws, gt_row, 2, 5, "CAPEX Grand Total")
 gt_row += 1
-ws.cell(row=gt_row, column=2, value="CAPEX Grand Total (incl. cash reserve)").font = Font(bold=True, size=12)
+ws.cell(row=gt_row, column=2, value="CAPEX Grand Total").font = Font(bold=True, size=12)
 formula_parts = "+".join(coord for _, coord in subtotal_cells)
 grand = ws.cell(row=gt_row, column=5, value=f"={formula_parts}")
 grand.number_format = RM
@@ -405,7 +406,7 @@ def opex_section(start_row, title, items):
         n.alignment = Alignment(wrap_text=True)
         r += 1
     last = r - 1
-    ws.cell(row=r, column=2, value=f"Subtotal: {title}").font = total_font
+    ws.cell(row=r, column=2, value="Subtotal").font = total_font
     ws.cell(row=r, column=2).fill = total_fill
     ws.cell(row=r, column=3).fill = total_fill
     tot = ws.cell(row=r, column=3, value=f"=SUM(C{first}:C{last})")
@@ -427,9 +428,10 @@ r, t = opex_section(r, "1. Premises (Doc §3.4)", [
 opex_subtotals.append(("Premises", t))
 
 r, t = opex_section(r, "2. Staffing Costs (Doc §2.16 / auto-linked to Key Assumptions)", [
+    ("Director fees", f"={A('Director fees (monthly)')}", "Linked to Key Assumptions - edit the amount there", True),
     ("Staff base salary", f"={A('Staff base salary')}", "Linked to Key Assumptions - staff base salary", True),
     ("EPF/SOCSO/EIS employer portion", f"={A('Staff base salary')}*{A('Employer EPF SOCSO EIS rate')}", "Formula: salary x employer contribution rate", True),
-    ("Sales commission (estimate; actual linked to gross margin in forecast sheet)", 300, "Initial estimate, calibrate with first month's actual gross margin", False),
+    ("Sales commission (kept at 0 here to avoid double-counting)", 0, "Commission is already auto-calculated in \"12-Month Cash Flow Forecast\" as gross margin x commission rate; a non-zero value here would be subtracted twice", False),
 ])
 opex_subtotals.append(("Staffing costs", t))
 
@@ -469,7 +471,7 @@ opex_subtotals.append(("Other admin", t))
 gt_row = r + 1
 style_section(ws, gt_row, 2, 3, "OPEX Grand Total")
 gt_row += 1
-ws.cell(row=gt_row, column=2, value="Total monthly fixed operating expenses").font = Font(bold=True, size=12)
+ws.cell(row=gt_row, column=2, value="OPEX Grand Total").font = Font(bold=True, size=12)
 formula_parts = "+".join(coord for _, coord in opex_subtotals)
 opex_grand = ws.cell(row=gt_row, column=3, value=f"={formula_parts}")
 opex_grand.number_format = RM
@@ -569,6 +571,17 @@ for i in range(12):
 total_rev_row = row
 
 row += 1
+# Cost of goods sold, shown explicitly so the sheet reads as a clean
+# waterfall: Revenue - COGS = Gross margin. COGS = Revenue - Gross margin,
+# and the gross margin row is the very next row (forward reference is fine).
+cogs_row = row
+gross_margin_row_next = row + 1
+ws.cell(row=row, column=1, value="Cost of goods sold / stock cost (RM) = Revenue - Gross margin")
+for i in range(12):
+    col = col_letter_for_month(i)
+    ws.cell(row=row, column=2 + i, value=f"={col}{total_rev_row}-{col}{gross_margin_row_next}").number_format = RM
+
+row += 1
 ws.cell(row=row, column=1, value="Estimated gross margin (RM) - new/used/accessories blended")
 new_share = A('New phone revenue share')
 used_share = A('Used phone revenue share')
@@ -634,7 +647,7 @@ cum_row = row
 
 # totals column (N)
 n_col = 14
-for r_ in [qty_row, phone_rev_row, acc_qty_row, acc_rev_row, total_rev_row, gross_margin_row, fee_row, opex_row, commission_row, net_profit_row]:
+for r_ in [qty_row, phone_rev_row, acc_qty_row, acc_rev_row, total_rev_row, cogs_row, gross_margin_row, fee_row, opex_row, commission_row, net_profit_row]:
     c = ws.cell(row=r_, column=n_col, value=f"=SUM(B{r_}:M{r_})")
     c.number_format = "0.0" if r_ in (qty_row, acc_qty_row) else RM
     c.font = total_font
@@ -731,8 +744,16 @@ ws.row_dimensions[r].height = 30
 
 ws.sheet_view.showGridLines = False
 
-wb.save("SUN_SMART_CAPEX_OPEX_EN.xlsx")
-print("Saved SUN_SMART_CAPEX_OPEX_EN.xlsx")
+# Open on the "Summary" tab by default so the CAPEX/OPEX totals are the first
+# thing visible, instead of the text-only "Instructions" tab.
+wb.active = wb.sheetnames.index("Summary")
+
+OUTPUT_PATH = "SUN_SMART_CAPEX_OPEX_EN.xlsx"
+wb.save(OUTPUT_PATH)
+
+from bake_cache import bake
+baked = bake(OUTPUT_PATH)
+print(f"Saved {OUTPUT_PATH} (baked {baked} cached formula value(s) for non-recalculating viewers)")
 print("Assumption cell map:")
 for k, v in AC.items():
     print(f"  {k}: {v}")
