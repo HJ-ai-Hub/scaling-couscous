@@ -1,4 +1,6 @@
-# SUN SMART — 营运工具 (Task 1 & 2)
+# EZ4U Mobile — 营运工具 (Task 1 & 2)
+
+> 本项目原名 SUN SMART，现已更名为 **EZ4U Mobile**。下方引用的 Master Document 仍沿用原文件名。
 
 基于 `Project A OS · SUN SMART 经营操作系统 Master Document V0.7`（第1-3、5、6、8章及 Decision Log）建立的两个可直接使用的工具，用于补上文件中第6章「财务预算」和部分营运记录系统的缺口。
 

@@ -1,0 +1,1017 @@
+<title>Orizuru Petty Cash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+
+<style>
+/* ── tokens: complete light palette on bare :root ─────────────────── */
+:root{
+  --paper:#F3F5F4;      --surface:#FFFFFF;     --surface-2:#ECEFEE;
+  --ink:#14202C;        --ink-2:#3D4A56;       --ink-3:#6E7A85;
+  --line:#DCE1E0;       --line-2:#C6CDCC;
+  --indigo:#2C4A6E;     --indigo-soft:#E4EAF1; --indigo-ink:#1B3049;
+  --in:#2E6E52;         --in-soft:#E2EEE8;
+  --out:#A8462F;        --out-soft:#F6E7E2;
+  --amber:#8A6620;      --amber-soft:#F5EEDD;
+  --focus:#2C4A6E;   --btn-fg:#FFFFFF;
+  --shadow:0 1px 2px rgba(20,32,44,.06), 0 8px 24px -12px rgba(20,32,44,.18);
+  --radius:3px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E151C;      --surface:#151F29;    --surface-2:#1D2833;
+    --ink:#E7ECEE;        --ink-2:#B3BEC6;      --ink-3:#7E8B95;
+    --line:#26323D;       --line-2:#34424E;
+    --indigo:#8FB0D4;     --indigo-soft:#1B2A3A; --indigo-ink:#B9CFE6;
+    --in:#6FB894;         --in-soft:#16281F;
+    --out:#DD9376;        --out-soft:#2A1B16;
+    --amber:#D5AC63;      --amber-soft:#28210F;
+    --focus:#8FB0D4;   --btn-fg:#0E151C;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E151C;      --surface:#151F29;    --surface-2:#1D2833;
+  --ink:#E7ECEE;        --ink-2:#B3BEC6;      --ink-3:#7E8B95;
+  --line:#26323D;       --line-2:#34424E;
+  --indigo:#8FB0D4;     --indigo-soft:#1B2A3A; --indigo-ink:#B9CFE6;
+  --in:#6FB894;         --in-soft:#16281F;
+  --out:#DD9376;        --out-soft:#2A1B16;
+  --amber:#D5AC63;      --amber-soft:#28210F;
+  --focus:#8FB0D4;   --btn-fg:#0E151C;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:14px; line-height:1.5; margin:0;
+  -webkit-font-smoothing:antialiased;
+}
+.num{font-family:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+     font-variant-numeric:tabular-nums;}
+h1,h2,h3{font-family:"Zen Kaku Gothic New","IBM Plex Sans",system-ui,sans-serif;
+         margin:0; text-wrap:balance; font-weight:700;}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
+
+.wrap{max-width:1380px;margin:0 auto;padding:0 24px 64px}
+
+/* ── masthead ─────────────────────────────────────────────────────── */
+.masthead{border-bottom:1px solid var(--line);background:var(--surface)}
+.mast-in{max-width:1380px;margin:0 auto;padding:20px 24px;
+  display:flex;flex-wrap:wrap;gap:28px;align-items:flex-end;justify-content:space-between}
+.brand{display:flex;flex-direction:column;gap:3px}
+.brand .mark{display:flex;align-items:center;gap:9px}
+.brand h1{font-size:19px;letter-spacing:-.01em}
+.kanji{font-size:15px;color:var(--indigo);font-family:"Zen Kaku Gothic New",serif;
+  border:1px solid var(--line-2);border-radius:2px;padding:1px 6px;line-height:1.35}
+.brand .sub{font-size:11.5px;color:var(--ink-3);letter-spacing:.07em;text-transform:uppercase}
+
+.balance{text-align:right}
+.balance .lbl{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  display:block;margin-bottom:2px}
+.balance .fig{font-size:38px;font-weight:600;letter-spacing:-.02em;line-height:1.05;display:block}
+.balance .cur{font-size:16px;color:var(--ink-3);font-weight:500;margin-right:5px}
+.balance .fig.neg{color:var(--out)}
+.balance .note{font-size:11.5px;color:var(--ink-3);margin-top:3px}
+
+/* ── status strip ─────────────────────────────────────────────────── */
+.strip{display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+  padding:9px 0 0;font-size:12px;color:var(--ink-3)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:100px;
+  font-size:11.5px;border:1px solid var(--line-2);background:var(--surface-2);color:var(--ink-2)}
+.pill.live{background:var(--in-soft);border-color:transparent;color:var(--in)}
+.pill.local{background:var(--amber-soft);border-color:transparent;color:var(--amber)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+
+/* ── stat readouts (quiet, not cards) ─────────────────────────────── */
+.readouts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:0;margin:22px 0 26px;border:1px solid var(--line);background:var(--surface);border-radius:var(--radius)}
+.readout{padding:13px 16px;border-right:1px solid var(--line)}
+.readout:last-child{border-right:0}
+.readout .k{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.readout .v{font-size:20px;font-weight:500;margin-top:3px;letter-spacing:-.01em}
+.readout .v.in{color:var(--in)} .readout .v.out{color:var(--out)}
+.readout .m{font-size:11px;color:var(--ink-3);margin-top:1px}
+
+/* ── layout ───────────────────────────────────────────────────────── */
+.cols{display:grid;grid-template-columns:352px minmax(0,1fr);gap:22px;align-items:start}
+@media(max-width:1000px){.cols{grid-template-columns:1fr}}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.panel-hd{padding:13px 16px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;gap:10px}
+.panel-hd h2{font-size:13.5px;letter-spacing:.02em}
+.panel-hd .vno{font-size:11.5px;color:var(--indigo);background:var(--indigo-soft);
+  padding:2px 8px;border-radius:100px}
+.panel-bd{padding:16px}
+aside.panel{position:sticky;top:16px}
+@media(max-width:1000px){aside.panel{position:static}}
+
+/* ── form ─────────────────────────────────────────────────────────── */
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:13px}
+.field label{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.field input,.field select,.field textarea{
+  background:var(--paper);border:1px solid var(--line-2);border-radius:2px;
+  padding:8px 10px;width:100%;color:var(--ink)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--indigo)}
+.field textarea{resize:vertical;min-height:56px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.hint{font-size:11px;color:var(--ink-3)}
+
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line-2);
+  border-radius:2px;overflow:hidden}
+.seg button{background:var(--paper);border:0;padding:9px 6px;cursor:pointer;
+  font-size:12.5px;font-weight:500;color:var(--ink-3);transition:background .12s,color .12s}
+.seg button+button{border-left:1px solid var(--line-2)}
+.seg button[aria-pressed="true"]{background:var(--in-soft);color:var(--in)}
+.seg button.out[aria-pressed="true"]{background:var(--out-soft);color:var(--out)}
+
+.check{display:flex;gap:8px;align-items:flex-start;margin-bottom:12px}
+.check input{margin-top:2px;accent-color:var(--indigo);flex:none}
+.check span{font-size:12.5px;color:var(--ink-2)}
+
+.drop{border:1px dashed var(--line-2);border-radius:2px;padding:14px;text-align:center;
+  cursor:pointer;background:var(--paper);transition:border-color .12s,background .12s}
+.drop:hover,.drop.over{border-color:var(--indigo);background:var(--indigo-soft)}
+.drop .t{font-size:12.5px;color:var(--ink-2)}
+.drop .s{font-size:11px;color:var(--ink-3);margin-top:2px}
+.drop.has{border-style:solid;border-color:var(--indigo);background:var(--indigo-soft);text-align:left}
+.thumb{display:flex;gap:10px;align-items:center}
+.thumb img{width:38px;height:38px;object-fit:cover;border-radius:2px;flex:none;
+  border:1px solid var(--line-2)}
+.thumb .fn{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.btn{border:1px solid var(--indigo);background:var(--indigo);color:var(--btn-fg);
+  padding:10px 14px;border-radius:2px;cursor:pointer;font-weight:500;font-size:13.5px;
+  width:100%;transition:filter .12s}
+.btn:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink-2);border-color:var(--line-2);width:auto;
+  padding:7px 12px;font-size:12.5px}
+.btn.ghost:hover{border-color:var(--indigo);color:var(--indigo)}
+
+/* ── filters ──────────────────────────────────────────────────────── */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:11px 16px;
+  border-bottom:1px solid var(--line);background:var(--surface-2)}
+.filters input,.filters select{background:var(--surface);border:1px solid var(--line-2);
+  border-radius:2px;padding:6px 9px;font-size:12.5px;color:var(--ink)}
+.filters .grow{flex:1;min-width:150px}
+.filters .sp{flex:1}
+
+/* ── ledger ───────────────────────────────────────────────────────── */
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:820px}
+th{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);
+  text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-weight:500;
+  background:var(--surface);position:sticky;top:0;z-index:1}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:hover{background:var(--surface-2)}
+.r{text-align:right}
+.desc{font-weight:500}
+.meta{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.amt.in{color:var(--in)} .amt.out{color:var(--out)}
+.bal{color:var(--ink-2)}
+.chip{display:inline-block;font-size:10.5px;padding:2px 7px;border-radius:100px;
+  background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line);white-space:nowrap}
+.chip.ex{background:var(--amber-soft);color:var(--amber);border-color:transparent}
+.rcpt{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--indigo);
+  background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;
+  text-underline-offset:2px}
+.rcpt.none{color:var(--ink-3);text-decoration:none;cursor:default}
+.del{background:none;border:0;color:var(--ink-3);cursor:pointer;padding:2px 5px;
+  border-radius:2px;font-size:15px;line-height:1}
+.del:hover{color:var(--out);background:var(--out-soft)}
+
+.empty{padding:56px 24px;text-align:center;color:var(--ink-3)}
+.empty h3{font-size:15px;color:var(--ink-2);margin-bottom:5px}
+
+/* ── reconcile ────────────────────────────────────────────────────── */
+.recon{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:14px;
+  padding:16px;border-top:1px solid var(--line);background:var(--surface-2)}
+.recon .k{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.recon .v{font-size:16px;font-weight:500;margin-top:3px}
+.recon input{width:100%;margin-top:3px;background:var(--surface);border:1px solid var(--line-2);
+  border-radius:2px;padding:6px 9px;font-size:16px}
+.var-ok{color:var(--in)} .var-bad{color:var(--out)}
+
+/* ── modal ────────────────────────────────────────────────────────── */
+.modal{position:fixed;inset:0;background:rgba(12,20,28,.62);display:flex;
+  align-items:center;justify-content:center;padding:24px;z-index:50}
+.modal-in{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);
+  max-width:760px;width:100%;max-height:88vh;display:flex;flex-direction:column;
+  border:1px solid var(--line)}
+.modal-hd{padding:13px 16px;border-bottom:1px solid var(--line);display:flex;
+  justify-content:space-between;align-items:center;gap:12px}
+.modal-bd{padding:16px;overflow:auto;text-align:center}
+.modal-bd img{max-width:100%;border-radius:2px;border:1px solid var(--line)}
+.modal-ft{padding:12px 16px;border-top:1px solid var(--line);display:flex;gap:8px;
+  justify-content:flex-end}
+
+/* ── toast ────────────────────────────────────────────────────────── */
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);
+  background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:100px;
+  font-size:13px;z-index:80;box-shadow:var(--shadow);max-width:88vw;text-align:center}
+
+footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);
+  font-size:11.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:14px;
+  justify-content:space-between}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="masthead">
+  <div class="mast-in">
+    <div class="brand">
+      <div class="mark">
+        <span class="kanji">財</span>
+        <h1>Petty Cash Book</h1>
+      </div>
+      <span class="sub">Orizuru Holiday Homes LLC &nbsp;·&nbsp; Dubai, UAE</span>
+    </div>
+    <div class="balance">
+      <span class="lbl">Cash on hand</span>
+      <span class="fig num" id="balFig"><span class="cur">AED</span>0.00</span>
+      <div class="note" id="balNote">No entries yet</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="strip">
+    <span class="pill" id="modePill"><span class="dot"></span><span id="modeText">Connecting…</span></span>
+    <span class="pill" id="custPill" hidden></span>
+    <span class="pill" id="exPill" hidden></span>
+    <span class="sp" style="flex:1"></span>
+    <button class="btn ghost" id="btnExport">Export to Excel</button>
+  </div>
+
+  <div class="readouts">
+    <div class="readout"><div class="k">Total cash in</div>
+      <div class="v in num" id="sIn">AED 0.00</div><div class="m" id="sInM">0 receipts</div></div>
+    <div class="readout"><div class="k">Total cash out</div>
+      <div class="v out num" id="sOut">AED 0.00</div><div class="m" id="sOutM">0 payments</div></div>
+    <div class="readout"><div class="k">This month</div>
+      <div class="v num" id="sMonth">AED 0.00</div><div class="m" id="sMonthM">spent</div></div>
+    <div class="readout"><div class="k">Recoverable VAT</div>
+      <div class="v num" id="sVat">AED 0.00</div><div class="m">input VAT on receipts held</div></div>
+    <div class="readout"><div class="k">Receipts attached</div>
+      <div class="v num" id="sRcpt">0 / 0</div><div class="m" id="sRcptM">entries documented</div></div>
+  </div>
+
+  <div class="cols">
+    <!-- ── entry panel ── -->
+    <aside class="panel">
+      <div class="panel-hd">
+        <h2>Record a movement</h2>
+        <span class="vno num" id="nextVno">PC-0001</span>
+      </div>
+      <div class="panel-bd">
+        <form id="entryForm">
+          <div class="field">
+            <label>Movement</label>
+            <div class="seg">
+              <button type="button" id="tIn"  aria-pressed="false">Cash in</button>
+              <button type="button" id="tOut" class="out" aria-pressed="true">Cash out</button>
+            </div>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label for="fDate">Date</label>
+              <input type="date" id="fDate" required>
+            </div>
+            <div class="field">
+              <label for="fAmount">Amount (AED)</label>
+              <input type="number" id="fAmount" step="0.01" min="0" placeholder="0.00" required class="num">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="fDesc">Description</label>
+            <input type="text" id="fDesc" maxlength="140" required
+                   placeholder="e.g. Salik top-up for site inspections">
+          </div>
+
+          <div class="field">
+            <label for="fCat">Budget category</label>
+            <select id="fCat">
+              <option>Transport, fuel &amp; Salik</option>
+              <option>Office &amp; administration</option>
+              <option>Unit operations</option>
+              <option>Guest services</option>
+              <option>Marketing &amp; acquisition</option>
+              <option>Technology &amp; AI</option>
+              <option>Staff &amp; payroll</option>
+              <option>Professional &amp; compliance</option>
+              <option>Float top-up</option>
+              <option>Other</option>
+            </select>
+            <span class="hint">Matches the OPEX model categories, so petty cash rolls up to budget.</span>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label for="fPayee">Paid to / received from</label>
+              <input type="text" id="fPayee" maxlength="80" placeholder="Supplier name">
+            </div>
+            <div class="field">
+              <label for="fMethod">Method</label>
+              <select id="fMethod">
+                <option>Cash</option><option>Company card</option><option>Reimbursement</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="check">
+            <input type="checkbox" id="fVat" checked>
+            <span>Amount includes 5% UAE VAT &mdash; extract it as recoverable input VAT
+              <strong class="num" id="vatPrev">AED 0.00</strong></span>
+          </div>
+
+          <div class="field" id="trnWrap">
+            <label for="fTrn">Supplier TRN <span style="text-transform:none;letter-spacing:0">(needed to reclaim the VAT)</span></label>
+            <input type="text" id="fTrn" maxlength="20" placeholder="15 digits" class="num">
+          </div>
+
+          <div class="field">
+            <label for="fBy">Recorded by</label>
+            <input type="text" id="fBy" maxlength="60" placeholder="Your name">
+          </div>
+
+          <div class="field">
+            <label>Invoice / receipt</label>
+            <div class="drop" id="drop" tabindex="0" role="button"
+                 aria-label="Attach an invoice or receipt image or PDF">
+              <div id="dropIdle">
+                <div class="t">Attach a photo or PDF</div>
+                <div class="s">Drag in, or click to browse &mdash; images are compressed automatically</div>
+              </div>
+              <div id="dropHas" hidden></div>
+            </div>
+            <input type="file" id="fFile" accept="image/*,application/pdf" hidden>
+          </div>
+
+          <button type="submit" class="btn" id="btnSave">Record entry</button>
+        </form>
+      </div>
+    </aside>
+
+    <!-- ── ledger ── -->
+    <section class="panel">
+      <div class="filters">
+        <input type="search" id="qSearch" class="grow" placeholder="Search description, payee or voucher…">
+        <select id="qType"><option value="">All movements</option>
+          <option value="in">Cash in</option><option value="out">Cash out</option></select>
+        <select id="qCat"><option value="">All categories</option></select>
+        <input type="date" id="qFrom" title="From date">
+        <input type="date" id="qTo" title="To date">
+        <button class="btn ghost" id="qClear">Clear</button>
+      </div>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:88px">Voucher</th>
+              <th style="width:92px">Date</th>
+              <th>Description</th>
+              <th style="width:104px">Receipt</th>
+              <th class="r" style="width:104px">Cash in</th>
+              <th class="r" style="width:104px">Cash out</th>
+              <th class="r" style="width:112px">Balance</th>
+              <th style="width:34px"></th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="emptyState" hidden>
+        <h3>No entries match</h3>
+        <div>Adjust the filters, or record the first movement on the left.</div>
+      </div>
+      <div class="recon">
+        <div><div class="k">Opening float</div>
+          <input type="number" id="fFloat" step="0.01" min="0" class="num" value="0"></div>
+        <div><div class="k">Book balance</div><div class="v num" id="rBook">AED 0.00</div></div>
+        <div><div class="k">Cash counted</div>
+          <input type="number" id="fCount" step="0.01" min="0" class="num" placeholder="Count the tin"></div>
+        <div><div class="k">Variance</div><div class="v num" id="rVar">&mdash;</div></div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <span>Orizuru Holiday Homes LLC &nbsp;·&nbsp; Trade Licence 1634278 &nbsp;·&nbsp; TRN 105507385000001</span>
+    <span id="footNote">Figures in AED. VAT extracted at the UAE standard rate of 5%.</span>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  /* ── constants ────────────────────────────────────────────────── */
+  var VAT_RATE   = 0.05;
+  var MAX_DOC    = 200000;   // chars of base64 — keeps the db doc under 256 KiB
+  var LS_ENTRIES = "orizuru.pettycash.entries";
+  var LS_RECEIPT = "orizuru.pettycash.receipts";
+  var LS_SETTING = "orizuru.pettycash.settings";
+  var LS_NAME    = "orizuru.pettycash.who";
+
+  /* ── state ────────────────────────────────────────────────────── */
+  var db = null, downloads = null;
+  var entries = [], settings = {openingFloat:0, counted:null};
+  var receiptCache = {};           // id -> {name,type,dataUrl}
+  var pending = null;              // staged attachment
+  var kind = "out";
+  var toastTimer = null;
+
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* ── helpers ──────────────────────────────────────────────────── */
+  function money(n){
+    var v = Number(n)||0;
+    return v.toLocaleString("en-AE",{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
+  function aed(n){ return "AED " + money(n); }
+  function esc(s){
+    return String(s==null?"":s).replace(/[&<>"']/g,function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+  function today(){
+    var d=new Date(), p=function(n){return (n<10?"0":"")+n;};
+    return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate());
+  }
+  function fmtDate(s){
+    if(!s) return "";
+    var p=String(s).split("-");
+    if(p.length!==3) return s;
+    var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    return p[2]+" "+m[(+p[1])-1]+" "+p[0].slice(2);
+  }
+  function toast(msg){
+    var el=document.querySelector(".toast");
+    if(el) el.remove();
+    el=document.createElement("div");
+    el.className="toast"; el.textContent=msg; el.setAttribute("role","status");
+    document.body.appendChild(el);
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(function(){ if(el) el.remove(); },3400);
+  }
+  function uid(){
+    return Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+  }
+
+  /* ── local fallback store ─────────────────────────────────────── */
+  function lsGet(k,d){
+    try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; }
+  }
+  function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+
+  /* ── derived ──────────────────────────────────────────────────── */
+  function sorted(){
+    return entries.slice().sort(function(a,b){
+      if(a.date!==b.date) return a.date<b.date?-1:1;
+      return (a.createdAt||0)-(b.createdAt||0);
+    });
+  }
+  function withBalance(){
+    var run = Number(settings.openingFloat)||0, out=[];
+    sorted().forEach(function(e){
+      run += (e.type==="in" ? Number(e.amount)||0 : -(Number(e.amount)||0));
+      var c={}; for(var k in e) c[k]=e[k];
+      c.balance=run; out.push(c);
+    });
+    return out;
+  }
+  function nextVoucher(){
+    var max=0;
+    entries.forEach(function(e){
+      var m=/^PC-(\d+)$/.exec(e.voucherNo||"");
+      if(m) max=Math.max(max,parseInt(m[1],10));
+    });
+    return "PC-"+String(max+1).padStart(4,"0");
+  }
+
+  /* ── filters ──────────────────────────────────────────────────── */
+  function filtered(){
+    var q=($("qSearch").value||"").trim().toLowerCase();
+    var t=$("qType").value, c=$("qCat").value;
+    var f=$("qFrom").value, to=$("qTo").value;
+    return withBalance().filter(function(e){
+      if(t && e.type!==t) return false;
+      if(c && e.category!==c) return false;
+      if(f && e.date<f) return false;
+      if(to && e.date>to) return false;
+      if(q){
+        var hay=((e.description||"")+" "+(e.payee||"")+" "+(e.voucherNo||"")+" "+
+                 (e.category||"")+" "+(e.recordedBy||"")).toLowerCase();
+        if(hay.indexOf(q)===-1) return false;
+      }
+      return true;
+    });
+  }
+
+  /* ── render ───────────────────────────────────────────────────── */
+  function render(){
+    var all=withBalance();
+    var bal = all.length ? all[all.length-1].balance : (Number(settings.openingFloat)||0);
+
+    var fig=$("balFig");
+    fig.innerHTML='<span class="cur">AED</span>'+money(bal);
+    fig.classList.toggle("neg", bal<0);
+    $("balNote").textContent = all.length
+      ? all.length+" entries · last movement "+fmtDate(all[all.length-1].date)
+      : "Opening float only — no movements recorded";
+
+    var tIn=0,tOut=0,nIn=0,nOut=0,vat=0,withR=0,monthOut=0;
+    var ym=today().slice(0,7);
+    all.forEach(function(e){
+      var a=Number(e.amount)||0;
+      if(e.type==="in"){ tIn+=a; nIn++; } else { tOut+=a; nOut++; if((e.date||"").slice(0,7)===ym) monthOut+=a; }
+      if(e.receiptId){ withR++; if(e.type==="out") vat+=Number(e.vatAmount)||0; }
+    });
+    $("sIn").textContent=aed(tIn);      $("sInM").textContent=nIn+(nIn===1?" top-up":" top-ups");
+    $("sOut").textContent=aed(tOut);    $("sOutM").textContent=nOut+(nOut===1?" payment":" payments");
+    $("sMonth").textContent=aed(monthOut);
+    $("sMonthM").textContent="spent in "+new Date().toLocaleString("en-GB",{month:"long"});
+    $("sVat").textContent=aed(vat);
+    $("sRcpt").textContent=withR+" / "+all.length;
+    $("sRcptM").textContent = all.length && withR<all.length
+      ? (all.length-withR)+" still missing a receipt" : "entries documented";
+
+    // category filter options
+    var sel=$("qCat"), keep=sel.value, cats={};
+    all.forEach(function(e){ if(e.category) cats[e.category]=1; });
+    var opts='<option value="">All categories</option>';
+    Object.keys(cats).sort().forEach(function(c){
+      opts+='<option value="'+esc(c)+'">'+esc(c)+"</option>";
+    });
+    sel.innerHTML=opts; sel.value=keep;
+
+    // rows, newest first
+    var list=filtered().slice().reverse();
+    var tb=$("rows"), html="";
+    list.forEach(function(e){
+      html+='<tr>'+
+        '<td class="num" style="color:var(--ink-3)">'+esc(e.voucherNo||"")+'</td>'+
+        '<td class="num">'+fmtDate(e.date)+'</td>'+
+        '<td><div class="desc">'+esc(e.description)+
+            (e.isExample?' <span class="chip ex">example</span>':'')+'</div>'+
+          '<div class="meta">'+
+            '<span class="chip">'+esc(e.category||"Uncategorised")+'</span>'+
+            (e.payee?' &nbsp;'+esc(e.payee):'')+
+            (e.vatAmount>0?' &nbsp;· VAT '+money(e.vatAmount):'')+
+            (e.recordedBy?' &nbsp;· '+esc(e.recordedBy):'')+
+          '</div></td>'+
+        '<td>'+(e.receiptId
+            ? '<button class="rcpt" data-view="'+esc(e.receiptId)+'">View</button>'
+            : '<span class="rcpt none">—</span>')+'</td>'+
+        '<td class="r num amt in">'+(e.type==="in"?money(e.amount):"")+'</td>'+
+        '<td class="r num amt out">'+(e.type==="out"?money(e.amount):"")+'</td>'+
+        '<td class="r num bal">'+money(e.balance)+'</td>'+
+        '<td><button class="del" data-del="'+esc(e.id)+'" title="Delete entry" '+
+            'aria-label="Delete '+esc(e.voucherNo)+'">&times;</button></td>'+
+      '</tr>';
+    });
+    tb.innerHTML=html;
+    $("emptyState").hidden = list.length>0;
+
+    // reconciliation
+    $("rBook").textContent=aed(bal);
+    var counted=$("fCount").value;
+    if(counted===""){ $("rVar").textContent="—"; $("rVar").className="v num"; }
+    else{
+      var d=(Number(counted)||0)-bal;
+      $("rVar").textContent=(d>0?"+":"")+money(d);
+      $("rVar").className="v num "+(Math.abs(d)<0.005?"var-ok":"var-bad");
+    }
+
+    $("nextVno").textContent=nextVoucher();
+
+    var nEx=all.filter(function(e){return e.isExample;}).length;
+    var ex=$("exPill");
+    if(nEx){
+      ex.hidden=false;
+      ex.innerHTML='<span class="dot"></span>'+nEx+' example entries — '+
+        '<button class="rcpt" id="btnClearEx" style="color:inherit">remove them</button>';
+      var b=$("btnClearEx");
+      if(b) b.onclick=clearExamples;
+    } else ex.hidden=true;
+  }
+
+  /* ── persistence ──────────────────────────────────────────────── */
+  function saveSettings(){
+    if(db) db.doc("settings/main").set(settings).catch(function(){});
+    else lsSet(LS_SETTING,settings);
+  }
+
+  function addEntry(entry, receipt){
+    if(db){
+      var p = receipt
+        ? db.doc("receipts/"+receipt.id).set({name:receipt.name,type:receipt.type,
+              dataUrl:receipt.dataUrl,createdAt:Date.now()})
+        : Promise.resolve();
+      return p.then(function(){ return db.collection("entries").doc(entry.id).set(entry); });
+    }
+    entries.push(entry);
+    lsSet(LS_ENTRIES,entries);
+    if(receipt){
+      var r=lsGet(LS_RECEIPT,{}); r[receipt.id]=receipt; lsSet(LS_RECEIPT,r);
+      receiptCache[receipt.id]=receipt;
+    }
+    render();
+    return Promise.resolve();
+  }
+
+  function removeEntry(id){
+    var e=entries.filter(function(x){return x.id===id;})[0];
+    if(db){
+      var p=[db.doc("entries/"+id).delete()];
+      if(e && e.receiptId) p.push(db.doc("receipts/"+e.receiptId).delete().catch(function(){}));
+      return Promise.all(p);
+    }
+    entries=entries.filter(function(x){return x.id!==id;});
+    lsSet(LS_ENTRIES,entries);
+    if(e && e.receiptId){
+      var r=lsGet(LS_RECEIPT,{}); delete r[e.receiptId]; lsSet(LS_RECEIPT,r);
+    }
+    render();
+    return Promise.resolve();
+  }
+
+  function clearExamples(){
+    var ex=entries.filter(function(e){return e.isExample;});
+    if(!ex.length) return;
+    if(!confirm("Remove "+ex.length+" example entries? Your own entries are untouched.")) return;
+    Promise.all(ex.map(function(e){ return removeEntry(e.id); }))
+      .then(function(){ toast("Example entries removed"); })
+      .catch(function(){ toast("Could not remove them all — try again"); });
+  }
+
+  /* ── receipts ─────────────────────────────────────────────────── */
+  function compressImage(file){
+    return new Promise(function(resolve,reject){
+      var fr=new FileReader();
+      fr.onerror=function(){ reject(new Error("Could not read that file")); };
+      fr.onload=function(){
+        var img=new Image();
+        img.onerror=function(){ reject(new Error("That image could not be opened")); };
+        img.onload=function(){
+          var max=1500, w=img.width, h=img.height;
+          if(w>max||h>max){ var s=max/Math.max(w,h); w=Math.round(w*s); h=Math.round(h*s); }
+          var c=document.createElement("canvas"); c.width=w; c.height=h;
+          var ctx=c.getContext("2d");
+          ctx.fillStyle="#fff"; ctx.fillRect(0,0,w,h);
+          ctx.drawImage(img,0,0,w,h);
+          var q=0.78, url=c.toDataURL("image/jpeg",q);
+          while(url.length>MAX_DOC && q>0.32){ q-=0.12; url=c.toDataURL("image/jpeg",q); }
+          if(url.length>MAX_DOC){
+            c.width=Math.round(w*0.7); c.height=Math.round(h*0.7);
+            ctx=c.getContext("2d");
+            ctx.fillStyle="#fff"; ctx.fillRect(0,0,c.width,c.height);
+            ctx.drawImage(img,0,0,c.width,c.height);
+            url=c.toDataURL("image/jpeg",0.6);
+          }
+          if(url.length>MAX_DOC) return reject(new Error("That photo is too large even compressed — crop it and try again"));
+          resolve({dataUrl:url,type:"image/jpeg"});
+        };
+        img.src=fr.result;
+      };
+      fr.readAsDataURL(file);
+    });
+  }
+
+  function stageFile(file){
+    if(!file) return;
+    var isPdf = file.type==="application/pdf";
+    var work = isPdf
+      ? new Promise(function(resolve,reject){
+          var fr=new FileReader();
+          fr.onerror=function(){ reject(new Error("Could not read that PDF")); };
+          fr.onload=function(){
+            if(fr.result.length>MAX_DOC)
+              return reject(new Error("That PDF is "+Math.round(file.size/1024)+" KB — too large to store. Attach a photo of the receipt instead."));
+            resolve({dataUrl:fr.result,type:"application/pdf"});
+          };
+          fr.readAsDataURL(file);
+        })
+      : compressImage(file);
+
+    $("dropIdle").innerHTML='<div class="t">Processing…</div>';
+    work.then(function(r){
+      pending={id:uid(),name:file.name,type:r.type,dataUrl:r.dataUrl};
+      var d=$("drop");
+      d.classList.add("has");
+      $("dropIdle").hidden=true;
+      var hs=$("dropHas"); hs.hidden=false;
+      hs.innerHTML='<div class="thumb">'+
+        (r.type==="application/pdf"
+          ? '<div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;'+
+            'background:var(--surface-2);border:1px solid var(--line-2);border-radius:2px;font-size:10px">PDF</div>'
+          : '<img src="'+r.dataUrl+'" alt="">')+
+        '<div style="min-width:0"><div class="fn">'+esc(file.name)+'</div>'+
+        '<div class="s" style="font-size:11px;color:var(--ink-3)">'+
+          Math.round(r.dataUrl.length/1365)+' KB stored · click to replace</div></div></div>';
+    }).catch(function(err){
+      pending=null; resetDrop();
+      toast(err.message||"That file could not be attached");
+    });
+  }
+
+  function resetDrop(){
+    var d=$("drop"); d.classList.remove("has");
+    $("dropHas").hidden=true; $("dropHas").innerHTML="";
+    var idle=$("dropIdle"); idle.hidden=false;
+    idle.innerHTML='<div class="t">Attach a photo or PDF</div>'+
+      '<div class="s">Drag in, or click to browse — images are compressed automatically</div>';
+  }
+
+  function loadReceipt(id){
+    if(receiptCache[id]) return Promise.resolve(receiptCache[id]);
+    if(db) return db.doc("receipts/"+id).get().then(function(s){
+      if(!s.exists) return null;
+      receiptCache[id]=s.data(); return receiptCache[id];
+    });
+    var r=lsGet(LS_RECEIPT,{}); return Promise.resolve(r[id]||null);
+  }
+
+  function showReceipt(id){
+    loadReceipt(id).then(function(r){
+      if(!r){ toast("That receipt is no longer stored"); return; }
+      var m=document.createElement("div");
+      m.className="modal"; m.setAttribute("role","dialog"); m.setAttribute("aria-modal","true");
+      m.innerHTML='<div class="modal-in">'+
+        '<div class="modal-hd"><h2 style="font-size:14px">'+esc(r.name||"Receipt")+'</h2>'+
+        '<button class="btn ghost" data-close>Close</button></div>'+
+        '<div class="modal-bd">'+
+          (r.type==="application/pdf"
+            ? '<embed src="'+r.dataUrl+'" type="application/pdf" style="width:100%;height:62vh">'
+            : '<img src="'+r.dataUrl+'" alt="Receipt">')+
+        '</div>'+
+        '<div class="modal-ft"><button class="btn ghost" data-save>Download this receipt</button></div>'+
+      '</div>';
+      document.body.appendChild(m);
+      var close=function(){ m.remove(); document.removeEventListener("keydown",onKey); };
+      var onKey=function(ev){ if(ev.key==="Escape") close(); };
+      document.addEventListener("keydown",onKey);
+      m.addEventListener("click",function(ev){
+        if(ev.target===m || ev.target.hasAttribute("data-close")) return close();
+        if(ev.target.hasAttribute("data-save")) saveReceipt(r);
+      });
+    }).catch(function(){ toast("Could not open that receipt"); });
+  }
+
+  function dataUrlToBlob(url){
+    var parts=url.split(","), mime=(/:(.*?);/.exec(parts[0])||[])[1]||"application/octet-stream";
+    var bin=atob(parts[1]), n=bin.length, arr=new Uint8Array(n);
+    while(n--) arr[n]=bin.charCodeAt(n);
+    return new Blob([arr],{type:mime});
+  }
+
+  function saveReceipt(r){
+    if(!downloads){ toast("Downloads are not available in this view"); return; }
+    var ext = r.type==="application/pdf" ? "pdf" : "jpg";
+    var name=(r.name||"receipt").replace(/\.[^.]+$/,"")+"."+ext;
+    downloads.save({filename:name,data:dataUrlToBlob(r.dataUrl)})
+      .then(function(){ toast("Receipt saved"); })
+      .catch(function(e){ if(e && e.code!=="declined") toast("Could not save that receipt"); });
+  }
+
+  /* ── excel export ─────────────────────────────────────────────── */
+  function exportExcel(){
+    if(typeof XLSX==="undefined"){ toast("The spreadsheet library did not load — reload the page"); return; }
+    var list=filtered();
+    if(!list.length){ toast("Nothing to export — no entries match the filters"); return; }
+    if(!downloads){ toast("Downloads are not available in this view"); return; }
+
+    var open=Number(settings.openingFloat)||0;
+    var head=["Voucher","Date","Type","Description","Category","Paid to / from","Method",
+              "Supplier TRN","Cash in (AED)","Cash out (AED)","VAT (AED)","Balance (AED)",
+              "Receipt held","Recorded by"];
+    var body=list.map(function(e){
+      return [e.voucherNo||"", e.date||"", e.type==="in"?"Cash in":"Cash out",
+        e.description||"", e.category||"", e.payee||"", e.method||"", e.trn||"",
+        e.type==="in"?Number(e.amount)||0:"", e.type==="out"?Number(e.amount)||0:"",
+        Number(e.vatAmount)||0, Number(e.balance)||0,
+        e.receiptId?"Yes":"No", e.recordedBy||""];
+    });
+    var tIn=0,tOut=0,tVat=0;
+    list.forEach(function(e){
+      var a=Number(e.amount)||0;
+      if(e.type==="in") tIn+=a; else tOut+=a;
+      tVat+=Number(e.vatAmount)||0;
+    });
+
+    var aoa=[
+      ["ORIZURU HOLIDAY HOMES LLC — PETTY CASH BOOK"],
+      ["Trade Licence 1634278 · TRN 105507385000001 · All figures in AED"],
+      ["Exported "+new Date().toLocaleString("en-GB")+
+       (list.length!==entries.length?"  ·  FILTERED VIEW ("+list.length+" of "+entries.length+" entries)":"")],
+      [],
+      ["Opening float",open],
+      ["Total cash in",tIn],
+      ["Total cash out",tOut],
+      ["Closing book balance",open+tIn-tOut],
+      ["Recoverable input VAT",tVat],
+      [],
+      head
+    ].concat(body);
+    aoa.push([]);
+    aoa.push(["","","","TOTALS","","","","",tIn,tOut,tVat,open+tIn-tOut,"",""]);
+
+    var ws=XLSX.utils.aoa_to_sheet(aoa);
+    ws["!cols"]=[{wch:10},{wch:11},{wch:10},{wch:42},{wch:24},{wch:20},{wch:14},
+                 {wch:16},{wch:13},{wch:13},{wch:11},{wch:13},{wch:12},{wch:16}];
+    var wb=XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb,ws,"Petty Cash Book");
+
+    // category summary
+    var by={};
+    list.forEach(function(e){
+      if(e.type!=="out") return;
+      var c=e.category||"Uncategorised";
+      by[c]=by[c]||{amt:0,vat:0,n:0};
+      by[c].amt+=Number(e.amount)||0; by[c].vat+=Number(e.vatAmount)||0; by[c].n++;
+    });
+    var sum=[["SPEND BY BUDGET CATEGORY"],[],
+             ["Category","Entries","Amount (AED)","VAT (AED)","% of spend"]];
+    Object.keys(by).sort(function(a,b){return by[b].amt-by[a].amt;}).forEach(function(c){
+      sum.push([c,by[c].n,by[c].amt,by[c].vat, tOut?by[c].amt/tOut:0]);
+    });
+    sum.push([]); sum.push(["Total",list.filter(function(e){return e.type==="out";}).length,tOut,tVat,tOut?1:0]);
+    var ws2=XLSX.utils.aoa_to_sheet(sum);
+    ws2["!cols"]=[{wch:30},{wch:9},{wch:14},{wch:12},{wch:12}];
+    XLSX.utils.book_append_sheet(wb,ws2,"Summary by Category");
+
+    var buf=XLSX.write(wb,{bookType:"xlsx",type:"array"});
+    var fn="Orizuru_Petty_Cash_"+today()+".xlsx";
+    downloads.save({filename:fn,data:new Blob([buf],
+      {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"})})
+      .then(function(){ toast("Exported "+list.length+" entries"); })
+      .catch(function(e){
+        if(!e || e.code==="declined") return;
+        toast(e.code==="too_large" ? "That export is too large for the chosen destination"
+                                   : "Export failed — please try again");
+      });
+  }
+
+  /* ── form wiring ──────────────────────────────────────────────── */
+  function setKind(k){
+    kind=k;
+    $("tIn").setAttribute("aria-pressed", k==="in"?"true":"false");
+    $("tOut").setAttribute("aria-pressed", k==="out"?"true":"false");
+    $("trnWrap").hidden = k!=="out";
+    if(k==="in" && $("fCat").value!=="Float top-up") $("fCat").value="Float top-up";
+    if(k==="out" && $("fCat").value==="Float top-up") $("fCat").value="Transport, fuel & Salik";
+    updateVatPreview();
+  }
+  function currentVat(){
+    if(kind!=="out" || !$("fVat").checked) return 0;
+    var a=Number($("fAmount").value)||0;
+    return Math.round(a*VAT_RATE/(1+VAT_RATE)*100)/100;
+  }
+  function updateVatPreview(){ $("vatPrev").textContent=aed(currentVat()); }
+
+  $("tIn").addEventListener("click",function(){ setKind("in"); });
+  $("tOut").addEventListener("click",function(){ setKind("out"); });
+  $("fAmount").addEventListener("input",updateVatPreview);
+  $("fVat").addEventListener("change",updateVatPreview);
+
+  $("drop").addEventListener("click",function(){ $("fFile").click(); });
+  $("drop").addEventListener("keydown",function(e){
+    if(e.key==="Enter"||e.key===" "){ e.preventDefault(); $("fFile").click(); }
+  });
+  $("fFile").addEventListener("change",function(e){ stageFile(e.target.files[0]); });
+  ["dragenter","dragover"].forEach(function(ev){
+    $("drop").addEventListener(ev,function(e){ e.preventDefault(); $("drop").classList.add("over"); });
+  });
+  ["dragleave","drop"].forEach(function(ev){
+    $("drop").addEventListener(ev,function(e){ e.preventDefault(); $("drop").classList.remove("over"); });
+  });
+  $("drop").addEventListener("drop",function(e){
+    if(e.dataTransfer && e.dataTransfer.files.length) stageFile(e.dataTransfer.files[0]);
+  });
+
+  $("entryForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var amt=Number($("fAmount").value);
+    if(!(amt>0)){ toast("Enter an amount greater than zero"); $("fAmount").focus(); return; }
+    var desc=$("fDesc").value.trim();
+    if(!desc){ toast("Add a short description of what this was for"); $("fDesc").focus(); return; }
+
+    var who=$("fBy").value.trim();
+    if(who) lsSet(LS_NAME,who);
+
+    var entry={
+      id:uid(), voucherNo:nextVoucher(), date:$("fDate").value||today(),
+      type:kind, amount:amt, description:desc, category:$("fCat").value,
+      payee:$("fPayee").value.trim(), method:$("fMethod").value,
+      trn:kind==="out"?$("fTrn").value.trim():"", vatAmount:currentVat(),
+      recordedBy:who, receiptId:pending?pending.id:"", createdAt:Date.now()
+    };
+
+    $("btnSave").disabled=true; $("btnSave").textContent="Saving…";
+    addEntry(entry,pending).then(function(){
+      toast(entry.voucherNo+" recorded"+(pending?" with receipt":""));
+      pending=null; resetDrop();
+      $("fAmount").value=""; $("fDesc").value=""; $("fPayee").value=""; $("fTrn").value="";
+      $("fDate").value=today();
+      updateVatPreview();
+      $("fDesc").focus();
+    }).catch(function(err){
+      var c=err&&err.code;
+      toast(c==="quota_exceeded" ? "The record store is full — delete old entries or export first"
+          : c==="invalid_argument" ? "That receipt is too large to store — attach a smaller photo"
+          : "Could not save that entry — please try again");
+    }).then(function(){
+      $("btnSave").disabled=false; $("btnSave").textContent="Record entry";
+    });
+  });
+
+  $("rows").addEventListener("click",function(e){
+    var v=e.target.closest("[data-view]");
+    if(v) return showReceipt(v.getAttribute("data-view"));
+    var d=e.target.closest("[data-del]");
+    if(d){
+      var id=d.getAttribute("data-del");
+      var en=entries.filter(function(x){return x.id===id;})[0];
+      if(!en) return;
+      if(!confirm("Delete "+en.voucherNo+" — "+en.description+"?\n\nThis cannot be undone.")) return;
+      removeEntry(id).then(function(){ toast(en.voucherNo+" deleted"); })
+        .catch(function(){ toast("Could not delete that entry"); });
+    }
+  });
+
+  ["qSearch","qType","qCat","qFrom","qTo"].forEach(function(id){
+    $(id).addEventListener("input",render);
+    $(id).addEventListener("change",render);
+  });
+  $("qClear").addEventListener("click",function(){
+    ["qSearch","qType","qCat","qFrom","qTo"].forEach(function(id){ $(id).value=""; });
+    render();
+  });
+
+  $("fFloat").addEventListener("change",function(){
+    settings.openingFloat=Number($("fFloat").value)||0;
+    saveSettings(); render();
+  });
+  $("fCount").addEventListener("input",render);
+  $("btnExport").addEventListener("click",exportExcel);
+
+  /* ── boot: render immediately, light up capabilities later ────── */
+  $("fDate").value=today();
+  $("fBy").value=lsGet(LS_NAME,"")||"";
+  setKind("out");
+
+  entries=lsGet(LS_ENTRIES,[])||[];
+  settings=lsGet(LS_SETTING,{openingFloat:0})||{openingFloat:0};
+  $("fFloat").value=Number(settings.openingFloat)||0;
+  receiptCache=lsGet(LS_RECEIPT,{})||{};
+  render();
+
+  function setMode(live){
+    var p=$("modePill"), t=$("modeText");
+    if(live){ p.className="pill live"; t.textContent="Shared record — everyone with the link sees the same book"; }
+    else{ p.className="pill local"; t.textContent="This device only — entries are not shared"; }
+  }
+  setMode(false);
+
+  if(window.claude && typeof window.claude.use==="function"){
+    window.claude.use("downloads").then(function(d){
+      downloads=d;
+      if(!d) $("btnExport").textContent="Export unavailable here";
+    }).catch(function(){});
+
+    window.claude.use("db").then(function(d){
+      if(!d) return;                       // stay in local mode
+      db=d; setMode(true);
+      db.doc("settings/main").onSnapshot(function(s){
+        if(s.exists){
+          settings=s.data()||{openingFloat:0};
+          if(document.activeElement!==$("fFloat"))
+            $("fFloat").value=Number(settings.openingFloat)||0;
+          render();
+        }
+      },function(){});
+      db.collection("entries").limit(1000).onSnapshot(function(snap){
+        entries=snap.docs.map(function(doc){
+          var v=doc.data()||{}; v.id=doc.id; return v;
+        });
+        render();
+      },function(err){
+        setMode(false); db=null;
+        toast(err&&err.code==="revoked" ? "Access to the shared book was withdrawn"
+                                        : "Lost the shared record — showing this device only");
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
