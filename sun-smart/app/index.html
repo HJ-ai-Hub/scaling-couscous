@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>SUN SMART · 每日营运系统</title>
+<title>EZ4U Mobile · 每日营运系统</title>
 <style>
   :root {
     --surface-1: #fcfcfb;
@@ -195,7 +195,7 @@
 
 <header class="topbar">
   <div class="brand">
-    <b id="shopNameLabel">SUN SMART</b>
+    <b id="shopNameLabel">EZ4U Mobile</b>
     <span>每日营运系统 · 数据仅存于本机浏览器</span>
   </div>
   <div class="today tabular" id="todayLabel"></div>
@@ -547,7 +547,10 @@ function toast(msg){
 
 /* ---------- settings ---------- */
 function getSettings(){
-  return loadObj('ss_settings', { shopName: 'SUN SMART', defaultFloat: 200, lowStockThreshold: 5 });
+  const s = loadObj('ss_settings', { shopName: 'EZ4U Mobile', defaultFloat: 200, lowStockThreshold: 5 });
+  // 旧版本存的是 SUN SMART，改名后自动跟着更新（店主自订的名称不会被覆盖）
+  if (s.shopName === 'SUN SMART') { s.shopName = 'EZ4U Mobile'; saveObj('ss_settings', s); }
+  return s;
 }
 
 /* ---------- tabs ---------- */
@@ -952,7 +955,7 @@ document.getElementById('settingsForm').addEventListener('submit', (e) => {
   e.preventDefault();
   const f = e.target;
   saveObj('ss_settings', {
-    shopName: f.shopName.value.trim() || 'SUN SMART',
+    shopName: f.shopName.value.trim() || 'EZ4U Mobile',
     defaultFloat: Number(f.defaultFloat.value)||0,
     lowStockThreshold: Number(f.lowStockThreshold.value)||0
   });
