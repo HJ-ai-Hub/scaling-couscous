@@ -16,6 +16,26 @@ Read `about-me/profile.md` at the start of every session — it contains context
 `templates/amana-pharma/` contains reference material for Amana Pharma Sdn Bhd (pharmaceutical distributor/wholesaler):
 - `amana-pharma-session-compendium.html` — full session knowledge base covering company profile, ePharma strategy, HeyDoc competitor analysis, NPP market research, competitive landscape (15 players), 26 target institutions, 3 new business lines (IMP supply, PSP management, market access consultancy), 36-month roadmap, and key data index
 
+## The EZ4U Mobile website is no longer in this repository
+
+**Do not edit the EZ4U Mobile website (www.ez4u.co) here.** It was moved out to
+its own repository — **`HJ-ai-Hub/ez4u-website`** — so that an external
+developer could be given access to the site without also receiving the owner
+profile, the finance models, or the other businesses' material in this repo.
+
+- The live site deploys from `ez4u-website` (branch `main`) via Netlify. This
+  repository no longer deploys it, so changes made here will never reach
+  ez4u.co.
+- `sun-smart/website/` and the `docs/website/` GitHub Pages mirror were deleted
+  once the migration was verified. If you need the old copies, they are in this
+  repo's git history.
+- That repository's `HANDOVER.md` is the authoritative reference for the site's
+  architecture, deploy setup and secrets policy.
+
+What remains here for EZ4U Mobile is the internal daily operations app
+(`sun-smart/app/`, mirrored to GitHub Pages under `docs/`) and the finance
+models (`sun-smart/finance/`).
+
 ## What this project does
 
 A single-script Python tool that generates a daily financial/AI market brief using Claude with live web search, then emails it as formatted HTML via Gmail SMTP. Designed to be run once a day via cron or Task Scheduler.

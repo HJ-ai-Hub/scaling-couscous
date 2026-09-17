@@ -1,9 +1,20 @@
-[build]
-  publish = "sun-smart/website"
-  functions = "sun-smart/website/netlify/functions"
-
-[build.environment]
-  NODE_VERSION = "20"
-
-[functions]
-  node_bundler = "esbuild"
+# No site in this repository is currently deployed to Netlify.
+#
+# The EZ4U Mobile website used to be built from here. It now lives in its own
+# repository -- HJ-ai-Hub/ez4u-website -- which is what the ez4u.co Netlify
+# site deploys from. Its build settings live in that repo's netlify.toml, not
+# this one.
+#
+# This file is kept as a starting point for whatever gets deployed from this
+# repository next. Uncomment and set the paths for that site; an empty config
+# means Netlify falls back to whatever is set in the site's UI.
+#
+# [build]
+#   publish = "<folder containing the built site>"
+#   functions = "<folder containing serverless functions>"
+#
+# [build.environment]
+#   NODE_VERSION = "20"
+#
+# [functions]
+#   node_bundler = "esbuild"

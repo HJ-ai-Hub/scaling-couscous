@@ -2,6 +2,14 @@
 
 基于 `Project A OS · SUN SMART 经营操作系统 Master Document V0.7`（第1-3、5、6、8章及 Decision Log）建立的两个可直接使用的工具，用于补上文件中第6章「财务预算」和部分营运记录系统的缺口。
 
+> **网站（任务三）已迁出本仓库。** EZ4U Mobile 官网 www.ez4u.co 现由独立仓库
+> **`HJ-ai-Hub/ez4u-website`** 管理，并由该仓库的 `main` 分支经 Netlify 部署。
+> 本仓库已不再部署官网，在此处修改网站文件不会生效。原 `website/` 目录与
+> `docs/website/` 镜像已在迁移验证后删除，需要时可在 git 历史中找回。
+> 网站架构、部署方式与密钥政策请参阅新仓库根目录的 `HANDOVER.md`。
+>
+> 本仓库保留的 EZ4U Mobile 部分为：内部每日营运系统（`app/`）与财务模型（`finance/`）。
+
 ## 1. `app/index.html` — 每日营运系统
 
 单一 HTML 文件，双击即可在浏览器打开使用，**完全离线运行，无需安装、无需网络、无需登录**。数据保存在本机浏览器（localStorage）。
