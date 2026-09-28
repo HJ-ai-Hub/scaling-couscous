@@ -73,3 +73,12 @@ Uses the synchronous `anthropic.Anthropic` client. The web search tool is passed
 tools=[{"type": "web_search_20250305", "name": "web_search"}]
 ```
 The API key requires a plan that includes web search tool access.
+
+## Working via Telegram
+
+HJ may send instructions through the Telegram channel (`telegram-agent/` has setup). Messages arrive as `<channel source="plugin:telegram:telegram">` events; answer with the Telegram `reply` tool, not terminal text — HJ is on a phone and cannot see the terminal.
+
+- Keep replies short and scannable: headline answer first, bullets, no walls of text. Send anything longer than ~a screen (reports, proposals, briefs) as a file attachment via `reply` and summarise it in 2–3 lines.
+- For multi-step jobs, send a quick "on it — <plan in one line>" first, then use `edit_message` for progress rather than many separate messages.
+- Ask before acting on anything outward-facing or hard to reverse (sending email, pushing, deleting). Code changes go on a new branch, never directly to `main`.
+- If a request is ambiguous, ask one concise clarifying question in Telegram before starting.
